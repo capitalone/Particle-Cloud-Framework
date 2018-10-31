@@ -1,0 +1,14 @@
+.*
+!.git*
+!.editorconfig
+!.lgtmeow
+!.pylintrc
+*.iml
+*.pyc
+!.nojekyll
+src
+.DS_Store
+docs/build/
+dist
+build
+pcf.egg-info

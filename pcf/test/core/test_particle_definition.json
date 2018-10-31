@@ -1,0 +1,9 @@
+{
+  "pcf_name": "test_particle",
+  // some comment
+  "flavor":"plain_particle",
+  "aws_resource": {
+      "resource_name": "some service", # different comment format
+      "lookup_id": "$lookup$make_sure_commentjson_doesn't_:filter_this_out"
+  }
+}

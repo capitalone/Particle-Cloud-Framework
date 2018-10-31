@@ -1,0 +1,8 @@
+# Export environment variables
+{% for ENVIRONMENT_VARIABLE in ENVIRONMENT_VARIABLES %}
+export {{ENVIRONMENT_VARIABLE}}
+{% endfor %}
+
+# Run your code here
+echo {{VAR1}}
+echo {{VAR2}}

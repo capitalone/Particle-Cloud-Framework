@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Export environment variables
+{% for ENVIRONMENT_VARIABLE in ENVIRONMENT_VARIABLES %}
+export {{ENVIRONMENT_VARIABLE}}
+{% endfor %}
+
+# Start the ECS Agent on Amazon Linux AMI.
+# Refer to this amazon-ecs-agent repo to learn how to start ecs agent in other Linux distros - https://github.com/aws/amazon-ecs-agent
+sudo yum install ecs-init && sudo start ecs
