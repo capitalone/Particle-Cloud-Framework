@@ -4,7 +4,7 @@ Particle Cloud Framework is a cloud resource provisioning framework that is full
 
 ## Docs
 
-[Docs](https://github.com/pages/capitalone/Particle-Cloud-Framework/docs/build/html/index.html) including quickstart and developer guide
+[Docs](https://capitalone.github.io/Particle-Cloud-Framework/docs/build/html/index.html) including quickstart and developer guide
 
 ##
 
@@ -85,13 +85,13 @@ To terminate simply change the desired state to terminated and apply.
 
 ## Supported Cloud Services
 
-[Particles](https://github.com/pages/capitalone/Particle-Cloud-Framework/docs/build/html/particlelist.html)
+[Particles](https://capitalone.github.io/Particle-Cloud-Framework/docs/build/html/particlelist.html)
 
-[Quasiparticles](https://github.com/pages/capitalone/Particle-Cloud-Framework/docs/build/html/quasiparticlelist.html)
+[Quasiparticles](https://capitalone.github.io/Particle-Cloud-Framework/docs/build/html/quasiparticlelist.html)
 
 ## RoadMap
 
-[Roadmap](https://github.com/pages/capitalone/Particle-Cloud-Framework/docs/build/html/sections/roadmap.html)
+[Roadmap](https://capitalone.github.io/Particle-Cloud-Framework/docs/build/html/sections/roadmap.html)
 
 
 ## Contributors

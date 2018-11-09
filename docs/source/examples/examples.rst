@@ -2,6 +2,6 @@
 PCF Examples
 ==================
 
-.. seealso:: `PCF particle and quasiparticle examples <https://github.com/pages/capitalone/Particle-Cloud-Framework/docs/build/html/examples/examples.html>`_
+.. seealso:: `PCF particle and quasiparticle examples <https://github.com/capitalone/Particle-Cloud-Framework/tree/master/examples>`_
 
 
