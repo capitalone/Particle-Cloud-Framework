@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>User Quickstart &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="../index.html"/>
+        <link rel="next" title="Framework Overview" href="framework.html"/>
+        <link rel="prev" title="Welcome to Particle Cloud Framework’s documentation!" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#import-and-use-a-pcf-particle">Import and use a pcf Particle</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>User Quickstart</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sections/quickstart.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="user-quickstart">
+<h1>User Quickstart<a class="headerlink" href="#user-quickstart" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install particle cloud framework, open an interactive shell and run:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pcf</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="import-and-use-a-pcf-particle">
+<h2>Import and use a pcf Particle<a class="headerlink" href="#import-and-use-a-pcf-particle" title="Permalink to this headline">¶</a></h2>
+<p>First import the particles you will use. These can be core particles or custom particles that you created.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.ec2.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
+<span class="kn">from</span> <span class="nn">pcf.core</span> <span class="k">import</span> <span class="n">State</span>
+</pre></div>
+</div>
+<p>Next we need to pass the desired state definition to the particle.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">ec2_example_definition</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_example&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flavor&quot;</span><span class="p">:</span><span class="s2">&quot;ec2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aws_resource&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;ImageId&quot;</span><span class="p">:</span> <span class="s2">&quot;ami-xxxxx&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;InstanceType&quot;</span><span class="p">:</span> <span class="s2">&quot;t2.micro&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;KeyName&quot;</span><span class="p">:</span> <span class="s2">&quot;secret-key-xxx&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SecurityGroupIds&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;sg-xxxxxx&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;SubnetId&quot;</span><span class="p">:</span> <span class="s2">&quot;subnet-xxx&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;userdata_template_file&quot;</span><span class="p">:</span> <span class="s2">&quot;userdata-script-xxxxx.sh&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;userdata_params&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;IamInstanceProfile&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;Arn&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:iam::xxxxxxxxx&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;InstanceInitiatedShutdownBehavior&quot;</span><span class="p">:</span> <span class="s2">&quot;stop&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;NAME&quot;</span><span class="p">:</span><span class="s2">&quot;Value&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;BlockDeviceMappings&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="s2">&quot;DeviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;/dev/sda1&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Ebs&quot;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s2">&quot;DeleteOnTermination&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;VolumeSize&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+              <span class="s2">&quot;VolumeType&quot;</span><span class="p">:</span> <span class="s2">&quot;gp2&quot;</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now to start the ec2 instance using pcf simply initialize the particle and set the desired state to running and apply.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">particle</span> <span class="o">=</span> <span class="n">EC2Instance</span><span class="p">(</span><span class="n">ec2_example_definition</span><span class="p">)</span>
+
+<span class="n">particle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">running</span><span class="p">)</span>
+<span class="n">particle</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To terminate simply change the desired state to terminated and apply.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">particle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">terminated</span><span class="p">)</span>
+<span class="n">particle</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="TODO/pcf/pcf-examples">PCF particle and quasiparticle examples</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="framework.html" class="btn btn-neutral float-right" title="Framework Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Welcome to Particle Cloud Framework’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developer Quickstart &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="../index.html"/>
+        <link rel="next" title="Roadmap" href="roadmap.html"/>
+        <link rel="prev" title="PCF Examples" href="../examples/examples.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">User Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-new-particle">Creating a new Particle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extend-functionality-of-a-particle">Extend functionality of a Particle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-quasiparticle">Create a Quasiparticle</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Developer Quickstart</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sections/quickstartdeveloper.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developer-quickstart">
+<h1>Developer Quickstart<a class="headerlink" href="#developer-quickstart" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="creating-a-new-particle">
+<h2>Creating a new Particle<a class="headerlink" href="#creating-a-new-particle" title="Permalink to this headline">¶</a></h2>
+<p>To learn more about particles and quasiparticle check out the pcf framework part of the docs.
+From that you should now know that particles are essential cloud resources that map to the states
+and lifecycle. To create a new particle all you have to do is inherit the base particle class and
+implement the transition functions and sync state function which is how the particle figures out the
+current state. Sometimes helper functions are needed for the more complex particles. Feel free to check
+out our repository of premade particles and after you create your own feel free to submit a pr with the new
+particle, docstrings, and tests.</p>
+<p>This is an example of how to create a new aws particle.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.aws_resource</span> <span class="k">import</span> <span class="n">AWSResource</span>
+<span class="kn">from</span> <span class="nn">pcf.core</span> <span class="k">import</span> <span class="n">State</span>
+<span class="kn">from</span> <span class="nn">pcf.util</span> <span class="k">import</span> <span class="n">pcf_util</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">NewAwsParticle</span><span class="p">(</span><span class="n">AWSResource</span><span class="p">):</span>
+
+    <span class="n">flavor</span><span class="o">=</span><span class="s1">&#39;new_particle&#39;</span>
+
+    <span class="c1">#this is helpful if the particle doesn&#39;t have all three states or has more than three.</span>
+    <span class="n">equivalent_states</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">State</span><span class="o">.</span><span class="n">running</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">State</span><span class="o">.</span><span class="n">stopped</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="n">State</span><span class="o">.</span><span class="n">terminated</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">NewAwsParticle</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">particle_definition</span><span class="p">,</span> <span class="s1">&#39;new_particle&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That is the standard initial setup. Now the functions that you have to implement</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sync_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1">#implement</span>
+
+<span class="k">def</span> <span class="nf">_terminate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1">#implement</span>
+
+<span class="k">def</span> <span class="nf">_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1">#implement</span>
+
+<span class="k">def</span> <span class="nf">_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1">#implement</span>
+
+<span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1">#implement if needed</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extend-functionality-of-a-particle">
+<h2>Extend functionality of a Particle<a class="headerlink" href="#extend-functionality-of-a-particle" title="Permalink to this headline">¶</a></h2>
+<p>The power of pcf comes from its extensibility. All particle functionality can be overwritten and custom functions can be added.</p>
+<p>This is an example of how to add a function that adds a security group to a running ec2. This new particle can be now be imported by anyone
+else who also wants this additional functionally.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.ec2.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
+
+
+<span class="k">class</span> <span class="nc">EC2Extended</span><span class="p">(</span><span class="n">EC2Instance</span><span class="p">):</span>
+    <span class="n">flavor</span> <span class="o">=</span> <span class="s2">&quot;ec2_extended&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">particle_definition</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">EC2Extended</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">particle_definition</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_security_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">security_group_id</span><span class="p">):</span>
+        <span class="n">all_security_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state_definition</span><span class="p">[</span><span class="s2">&quot;SecurityGroupIds&quot;</span><span class="p">]</span>
+        <span class="n">all_security_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">security_group_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">modify_attribute</span><span class="p">(</span><span class="n">Groups</span><span class="o">=</span><span class="n">all_security_groups</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To use this new functionality you import the extended particle and call the function.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">EC2Extended</span>
+
+<span class="c1"># same config as before</span>
+
+<span class="n">particle</span> <span class="o">=</span> <span class="n">EC2Extended</span><span class="p">(</span><span class="n">ec2_example_definition</span><span class="p">)</span>
+
+<span class="n">particle</span><span class="o">.</span><span class="n">add_security_group</span><span class="p">(</span><span class="s2">&quot;SG-123456&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-quasiparticle">
+<h2>Create a Quasiparticle<a class="headerlink" href="#create-a-quasiparticle" title="Permalink to this headline">¶</a></h2>
+<p>A quasiparticle is a collection of particles that have custom dependencies on each other. They follow the same state lifecycles as particles
+so can be imported and extended the same way and simplify the provisioning and maintenance of complex infrastructure deployments.
+For example, we can create a basic quasiparticle that has a cluster of master and worker nodes. We want all of the cluster nodes to be running
+before any of the worker nodes would spin up. We would handle this by created a custom config var that we can use in our custom
+quasiparticle definition and create a function that sets the parents of each worker particle.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.rds.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
+<span class="kn">from</span> <span class="nn">pcf.core.quasiparticle</span> <span class="k">import</span> <span class="n">Quasiparticle</span>
+
+<span class="k">class</span> <span class="nc">DistributedMasterWorker</span><span class="p">(</span><span class="n">Quasiparticle</span><span class="p">):</span>
+    <span class="n">flavor</span> <span class="o">=</span> <span class="s1">&#39;distributed_master_worker&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">particle_definition</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DistributedMasterWorker</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">particle_definition</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">particle_definition</span><span class="p">[</span><span class="s1">&#39;custom_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;master&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_parents</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">set_parents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Checks for the master ec2 instances and adds them as a parent to all other ec2 particles.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">ec2_particles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pcf_field</span><span class="o">.</span><span class="n">get_particles</span><span class="p">(</span><span class="n">flavor</span><span class="o">=</span><span class="s2">&quot;ec2_instance&quot;</span><span class="p">)</span>
+            <span class="n">ec2_masters</span> <span class="o">=</span> <span class="p">[</span><span class="n">ec2_particles</span><span class="p">[</span><span class="n">ec2_name</span><span class="p">]</span> <span class="k">for</span> <span class="n">ec2_name</span> <span class="ow">in</span> <span class="n">ec2_particles</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span> <span class="ow">in</span> <span class="n">ec2_name</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">ec2_name</span> <span class="ow">in</span> <span class="n">ec2_particles</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ec2_name</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">pcf_field</span><span class="o">.</span><span class="n">particles</span><span class="p">[</span><span class="s2">&quot;ec2_instance&quot;</span><span class="p">][</span><span class="n">ec2_name</span><span class="p">]</span><span class="o">.</span><span class="n">parents</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ec2_masters</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">pcf_field</span><span class="o">.</span><span class="n">link_particles</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pcf_field</span><span class="o">.</span><span class="n">particles</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To use this quasiparticle we simple import, initialize the desired state definitions, set the desired start, and apply.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">DistributedMasterWorker</span>
+<span class="kn">from</span> <span class="nn">pcf.core</span> <span class="k">import</span> <span class="n">State</span>
+
+<span class="n">kafka_zookeeper_example_definition</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;example&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;distributed_master_worker&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;custom_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;master&quot;</span><span class="p">:</span><span class="s2">&quot;master-ec2&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;particles&quot;</span><span class="p">:[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_instance&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;master-ec2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;multiplier&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;aws_resource&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;custom_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;instance_name&quot;</span><span class="p">:</span> <span class="s2">&quot;pcf-master&quot;</span><span class="p">,</span>
+                <span class="o">...</span>
+            <span class="p">},</span>
+            <span class="o">...</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_instance&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;worker-ec2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;multiplier&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;aws_resource&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;custom_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;instance_name&quot;</span><span class="p">:</span> <span class="s2">&quot;pcf-worker,</span>
+                <span class="o">...</span>
+            <span class="p">},</span>
+            <span class="o">...</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">quasiparticle</span> <span class="o">=</span> <span class="n">DistributedMasterWorker</span><span class="p">(</span><span class="n">kafka_zookeeper_example_definition</span><span class="p">)</span>
+
+<span class="n">quasiparticle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">running</span><span class="p">)</span>
+<span class="n">quasiparticle</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="roadmap.html" class="btn btn-neutral float-right" title="Roadmap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../examples/examples.html" class="btn btn-neutral" title="PCF Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

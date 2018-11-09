@@ -1,0 +1,477 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Advanced Configuration Features &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="../index.html"/>
+        <link rel="next" title="Core" href="../sections/core.html"/>
+        <link rel="prev" title="pcf.quasiparticle.aws.ecs_instance_quasi package" href="../pcf.quasiparticle.aws.ecs_instance_quasi.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/quickstart.html">User Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Configuration Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#multiplier">Multiplier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inherit-parent-variables">Inherit Parent Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#base-config">Base Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lookup">Lookup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#callback">Callback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#termination-protection">Termination Protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rollback">Rollback</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/core.html">Core</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Advanced Configuration Features</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/features/features.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="advanced-configuration-features">
+<h1>Advanced Configuration Features<a class="headerlink" href="#advanced-configuration-features" title="Permalink to this headline">¶</a></h1>
+<p>Documentation of current Particle Cloud Framework features</p>
+<ul class="simple">
+<li><a class="reference internal" href="#multiplier"><span class="std std-ref">Multiplier</span></a></li>
+<li><a class="reference internal" href="#inherit"><span class="std std-ref">Inherit Parent Variables</span></a></li>
+<li><a class="reference internal" href="#baseconfig"><span class="std std-ref">Base Config</span></a></li>
+<li><a class="reference internal" href="#lookup"><span class="std std-ref">Lookup</span></a></li>
+<li><a class="reference internal" href="#callback"><span class="std std-ref">Callback</span></a></li>
+<li><a class="reference internal" href="#protection"><span class="std std-ref">Termination Protection</span></a></li>
+<li><a class="reference internal" href="#rollback"><span class="std std-ref">Rollback</span></a></li>
+</ul>
+<div class="section" id="multiplier">
+<span id="id1"></span><h2>Multiplier<a class="headerlink" href="#multiplier" title="Permalink to this headline">¶</a></h2>
+<p>The multipler lets you easily create multiple instances of the same resource. This can be used in any quasiparticle and
+will create copies of the same particle with the unique keys being indexed from &#8216;-0&#8217; to whatever multiplier you specify.</p>
+<p>This is an example of how to use multipler to create 3 ec2 instances with names <cite>multi-name-0</cite> , <cite>multi-name-1</cite> , <cite>multi-name-2</cite></p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">quasiparticle_definition</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span><span class="s2">&quot;multi_ec2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flavor&quot;</span><span class="p">:</span><span class="s2">&quot;quasiparticle&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;particles&quot;</span><span class="p">:[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;flavor&quot;</span><span class="p">:</span><span class="s2">&quot;ec2_instance&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;multiplier&quot;</span><span class="p">:</span><span class="mi">3</span>
+            <span class="s2">&quot;aws_resource&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="o">...</span>
+                <span class="n">custom_config</span><span class="p">:{</span>
+                    <span class="s2">&quot;instance_name&quot;</span><span class="p">:</span><span class="s2">&quot;multi-name&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="inherit-parent-variables">
+<span id="inherit"></span><h2>Inherit Parent Variables<a class="headerlink" href="#inherit-parent-variables" title="Permalink to this headline">¶</a></h2>
+<p>In quasiparticles some particles may require certain variables from their parents to run. Variables can be dynamically passed to a parent&#8217;s
+child by using the notation &#8220;$inherit$particle_type:pcf_name$variable.&#8221; Any variable that in the parent&#8217;s current definition can be passed. If it
+is a nested variable then you can use &#8216;.&#8217; to signify nested. For example &#8220;variable.nested_variable&#8221;</p>
+<p>For example a PrivateIpAddress can be passed to the child&#8217;s userdata as a param.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">example_definition</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;pcf-example&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;distributed_master_worker&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;particles&quot;</span><span class="p">:[{</span>
+        <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_instance&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;parent-ec2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;aws_resource&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="o">...</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_instance&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;child-ec2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;aws_resource&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;custom_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="o">...</span>
+
+                <span class="s2">&quot;userdata_params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;parentIP&quot;</span><span class="p">:</span><span class="s2">&quot;$inherit$ec2_instance:parent-ec2$PrivateIpAddress&quot;</span>
+                <span class="p">}</span>
+
+            <span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="base-config">
+<span id="baseconfig"></span><h2>Base Config<a class="headerlink" href="#base-config" title="Permalink to this headline">¶</a></h2>
+<p>If you have similar particles with only a few differences in a quasiparticle, you can use the base_particle_config flag to grab all configurations
+from another particle already defined in the quasiparticle. This flag takes in the pcf_name of the base particle.</p>
+<p>For example, if you have multiple ec2 instances, but what them to share the same sg&#8217;s but want to change the instance size,
+you can use the flag and only override the instance param.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">example_definition</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;pcf-example&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;distributed_master_worker&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;particles&quot;</span><span class="p">:[{</span>
+        <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_instance&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;base-ec2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;aws_resource&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="o">...</span>
+
+            <span class="s2">&quot;InstanceType&quot;</span><span class="p">:</span> <span class="s2">&quot;t2.nano&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;KeyName&quot;</span><span class="p">:</span> <span class="s2">&quot;key&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SecurityGroupIds&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;sg-abcd1234&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sg-abcd2345&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;SubnetId&quot;</span><span class="p">:</span> <span class="s2">&quot;subnet-abdc1234&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_instance&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;child-ec2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;base_particle_config&quot;</span><span class="p">:</span> <span class="s2">&quot;base-ec2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;aws_resource&quot;</span><span class="p">:{</span>
+            <span class="o">...</span>
+
+            <span class="s2">&quot;InstanceType&quot;</span><span class="p">:</span> <span class="s2">&quot;m3.medium&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lookup">
+<span id="id2"></span><h2>Lookup<a class="headerlink" href="#lookup" title="Permalink to this headline">¶</a></h2>
+<p>Lookup allows you to get id&#8217;s for resources by their names. In the particle definition, set the value of the id field to &#8220;$lookup$(resource type)$(resource names)&#8221;</p>
+<p>When there is a list of names (security groups), separate them using &#8216;:&#8217;</p>
+<p>As of now only an AWS lookup for SnapshotId, ResourceName, ImageId, SecurityGroupIds, Ami, and SubnetId are implemented.</p>
+<p>For Ami, either &#8220;instance-profile&#8221; or &#8220;role&#8221; must be set in the (resource names) and appended by &#8216;:&#8217; and name.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">particle_definition</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;pcf-example&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_instance&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aws_resource&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;custom_config&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;instance_name&quot;</span><span class="p">:</span> <span class="s2">&quot;gg-instance&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;BlockDeviceMappings&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;Ebs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;SnapshotId&quot;</span><span class="p">:</span> <span class="s2">&quot;$lookup$snapshot$ami-build&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;InstanceType&quot;</span><span class="p">:</span> <span class="s2">&quot;m4.large&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;KeyName&quot;</span><span class="p">:</span> <span class="s2">&quot;secret-key&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;MaxCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;MinCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;SecurityGroupIds&quot;</span><span class="p">:</span> <span class="s2">&quot;$lookup$security_groups$test_sg:test_sg2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SubnetId&quot;</span><span class="p">:</span> <span class="s2">&quot;$lookup$subnet$public&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;IamInstanceProfile&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;Arn&quot;</span><span class="p">:</span> <span class="s2">&quot;$lookup$iam$instance-profile:InstanceProfile-Default&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;InstanceInitiatedShutdownBehavior&quot;</span><span class="p">:</span> <span class="s2">&quot;stop&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;Test&quot;</span><span class="p">:</span> <span class="s2">&quot;Tag&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="callback">
+<span id="id3"></span><h2>Callback<a class="headerlink" href="#callback" title="Permalink to this headline">¶</a></h2>
+<p>Callbacks can be used to run a function after a state transition is triggered.</p>
+<p>Parameters are passed to the function as a dictionary, as shown in the example</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">example_start_callback</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;callback triggered after start&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">example_terminate_callback</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">ec2_instance_example_json</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2-example&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_instance&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;callbacks&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="n">example_start_callback</span><span class="p">},</span>
+        <span class="s2">&quot;terminate&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="n">example_terminate_callback</span><span class="p">,</span> <span class="s2">&quot;kwargs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;terminate&quot;</span><span class="p">}}</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="termination-protection">
+<span id="protection"></span><h2>Termination Protection<a class="headerlink" href="#termination-protection" title="Permalink to this headline">¶</a></h2>
+<p>Termination protection is a flag that can be set for particles in a quasipaerticle. This allows for you to set the desired
+state of the quasiparticle to terminated and get to that state while still having resources you need to be persisted. For example,
+you may have a db as a parent and want terminate all other particles. You can set the termination protection flag to true for the
+db particle and then simply terminate the quasiparticle.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">example_definition</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;persist_rds_example&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;quasiparticle&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;particles&quot;</span><span class="p">:</span>
+    <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;rds_instance&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;rds-persist&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;persist_on_terminate&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;aws_resource&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="o">...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_instance&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;child-ec2&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;aws_resource&quot;</span><span class="p">:{</span>
+                <span class="o">...</span>
+             <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rollback">
+<span id="id4"></span><h2>Rollback<a class="headerlink" href="#rollback" title="Permalink to this headline">¶</a></h2>
+<p>You can set the rollback flag to True when calling a quasiparticle apply, this will trigger if a particle fails to provision and
+will terminate all previously created particles. Rollback is set to False by default.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">rollback_quasiparticle</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">rollback</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sections/core.html" class="btn btn-neutral float-right" title="Core" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../pcf.quasiparticle.aws.ecs_instance_quasi.html" class="btn btn-neutral" title="pcf.quasiparticle.aws.ecs_instance_quasi package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
