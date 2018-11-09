@@ -8,7 +8,7 @@
 !.nojekyll
 src
 .DS_Store
-docs/build/
+!docs/build/
 dist
 build
 pcf.egg-info
