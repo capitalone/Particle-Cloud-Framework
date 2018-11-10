@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.particle.aws.ecs package &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  <title>pcf.particle.aws.ecs package &mdash; Particle Cloud Framework 0.1.1 documentation</title>
   
 
   
@@ -24,28 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="index.html"/>
-        <link rel="up" title="Particles" href="particlelist.html"/>
-        <link rel="next" title="pcf.particle.aws.efs package" href="pcf.particle.aws.efs.html"/>
-        <link rel="prev" title="pcf.particle.aws.ec2.elb package" href="pcf.particle.aws.ec2.elb.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcf.particle.aws.efs package" href="pcf.particle.aws.efs.html" />
+    <link rel="prev" title="pcf.particle.aws.ec2.elb package" href="pcf.particle.aws.ec2.elb.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +58,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.1
               </div>
             
           
@@ -131,7 +122,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Particle Cloud Framework</a>
@@ -139,9 +130,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -195,8 +187,8 @@
 <dl class="class">
 <dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_cluster.</code><code class="descname">ECSCluster</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
-<p>This is the implementation of Amazon&#8217;s ECS Cluster.</p>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s ECS Cluster.</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster.UNIQUE_KEYS">
 <code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.clusterName']</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
@@ -259,7 +251,9 @@
 <dl class="method">
 <dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster._update">
 <code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster._update" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Logic that updates the particle. This is implemented for each individual
+particle</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster.equivalent_states">
@@ -292,9 +286,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">&#8220;missing&#8221;}</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">“missing”}</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">status or {&#8220;status&#8221;</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">status or {“status”</td>
 </tr>
 </tbody>
 </table>
@@ -308,8 +302,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
-<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
 </ul>
 </td>
 </tr>
@@ -322,7 +316,7 @@
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster.state_lookup">
-<code class="descname">state_lookup</code><em class="property"> = {'missing': &lt;State.terminated: 3&gt;, 'active': &lt;State.running: 1&gt;, 'inactive': &lt;State.terminated: 3&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.state_lookup" title="Permalink to this definition">¶</a></dt>
+<code class="descname">state_lookup</code><em class="property"> = {'active': &lt;State.running: 1&gt;, 'inactive': &lt;State.terminated: 3&gt;, 'missing': &lt;State.terminated: 3&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.state_lookup" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -339,8 +333,8 @@
 <dl class="class">
 <dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_instance.</code><code class="descname">ECSInstance</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
-<p>This is the implementation of Amazon&#8217;s ECS Service. This particle requires task definition and ecs cluster
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s ECS Service. This particle requires task definition and ecs cluster
 particles as parents.</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.PROTECTED_ATTRIBUTES">
@@ -507,8 +501,8 @@ attributes.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
-<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
 </ul>
 </td>
 </tr>
@@ -533,12 +527,12 @@ attributes.</p>
 <dl class="class">
 <dt id="pcf.particle.aws.ecs.ecs_service.ECSService">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_service.</code><code class="descname">ECSService</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
-<p>This is the implementation of Amazon&#8217;s ECS Service. This particle requires task definition and ecs cluster either
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s ECS Service. This particle requires task definition and ecs cluster either
 to be included in the initial state definition or have those particles as parents.</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_service.ECSService.START_PARAM_CONVERSIONS">
-<code class="descname">START_PARAM_CONVERSIONS</code><em class="property"> = {'clusterName': 'cluster', 'serviceName': '', 'taskDefinition': '', 'loadBalancers': '', 'desiredCount': '', 'placementConstraints': '', 'clientToken': '', 'roleArn': 'role', 'deploymentConfiguration': '', 'placementStrategy': ''}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.START_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
+<code class="descname">START_PARAM_CONVERSIONS</code><em class="property"> = {'clientToken': '', 'clusterName': 'cluster', 'deploymentConfiguration': '', 'desiredCount': '', 'loadBalancers': '', 'placementConstraints': '', 'placementStrategy': '', 'roleArn': 'role', 'serviceName': '', 'taskDefinition': ''}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.START_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -548,7 +542,7 @@ to be included in the initial state definition or have those particles as parent
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_service.ECSService.UPDATE_PARAM_CONVERSIONS">
-<code class="descname">UPDATE_PARAM_CONVERSIONS</code><em class="property"> = {'clusterName': 'cluster', 'serviceName': 'service', 'taskDefinition': '', 'desiredCount': '', 'deploymentConfiguration': ''}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.UPDATE_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
+<code class="descname">UPDATE_PARAM_CONVERSIONS</code><em class="property"> = {'clusterName': 'cluster', 'deploymentConfiguration': '', 'desiredCount': '', 'serviceName': 'service', 'taskDefinition': ''}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.UPDATE_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -657,9 +651,9 @@ is terminated this also sets the desiredCount to 0 in desired_state_definition.<
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">&#8220;missing&#8221;}</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">“missing”}</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">status or {&#8220;status&#8221;</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">status or {“status”</td>
 </tr>
 </tbody>
 </table>
@@ -687,8 +681,8 @@ is terminated this also sets the desiredCount to 0 in desired_state_definition.<
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
-<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
 </ul>
 </td>
 </tr>
@@ -701,7 +695,7 @@ is terminated this also sets the desiredCount to 0 in desired_state_definition.<
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_service.ECSService.state_lookup">
-<code class="descname">state_lookup</code><em class="property"> = {'missing': &lt;State.terminated: 3&gt;, 'active': &lt;State.running: 1&gt;, 'pending': &lt;State.pending: 4&gt;, 'inactive': &lt;State.terminated: 3&gt;, 'draining': &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.state_lookup" title="Permalink to this definition">¶</a></dt>
+<code class="descname">state_lookup</code><em class="property"> = {'active': &lt;State.running: 1&gt;, 'draining': &lt;State.pending: 4&gt;, 'inactive': &lt;State.terminated: 3&gt;, 'missing': &lt;State.terminated: 3&gt;, 'pending': &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.state_lookup" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -718,12 +712,12 @@ is terminated this also sets the desiredCount to 0 in desired_state_definition.<
 <dl class="class">
 <dt id="pcf.particle.aws.ecs.ecs_task.ECSTask">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_task.</code><code class="descname">ECSTask</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
-<p>This is the implementation of Amazon&#8217;s ECS Task. This particle requires task definition and ecs cluster either
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s ECS Task. This particle requires task definition and ecs cluster either
 to be included in the initial state definition or have those particles as parents.</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.START_PARAM_CONVERSIONS">
-<code class="descname">START_PARAM_CONVERSIONS</code><em class="property"> = {'clusterArn': 'cluster', 'taskDefinitionArn': 'taskDefinition', 'overrides': '', 'count': '', 'startedBy': '', 'group': '', 'placementConstraints': '', 'placementStrategy': ''}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.START_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
+<code class="descname">START_PARAM_CONVERSIONS</code><em class="property"> = {'clusterArn': 'cluster', 'count': '', 'group': '', 'overrides': '', 'placementConstraints': '', 'placementStrategy': '', 'startedBy': '', 'taskDefinitionArn': 'taskDefinition'}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.START_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -748,7 +742,7 @@ current_state_definition.</p>
 <dt id="pcf.particle.aws.ecs.ecs_task.ECSTask._stop">
 <code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask._stop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls boto3 stop_task function using the task arn. If a stop reason is not given in the desired_state_definition
-then &#8220;PCF default stop action&#8221; is used.</p>
+then “PCF default stop action” is used.</p>
 </dd></dl>
 
 <dl class="method">
@@ -760,7 +754,9 @@ then &#8220;PCF default stop action&#8221; is used.</p>
 <dl class="method">
 <dt id="pcf.particle.aws.ecs.ecs_task.ECSTask._update">
 <code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask._update" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Logic that updates the particle. This is implemented for each individual
+particle</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.equivalent_states">
@@ -877,7 +873,16 @@ there is more than one ecs_task_definition particle as a parent.</p>
 <dl class="method">
 <dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.is_state_definition_equivalent">
 <code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Determines if state definitions are equivalent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.is_state_equivalent">
@@ -888,8 +893,8 @@ there is more than one ecs_task_definition particle as a parent.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
-<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
 </ul>
 </td>
 </tr>
@@ -902,7 +907,7 @@ there is more than one ecs_task_definition particle as a parent.</p>
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.state_lookup">
-<code class="descname">state_lookup</code><em class="property"> = {'missing': &lt;State.terminated: 3&gt;, 'running': &lt;State.running: 1&gt;, 'stopped': &lt;State.stopped: 2&gt;, 'pending': &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.state_lookup" title="Permalink to this definition">¶</a></dt>
+<code class="descname">state_lookup</code><em class="property"> = {'missing': &lt;State.terminated: 3&gt;, 'pending': &lt;State.pending: 4&gt;, 'running': &lt;State.running: 1&gt;, 'stopped': &lt;State.stopped: 2&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.state_lookup" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -925,11 +930,11 @@ there is more than one ecs_task_definition particle as a parent.</p>
 <dl class="class">
 <dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_task_definition.</code><code class="descname">ECSTaskDefinition</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
-<p>This is the implementation of Amazon&#8217;s ECS Task Definition.</p>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s ECS Task Definition.</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.START_PARAM_FILTER">
-<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'placementConstraints', 'family', 'containerDefinitions', 'networkMode', 'taskRoleArn', 'volumes'}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'containerDefinitions', 'family', 'networkMode', 'placementConstraints', 'taskRoleArn', 'volumes'}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -1001,9 +1006,9 @@ there is more than one ecs_task_definition particle as a parent.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">&#8220;missing&#8221;}</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">“missing”}</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">status or {&#8220;status&#8221;</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">status or {“status”</td>
 </tr>
 </tbody>
 </table>
@@ -1032,8 +1037,8 @@ it to the family.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
-<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
 </ul>
 </td>
 </tr>
@@ -1046,7 +1051,7 @@ it to the family.</p>
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.state_lookup">
-<code class="descname">state_lookup</code><em class="property"> = {'missing': &lt;State.terminated: 3&gt;, 'active': &lt;State.running: 1&gt;, 'inactive': &lt;State.terminated: 3&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.state_lookup" title="Permalink to this definition">¶</a></dt>
+<code class="descname">state_lookup</code><em class="property"> = {'active': &lt;State.running: 1&gt;, 'inactive': &lt;State.terminated: 3&gt;, 'missing': &lt;State.terminated: 3&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.state_lookup" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1065,9 +1070,7 @@ it to the family.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -1085,11 +1088,11 @@ it to the family.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Capital One.
+        &copy; Copyright 2018, Capital One
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1104,35 +1107,24 @@ it to the family.</p>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

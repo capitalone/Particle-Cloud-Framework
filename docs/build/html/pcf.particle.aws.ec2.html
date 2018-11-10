@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.particle.aws.ec2 package &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  <title>pcf.particle.aws.ec2 package &mdash; Particle Cloud Framework 0.1.1 documentation</title>
   
 
   
@@ -24,28 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="index.html"/>
-        <link rel="up" title="Particles" href="particlelist.html"/>
-        <link rel="next" title="pcf.particle.aws.ec2.autoscaling package" href="pcf.particle.aws.ec2.autoscaling.html"/>
-        <link rel="prev" title="pcf.particle.aws.dynamodb package" href="pcf.particle.aws.dynamodb.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcf.particle.aws.ec2.autoscaling package" href="pcf.particle.aws.ec2.autoscaling.html" />
+    <link rel="prev" title="pcf.particle.aws.dynamodb package" href="pcf.particle.aws.dynamodb.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +58,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.1
               </div>
             
           
@@ -131,7 +122,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Particle Cloud Framework</a>
@@ -139,9 +130,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -221,12 +213,12 @@
 <dl class="class">
 <dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.ec2.ebs_volume.</code><code class="descname">EBSVolume</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the EBS Volume particle. This also contains functions to attach and detach to an ec2 volume. There is a custom config called
 attach, which when set to True will auto attach to a parent EC2</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.START_PARAM_FILTER">
-<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'KmsKeyId', 'Iops', 'Encrypted', 'Size', 'AvailabilityZone', 'VolumeType', 'TagSpecifications', 'SnapshotId'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'AvailabilityZone', 'Encrypted', 'Iops', 'KmsKeyId', 'Size', 'SnapshotId', 'TagSpecifications', 'VolumeType'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -302,8 +294,8 @@ attach, which when set to True will auto attach to a parent EC2</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>device</strong> (<em>str</em>) &#8211; ec2 device to attach to. Default: /dev/sdf</li>
-<li><strong>ec2_parent_id</strong> (<em>str</em>) &#8211; ec2 parent instance id. Default: Parent ec2 instanceId</li>
+<li><strong>device</strong> (<em>str</em>) – ec2 device to attach to. Default: /dev/sdf</li>
+<li><strong>ec2_parent_id</strong> (<em>str</em>) – ec2 parent instance id. Default: Parent ec2 instanceId</li>
 </ul>
 </td>
 </tr>
@@ -374,8 +366,8 @@ attach, which when set to True will auto attach to a parent EC2</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
-<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
 </ul>
 </td>
 </tr>
@@ -388,7 +380,7 @@ attach, which when set to True will auto attach to a parent EC2</p>
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.state_lookup">
-<code class="descname">state_lookup</code><em class="property"> = {'creating': &lt;State.pending: 4&gt;, 'deleting': &lt;State.pending: 4&gt;, 'attaching': &lt;State.pending: 4&gt;, 'available': &lt;State.running: 1&gt;, 'in-use': &lt;State.running: 1&gt;, 'deleted': &lt;State.terminated: 3&gt;, 'detaching': &lt;State.terminated: 3&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.state_lookup" title="Permalink to this definition">¶</a></dt>
+<code class="descname">state_lookup</code><em class="property"> = {'attaching': &lt;State.pending: 4&gt;, 'available': &lt;State.running: 1&gt;, 'creating': &lt;State.pending: 4&gt;, 'deleted': &lt;State.terminated: 3&gt;, 'deleting': &lt;State.pending: 4&gt;, 'detaching': &lt;State.terminated: 3&gt;, 'in-use': &lt;State.running: 1&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.state_lookup" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -407,23 +399,23 @@ call detach function.</p>
 <dl class="class">
 <dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.ec2.ec2_instance.</code><code class="descname">EC2Instance</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the EC2 particle. There are a variety of possible states for this particle which can be seen in the
 state lookup dictionary. There are also specific input requirements for the various commands which can be seen
 in the different PARAM_CONVERSIONS.</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.EBS_PARAM_CONVERSIONS">
-<code class="descname">EBS_PARAM_CONVERSIONS</code><em class="property"> = {'DeleteOnTermination': '', 'SnapshotId': '', 'VolumeSize': 'Size', 'VolumeType': '', 'Iops': ''}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.EBS_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
+<code class="descname">EBS_PARAM_CONVERSIONS</code><em class="property"> = {'DeleteOnTermination': '', 'Iops': '', 'SnapshotId': '', 'VolumeSize': 'Size', 'VolumeType': ''}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.EBS_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.START_PARAM_FILTER">
-<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'IamInstanceProfile', 'MaxCount', 'UserData', 'InstanceInitiatedShutdownBehavior', 'ImageId', 'KeyName', 'BlockDeviceMappings', 'InstanceType', 'MinCount', 'TagSpecifications', 'SecurityGroupIds', 'SubnetId'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'BlockDeviceMappings', 'IamInstanceProfile', 'ImageId', 'InstanceInitiatedShutdownBehavior', 'InstanceType', 'KeyName', 'MaxCount', 'MinCount', 'SecurityGroupIds', 'SubnetId', 'TagSpecifications', 'UserData'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.STATE_PARAM_FILTER">
-<code class="descname">STATE_PARAM_FILTER</code><em class="property"> = {'IamInstanceProfile', 'UserData', 'InstanceInitiatedShutdownBehavior', 'ImageId', 'KeyName', 'InstanceType', 'TagSpecifications', 'SecurityGroupIds', 'SubnetId'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.STATE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">STATE_PARAM_FILTER</code><em class="property"> = {'IamInstanceProfile', 'ImageId', 'InstanceInitiatedShutdownBehavior', 'InstanceType', 'KeyName', 'SecurityGroupIds', 'SubnetId', 'TagSpecifications', 'UserData'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.STATE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -511,7 +503,9 @@ _construct_arn() which returns the EC2 arn.</p>
 <dl class="method">
 <dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance._update">
 <code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance._update" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Logic that updates the particle. This is implemented for each individual
+particle</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.create">
@@ -610,7 +604,16 @@ and TagSpecifications</p>
 <dl class="method">
 <dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.is_state_definition_equivalent">
 <code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Determines if state definitions are equivalent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.render_desired_user_data">
@@ -628,7 +631,7 @@ and TagSpecifications</p>
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.state_lookup">
-<code class="descname">state_lookup</code><em class="property"> = {'running': &lt;State.running: 1&gt;, 'terminated': &lt;State.terminated: 3&gt;, 'stopped': &lt;State.stopped: 2&gt;, 'missing': &lt;State.terminated: 3&gt;, 'stopping': &lt;State.pending: 4&gt;, 'shutting-down': &lt;State.pending: 4&gt;, 'pending': &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.state_lookup" title="Permalink to this definition">¶</a></dt>
+<code class="descname">state_lookup</code><em class="property"> = {'missing': &lt;State.terminated: 3&gt;, 'pending': &lt;State.pending: 4&gt;, 'running': &lt;State.running: 1&gt;, 'shutting-down': &lt;State.pending: 4&gt;, 'stopped': &lt;State.stopped: 2&gt;, 'stopping': &lt;State.pending: 4&gt;, 'terminated': &lt;State.terminated: 3&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.state_lookup" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -647,9 +650,9 @@ and TagSpecifications</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>owner_id</strong> (<em>str</em>) &#8211; owner id</li>
-<li><strong>region_name</strong> (<em>str</em>) &#8211; region that EC2 is deployed</li>
-<li><strong>instance_id</strong> (<em>str</em>) &#8211; instance on of the EC2</li>
+<li><strong>owner_id</strong> (<em>str</em>) – owner id</li>
+<li><strong>region_name</strong> (<em>str</em>) – region that EC2 is deployed</li>
+<li><strong>instance_id</strong> (<em>str</em>) – instance on of the EC2</li>
 </ul>
 </td>
 </tr>
@@ -668,7 +671,7 @@ and TagSpecifications</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>arn</strong> (<em>str</em>) &#8211; EC2 arn</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>arn</strong> (<em>str</em>) – EC2 arn</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">EC2 Instance id</td>
 </tr>
@@ -684,9 +687,7 @@ and TagSpecifications</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -704,11 +705,11 @@ and TagSpecifications</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Capital One.
+        &copy; Copyright 2018, Capital One
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -723,35 +724,24 @@ and TagSpecifications</p>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

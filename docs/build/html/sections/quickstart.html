@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Quickstart &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  <title>User Quickstart &mdash; Particle Cloud Framework 0.1.1 documentation</title>
   
 
   
@@ -24,27 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="../index.html"/>
-        <link rel="next" title="Framework Overview" href="framework.html"/>
-        <link rel="prev" title="Welcome to Particle Cloud Framework’s documentation!" href="../index.html"/> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Framework Overview" href="framework.html" />
+    <link rel="prev" title="Welcome to Particle Cloud Framework’s documentation!" href="../index.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -66,7 +58,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.1
               </div>
             
           
@@ -134,7 +126,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Particle Cloud Framework</a>
@@ -142,9 +134,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -191,19 +184,19 @@
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>To install particle cloud framework, open an interactive shell and run:</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pcf</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pcf</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="import-and-use-a-pcf-particle">
 <h2>Import and use a pcf Particle<a class="headerlink" href="#import-and-use-a-pcf-particle" title="Permalink to this headline">¶</a></h2>
 <p>First import the particles you will use. These can be core particles or custom particles that you created.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.ec2.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.ec2.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
 <span class="kn">from</span> <span class="nn">pcf.core</span> <span class="k">import</span> <span class="n">State</span>
 </pre></div>
 </div>
 <p>Next we need to pass the desired state definition to the particle.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">ec2_example_definition</span> <span class="o">=</span> <span class="p">{</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ec2_example_definition</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_example&quot;</span><span class="p">,</span>
     <span class="s2">&quot;flavor&quot;</span><span class="p">:</span><span class="s2">&quot;ec2&quot;</span><span class="p">,</span>
     <span class="s2">&quot;aws_resource&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -238,29 +231,27 @@
 </pre></div>
 </div>
 <p>Now to start the ec2 instance using pcf simply initialize the particle and set the desired state to running and apply.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">particle</span> <span class="o">=</span> <span class="n">EC2Instance</span><span class="p">(</span><span class="n">ec2_example_definition</span><span class="p">)</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particle</span> <span class="o">=</span> <span class="n">EC2Instance</span><span class="p">(</span><span class="n">ec2_example_definition</span><span class="p">)</span>
 
 <span class="n">particle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">running</span><span class="p">)</span>
 <span class="n">particle</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>To terminate simply change the desired state to terminated and apply.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">particle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">terminated</span><span class="p">)</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">terminated</span><span class="p">)</span>
 <span class="n">particle</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference external" href="TODO/pcf/pcf-examples">PCF particle and quasiparticle examples</a></p>
+<p class="last"><a class="reference external" href="https://github.com/capitalone/Particle-Cloud-Framework/tree/master/examples">PCF particle and quasiparticle examples</a></p>
 </div>
 </div>
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -278,11 +269,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Capital One.
+        &copy; Copyright 2018, Capital One
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -297,35 +288,24 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'0.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

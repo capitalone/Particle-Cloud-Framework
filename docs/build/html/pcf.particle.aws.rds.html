@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.particle.aws.rds package &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  <title>pcf.particle.aws.rds package &mdash; Particle Cloud Framework 0.1.1 documentation</title>
   
 
   
@@ -24,28 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="index.html"/>
-        <link rel="up" title="Particles" href="particlelist.html"/>
-        <link rel="next" title="pcf.particle.aws.route53 package" href="pcf.particle.aws.route53.html"/>
-        <link rel="prev" title="pcf.particle.aws.lambda_function package" href="pcf.particle.aws.lambda_function.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcf.particle.aws.route53 package" href="pcf.particle.aws.route53.html" />
+    <link rel="prev" title="pcf.particle.aws.lambda_function package" href="pcf.particle.aws.lambda_function.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +58,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.1
               </div>
             
           
@@ -131,7 +122,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Particle Cloud Framework</a>
@@ -139,9 +130,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -195,7 +187,7 @@
 <dl class="class">
 <dt id="pcf.particle.aws.rds.rds_instance.RDS">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.rds.rds_instance.</code><code class="descname">RDS</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.rds.rds_instance.RDS" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>Particle that maps to AWS RDS Instance.</p>
 <p>Required Parameters:</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -203,9 +195,9 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>DBInstanceIdentifier</strong> (<em>string</em>) &#8211; The DB instance identifier.</li>
-<li><strong>DBInstanceClass</strong> (<em>string</em>) &#8211; The compute and memory capacity of the DB instance, for example, db.m4.large .</li>
-<li><strong>Engine</strong> (<em>string</em>) &#8211; The name of the database engine to be used for this instance.</li>
+<li><strong>DBInstanceIdentifier</strong> (<em>string</em>) – The DB instance identifier.</li>
+<li><strong>DBInstanceClass</strong> (<em>string</em>) – The compute and memory capacity of the DB instance, for example, db.m4.large .</li>
+<li><strong>Engine</strong> (<em>string</em>) – The name of the database engine to be used for this instance.</li>
 </ul>
 </td>
 </tr>
@@ -213,7 +205,7 @@
 </table>
 <dl class="attribute">
 <dt id="pcf.particle.aws.rds.rds_instance.RDS.START_PARAM_FILTER">
-<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'MasterUsername', 'AllocatedStorage', 'MultiAZ', 'DBParameterGroupName', 'MasterUserPassword', 'KmsKeyId', 'DBInstanceClass', 'Tags', 'Engine', 'EngineVersion', 'VpcSecurityGroupIds', 'AvailabilityZone', 'DBSubnetGroupName', 'Port', 'StorageEncrypted', 'DBName', 'DBInstanceIdentifier', 'BackupRetentionPeriod'}</em><a class="headerlink" href="#pcf.particle.aws.rds.rds_instance.RDS.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'AllocatedStorage', 'AvailabilityZone', 'BackupRetentionPeriod', 'DBInstanceClass', 'DBInstanceIdentifier', 'DBName', 'DBParameterGroupName', 'DBSubnetGroupName', 'Engine', 'EngineVersion', 'KmsKeyId', 'MasterUserPassword', 'MasterUsername', 'MultiAZ', 'Port', 'StorageEncrypted', 'Tags', 'VpcSecurityGroupIds'}</em><a class="headerlink" href="#pcf.particle.aws.rds.rds_instance.RDS.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -223,7 +215,7 @@
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.rds.rds_instance.RDS.UPDATE_PARAM_FILTER">
-<code class="descname">UPDATE_PARAM_FILTER</code><em class="property"> = {'ApplyImmediately', 'AllocatedStorage', 'DBInstanceClass', 'EngineVersion', 'DBInstanceIdentifier', 'BackupRetentionPeriod'}</em><a class="headerlink" href="#pcf.particle.aws.rds.rds_instance.RDS.UPDATE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">UPDATE_PARAM_FILTER</code><em class="property"> = {'AllocatedStorage', 'ApplyImmediately', 'BackupRetentionPeriod', 'DBInstanceClass', 'DBInstanceIdentifier', 'EngineVersion'}</em><a class="headerlink" href="#pcf.particle.aws.rds.rds_instance.RDS.UPDATE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -337,7 +329,7 @@
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.rds.rds_instance.RDS.state_lookup">
-<code class="descname">state_lookup</code><em class="property"> = {'available': &lt;State.running: 1&gt;, 'starting': &lt;State.pending: 4&gt;, 'creating': &lt;State.pending: 4&gt;, 'deleting': &lt;State.pending: 4&gt;, 'backing-up': &lt;State.pending: 4&gt;, 'modifying': &lt;State.pending: 4&gt;, 'renaming': &lt;State.pending: 4&gt;, 'rebooting': &lt;State.pending: 4&gt;, 'maintenance': &lt;State.pending: 4&gt;, 'upgrading': &lt;State.pending: 4&gt;, 'resetting-master-credentials': &lt;State.pending: 4&gt;, 'stopping': &lt;State.pending: 4&gt;, 'stopped': &lt;State.stopped: 2&gt;, 'missing': &lt;State.terminated: 3&gt;}</em><a class="headerlink" href="#pcf.particle.aws.rds.rds_instance.RDS.state_lookup" title="Permalink to this definition">¶</a></dt>
+<code class="descname">state_lookup</code><em class="property"> = {'available': &lt;State.running: 1&gt;, 'backing-up': &lt;State.pending: 4&gt;, 'creating': &lt;State.pending: 4&gt;, 'deleting': &lt;State.pending: 4&gt;, 'maintenance': &lt;State.pending: 4&gt;, 'missing': &lt;State.terminated: 3&gt;, 'modifying': &lt;State.pending: 4&gt;, 'rebooting': &lt;State.pending: 4&gt;, 'renaming': &lt;State.pending: 4&gt;, 'resetting-master-credentials': &lt;State.pending: 4&gt;, 'starting': &lt;State.pending: 4&gt;, 'stopped': &lt;State.stopped: 2&gt;, 'stopping': &lt;State.pending: 4&gt;, 'upgrading': &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.particle.aws.rds.rds_instance.RDS.state_lookup" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -356,9 +348,7 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -376,11 +366,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Capital One.
+        &copy; Copyright 2018, Capital One
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -395,35 +385,24 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

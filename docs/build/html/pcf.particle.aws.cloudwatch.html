@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.particle.aws.cloudwatch package &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  <title>pcf.particle.aws.cloudwatch package &mdash; Particle Cloud Framework 0.1.1 documentation</title>
   
 
   
@@ -24,28 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="index.html"/>
-        <link rel="up" title="Particles" href="particlelist.html"/>
-        <link rel="next" title="pcf.particle.aws.dynamodb package" href="pcf.particle.aws.dynamodb.html"/>
-        <link rel="prev" title="pcf.particle.aws.ec2.alb package" href="pcf.particle.aws.ec2.alb.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcf.particle.aws.dynamodb package" href="pcf.particle.aws.dynamodb.html" />
+    <link rel="prev" title="pcf.particle.aws.ec2.alb package" href="pcf.particle.aws.ec2.alb.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +58,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.1
               </div>
             
           
@@ -131,7 +122,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Particle Cloud Framework</a>
@@ -139,9 +130,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -195,11 +187,11 @@
 <dl class="class">
 <dt id="pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.cloudwatch.cloudwatch_event.</code><code class="descname">CloudWatchEvent</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
-<p>This is the implementation of Amazon&#8217;s CloudWatch Events service.</p>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s CloudWatch Events service.</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.START_PARAM_FILTER">
-<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'Name', 'State', 'RoleArn', 'ScheduleExpression', 'Description', 'EventPattern'}</em><a class="headerlink" href="#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'Description', 'EventPattern', 'Name', 'RoleArn', 'ScheduleExpression', 'State'}</em><a class="headerlink" href="#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -258,7 +250,9 @@
 <dl class="method">
 <dt id="pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent._update">
 <code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent._update" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Logic that updates the particle. This is implemented for each individual
+particle</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.equivalent_states">
@@ -312,11 +306,11 @@
 <dl class="class">
 <dt id="pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.cloudwatch.cloudwatch_log.</code><code class="descname">CloudWatchLog</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
-<p>This is the implementation of Amazon&#8217;s CloudWatch Logs service.</p>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s CloudWatch Logs service.</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog.START_PARAM_FILTER">
-<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'logGroupName', 'kmsKeyId', 'tags'}</em><a class="headerlink" href="#pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'kmsKeyId', 'logGroupName', 'tags'}</em><a class="headerlink" href="#pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -399,7 +393,7 @@
 <dl class="method">
 <dt id="pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog.get_current_definition">
 <code class="descname">get_current_definition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog.get_current_definition" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calls the describe log group boto call and returns the group&#8217;s attributes</p>
+<dd><p>Calls the describe log group boto call and returns the group’s attributes</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -448,9 +442,7 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -468,11 +460,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Capital One.
+        &copy; Copyright 2018, Capital One
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -487,35 +479,24 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

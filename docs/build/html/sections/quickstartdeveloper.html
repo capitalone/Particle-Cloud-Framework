@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developer Quickstart &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  <title>Developer Quickstart &mdash; Particle Cloud Framework 0.1.1 documentation</title>
   
 
   
@@ -24,27 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="../index.html"/>
-        <link rel="next" title="Roadmap" href="roadmap.html"/>
-        <link rel="prev" title="PCF Examples" href="../examples/examples.html"/> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Roadmap" href="roadmap.html" />
+    <link rel="prev" title="PCF Examples" href="../examples/examples.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -66,7 +58,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.1
               </div>
             
           
@@ -135,7 +127,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Particle Cloud Framework</a>
@@ -143,9 +135,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -199,7 +192,7 @@ current state. Sometimes helper functions are needed for the more complex partic
 out our repository of premade particles and after you create your own feel free to submit a pr with the new
 particle, docstrings, and tests.</p>
 <p>This is an example of how to create a new aws particle.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.aws_resource</span> <span class="k">import</span> <span class="n">AWSResource</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.aws_resource</span> <span class="k">import</span> <span class="n">AWSResource</span>
 <span class="kn">from</span> <span class="nn">pcf.core</span> <span class="k">import</span> <span class="n">State</span>
 <span class="kn">from</span> <span class="nn">pcf.util</span> <span class="k">import</span> <span class="n">pcf_util</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -222,7 +215,7 @@ particle, docstrings, and tests.</p>
 </pre></div>
 </div>
 <p>That is the standard initial setup. Now the functions that you have to implement</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sync_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sync_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1">#implement</span>
 
 <span class="k">def</span> <span class="nf">_terminate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -244,7 +237,7 @@ particle, docstrings, and tests.</p>
 <p>The power of pcf comes from its extensibility. All particle functionality can be overwritten and custom functions can be added.</p>
 <p>This is an example of how to add a function that adds a security group to a running ec2. This new particle can be now be imported by anyone
 else who also wants this additional functionally.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.ec2.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.ec2.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
 
 
 <span class="k">class</span> <span class="nc">EC2Extended</span><span class="p">(</span><span class="n">EC2Instance</span><span class="p">):</span>
@@ -260,7 +253,7 @@ else who also wants this additional functionally.</p>
 </pre></div>
 </div>
 <p>To use this new functionality you import the extended particle and call the function.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">EC2Extended</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">EC2Extended</span>
 
 <span class="c1"># same config as before</span>
 
@@ -277,7 +270,7 @@ so can be imported and extended the same way and simplify the provisioning and m
 For example, we can create a basic quasiparticle that has a cluster of master and worker nodes. We want all of the cluster nodes to be running
 before any of the worker nodes would spin up. We would handle this by created a custom config var that we can use in our custom
 quasiparticle definition and create a function that sets the parents of each worker particle.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.rds.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.rds.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
 <span class="kn">from</span> <span class="nn">pcf.core.quasiparticle</span> <span class="k">import</span> <span class="n">Quasiparticle</span>
 
 <span class="k">class</span> <span class="nc">DistributedMasterWorker</span><span class="p">(</span><span class="n">Quasiparticle</span><span class="p">):</span>
@@ -302,7 +295,7 @@ quasiparticle definition and create a function that sets the parents of each wor
 </pre></div>
 </div>
 <p>To use this quasiparticle we simple import, initialize the desired state definitions, set the desired start, and apply.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">DistributedMasterWorker</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">DistributedMasterWorker</span>
 <span class="kn">from</span> <span class="nn">pcf.core</span> <span class="k">import</span> <span class="n">State</span>
 
 <span class="n">kafka_zookeeper_example_definition</span> <span class="o">=</span> <span class="p">{</span>
@@ -350,9 +343,7 @@ quasiparticle definition and create a function that sets the parents of each wor
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -370,11 +361,11 @@ quasiparticle definition and create a function that sets the parents of each wor
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Capital One.
+        &copy; Copyright 2018, Capital One
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -389,35 +380,24 @@ quasiparticle definition and create a function that sets the parents of each wor
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'0.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

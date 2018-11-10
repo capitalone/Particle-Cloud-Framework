@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.particle.aws.ec2.autoscaling package &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  <title>pcf.particle.aws.ec2.autoscaling package &mdash; Particle Cloud Framework 0.1.1 documentation</title>
   
 
   
@@ -24,28 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="index.html"/>
-        <link rel="up" title="pcf.particle.aws.ec2 package" href="pcf.particle.aws.ec2.html"/>
-        <link rel="next" title="pcf.particle.aws.ec2.elb package" href="pcf.particle.aws.ec2.elb.html"/>
-        <link rel="prev" title="pcf.particle.aws.ec2 package" href="pcf.particle.aws.ec2.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcf.particle.aws.ec2.elb package" href="pcf.particle.aws.ec2.elb.html" />
+    <link rel="prev" title="pcf.particle.aws.ec2 package" href="pcf.particle.aws.ec2.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +58,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.1
               </div>
             
           
@@ -131,7 +122,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Particle Cloud Framework</a>
@@ -139,9 +130,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -197,17 +189,17 @@
 <dl class="class">
 <dt id="pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.ec2.autoscaling.auto_scaling_group.</code><code class="descname">AutoScalingGroup</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
-<p>This is the implementation of Amazon&#8217;s Auto Scaling group. This particle requires one of the following: a launch configuration,
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s Auto Scaling group. This particle requires one of the following: a launch configuration,
 a launch template, or an EC2 instance to be included in the initial state definition or have those particles as a parent.</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup.REMOVE_PARAM_FILTER">
-<code class="descname">REMOVE_PARAM_FILTER</code><em class="property"> = {'Tags', 'LoadBalancerNames', 'LifecycleHookSpecificationList', 'Instances'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup.REMOVE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">REMOVE_PARAM_FILTER</code><em class="property"> = {'Instances', 'LifecycleHookSpecificationList', 'LoadBalancerNames', 'Tags'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup.REMOVE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup.START_PARAM_FILTER">
-<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'DefaultCooldown', 'DesiredCapacity', 'TargetGroupARNs', 'LaunchConfigurationName', 'MaxSize', 'Tags', 'instance-id', 'LifecycleHookSpecificationList', 'NewInstancesProtectedFromScaleIn', 'AvailabilityZones', 'HealthCheckGracePeriod', 'ServiceLinkedRoleARN', 'HealthCheckType', 'MinSize', 'UserData', 'LaunchTemplate', 'LoadBalancerNames', 'AutoScalingGroupName', 'TerminationPolicies', 'PlacementGroup', 'InstanceId', 'VPCZoneIdentifier'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'AutoScalingGroupName', 'AvailabilityZones', 'DefaultCooldown', 'DesiredCapacity', 'HealthCheckGracePeriod', 'HealthCheckType', 'InstanceId', 'LaunchConfigurationName', 'LaunchTemplate', 'LifecycleHookSpecificationList', 'LoadBalancerNames', 'MaxSize', 'MinSize', 'NewInstancesProtectedFromScaleIn', 'PlacementGroup', 'ServiceLinkedRoleARN', 'Tags', 'TargetGroupARNs', 'TerminationPolicies', 'UserData', 'VPCZoneIdentifier', 'instance-id'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -238,7 +230,9 @@ a launch template, or an EC2 instance to be included in the initial state defini
 <dl class="method">
 <dt id="pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup._stop">
 <code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup._stop" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Logic that stops the particle. This is implemented for each individual
+particle</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup._terminate">
@@ -321,8 +315,8 @@ in the current state.</p>
 <dl class="class">
 <dt id="pcf.particle.aws.ec2.autoscaling.launch_configuration.LaunchConfiguration">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.ec2.autoscaling.launch_configuration.</code><code class="descname">LaunchConfiguration</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.launch_configuration.LaunchConfiguration" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
-<p>This is the implementation of Amazon&#8217;s Launch Configuration.</p>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s Launch Configuration.</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.ec2.autoscaling.launch_configuration.LaunchConfiguration.UNIQUE_KEYS">
 <code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.LaunchConfigurationName']</em><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.launch_configuration.LaunchConfiguration.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
@@ -414,9 +408,7 @@ in the current state.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -434,11 +426,11 @@ in the current state.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Capital One.
+        &copy; Copyright 2018, Capital One
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -453,35 +445,24 @@ in the current state.</p>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

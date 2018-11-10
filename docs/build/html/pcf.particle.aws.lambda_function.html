@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.particle.aws.lambda_function package &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  <title>pcf.particle.aws.lambda_function package &mdash; Particle Cloud Framework 0.1.1 documentation</title>
   
 
   
@@ -24,28 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="index.html"/>
-        <link rel="up" title="Particles" href="particlelist.html"/>
-        <link rel="next" title="pcf.particle.aws.rds package" href="pcf.particle.aws.rds.html"/>
-        <link rel="prev" title="pcf.particle.aws.efs package" href="pcf.particle.aws.efs.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcf.particle.aws.rds package" href="pcf.particle.aws.rds.html" />
+    <link rel="prev" title="pcf.particle.aws.efs package" href="pcf.particle.aws.efs.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +58,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.1
               </div>
             
           
@@ -131,7 +122,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Particle Cloud Framework</a>
@@ -139,9 +130,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -195,12 +187,12 @@
 <dl class="class">
 <dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction">
 <em class="property">class </em><code class="descclassname">pcf.particle.aws.lambda_function.lambda_function.</code><code class="descname">LambdaFunction</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
-<p>This is the implementation of Amazon&#8217;s lambda service. This particle works with function code in a zipfile located
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s lambda service. This particle works with function code in a zipfile located
 locally and in s3. Note that having a zipfile locally versus s3 has a slightly different configuration format.</p>
 <dl class="attribute">
 <dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.RETURN_PARAM_FILTER">
-<code class="descname">RETURN_PARAM_FILTER</code><em class="property"> = {'Role', 'MemorySize', 'KMSKeyArn', 'FunctionName', 'VpcConfig', 'Timeout', 'CodeSha256', 'Handler', 'Description', 'DeadLetterConfig', 'Environment', 'Runtime', 'TracingConfig'}</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.RETURN_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">RETURN_PARAM_FILTER</code><em class="property"> = {'CodeSha256', 'DeadLetterConfig', 'Description', 'Environment', 'FunctionName', 'Handler', 'KMSKeyArn', 'MemorySize', 'Role', 'Runtime', 'Timeout', 'TracingConfig', 'VpcConfig'}</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.RETURN_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -210,7 +202,7 @@ locally and in s3. Note that having a zipfile locally versus s3 has a slightly d
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.START_PARAM_FILTER">
-<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'Role', 'MemorySize', 'KMSKeyArn', 'FunctionName', 'VpcConfig', 'Timeout', 'Publish', 'Handler', 'Description', 'DeadLetterConfig', 'Tags', 'Environment', 'Code', 'Runtime', 'TracingConfig'}</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'Code', 'DeadLetterConfig', 'Description', 'Environment', 'FunctionName', 'Handler', 'KMSKeyArn', 'MemorySize', 'Publish', 'Role', 'Runtime', 'Tags', 'Timeout', 'TracingConfig', 'VpcConfig'}</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -220,7 +212,7 @@ locally and in s3. Note that having a zipfile locally versus s3 has a slightly d
 
 <dl class="attribute">
 <dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.UPDATE_PARAM_FILTER">
-<code class="descname">UPDATE_PARAM_FILTER</code><em class="property"> = {'Role', 'MemorySize', 'KMSKeyArn', 'FunctionName', 'VpcConfig', 'Timeout', 'Handler', 'Description', 'DeadLetterConfig', 'Environment', 'Runtime', 'TracingConfig'}</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.UPDATE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">UPDATE_PARAM_FILTER</code><em class="property"> = {'DeadLetterConfig', 'Description', 'Environment', 'FunctionName', 'Handler', 'KMSKeyArn', 'MemorySize', 'Role', 'Runtime', 'Timeout', 'TracingConfig', 'VpcConfig'}</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.UPDATE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -392,9 +384,7 @@ Otherwise will return the current definition.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -412,11 +402,11 @@ Otherwise will return the current definition.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Capital One.
+        &copy; Copyright 2018, Capital One
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -431,35 +421,24 @@ Otherwise will return the current definition.</p>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

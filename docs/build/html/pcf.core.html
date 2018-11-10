@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.core package &mdash; Particle Cloud Framework 0.1.0 documentation</title>
+  <title>pcf.core package &mdash; Particle Cloud Framework 0.1.1 documentation</title>
   
 
   
@@ -24,28 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Particle Cloud Framework 0.1.0 documentation" href="index.html"/>
-        <link rel="up" title="Core" href="sections/core.html"/>
-        <link rel="next" title="PCF Examples" href="examples/examples.html"/>
-        <link rel="prev" title="Core" href="sections/core.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PCF Examples" href="examples/examples.html" />
+    <link rel="prev" title="Core" href="sections/core.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +58,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.1
               </div>
             
           
@@ -145,7 +136,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Particle Cloud Framework</a>
@@ -153,9 +144,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -209,7 +201,7 @@
 <dl class="class">
 <dt id="pcf.core.aws_resource.AWSResource">
 <em class="property">class </em><code class="descclassname">pcf.core.aws_resource.</code><code class="descname">AWSResource</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>resource_name</em>, <em>arn=None</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.aws_resource.AWSResource" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pcf.core.particle.Particle" title="pcf.core.particle.Particle"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.particle.Particle</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#pcf.core.particle.Particle" title="pcf.core.particle.Particle"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.particle.Particle</span></code></a></p>
 <p>The aws resource class inherits the particle class and adds the aws client. It takes as an input the resource_name (ie ec2)
 and the arn (if known)</p>
 <dl class="method">
@@ -232,7 +224,7 @@ and the arn (if known)</p>
 <dt id="pcf.core.aws_resource.AWSResource.arn">
 <code class="descname">arn</code><a class="headerlink" href="#pcf.core.aws_resource.AWSResource.arn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns
-arn (str): The particle&#8217;s arn</p>
+arn (str): The particle’s arn</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -264,7 +256,7 @@ arn (str): The particle&#8217;s arn</p>
 <dl class="attribute">
 <dt id="pcf.core.aws_resource.AWSResource.lookup">
 <code class="descname">lookup</code><a class="headerlink" href="#pcf.core.aws_resource.AWSResource.lookup" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">AWSLookup</span></code></p>
+<dd><p>alias of <a class="reference internal" href="pcf.util.aws.html#pcf.util.aws.aws_lookup.AWSLookup" title="pcf.util.aws.aws_lookup.AWSLookup"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.util.aws.aws_lookup.AWSLookup</span></code></a></p>
 </dd></dl>
 
 <dl class="attribute">
@@ -286,7 +278,7 @@ arn (str): The particle&#8217;s arn</p>
 <dl class="class">
 <dt id="pcf.core.gcp_resource.GCPResource">
 <em class="property">class </em><code class="descclassname">pcf.core.gcp_resource.</code><code class="descname">GCPResource</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>resource</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.gcp_resource.GCPResource" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pcf.core.particle.Particle" title="pcf.core.particle.Particle"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.particle.Particle</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#pcf.core.particle.Particle" title="pcf.core.particle.Particle"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.particle.Particle</span></code></a></p>
 <p>The gcp resource class inherits the particle class and adds the gcp client.
 It takes as an input the resource library (ie datastore)</p>
 <dl class="method">
@@ -297,7 +289,7 @@ It takes as an input the resource library (ie datastore)</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>kwargs</strong> &#8211; See google docs for valid arguments (<a class="reference external" href="https://googlecloudplatform.github.io/google-cloud-python/latest/datastore/client.html">https://googlecloudplatform.github.io/google-cloud-python/latest/datastore/client.html</a>)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>kwargs</strong> – See google docs for valid arguments (<a class="reference external" href="https://googlecloudplatform.github.io/google-cloud-python/latest/datastore/client.html">https://googlecloudplatform.github.io/google-cloud-python/latest/datastore/client.html</a>)</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Client</td>
 </tr>
@@ -308,7 +300,15 @@ It takes as an input the resource library (ie datastore)</p>
 <dl class="attribute">
 <dt id="pcf.core.gcp_resource.GCPResource.client">
 <code class="descname">client</code><a class="headerlink" href="#pcf.core.gcp_resource.GCPResource.client" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>Returns</em> &#8211; Client</p>
+<dd><p>Client</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Returns</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -319,7 +319,7 @@ It takes as an input the resource library (ie datastore)</p>
 <dl class="class">
 <dt id="pcf.core.particle.MetaParticle">
 <em class="property">class </em><code class="descclassname">pcf.core.particle.</code><code class="descname">MetaParticle</code><a class="headerlink" href="#pcf.core.particle.MetaParticle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">type</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></p>
 <dl class="attribute">
 <dt id="pcf.core.particle.MetaParticle.registry">
 <code class="descname">registry</code><em class="property"> = {}</em><a class="headerlink" href="#pcf.core.particle.MetaParticle.registry" title="Permalink to this definition">¶</a></dt>
@@ -330,7 +330,7 @@ It takes as an input the resource library (ie datastore)</p>
 <dl class="class">
 <dt id="pcf.core.particle.Particle">
 <em class="property">class </em><code class="descclassname">pcf.core.particle.</code><code class="descname">Particle</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle.Particle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
 <dt id="pcf.core.particle.Particle._set_unique_keys">
 <code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle.Particle._set_unique_keys" title="Permalink to this definition">¶</a></dt>
@@ -369,7 +369,7 @@ particle</p>
 <dl class="method">
 <dt id="pcf.core.particle.Particle._validate_config">
 <code class="descname">_validate_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle.Particle._validate_config" title="Permalink to this definition">¶</a></dt>
-<dd><p>Custom logic that that validates particle&#8217;s configurations</p>
+<dd><p>Custom logic that that validates particle’s configurations</p>
 </dd></dl>
 
 <dl class="method">
@@ -381,11 +381,11 @@ particle</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sync</strong> (<em>bool</em>) &#8211; apply state transitions synchronously</li>
-<li><strong>cascade</strong> (<em>bool</em>) &#8211; apply state transitions to all family members</li>
-<li><strong>validate_config</strong> (<em>bool</em>) &#8211; specify whether or not to call particle config validation function</li>
-<li><strong>src_cascade</strong> (<em>&quot;parent&quot;</em><em>,</em><em>&quot;child&quot;</em><em>, or </em><em>&quot;none&quot;</em>) &#8211; direction of cascade logic</li>
-<li><strong>cache_ttl</strong> (<em>int</em>) &#8211; allows self.state_cache_ttl to be configured to any time interval</li>
+<li><strong>sync</strong> (<em>bool</em>) – apply state transitions synchronously</li>
+<li><strong>cascade</strong> (<em>bool</em>) – apply state transitions to all family members</li>
+<li><strong>validate_config</strong> (<em>bool</em>) – specify whether or not to call particle config validation function</li>
+<li><strong>src_cascade</strong> (<em>&quot;parent&quot;</em><em>,</em><em>&quot;child&quot;</em><em>, or </em><em>&quot;none&quot;</em>) – direction of cascade logic</li>
+<li><strong>cache_ttl</strong> (<em>int</em>) – allows self.state_cache_ttl to be configured to any time interval</li>
 </ul>
 </td>
 </tr>
@@ -404,10 +404,10 @@ particle</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>direction</strong> (<em>&quot;parent&quot;</em><em>,</em><em>&quot;child&quot;</em><em>, or </em><em>&quot;none&quot;</em>) &#8211; direction of cascade logic</li>
-<li><strong>desired_state</strong> &#8211; the desired state of the particle</li>
-<li><strong>sync</strong> (<em>bool</em>) &#8211; apply state transitions synchronously</li>
-<li><strong>src_cascade</strong> (<em>&quot;parent&quot;</em><em>,</em><em>&quot;child&quot;</em><em>, or </em><em>&quot;none&quot;</em>) &#8211; direction of cascade logic</li>
+<li><strong>direction</strong> (<em>&quot;parent&quot;</em><em>,</em><em>&quot;child&quot;</em><em>, or </em><em>&quot;none&quot;</em>) – direction of cascade logic</li>
+<li><strong>desired_state</strong> – the desired state of the particle</li>
+<li><strong>sync</strong> (<em>bool</em>) – apply state transitions synchronously</li>
+<li><strong>src_cascade</strong> (<em>&quot;parent&quot;</em><em>,</em><em>&quot;child&quot;</em><em>, or </em><em>&quot;none&quot;</em>) – direction of cascade logic</li>
 </ul>
 </td>
 </tr>
@@ -499,8 +499,8 @@ values to this particles desired_state_definition.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>start_state</strong> &#8211; starting state of the transition</li>
-<li><strong>end_state</strong> &#8211; ending state of the transition</li>
+<li><strong>start_state</strong> – starting state of the transition</li>
+<li><strong>end_state</strong> – ending state of the transition</li>
 </ul>
 </td>
 </tr>
@@ -531,8 +531,8 @@ values to this particles desired_state_definition.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>state1</strong> &#8211; </li>
-<li><strong>state2</strong> &#8211; </li>
+<li><strong>state1</strong> – </li>
+<li><strong>state2</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -551,7 +551,7 @@ values to this particles desired_state_definition.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pcf</strong> &#8211; pcf field</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pcf</strong> – pcf field</td>
 </tr>
 </tbody>
 </table>
@@ -566,8 +566,8 @@ values to this particles desired_state_definition.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>pcf</strong> &#8211; pcf field</li>
-<li><strong>child_pcf_id</strong> &#8211; child pcf id</li>
+<li><strong>pcf</strong> – pcf field</li>
+<li><strong>child_pcf_id</strong> – child pcf id</li>
 </ul>
 </td>
 </tr>
@@ -584,8 +584,8 @@ values to this particles desired_state_definition.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>pcf</strong> &#8211; pcf field</li>
-<li><strong>parent_pcf_id</strong> &#8211; parent pcf id</li>
+<li><strong>pcf</strong> – pcf field</li>
+<li><strong>parent_pcf_id</strong> – parent pcf id</li>
 </ul>
 </td>
 </tr>
@@ -607,9 +607,9 @@ values to this particles desired_state_definition.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>start_state</strong> &#8211; starting state of the transition</li>
-<li><strong>end_state</strong> &#8211; ending state of the transition</li>
-<li><strong>transition_function</strong> &#8211; associated transition function</li>
+<li><strong>start_state</strong> – starting state of the transition</li>
+<li><strong>end_state</strong> – ending state of the transition</li>
+<li><strong>transition_function</strong> – associated transition function</li>
 </ul>
 </td>
 </tr>
@@ -620,7 +620,7 @@ values to this particles desired_state_definition.</p>
 <dl class="method">
 <dt id="pcf.core.particle.Particle.set_desired_state">
 <code class="descname">set_desired_state</code><span class="sig-paren">(</span><em>desired_state</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle.Particle.set_desired_state" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the particle&#8217;s desired state</p>
+<dd><p>Sets the particle’s desired state</p>
 <dl class="docutils">
 <dt>Arg:</dt>
 <dd>desired_state (State):</dd>
@@ -636,8 +636,8 @@ values to this particles desired_state_definition.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>sync</strong> (<em>bool</em>) &#8211; apply state transitions synchronously</li>
-<li><strong>cascade</strong> (<em>bool</em>) &#8211; apply state transitions to all family members</li>
+<li><strong>sync</strong> (<em>bool</em>) – apply state transitions synchronously</li>
+<li><strong>cascade</strong> (<em>bool</em>) – apply state transitions to all family members</li>
 </ul>
 </td>
 </tr>
@@ -654,8 +654,8 @@ values to this particles desired_state_definition.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>sync</strong> (<em>bool</em>) &#8211; apply state transitions synchronously</li>
-<li><strong>cascade</strong> (<em>bool</em>) &#8211; apply state transitions to all family members</li>
+<li><strong>sync</strong> (<em>bool</em>) – apply state transitions synchronously</li>
+<li><strong>cascade</strong> (<em>bool</em>) – apply state transitions to all family members</li>
 </ul>
 </td>
 </tr>
@@ -679,8 +679,8 @@ particle</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>sync</strong> (<em>bool</em>) &#8211; apply state transitions synchronously</li>
-<li><strong>cascade</strong> (<em>bool</em>) &#8211; apply state transitions to all family members</li>
+<li><strong>sync</strong> (<em>bool</em>) – apply state transitions synchronously</li>
+<li><strong>cascade</strong> (<em>bool</em>) – apply state transitions to all family members</li>
 </ul>
 </td>
 </tr>
@@ -697,8 +697,8 @@ particle</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>sync</strong> (<em>bool</em>) &#8211; apply state transitions synchronously</li>
-<li><strong>cascade</strong> (<em>bool</em>) &#8211; apply state transitions to all family members</li>
+<li><strong>sync</strong> (<em>bool</em>) – apply state transitions synchronously</li>
+<li><strong>cascade</strong> (<em>bool</em>) – apply state transitions to all family members</li>
 </ul>
 </td>
 </tr>
@@ -739,13 +739,13 @@ particle</p>
 <dl class="exception">
 <dt id="pcf.core.particle_flavor_scanner.InvalidInputException">
 <em class="property">exception </em><code class="descclassname">pcf.core.particle_flavor_scanner.</code><code class="descname">InvalidInputException</code><span class="sig-paren">(</span><em>flavor</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle_flavor_scanner.InvalidInputException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.particle_flavor_scanner.ParticleFlavorNotFoundError">
 <em class="property">exception </em><code class="descclassname">pcf.core.particle_flavor_scanner.</code><code class="descname">ParticleFlavorNotFoundError</code><span class="sig-paren">(</span><em>flavor</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle_flavor_scanner.ParticleFlavorNotFoundError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="function">
@@ -764,7 +764,7 @@ particle</p>
 <dl class="class">
 <dt id="pcf.core.pcf.PCF">
 <em class="property">class </em><code class="descclassname">pcf.core.pcf.</code><code class="descname">PCF</code><span class="sig-paren">(</span><em>pcf_definition_json</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf.PCF" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
 <dt id="pcf.core.pcf.PCF.add_particle">
 <code class="descname">add_particle</code><span class="sig-paren">(</span><em>particle</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf.PCF.add_particle" title="Permalink to this definition">¶</a></dt>
@@ -818,85 +818,85 @@ particle</p>
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.FlavorMissingException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">FlavorMissingException</code><a class="headerlink" href="#pcf.core.pcf_exceptions.FlavorMissingException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.InvalidCacheTTLException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">InvalidCacheTTLException</code><a class="headerlink" href="#pcf.core.pcf_exceptions.InvalidCacheTTLException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.InvalidConfigException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">InvalidConfigException</code><span class="sig-paren">(</span><em>message='Particle config validation failed'</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf_exceptions.InvalidConfigException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.InvalidTagsException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">InvalidTagsException</code><span class="sig-paren">(</span><em>message='Tag validation failed'</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf_exceptions.InvalidTagsException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.InvalidUniqueKeysException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">InvalidUniqueKeysException</code><span class="sig-paren">(</span><em>message='Particle unique keys validation failed'</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf_exceptions.InvalidUniqueKeysException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.InvalidUpdateParamException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">InvalidUpdateParamException</code><a class="headerlink" href="#pcf.core.pcf_exceptions.InvalidUpdateParamException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.InvalidValueReplaceException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">InvalidValueReplaceException</code><span class="sig-paren">(</span><em>message='Invalid inputs for definition variable replace ($)'</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf_exceptions.InvalidValueReplaceException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.MissingException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">MissingException</code><span class="sig-paren">(</span><em>message='Attempted to use missing value'</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf_exceptions.MissingException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.NoCallbackFunctionException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">NoCallbackFunctionException</code><a class="headerlink" href="#pcf.core.pcf_exceptions.NoCallbackFunctionException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.NoCodeException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">NoCodeException</code><a class="headerlink" href="#pcf.core.pcf_exceptions.NoCodeException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.NoResourceException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">NoResourceException</code><a class="headerlink" href="#pcf.core.pcf_exceptions.NoResourceException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.ParentRequiredException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">ParentRequiredException</code><a class="headerlink" href="#pcf.core.pcf_exceptions.ParentRequiredException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.ResourceLookupNotDefinedException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">ResourceLookupNotDefinedException</code><span class="sig-paren">(</span><em>message='Resource lookup class not defined'</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf_exceptions.ResourceLookupNotDefinedException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.TooManyResourceException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">TooManyResourceException</code><a class="headerlink" href="#pcf.core.pcf_exceptions.TooManyResourceException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 </div>
@@ -905,12 +905,12 @@ particle</p>
 <dl class="class">
 <dt id="pcf.core.quasiparticle.Quasiparticle">
 <em class="property">class </em><code class="descclassname">pcf.core.quasiparticle.</code><code class="descname">Quasiparticle</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.quasiparticle.Quasiparticle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pcf.core.particle.Particle" title="pcf.core.particle.Particle"><code class="xref py py-class docutils literal"><span class="pre">pcf.core.particle.Particle</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#pcf.core.particle.Particle" title="pcf.core.particle.Particle"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.particle.Particle</span></code></a></p>
 <dl class="method">
 <dt id="pcf.core.quasiparticle.Quasiparticle._fuse_particles">
 <code class="descname">_fuse_particles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.quasiparticle.Quasiparticle._fuse_particles" title="Permalink to this definition">¶</a></dt>
 <dd><p>This functions adds all particles to a pcf object (pcf_field). If a particle contains a multiplier field that number of particles
-are created with indexes appended to the particle&#8217;s unique identifier. If the quasiparticle has a parent, that parent is added to all
+are created with indexes appended to the particle’s unique identifier. If the quasiparticle has a parent, that parent is added to all
 particles in the quasiparticle. Finally link_particles is called on the pcf_field.</p>
 </dd></dl>
 
@@ -922,7 +922,7 @@ particles in the quasiparticle. Finally link_particles is called on the pcf_fiel
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>particle_definition</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>particle_definition</strong> – </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">updated version</td>
 </tr>
@@ -941,10 +941,10 @@ particles in the quasiparticle. Finally link_particles is called on the pcf_fiel
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>sync</strong> (<em>bool</em>) &#8211; sync or async mode. Defaults to True</li>
-<li><strong>cascade</strong> (<em>bool</em>) &#8211; Defaults to True</li>
-<li><strong>validate_config</strong> (<em>bool</em>) &#8211; specify whether or not to call particle config validation function</li>
-<li><strong>rollback</strong> (<em>bool</em>) &#8211; If true then all particles will be terminated if there is an error during start. Defaults to False</li>
+<li><strong>sync</strong> (<em>bool</em>) – sync or async mode. Defaults to True</li>
+<li><strong>cascade</strong> (<em>bool</em>) – Defaults to True</li>
+<li><strong>validate_config</strong> (<em>bool</em>) – specify whether or not to call particle config validation function</li>
+<li><strong>rollback</strong> (<em>bool</em>) – If true then all particles will be terminated if there is an error during start. Defaults to False</li>
 </ul>
 </td>
 </tr>
@@ -1014,7 +1014,7 @@ pcf_name (str):</dd>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>desired_state</strong> (<a class="reference internal" href="#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>desired_state</strong> (<a class="reference internal" href="#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </td>
 </tr>
 </tbody>
 </table>
@@ -1029,9 +1029,9 @@ pcf_name (str):</dd>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>flavor</strong> (<em>str</em>) &#8211; </li>
-<li><strong>desired_state</strong> (<a class="reference internal" href="#pcf.core.State" title="pcf.core.State"><em>State</em></a>) &#8211; </li>
-<li><strong>pcf_name</strong> (<em>str</em>) &#8211; default is None</li>
+<li><strong>flavor</strong> (<em>str</em>) – </li>
+<li><strong>desired_state</strong> (<a class="reference internal" href="#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>pcf_name</strong> (<em>str</em>) – default is None</li>
 </ul>
 </td>
 </tr>
@@ -1042,19 +1042,21 @@ pcf_name (str):</dd>
 <dl class="method">
 <dt id="pcf.core.quasiparticle.Quasiparticle.sync_state">
 <code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.quasiparticle.Quasiparticle.sync_state" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Logic that determines what the current state of the particle is. This is implemented for each individual
+particle</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="pcf.core.quasiparticle.Quasiparticle.update_particle_definition">
 <code class="descname">update_particle_definition</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>base_particle</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.quasiparticle.Quasiparticle.update_particle_definition" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates a particle&#8217;s definition with a previous definition. Replaces any fields that are specified.</p>
+<dd><p>Updates a particle’s definition with a previous definition. Replaces any fields that are specified.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>particle_definition</strong> (<em>dict</em>) &#8211; new particle defintion (can be empty)</li>
-<li><strong>base_particle</strong> (<a class="reference internal" href="#module-pcf.core.particle" title="pcf.core.particle"><em>particle</em></a>) &#8211; the particle that the new particle is inheriting from</li>
+<li><strong>particle_definition</strong> (<em>dict</em>) – new particle defintion (can be empty)</li>
+<li><strong>base_particle</strong> (<em>particle</em>) – the particle that the new particle is inheriting from</li>
 </ul>
 </td>
 </tr>
@@ -1073,34 +1075,8 @@ pcf_name (str):</dd>
 <dl class="class">
 <dt id="pcf.core.State">
 <em class="property">class </em><code class="descclassname">pcf.core.</code><code class="descname">State</code><a class="headerlink" href="#pcf.core.State" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
 <p>An enumeration.</p>
-<dl class="method">
-<dt id="pcf.core.State._generate_next_value_">
-<code class="descname">_generate_next_value_</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>count</em>, <em>last_values</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.State._generate_next_value_" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pcf.core.State._member_map_">
-<code class="descname">_member_map_</code><em class="property"> = OrderedDict([('running', &lt;State.running: 1&gt;), ('stopped', &lt;State.stopped: 2&gt;), ('terminated', &lt;State.terminated: 3&gt;), ('pending', &lt;State.pending: 4&gt;)])</em><a class="headerlink" href="#pcf.core.State._member_map_" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pcf.core.State._member_names_">
-<code class="descname">_member_names_</code><em class="property"> = ['running', 'stopped', 'terminated', 'pending']</em><a class="headerlink" href="#pcf.core.State._member_names_" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pcf.core.State._member_type_">
-<code class="descname">_member_type_</code><a class="headerlink" href="#pcf.core.State._member_type_" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pcf.core.State._value2member_map_">
-<code class="descname">_value2member_map_</code><em class="property"> = {1: &lt;State.running: 1&gt;, 2: &lt;State.stopped: 2&gt;, 3: &lt;State.terminated: 3&gt;, 4: &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.core.State._value2member_map_" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="attribute">
 <dt id="pcf.core.State.pending">
 <code class="descname">pending</code><em class="property"> = 4</em><a class="headerlink" href="#pcf.core.State.pending" title="Permalink to this definition">¶</a></dt>
@@ -1128,9 +1104,7 @@ pcf_name (str):</dd>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -1148,11 +1122,11 @@ pcf_name (str):</dd>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Capital One.
+        &copy; Copyright 2018, Capital One
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1167,35 +1141,24 @@ pcf_name (str):</dd>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
