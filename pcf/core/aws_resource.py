@@ -96,11 +96,12 @@ class AWSResource(Particle):
         """
         Looks through the particle definition for $lookup and replaces them with specified resource with given name
         """
+        aws_lookup = self.lookup()
         var_lookup_list = pcf_util.find_nested_vars(self.desired_state_definition, var_list=[])
         for (nested_key, id_var) in var_lookup_list:
             if id_var[0] == "lookup":
                 resource = id_var[1]
                 names = id_var[2].split(':')
-                var = self.lookup(resource, names).get_id()
+                var = aws_lookup.get_id(resource, names)
                 pcf_util.replace_value_nested_dict(curr_dict=self.desired_state_definition,
                                                      list_nested_keys=nested_key.split('.'), new_value=var)
