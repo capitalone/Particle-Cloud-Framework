@@ -292,3 +292,18 @@ def transform_list_of_dicts_to_desired_list(curr_list, nested_key_name, new_list
                 if v not in new_list:
                     new_list.append(v)
     return new_list
+
+
+def list_to_dict(key_name, dict_list):
+    """
+    Converts a list of dicts to a dictionary object
+
+    Args:
+        key_name (str): field in dict whose unique value is used as the key
+        dict_list (list): list of dicts who has key_name
+
+    Returns:
+         dict_from_list (dict): dict whose keys are the values of the key_name field
+    """
+    dict_from_list = {d[key_name]: d for d in dict_list}
+    return dict_from_list
