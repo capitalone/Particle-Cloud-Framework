@@ -76,6 +76,19 @@ To terminate simply change the desired state to terminated and apply.
     particle.set_desired_state(State.terminated)
     particle.apply()
 
+Logging
+---------
+
+To enable logging add the follow code to the top of your pcf python file.
+
+.. code::
+
+    import logging
+
+    logging.basicConfig(level=logging.DEBUG)
+
+    for handler in logging.root.handlers:
+        handler.addFilter(logging.Filter('pcf'))
 
 .. seealso:: `PCF particle and quasiparticle examples <https://github.com/capitalone/Particle-Cloud-Framework/tree/master/examples>`_
 

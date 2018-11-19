@@ -62,6 +62,12 @@ ELB
 
    pcf.particle.aws.ec2.elb
 
+EMR
+--------------------------
+.. toctree::
+   :maxdepth: 2
+
+   pcf.particle.aws.emr_cluster
 
 LambdaFunction
 --------------------------
