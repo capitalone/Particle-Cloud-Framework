@@ -34,6 +34,12 @@ class VPC(AWSResource):
         State.terminated: 0
     }
 
+    START_PARAMS = {
+        "CidrBlock",
+        "AmazonProvidedIpv6CidrBlock",
+        "InstanceTenancy"
+    }
+
     UNIQUE_KEYS = ["aws_resource.custom_config.vpc_name"]
 
     def __init__(self, particle_definition):
@@ -77,11 +83,9 @@ class VPC(AWSResource):
         Returns:
              status or {"status":"missing"}
         """
-        vpc = self.client.describe_vpcs(Filters=[{"Name":"tag:PCFName","Value":self.vpc_name}])
-        if len(vpc["Vpcs"]) != 1:
-            return None
-
-        return vpc["Vpcs"][0]
+        vpc = self.client.describe_vpcs(Filters=[{"Name":"tag:PCFName","Values":[self.vpc_name]}])
+        if len(vpc["Vpcs"]) == 1:
+            return vpc["Vpcs"][0]
 
     def _terminate(self):
         """
@@ -100,7 +104,7 @@ class VPC(AWSResource):
         Returns:
            boto3 create_vpc() response
         """
-        resp = self.client.create_vpc(**self.desired_state_definition)
+        resp = self.client.create_vpc(**pcf_util.param_filter(self.desired_state_definition,VPC.START_PARAMS))
         self._vpc_id = resp['Vpc'].get("VpcId")
         self.current_state_definition = resp
         tags = self.custom_config.get("Tags",[])
@@ -125,10 +129,10 @@ class VPC(AWSResource):
         Calls get_status() and updates the current_state_definition and the state.
         """
         full_status = self.get_status()
-        if not full_status:
+        if full_status is None:
             self.state = State.terminated
         else:
-            self.state = VPC.state_lookup.get("State")
+            self.state = VPC.state_lookup.get(full_status["State"])
             self.current_state_definition = full_status
             self._vpc_id = full_status.get("VpcId")
 
