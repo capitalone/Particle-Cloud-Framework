@@ -44,11 +44,15 @@ class EMRCluster(AWSResource):
     }
 
     UPDATE_PARAM_CONVERSIONS = {
-        "RequestedInstanceCount":"InstanceCount"
+        "RequestedInstanceCount":"InstanceCount",
+        "TargetOnDemandCapacity":"TargetOnDemandCapacity",
+        "TargetSpotCapacity":"TargetSpotCapacity"
     }
 
     FILTERED_UPDATE_PARAMS = {
-        "InstanceCount"
+        "InstanceCount",
+        "TargetOnDemandCapacity",
+        "TargetSpotCapacity"
     }
 
     UNIQUE_KEYS = ["aws_resource.Name"]
@@ -58,7 +62,6 @@ class EMRCluster(AWSResource):
             particle_definition=particle_definition,
             resource_name="emr")
         self.name = self.desired_state_definition["Name"]
-        self.convert_desired_definition()
 
     def _set_unique_keys(self):
         """
@@ -97,7 +100,7 @@ class EMRCluster(AWSResource):
                 return {"status": "missing"}
 
             cluster_status_resp = self.client.describe_cluster(ClusterId=cluster_id)
-            cluster_type = cluster_status_resp["Cluster"]["InstanceCollectionType"]
+            cluster_type = cluster_status_resp["Cluster"].get("InstanceCollectionType","INSTANCE_GROUP")
             if cluster_type == "INSTANCE_GROUP":
                 instance_groups = self.client.list_instance_groups(ClusterId=cluster_id)
                 cluster_status_resp["Cluster"]["Instances"] = pcf_util.list_to_dict(key_name='Name',dict_list=instance_groups["InstanceGroups"])
@@ -111,18 +114,6 @@ class EMRCluster(AWSResource):
             return {"status": "missing"}
 
         return cluster_status_resp.get("Cluster")
-
-    def convert_desired_definition(self):
-        """
-        Converts lists of instance fleets and instance groups in the desired state definition to a dictionary
-        """
-        fleets = self.desired_state_definition.get("Instances", {}).get("InstanceFleets")
-        groups = self.desired_state_definition.get("Instances", {}).get("InstanceGroups")
-
-        # if fleets:
-        #     self.desired_state_definition["Instances"]["InstanceFleets"] = pcf_util.list_to_dict(key_name='Name',dict_list=fleets)
-        # if groups:
-        #     self.desired_state_definition["Instances"]["InstanceGroups"] = pcf_util.list_to_dict(key_name='Name',dict_list=groups)
 
     def _terminate(self):
         """
@@ -180,8 +171,7 @@ class EMRCluster(AWSResource):
 
         # instance pool
         if not desired_instances:
-
-            desired_instances = self.desired_state_definition.get("Instances").get("Instancefleets")
+            desired_instances = self.desired_state_definition.get("Instances").get("InstanceFleets")
 
         # TODO neither pool or group
         if not desired_instances:
@@ -200,8 +190,10 @@ class EMRCluster(AWSResource):
                                                    InstanceGroups=[{"InstanceGroupId":curr_instance,"InstanceCount":v["InstanceCount"]["updated"]}])
             #instance pool
             elif curr_instance:
+                od_cap = v.get("TargetOnDemandCapacity",{}).get("updated",0)
+                spot_cap = v.get("TargetSpotCapacity",{}).get("updated",0)
                 self.client.modify_instance_fleet(ClusterId=self._get_cluster_id(),
-                                                  InstanceFleet={"InstanceFleetId":curr_instance,"TargetOnDemandCapacity":v["InstanceCount"]["updated"]})
+                                                  InstanceFleet={"InstanceFleetId":curr_instance,"TargetOnDemandCapacity":od_cap,"TargetSpotCapacity":spot_cap})
 
 
     def is_state_equivalent(self, state1, state2):
@@ -226,15 +218,20 @@ class EMRCluster(AWSResource):
 
         # instance pool
         if not desired_instances:
-            desired_instances = self.desired_state_definition.get("Instances").get("Instancefleets")
+            desired_instances = self.desired_state_definition.get("Instances").get("InstanceFleets")
 
-        #TODO neither pool or group
+        # TODO neither pool or group
         if not desired_instances:
             return True
 
         desired_instance_dict = pcf_util.list_to_dict("Name", desired_instances)
         desired_instance_dict = {k : pcf_util.param_filter(v,EMRCluster.FILTERED_UPDATE_PARAMS) for k,v in desired_instance_dict.items()}
         current_instance_dict = {k : pcf_util.keep_and_replace_keys(v,EMRCluster.UPDATE_PARAM_CONVERSIONS) for k,v in self.current_state_definition.get("Instances").items()}
+
+        # moto bug with instance fleets
+        if not current_instance_dict:
+            return True
+
         diff = pcf_util.diff_dict(current_instance_dict,desired_instance_dict)
 
         return diff == {}
