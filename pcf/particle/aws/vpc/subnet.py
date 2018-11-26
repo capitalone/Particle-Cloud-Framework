@@ -77,7 +77,7 @@ class Subnet(AWSResource):
                     self.desired_state_definition["VpcId"] = vpc_parents[0]._vpc_id
                     return
 
-        raise Exception("You need to specify either a VpcId or have a vpc as a parent")
+            raise Exception("You need to specify either a VpcId or have a vpc as a parent")
 
     def _get_subnet_client(self):
         """
@@ -113,7 +113,7 @@ class Subnet(AWSResource):
         Returns:
             boto3 delete_subnet() response
         """
-        resp = self.client.delete_subnet(SubnetId=self.su)
+        resp = self.client.delete_subnet(SubnetId=self._subnet_id)
         return resp
 
     def _start(self):
