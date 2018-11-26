@@ -53,7 +53,8 @@ class TestSubnet:
                 "parents":["vpc:vpc_parent"],
                 "aws_resource": {
                     "custom_config":{
-                        "subnet_name":"test"
+                        "subnet_name":"test",
+                        "Tags":[{"Key":"Name","Value":"test"}]
                     },
                     "CidrBlock":"10.0.0.0/24"
                 }
