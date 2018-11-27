@@ -1,4 +1,4 @@
-from pcf.particle.aws.emr_cluster.emr_cluster import EMRCluster
+from pcf.particle.aws.emr.emr_cluster import EMRCluster
 from pcf.core import State
 
 # Edit example json to work in your account

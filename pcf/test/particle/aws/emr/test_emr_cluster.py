@@ -15,7 +15,7 @@
 import moto
 import boto3
 
-from pcf.particle.aws.emr_cluster.emr_cluster import EMRCluster
+from pcf.particle.aws.emr.emr_cluster import EMRCluster
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
 
