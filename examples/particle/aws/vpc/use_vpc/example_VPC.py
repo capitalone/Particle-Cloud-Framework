@@ -6,7 +6,8 @@ particle_definition = {
     "flavor": "vpc",
     "aws_resource": {
         "custom_config":{
-            "vpc_name":"test"
+            "vpc_name":"test",
+            "Tags":[{"Key":"Name","Value":"test"}]
         },
         "CidrBlock":"10.0.0.0/16",
         "AmazonProvidedIpv6CidrBlock":True
