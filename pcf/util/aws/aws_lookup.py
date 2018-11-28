@@ -24,50 +24,37 @@ class AWSLookup:
 
     """
     methods = locals()
-
     region_name = os.environ.get('AWS_DEFAULT_REGION', 'us-east-1')
 
-    ec2_resource = boto3.resource("ec2", region_name=region_name)
-    ec2_client = boto3.client("ec2", region_name=region_name )
+    def __init__(self):
+        self._ec2_client = None
+        self._ec2_resource = None
 
-    def __init__(self, resource, names):
-        self.resource = resource
-        self.names = names
-
-    def get_id(self):
-        method = self.methods.get(self.resource)
+    def get_id(self, resource, names):
+        method = self.methods.get(resource)
         if not method:
-            raise ResourceLookupNotDefinedException("{} resource lookup does not exist".format(self.resource))
-        resource_id = method(self)
+            raise ResourceLookupNotDefinedException("{} resource lookup does not exist".format(resource))
+        resource_id = method(self, names)
         if not resource_id:
-            raise ResourceLookupNotDefinedException("No {} resource with {} name".format(self.resource, self.names))
+            raise ResourceLookupNotDefinedException("No {} resource with {} name".format(resource, names))
         return resource_id
 
-    def instance_name(self):
-            """
-            Given instance-id this returns the instance name for ec2.
+    @property
+    def ec2_client(self):
+        if not self._ec2_client:
+            self._ec2_client = boto3.client("ec2", region_name=self.region_name)
+        return self._ec2_client
 
-            Returns:
-                 instance_name
-            """
-            instance_tags = self.ec2_client.describe_tags(Filters=[
-                    {
-                            'Name': 'resource-id',
-                            'Values': self.names
-                    },
-                    {
-                           'Name': 'key',
-                            'Values': ['PCFName']
-                    },
-                ])
+    @property
+    def ec2_resource(self):
+        if not self._ec2_resource:
+            self._ec2_resource = boto3.resource("ec2", region_name=self.region_name)
+        return self._ec2_resource
 
-            if len(instance_tags['Tags']) != 1:
-                    raise InvalidValueReplaceException("instance id is not valid")
-            return instance_tags['Tags'][0]['Value']
 
-    def ami(self):
+    def ami(self, names):
         """
-        Uses boto3 api call to get latest ami id
+        Uses boto3 api call to get ami id
 
         Returns:
             Image ID with corresponding Image name
@@ -76,7 +63,7 @@ class AWSLookup:
             Filters=[
                 {
                     'Name': 'name',
-                    'Values': self.names
+                    'Values': names
                 },
             ],
         )
@@ -87,24 +74,31 @@ class AWSLookup:
             return None
         return image_id[0]
 
-    def security_groups(self):
+    def instance_name(self, names):
         """
-        Uses boto3 api call to get latest security group ids
+        Given instance-id, this returns the instance name for ec2.
 
         Returns:
-            List of security group IDs
+             instance_name
         """
-        security_groups = self.ec2_client.describe_security_groups(
-            GroupNames=self.names
-        )["SecurityGroups"]
-        group_ids = []
-        for group in security_groups:
-            group_ids.append(group["GroupId"])
-        return group_ids
+        instance_tags = self.ec2_client.describe_tags(Filters=[
+            {
+                'Name': 'resource-id',
+                'Values': names
+            },
+            {
+                'Name': 'key',
+                'Values': ['PCFName']
+            },
+        ])
 
-    def subnet(self):
+        if len(instance_tags['Tags']) != 1:
+            raise InvalidValueReplaceException("instance id is not valid")
+        return instance_tags['Tags'][0]['Value']
+
+    def subnet(self, names):
         """
-        Uses boto3 api call to get latest subnet id
+        Uses boto3 api call to get subnet id
 
         Returns:
             Subnet ID with corresponding Subnet name
@@ -113,7 +107,7 @@ class AWSLookup:
             Filters=[
                 {
                     'Name': 'tag:Name',
-                    'Values': self.names
+                    'Values': names
                 },
             ],
         )["Subnets"]
@@ -121,7 +115,7 @@ class AWSLookup:
             return subnets[0]["SubnetId"]
         return None
 
-    def snapshot(self):
+    def snapshot(self, names):
         """
         Uses boto3 api call to get latest snapshot id
 
@@ -132,7 +126,7 @@ class AWSLookup:
             Filters=[
                 {
                     'Name': 'tag:Name',
-                    'Values': self.names
+                    'Values': names
                 },
             ],
         )["Snapshots"]
@@ -140,7 +134,7 @@ class AWSLookup:
             return snapshots[0]["SnapshotId"]
         return None
 
-    def iam(self):
+    def iam(self, names):
         """
         Used boto3 api call to get latest iam role
 
@@ -149,8 +143,8 @@ class AWSLookup:
         """
         iam = boto3.client("iam")
         try:
-            arn_type = self.names[0]
-            name = self.names[1]
+            arn_type = names[0]
+            name = names[1]
             arn = None
             if arn_type == "instance-profile":
                 arn = iam.get_instance_profile(InstanceProfileName=name)["InstanceProfile"]["Arn"]
