@@ -53,10 +53,10 @@ class Subnet(AWSResource):
     @property
     def subnet_client(self):
         """
-        The VPC client. Calls _get_vpc_client to create a new client if needed
+        The Subnet client. Calls _get_subnet_client to create a new client if needed
 
         Returns:
-             vpc_client
+             subnet_client
         """
         if not self._subnet_client:
             self._subnet_client = self._get_subnet_client()
@@ -64,8 +64,8 @@ class Subnet(AWSResource):
 
     def _set_vpc_id(self):
         """
-        Checks to see if user specified a vpcid in the particle definition. If not the vpc_id is retrieved from it's parent.
-        If there is no parent vpc particle an exception is returned since a vpcid is required for creating a new subnet.
+        Checks to see if user specified a vpc_id in the particle definition. If not the vpc_id is retrieved from it's parent.
+        If there is no parent vpc particle an exception is returned since a vpc_id is required for creating a new subnet.
 
         """
         if not self.desired_state_definition.get("VpcId"):
@@ -81,10 +81,10 @@ class Subnet(AWSResource):
 
     def _get_subnet_client(self):
         """
-        Creates a new vpc_client
+        Creates a new subnet_client
 
         Returns:
-             vpc_client
+             subnet_client
         """
         return self.resource.Subnet(self._subnet_id)
 
@@ -97,7 +97,7 @@ class Subnet(AWSResource):
 
     def get_status(self):
         """
-        Calls boto3 describe_vpc using describe_subnets().
+        Calls boto3 describe_subnets().
 
         Returns:
              status or {"status":"missing"}
