@@ -19,7 +19,7 @@ from pcf.util import pcf_util
 
 class VPC(AWSResource):
     """
-    This is the implementation of Amazon's ECS Task Definition.
+    This is the implementation of Amazon's VPC resource.
     """
 
     flavor = "vpc"
