@@ -67,7 +67,7 @@ EMR
 .. toctree::
    :maxdepth: 2
 
-   pcf.particle.aws.emr_cluster
+   pcf.particle.aws.emr
 
 LambdaFunction
 --------------------------
@@ -107,6 +107,14 @@ SQS
   :maxdepth: 2
 
   pcf.particle.aws.sqs
+
+
+VPC
+--------------------------
+.. toctree::
+  :maxdepth: 2
+
+  pcf.particle.aws.vpc
 
 
 GCP Particles
