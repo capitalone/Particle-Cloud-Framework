@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.util.aws package &mdash; Particle Cloud Framework 0.1.1 documentation</title>
+  <title>pcf.util.aws package &mdash; Particle Cloud Framework 0.2.0 documentation</title>
   
 
   
@@ -56,7 +56,7 @@
             
             
               <div class="version">
-                0.1.1
+                0.2.0
               </div>
             
           
@@ -182,13 +182,13 @@
 <span id="pcf-util-aws-aws-lookup-module"></span><h2>pcf.util.aws.aws_lookup module<a class="headerlink" href="#module-pcf.util.aws.aws_lookup" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.util.aws.aws_lookup.AWSLookup">
-<em class="property">class </em><code class="descclassname">pcf.util.aws.aws_lookup.</code><code class="descname">AWSLookup</code><span class="sig-paren">(</span><em>resource</em>, <em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.util.aws.aws_lookup.</code><code class="descname">AWSLookup</code><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class of all the AWS lookup resources</p>
 <dl class="method">
 <dt id="pcf.util.aws.aws_lookup.AWSLookup.ami">
-<code class="descname">ami</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.ami" title="Permalink to this definition">¶</a></dt>
-<dd><p>Uses boto3 api call to get latest ami id</p>
+<code class="descname">ami</code><span class="sig-paren">(</span><em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.ami" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses boto3 api call to get ami id</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -201,22 +201,22 @@
 
 <dl class="attribute">
 <dt id="pcf.util.aws.aws_lookup.AWSLookup.ec2_client">
-<code class="descname">ec2_client</code><em class="property"> = &lt;botocore.client.EC2 object&gt;</em><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.ec2_client" title="Permalink to this definition">¶</a></dt>
+<code class="descname">ec2_client</code><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.ec2_client" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pcf.util.aws.aws_lookup.AWSLookup.ec2_resource">
-<code class="descname">ec2_resource</code><em class="property"> = ec2.ServiceResource()</em><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.ec2_resource" title="Permalink to this definition">¶</a></dt>
+<code class="descname">ec2_resource</code><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.ec2_resource" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="pcf.util.aws.aws_lookup.AWSLookup.get_id">
-<code class="descname">get_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.get_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>resource</em>, <em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.get_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="pcf.util.aws.aws_lookup.AWSLookup.iam">
-<code class="descname">iam</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.iam" title="Permalink to this definition">¶</a></dt>
+<code class="descname">iam</code><span class="sig-paren">(</span><em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.iam" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used boto3 api call to get latest iam role</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -230,8 +230,8 @@
 
 <dl class="method">
 <dt id="pcf.util.aws.aws_lookup.AWSLookup.instance_name">
-<code class="descname">instance_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.instance_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given instance-id this returns the instance name for ec2.</p>
+<code class="descname">instance_name</code><span class="sig-paren">(</span><em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.instance_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given instance-id, this returns the instance name for ec2.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -253,22 +253,8 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pcf.util.aws.aws_lookup.AWSLookup.security_groups">
-<code class="descname">security_groups</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.security_groups" title="Permalink to this definition">¶</a></dt>
-<dd><p>Uses boto3 api call to get latest security group ids</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of security group IDs</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="pcf.util.aws.aws_lookup.AWSLookup.snapshot">
-<code class="descname">snapshot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="descname">snapshot</code><span class="sig-paren">(</span><em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uses boto3 api call to get latest snapshot id</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -282,8 +268,8 @@
 
 <dl class="method">
 <dt id="pcf.util.aws.aws_lookup.AWSLookup.subnet">
-<code class="descname">subnet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.subnet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Uses boto3 api call to get latest subnet id</p>
+<code class="descname">subnet</code><span class="sig-paren">(</span><em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.subnet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses boto3 api call to get subnet id</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

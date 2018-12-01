@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.util package &mdash; Particle Cloud Framework 0.1.1 documentation</title>
+  <title>pcf.util package &mdash; Particle Cloud Framework 0.2.0 documentation</title>
   
 
   
@@ -56,7 +56,7 @@
             
             
               <div class="version">
-                0.1.1
+                0.2.0
               </div>
             
           
@@ -286,6 +286,30 @@
 <dt id="pcf.util.pcf_util.keep_and_replace_keys">
 <code class="descclassname">pcf.util.pcf_util.</code><code class="descname">keep_and_replace_keys</code><span class="sig-paren">(</span><em>curr_dict</em>, <em>keep_replace_dict</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.pcf_util.keep_and_replace_keys" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="function">
+<dt id="pcf.util.pcf_util.list_to_dict">
+<code class="descclassname">pcf.util.pcf_util.</code><code class="descname">list_to_dict</code><span class="sig-paren">(</span><em>key_name</em>, <em>dict_list</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.pcf_util.list_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a list of dicts to a dictionary object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key_name</strong> (<em>str</em>) – field in dict whose unique value is used as the key</li>
+<li><strong>dict_list</strong> (<em>list</em>) – list of dicts who has key_name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict whose keys are the values of the key_name field</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict_from_list (dict)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="pcf.util.pcf_util.param_filter">
