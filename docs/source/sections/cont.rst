@@ -10,8 +10,7 @@ We believe the value of pcf comes from the community and contributions are great
 to create new branches off of develop and submit your pr. When creating new particles and quasiparticles make sure to add
 docstrings to all your functions and add tests.
 
-`PCF Github Repo `_
-
+`PCF Github Repo <https://github.com/capitalone/Particle-Cloud-Framework>`_
 
 
 Requesting New Features
@@ -19,7 +18,8 @@ Requesting New Features
 
 To request new particles, quasiparticles or features submit an issue in the pcf github repo and label appropriately.
 
-`PCF Github Issues `_
+
+`PCF Github Issues <https://github.com/capitalone/Particle-Cloud-Framework/issues>`_
 
 
 Particle Cloud Framework Docs
