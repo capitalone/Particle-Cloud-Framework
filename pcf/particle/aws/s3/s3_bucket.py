@@ -53,8 +53,6 @@ class S3Bucket(AWSResource):
             resource_name="s3",
         )
         self.bucket_name = self.desired_state_definition["Bucket"]
-        self.desired_state_definition.get("custom_config")
-
         self._set_unique_keys()
 
     def _set_unique_keys(self):
