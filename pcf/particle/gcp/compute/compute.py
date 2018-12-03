@@ -1,15 +1,10 @@
 from pcf.core.gcp_resource import GCPResource
 from pcf.core import State
-import logging
+from pcf.util import pcf_util
 import googleapiclient.discovery
-
-
-
-compute = googleapiclient.discovery.build("compute", "v1")
-
 from google.cloud import exceptions
 
-logger = logging.getLogger(__name__)
+compute = googleapiclient.discovery.build("compute", "v1")
 
 
 class ComputeEngine(GCPResource):
@@ -36,9 +31,10 @@ class ComputeEngine(GCPResource):
     def __init__(self, particle_definition):
         super(ComputeEngine, self).__init__(particle_definition=particle_definition, resource=compute)
         self.name = self.desired_state_definition["name"]
-        self.zone = self.desired_state_definition["zone"]
-        self.project = self.desired_state_definition["project"]
+        self.zone = self.custom_config["zone"]
+        self.project = self.custom_config["project"]
         self._set_unique_keys()
+        self._client = self.resource
 
     def _set_unique_keys(self):
         """
@@ -56,9 +52,12 @@ class ComputeEngine(GCPResource):
         """
         try:
             instance = self.client.instances().get(project=self.project, zone=self.zone, instance=self.name)
-            return instance
+            if instance.body:
+                return instance.body
+            return {"status": "TERMINATED"}
+
         except exceptions.NotFound:
-            return {"status": "missing"}
+            return {"status": "TERMINATED"}
 
     def _terminate(self):
         """
@@ -92,7 +91,7 @@ class ComputeEngine(GCPResource):
 
         if full_status:
             if full_status.get('status'):
-                self.state = full_status.get('status')
+                self.state = ComputeEngine.state_lookup[full_status.get('status')]
             else:
                 self.state = State.terminated
 
