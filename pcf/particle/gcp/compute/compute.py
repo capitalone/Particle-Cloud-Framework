@@ -51,9 +51,9 @@ class ComputeEngine(GCPResource):
              status (dict)
         """
         try:
-            instance = self.client.instances().get(project=self.project, zone=self.zone, instance=self.name)
-            if instance.body:
-                return instance.body
+            instance = self.client.instances().get(project=self.project, zone=self.zone, instance=self.name).execute()
+            if instance:
+                return instance
             return {"status": "TERMINATED"}
 
         except exceptions.NotFound:
@@ -64,24 +64,24 @@ class ComputeEngine(GCPResource):
         Deletes the instance
 
         Returns:
-             response of gcp delete
+             response of gcp instances().delete()
         """
-        return self.client.instances().delete(project=self.project, zone=self.zone, instance=self.name)
+        return self.client.instances().delete(project=self.project, zone=self.zone, instance=self.name).execute()
 
     def _start(self):
         """
         Creates the instance
 
         Returns:
-             response of  create_bucket
+             response of  gcp instances().insert()
         """
-        return self.client.instances().insert(project=self.project, zone=self.zone, body=self.get_desired_state_definition())
+        return  self.client.instances().insert(project=self.project, zone=self.zone, body=self.get_desired_state_definition()).execute()
 
     def _stop(self):
         """
         Stops the instance
         """
-        return self.client.instances().stop(project=self.project, zone=self.zone, instance=self.name)
+        return self.client.instances().stop(project=self.project, zone=self.zone, instance=self.name).execute()
 
     def sync_state(self):
         """
@@ -97,6 +97,14 @@ class ComputeEngine(GCPResource):
 
             self.current_state_definition = full_status
 
+    def is_state_definition_equivalent(self):
+        filtered_desired_state_definition = pcf_util.param_filter(self.desired_state_definition,{"custom_config"}, remove=True)
+        diff = pcf_util.diff_dict(filtered_desired_state_definition, self.current_state_definition)
+
+        if not diff or len(diff) == 0:
+            return True
+
+        return False
 
     def _update(self):
         """
