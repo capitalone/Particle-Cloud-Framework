@@ -23,6 +23,11 @@ class ParentRequiredException(Exception):
         Exception.__init__(self, "A parent is required, but none or too many were found")
 
 
+class MissingPythonConfig(Exception):
+    def __init__(self):
+        Exception.__init__(self, "generate_zip was set to true, but no python files were found in custom_config python_files")
+
+
 class TooManyResourceException(Exception):
     def __init__(self):
         Exception.__init__(self, "Too many instances of the resource")

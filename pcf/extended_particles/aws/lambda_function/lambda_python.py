@@ -1,0 +1,48 @@
+# Copyright 2018 Capital One Services, LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+from pcf.particle.aws.lambda_function.lambda_function import LambdaFunction
+from pcf.core.pcf_exceptions import MissingPythonConfig
+from zipfile import ZipFile
+import os
+import importlib
+
+class LambdaPython(LambdaFunction):
+    def __init__(self, particle_definition):
+        super(LambdaPython, self).__init__(particle_definition=particle_definition, resource_name="lambda")
+        self.directory = self.custom_config.get("generate_zip")
+        self._generate_zip()
+
+    def _generate_zip(self):
+        if not self.directory:
+            return
+
+        files = self.custom_config.get("python_files")
+        if not files:
+            raise MissingPythonConfig
+
+        with open(self.directory,'r') as f:
+            requirements = [line.strip().split('=')[0] for line in f]
+
+        with ZipFile(self.name + ".zip", "w") as zip:
+            for file in files:
+                zip.write(os.path.abspath(file))
+
+            for requirement in requirements:
+                path = importlib.util.find_spec(requirement).submodule_search_locations[0]
+                for root, dirs, files in os.walk(path):
+                    for file in files:
+                        zip.write(os.path.join(root,file))
+
+
