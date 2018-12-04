@@ -18,9 +18,12 @@ from zipfile import ZipFile
 import os
 import importlib
 
+
 class LambdaPython(LambdaFunction):
+    flavor = "lambda_python_function"
+
     def __init__(self, particle_definition):
-        super(LambdaPython, self).__init__(particle_definition=particle_definition, resource_name="lambda")
+        super(LambdaPython, self).__init__(particle_definition=particle_definition)
         self.directory = self.custom_config.get("generate_zip")
         self._generate_zip()
 
@@ -44,5 +47,8 @@ class LambdaPython(LambdaFunction):
                 for root, dirs, files in os.walk(path):
                     for file in files:
                         zip.write(os.path.join(root,file))
+
+        self.desired_state_definition["Code"] = {"ZipFile": self.name + ".zip"}
+
 
 
