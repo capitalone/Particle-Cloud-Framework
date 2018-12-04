@@ -15,7 +15,9 @@
 from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 from pcf.util import pcf_util
+from pcf.particle.aws.vpc.vpc import VPC
 from pcf.core.pcf_exceptions import InvalidConfigException
+from deepdiff import DeepDiff
 
 
 class SecurityGroup(AWSResource):
@@ -44,11 +46,8 @@ class SecurityGroup(AWSResource):
     }
 
     DEFINITION_FILTER = {
-        "Description",
-        "GroupName",
-        "VpcId",
-        "DryRun",
-        "custom_config"
+        "IpPermissionsEgress",
+        "IpPermissions"
     }
 
     UNIQUE_KEYS = ["aws_resource.GroupName"]
@@ -57,11 +56,9 @@ class SecurityGroup(AWSResource):
         super().__init__(particle_definition, "ec2")
         self._set_unique_keys()
         self._group_name = self.desired_state_definition.get("GroupName")
-        self._vpc_id = self.desired_state_definition.get("VpcId")
-        if not self._vpc_id:
-            raise InvalidConfigException("Please specify VPC ID")
         self._sg_resource = None
         self._group_id = ""
+        self._set_vpc_id()
 
     @property
     def security_group_resource(self):
@@ -80,6 +77,24 @@ class SecurityGroup(AWSResource):
         """
         self.unique_keys = SecurityGroup.UNIQUE_KEYS
 
+    def _set_vpc_id(self):
+        """
+        Checks to see if user specified a vpc_id in the particle definition. If not the vpc_id is retrieved from it's parent.
+        If there is no parent vpc particle an exception is returned since a vpc_id is required for creating a new subnet.
+
+        """
+        if not self.desired_state_definition.get("VpcId"):
+            if len(self.parents) > 0:
+                vpc_parents = list(filter(lambda x: x.flavor == VPC.flavor, self.parents))
+
+                if len(vpc_parents) == 1:
+                    vpc_parents[0].sync_state()
+                    self._vpc_id = vpc_parents[0]._vpc_id
+                    return
+            raise InvalidConfigException("You need to specify either a VpcId or have a vpc as a parent")
+        else:
+            self._vpc_id = self.desired_state_definition.get("VpcId")
+
     def _start(self):
         """
         Creates vpc and adds tag for PCFName
@@ -88,14 +103,14 @@ class SecurityGroup(AWSResource):
         """
         resp = self.client.create_security_group(**pcf_util.param_filter(self.desired_state_definition, SecurityGroup.START_PARAMS))
         self._group_id = resp.get("GroupId")
-        tags = self.custom_config.get("Tags",[])
+        tags = self.custom_config.get("Tags", [])
         if tags:
             self.security_group_resource.create_tags(
                 DryRun=False,
                 Tags=tags
             )
-        outbound = self.custom_config.get("Outbound", {})
-        inbound = self.custom_config.get("Inbound", {})
+        outbound = self.custom_config.get("IpPermissionsEgress", {})
+        inbound = self.custom_config.get("IpPermissions", {})
         if outbound:
             self.security_group_resource.authorize_egress(
                 DryRun=False,
@@ -125,9 +140,44 @@ class SecurityGroup(AWSResource):
 
     def _update(self):
         """
-        No updates available
+        removes and adds security group rules based on the new desired definition using boto3 revoke and authorize
         """
-        raise NotImplemented
+        # no boto command for removing tags. create_tags both creates and updates existing tags
+        new_tags = DeepDiff(self.current_state_definition.get("Tags", []),
+                            self.custom_config.get("Tags", []))
+        new_tags.pop("iterable_item_removed", None)
+        if new_tags:
+            self.security_group_resource.create_tags(
+                DryRun=False,
+                Tags=self.custom_config.get("Tags")
+            )
+        dd_egress = DeepDiff(self.current_state_definition.get("IpPermissionsEgress", {}),
+                             self.custom_config.get("IpPermissionsEgress"))
+        dd_ingress = DeepDiff(self.current_state_definition.get("IpPermissions", {}),
+                              self.custom_config.get("IpPermissions"))
+
+        if dd_ingress:
+            if dd_ingress.get("iterable_item_removed") or dd_ingress.get("values_changed"):
+                self.security_group_resource.revoke_ingress(
+                    DryRun=False,
+                    IpPermissions=self.current_state_definition.get("IpPermissions")
+                )
+            if dd_ingress.get("iterable_item_added") or dd_ingress.get("values_changed"):
+                self.security_group_resource.authorize_ingress(
+                    DryRun=False,
+                    IpPermissions=self.custom_config.get("IpPermissions")
+                )
+        if dd_egress:
+            if dd_egress.get("iterable_item_removed") or dd_egress.get("values_changed"):
+                self.security_group_resource.revoke_egress(
+                    DryRun=False,
+                    IpPermissions=self.current_state_definition.get("IpPermissionsEgress")
+                )
+            if dd_egress.get("iterable_item_added") or dd_egress.get("values_changed"):
+                self.security_group_resource.authorize_egress(
+                    DryRun=False,
+                    IpPermissions=self.custom_config.get("IpPermissionsEgress")
+                )
 
     def get_current_definition(self):
         """
@@ -155,35 +205,49 @@ class SecurityGroup(AWSResource):
         # Need to make sure the group name matches exactly, since it is just a filter
         for sg in security_group_list:
             if sg.get("GroupName") == self._group_name:
+                self._group_id = sg.get("GroupId")
                 return sg
-        return {"status": "missing"}
 
     def sync_state(self):
         """
-        Uses get_current_definition to determine whether the queue exists or not and sets the state
+        Uses get_current_definition to determine whether the group exists or not and sets the state
 
         Returns:
             void
         """
         # get the current definition. if it exists, running; if missing, terminated.
-        self.current_state_definition = self.get_current_definition()
-        if self.current_state_definition:
+        current_definition = self.get_current_definition()
+        if current_definition:
             self.state = State.running
+            self.current_state_definition = current_definition
         else:
             self.state = State.terminated
 
     def is_state_definition_equivalent(self):
         """
-        Compared the desired state and current state definition
+        Compares the desired state and current state definition and returns whether they are equivalent
+        Only considers fields defined in the desired definition
+        All fields not specified are left alone in the current state
 
         Returns:
             bool
         """
         self.sync_state()
         # use filters to remove any extra information
-        self.current_state_definition = {key: self.current_state_definition[key] for key in SecurityGroup.DEFINITION_FILTER
-                                         if key in self.current_state_definition.keys()}
-        self.desired_state_definition = {key: self.desired_state_definition[key] for key in SecurityGroup.DEFINITION_FILTER
-                                         if key in self.desired_state_definition.keys()}
-        diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
-        return diff_dict == {}
+        desired_config = pcf_util.param_filter(self.desired_state_definition.get("custom_config", {}),
+                                               SecurityGroup.DEFINITION_FILTER)
+        current_config = pcf_util.param_filter(self.get_current_state_definition(), desired_config.keys())
+        diff = DeepDiff(current_config, desired_config, ignore_order=True)
+        print(desired_config)
+        print(current_config)
+        return diff == {}
+
+    def is_state_equivalent(self, state1, state2):
+        """
+        Looks up state equivalents and checks if the two inputs map to the same state
+
+        Returns:
+            bool
+        """
+        return SecurityGroup.equivalent_states.get(state1) == SecurityGroup.equivalent_states.get(state2)
+

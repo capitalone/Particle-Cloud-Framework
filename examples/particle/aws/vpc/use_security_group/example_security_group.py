@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pcf.particle.aws.vpc.security_group.security_group import SecurityGroup
+from pcf.particle.aws.vpc.security_group import SecurityGroup
 from pcf.core import State
 
 particle_definition = {
@@ -20,81 +20,83 @@ particle_definition = {
     "flavor": "security_group",
     "aws_resource": {
         "Description": "pcf security group",
-        "GroupName": "test_security_group",
+        "GroupName": "hoos_security_group",
         "VpcId": "vpc-0e46163f7b74ae6ec",
         "DryRun": False,
         "custom_config": {
             "Tags": [
                 {
                     "Key": "Owner",
-                    "Value": "Brian"
+                    "Value": "Hoos"
                 }
             ],
-        #     "Outbound": [
-        #         {
-        #             "FromPort": 123,
-        #             "IpProtocol": "string",
-        #             "IpRanges": [
-        #                 {
-        #                     "CidrIp": "string",
-        #                     "Description": "string"
-        #                 },
-        #             ],
-        #             "Ipv6Ranges": [
-        #                 {
-        #                     "CidrIpv6": "string",
-        #                     "Description": "string"
-        #                 },
-        #             ],
-        #             "PrefixListIds": [
-        #                 {
-        #                     "Description": "string",
-        #                     "PrefixListId": "string"
-        #                 },
-        #             ],
-        #             "ToPort": 123,
-        #             "UserIdGroupPairs": [
-        #                 {
-        #                     "Description": "string",
-        #                     "GroupId": "string",
-        #                     "GroupName": "string",
-        #                     "PeeringStatus": "string",
-        #                     "UserId": "string",
-        #                     "VpcId": "string",
-        #                     "VpcPeeringConnectionId": "string"
-        #                 },
-        #             ]
-        #         }
-        #     ],
-            "Inbound":  [
+            # IpPermissionsEgress must be empty list to delete existing rules
+            "IpPermissionsEgress": [
+                # {
+                #     "FromPort": 123,
+                #     "IpProtocol": "string",
+                #     "IpRanges": [
+                #         {
+                #             "CidrIp": "string",
+                #             "Description": "string"
+                #         },
+                #     ],
+                #     "Ipv6Ranges": [
+                #         {
+                #             "CidrIpv6": "string",
+                #             "Description": "string"
+                #         },
+                #     ],
+                #     "PrefixListIds": [
+                #         {
+                #             "Description": "string",
+                #             "PrefixListId": "string"
+                #         },
+                #     ],
+                #     "ToPort": 123,
+                #     "UserIdGroupPairs": [
+                #         {
+                #             "Description": "string",
+                #             "GroupId": "string",
+                #             "GroupName": "string",
+                #             "PeeringStatus": "string",
+                #             "UserId": "string",
+                #             "VpcId": "string",
+                #             "VpcPeeringConnectionId": "string"
+                #         },
+                #     ]
+                # }
+            ],
+            # IpPermissions must be empty list to delete existing rules
+            "IpPermissions":  [
                 {
                     "FromPort": 80,
                     "IpProtocol": "tcp",
                     "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
-                    "ToPort": 80
-        #             "Ipv6Ranges": [
-        #                 {
-        #                     "CidrIpv6": "string",
-        #                     "Description": "string"
-        #                 },
-        #             ],
-        #             "PrefixListIds": [
-        #                 {
-        #                     "Description": "string",
-        #                     "PrefixListId": "string"
-        #                 },
-        #             ],
-        #             "UserIdGroupPairs": [
-        #                 {
-        #                     "Description": "string",
-        #                     "GroupId": "string",
-        #                     "GroupName": "string",
-        #                     "PeeringStatus": "string",
-        #                     "UserId": "string",
-        #                     "VpcId": "string",
-        #                     "VpcPeeringConnectionId": "string"
-        #                 },
-        #             ]
+                    "ToPort": 80,
+                    "Ipv6Ranges": [
+                        # {
+                        #     "CidrIpv6": "string",
+                        #     "Description": "string"
+                        # },
+                    ],
+                    "PrefixListIds": [
+                        # {
+                        #     "Description": "string",
+                        #     "PrefixListId": "string"
+                        # },
+                    ],
+                    "UserIdGroupPairs": [
+                        # {
+                        #     "Description": "string",
+                        #     "GroupId": "string",
+                        #     "GroupName": "string",
+                        #     "PeeringStatus": "string",
+                        #     "UserId": "string",
+                        #     "VpcId": "string",
+                        #     "VpcPeeringConnectionId": "string"
+                        # },
+                    ]
                 },
             ]
         }
@@ -102,11 +104,56 @@ particle_definition = {
 }
 
 sg = SecurityGroup(particle_definition)
-print(sg.get_current_definition())
-sg.start()
-print(sg.get_current_definition())
-# import time
-# time.sleep(15)
-# sg.terminate()
+sg.set_desired_state(State.running)
+sg.apply()
 
+print(sg.get_state())
+print(sg.get_current_state_definition())
+# changed and added tags
+particle_definition["aws_resource"]["custom_config"]["Tags"][0]["Value"] = "WaHoo"
+particle_definition["aws_resource"]["custom_config"]["Tags"].append({
+    "Key": "PCF",
+    "Value": "pcf"
+})
+# new rules
+particle_definition["aws_resource"]["custom_config"]["IpPermissionsEgress"] = [
+    {
+        "FromPort": 80,
+        "IpProtocol": "tcp",
+        "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+        "ToPort": 80,
+        "Ipv6Ranges": [],
+        "PrefixListIds": [],
+        "UserIdGroupPairs": []
+    }
+]
+# changed and added rule
+particle_definition["aws_resource"]["custom_config"]["IpPermissions"] = [
+    {
+        "FromPort": 80,
+        "IpProtocol": "tcp",
+        "IpRanges": [{"CidrIp": "0.0.0.0/16"}],
+        "ToPort": 80,
+        "Ipv6Ranges": [],
+        "PrefixListIds": [],
+        "UserIdGroupPairs": []
+    },
+    {
+        "FromPort": 9090,
+        "IpProtocol": "udp",
+        "IpRanges": [{"CidrIp": "0.0.0.0/32"}],
+        "ToPort": 9090,
+        "Ipv6Ranges": [],
+        "PrefixListIds": [],
+        "UserIdGroupPairs": []
+    }
+]
+sg.set_desired_state(State.running)
+sg.apply()
+
+print(sg.get_state())
+print(sg.get_current_state_definition())
+
+sg.set_desired_state(State.terminated)
+sg.apply()
 
