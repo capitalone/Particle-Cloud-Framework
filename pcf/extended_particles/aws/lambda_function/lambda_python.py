@@ -17,15 +17,19 @@ from pcf.core.pcf_exceptions import MissingPythonConfig
 from zipfile import ZipFile
 import os
 import importlib
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class LambdaPython(LambdaFunction):
     flavor = "lambda_python_function"
 
     def __init__(self, particle_definition):
-        super(LambdaPython, self).__init__(particle_definition=particle_definition)
+        super(LambdaFunction,self).__init__(particle_definition=particle_definition,resource_name="lambda")
         self.directory = self.custom_config.get("generate_zip")
         self._generate_zip()
+        super(LambdaPython, self).__init__(particle_definition=particle_definition)
 
     def _generate_zip(self):
         if not self.directory:
@@ -35,7 +39,7 @@ class LambdaPython(LambdaFunction):
         if not files:
             raise MissingPythonConfig
 
-        with open(self.directory,'r') as f:
+        with open(self.directory + "/requirements.txt",'r') as f:
             requirements = [line.strip().split('=')[0] for line in f]
 
         with ZipFile(self.name + ".zip", "w") as zip:
@@ -43,10 +47,14 @@ class LambdaPython(LambdaFunction):
                 zip.write(os.path.abspath(file))
 
             for requirement in requirements:
-                path = importlib.util.find_spec(requirement).submodule_search_locations[0]
-                for root, dirs, files in os.walk(path):
-                    for file in files:
-                        zip.write(os.path.join(root,file))
+                try:
+                    path = importlib.util.find_spec(requirement).submodule_search_locations[0]
+                    if path:
+                        for root, dirs, files in os.walk(path):
+                            for file in files:
+                                zip.write(os.path.join(root,file))
+                except:
+                    logger.debug("Could not find {0}. Skipping".format(requirement))
 
         self.desired_state_definition["Code"] = {"ZipFile": self.name + ".zip"}
 
