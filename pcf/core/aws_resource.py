@@ -16,6 +16,7 @@ import boto3
 from pcf.core.particle import Particle
 from pcf.util import pcf_util
 from pcf.util.aws.aws_lookup import AWSLookup
+from pcf.core.pcf_exceptions import InvalidConfigException
 
 
 class AWSResource(Particle):
@@ -105,3 +106,25 @@ class AWSResource(Particle):
                 var = aws_lookup.get_id(resource, names)
                 pcf_util.replace_value_nested_dict(curr_dict=self.desired_state_definition,
                                                      list_nested_keys=nested_key.split('.'), new_value=var)
+
+    def get_vpc_id(self, parents, vpc):
+        """
+        The vpc_id is retrieved from it's parent. If there is no parent vpc particle an exception is raised since a vpc_id
+        is required for creating the new particle.
+
+        Args:
+            definition (str): desired definition of the particle
+            parents (list): list of parents for the current particle
+            vpc (class): the VPC particle class
+
+        Returns:
+            vpc_id (str): id of the vpc that the new particle is built under
+
+        """
+        if len(parents) > 0:
+            vpc_parents = list(filter(lambda x: x.flavor == vpc.flavor, parents))
+
+            if len(vpc_parents) == 1:
+                vpc_parents[0].sync_state()
+                return vpc_parents[0].vpc_id
+        raise InvalidConfigException("You need to specify either a VpcId or have a vpc as a parent")

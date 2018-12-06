@@ -57,7 +57,6 @@ class SecurityGroup(AWSResource):
         self._group_name = self.desired_state_definition.get("GroupName")
         self._sg_resource = None
         self._group_id = ""
-        self._set_vpc_id()
 
     @property
     def security_group_resource(self):
@@ -81,9 +80,10 @@ class SecurityGroup(AWSResource):
         Checks to see if user specified a vpc_id in the particle definition.
         If not the vpc_id is retrieved from it's parent using the get_vpc_id util
         """
+        if not self.desired_state_definition.get("VpcId"):
+            # need it defined in the definition for _start()
+            self.desired_state_definition["VpcId"] = self.get_vpc_id(self.parents, VPC)
         self._vpc_id = self.desired_state_definition.get("VpcId")
-        if not self._vpc_id:
-            self._vpc_id = pcf_util.get_vpc_id(self.parents, VPC)
 
     def _start(self):
         """
@@ -91,7 +91,8 @@ class SecurityGroup(AWSResource):
         Returns:
            boto3 create_security_group response (groud id)
         """
-        resp = self.client.create_security_group(**pcf_util.param_filter(self.desired_state_definition, SecurityGroup.START_PARAMS))
+        resp = self.client.create_security_group(**pcf_util.param_filter(self.desired_state_definition,
+                                                                         SecurityGroup.START_PARAMS))
         self._group_id = resp.get("GroupId")
         tags = self.custom_config.get("Tags", [])
         if tags:
@@ -176,6 +177,7 @@ class SecurityGroup(AWSResource):
         Returns:
              status or None
         """
+        self._set_vpc_id()
         security_group_list = self.client.describe_security_groups(
             Filters=[
                 {
@@ -229,8 +231,6 @@ class SecurityGroup(AWSResource):
                                                SecurityGroup.DEFINITION_FILTER)
         current_config = pcf_util.param_filter(self.get_current_state_definition(), desired_config.keys())
         diff = DeepDiff(current_config, desired_config, ignore_order=True)
-        print(desired_config)
-        print(current_config)
         return diff == {}
 
     def is_state_equivalent(self, state1, state2):

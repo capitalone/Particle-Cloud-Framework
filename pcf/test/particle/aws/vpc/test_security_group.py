@@ -14,18 +14,20 @@
 
 import moto
 
-from pcf.particle.aws.vpc.security_group import SecurityGroup
+from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
+from pcf.particle.aws.vpc.security_group import SecurityGroup
+from pcf.particle.aws.vpc.vpc import VPC
 
 
-class TestVPC:
+class TestSecurityGroup:
     particle_definition = {
         "pcf_name": "pcf_sg",
         "flavor": "security_group",
         "aws_resource": {
             "Description": "pcf security group",
             "GroupName": "hoos_security_group",
-            "VpcId": "vpc-0e46163f7b74ae6ec",
+            "VpcId": "vpc-abc",
             "DryRun": False,
             "custom_config": {
                 "Tags": [
@@ -50,9 +52,45 @@ class TestVPC:
         }
     }
 
+    vpc_parent_quasiparticle = {
+        "pcf_name": "sg_with_parent_vpc",
+        "flavor": "quasiparticle",
+        "particles": [
+            {
+                "flavor": "vpc",
+                "pcf_name": "vpc_parent",
+                "aws_resource": {
+                    "custom_config": {
+                        "vpc_name": "test"
+                    },
+                    "CidrBlock": "10.0.0.0/16"
+                }
+            },
+            {
+                "flavor": "security_group",
+                "parents": ["vpc:vpc_parent"],
+                "aws_resource": {
+                    "Description": "pcf security group",
+                    "GroupName": "Hoos",
+                    "DryRun": False,
+                    "custom_config": {
+                        "Tags": [
+                            {
+                                "Key": "Owner",
+                                "Value": "Hoos"
+                            }
+                        ],
+                        "IpPermissionsEgress": [],
+                        "IpPermissions": []
+                    }
+                }
+            }
+        ]
+    }
+
     @moto.mock_ec2
     def test_apply_states(self):
-        #test start
+        # test start
         sg = SecurityGroup(self.particle_definition)
         sg.set_desired_state(State.running)
         sg.apply()
@@ -104,4 +142,23 @@ class TestVPC:
         sg.set_desired_state(State.terminated)
         sg.apply()
         assert sg.get_state() == State.terminated
+
+    @moto.mock_ec2
+    def test_vpc_parent(self):
+        quasiparticle = Quasiparticle(self.vpc_parent_quasiparticle)
+
+        # Test start
+
+        quasiparticle.set_desired_state(State.running)
+        quasiparticle.apply(sync=True)
+
+        assert quasiparticle.get_state() == State.running
+        assert quasiparticle.get_particle("security_group", "sg_with_parent_vpc").get_state() == State.running
+
+        # Test Terminate
+
+        quasiparticle.set_desired_state(State.terminated)
+        quasiparticle.apply(sync=True)
+
+        assert quasiparticle.get_state() == State.terminated
 
