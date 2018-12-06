@@ -3,7 +3,9 @@ from pcf.core import State
 from pcf.util import pcf_util
 import googleapiclient.discovery
 from google.cloud import exceptions
+import logging
 
+logger = logging.getLogger(__name__)
 compute = googleapiclient.discovery.build("compute", "v1")
 
 
@@ -56,7 +58,7 @@ class ComputeEngine(GCPResource):
                 return instance
             return {"status": "TERMINATED"}
 
-        except exceptions.NotFound:
+        except:
             return {"status": "TERMINATED"}
 
     def _terminate(self):
@@ -98,13 +100,23 @@ class ComputeEngine(GCPResource):
             self.current_state_definition = full_status
 
     def is_state_definition_equivalent(self):
-        filtered_desired_state_definition = pcf_util.param_filter(self.desired_state_definition,{"custom_config"}, remove=True)
-        diff = pcf_util.diff_dict(filtered_desired_state_definition, self.current_state_definition)
+        """
+        Determines if desired_state_definition and current_state_definition are equivalent
 
-        if not diff or len(diff) == 0:
-            return True
+        Returns:
+             bool
+        """
+        logger.debug("is_state_definition_equivalent and _update are not implemented for {0}".format(self.get_pcf_id()))
+        return True
+        #TODO: This needs to be updated along with the _update implementation
 
-        return False
+        # filtered_desired_state_definition = pcf_util.param_filter(self.desired_state_definition,{"custom_config"}, remove=True)
+        # diff = pcf_util.diff_dict(self.current_state_definition,filtered_desired_state_definition)
+        #
+        # if not diff or len(diff) == 0:
+        #     return True
+        #
+        # return False
 
     def _update(self):
         """
