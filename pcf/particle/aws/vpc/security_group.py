@@ -80,7 +80,7 @@ class SecurityGroup(AWSResource):
     def _set_vpc_id(self):
         """
         Checks to see if user specified a vpc_id in the particle definition. If not the vpc_id is retrieved from it's parent.
-        If there is no parent vpc particle an exception is returned since a vpc_id is required for creating a new subnet.
+        If there is no parent vpc particle an exception is returned since a vpc_id is required for creating a new security group.
 
         """
         if not self.desired_state_definition.get("VpcId"):
@@ -97,7 +97,7 @@ class SecurityGroup(AWSResource):
 
     def _start(self):
         """
-        Creates vpc and adds tag for PCFName
+        Creates security group and adds the tags and rules
         Returns:
            boto3 create_security_group response (groud id)
         """
@@ -184,7 +184,7 @@ class SecurityGroup(AWSResource):
         Calls boto3 describe_security_groups to return current definition.
         Returns missing if the security group doesn't exist
         Returns:
-             status or {"status":"missing"}
+             status or None
         """
         security_group_list = self.client.describe_security_groups(
             Filters=[
@@ -227,7 +227,8 @@ class SecurityGroup(AWSResource):
         """
         Compares the desired state and current state definition and returns whether they are equivalent
         Only considers fields defined in the desired definition
-        All fields not specified are left alone in the current state
+        All fields not specified are left alone in the current state (excluding rules)
+        Both rules lists must be defined even when empty
 
         Returns:
             bool
