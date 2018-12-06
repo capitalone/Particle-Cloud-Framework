@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from copy import deepcopy
+from pcf.core.pcf_exceptions import InvalidConfigException
 
 
 def generate_pcf_id(flavor, pcf_name):
@@ -307,3 +308,26 @@ def list_to_dict(key_name, dict_list):
     """
     dict_from_list = {d[key_name]: d for d in dict_list}
     return dict_from_list
+
+
+def get_vpc_id(parents, vpc):
+    """
+    The vpc_id is retrieved from it's parent. If there is no parent vpc particle an exception is raised since a vpc_id
+    is required for creating the new particle.
+
+    Args:
+        definition (str): desired definition of the particle
+        parents (list): list of parents for the current particle
+        vpc (class): the VPC particle class
+
+    Returns:
+        vpc_id (str): id of the vpc that the new particle is built under
+
+    """
+    if len(parents) > 0:
+        vpc_parents = list(filter(lambda x: x.flavor == vpc.flavor, parents))
+
+        if len(vpc_parents) == 1:
+            vpc_parents[0].sync_state()
+            return vpc_parents[0].vpc_id
+    raise InvalidConfigException("You need to specify either a VpcId or have a vpc as a parent")

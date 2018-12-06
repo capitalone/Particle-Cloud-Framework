@@ -62,23 +62,6 @@ class Subnet(AWSResource):
             self._subnet_client = self._get_subnet_client()
         return self._subnet_client
 
-    def _set_vpc_id(self):
-        """
-        Checks to see if user specified a vpc_id in the particle definition. If not the vpc_id is retrieved from it's parent.
-        If there is no parent vpc particle an exception is returned since a vpc_id is required for creating a new subnet.
-
-        """
-        if not self.desired_state_definition.get("VpcId"):
-            if len(self.parents) > 0:
-                vpc_parents = list(filter(lambda x: x.flavor == VPC.flavor, self.parents))
-
-                if len(vpc_parents) == 1:
-                    vpc_parents[0].sync_state()
-                    self.desired_state_definition["VpcId"] = vpc_parents[0]._vpc_id
-                    return
-
-            raise Exception("You need to specify either a VpcId or have a vpc as a parent")
-
     def _get_subnet_client(self):
         """
         Creates a new subnet_client
@@ -123,8 +106,9 @@ class Subnet(AWSResource):
         Returns:
            boto3 create_subnet() response
         """
-        self._set_vpc_id()
-        resp = self.client.create_subnet(**pcf_util.param_filter(self.desired_state_definition,Subnet.START_PARAMS))
+        if not self.desired_state_definition.get("VpcId"):
+            self.desired_state_definition["VpcId"] = pcf_util.get_vpc_id(self.parents, VPC)
+        resp = self.client.create_subnet(**pcf_util.param_filter(self.desired_state_definition, Subnet.START_PARAMS))
         self._subnet_id = resp['Subnet'].get("SubnetId")
         self.current_state_definition = resp
         tags = self.custom_config.get("Tags",[])

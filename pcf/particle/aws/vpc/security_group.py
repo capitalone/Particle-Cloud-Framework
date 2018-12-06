@@ -16,7 +16,6 @@ from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 from pcf.util import pcf_util
 from pcf.particle.aws.vpc.vpc import VPC
-from pcf.core.pcf_exceptions import InvalidConfigException
 from deepdiff import DeepDiff
 
 
@@ -79,21 +78,12 @@ class SecurityGroup(AWSResource):
 
     def _set_vpc_id(self):
         """
-        Checks to see if user specified a vpc_id in the particle definition. If not the vpc_id is retrieved from it's parent.
-        If there is no parent vpc particle an exception is returned since a vpc_id is required for creating a new security group.
-
+        Checks to see if user specified a vpc_id in the particle definition.
+        If not the vpc_id is retrieved from it's parent using the get_vpc_id util
         """
-        if not self.desired_state_definition.get("VpcId"):
-            if len(self.parents) > 0:
-                vpc_parents = list(filter(lambda x: x.flavor == VPC.flavor, self.parents))
-
-                if len(vpc_parents) == 1:
-                    vpc_parents[0].sync_state()
-                    self._vpc_id = vpc_parents[0]._vpc_id
-                    return
-            raise InvalidConfigException("You need to specify either a VpcId or have a vpc as a parent")
-        else:
-            self._vpc_id = self.desired_state_definition.get("VpcId")
+        self._vpc_id = self.desired_state_definition.get("VpcId")
+        if not self._vpc_id:
+            self._vpc_id = pcf_util.get_vpc_id(self.parents, VPC)
 
     def _start(self):
         """
@@ -127,7 +117,7 @@ class SecurityGroup(AWSResource):
         """
         Calls boto3 delete_security_group()
         Returns:
-            boto3 delete_vpc() response
+            boto3 delete_security_group() response
         """
         resp = self.client.delete_security_group(GroupId=self._group_id)
         return resp
@@ -251,4 +241,3 @@ class SecurityGroup(AWSResource):
             bool
         """
         return SecurityGroup.equivalent_states.get(state1) == SecurityGroup.equivalent_states.get(state2)
-
