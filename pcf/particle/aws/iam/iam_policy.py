@@ -15,7 +15,8 @@
 from pcf.core import State
 from pcf.util import pcf_util
 from pcf.core.aws_resource import AWSResource
-
+from botocore.errorfactory import ClientError
+import boto3
 
 class IAMPolicy(AWSResource):
     """
@@ -34,25 +35,28 @@ class IAMPolicy(AWSResource):
     }
 
     START_PARAMS_FILTER = {
-
-
+        "PolicyName",
+        "PolicyDocument",
+    }
+    UPDATE_PARAM_CONVERSIONS = {
+        "PolicyDocument",
     }
 
     UNIQUE_KEYS = ["aws_resource.PolicyName"]
 
     def __init__(self, particle_definition):
-        super(S3Bucket, self).__init__(
+        super(IAMPolicy, self).__init__(
             particle_definition=particle_definition,
-            resource_name="iam_policy",
+            resource_name="iam",
         )
-        self.policy_name = self.desired_state_definition["PolicyName"]
+        self.policy_name = self.desired_state_definition.get('PolicyName')
         self._set_unique_keys()
 
     def _set_unique_keys(self):
         """
         Logic that sets keys from state definition that are used to uniquely identify the S3 Bucket
         """
-        self.unique_keys = S3Bucket.UNIQUE_KEYS
+        self.unique_keys = IAMPolicy.UNIQUE_KEYS
 
     def get_status(self):
         """
@@ -62,8 +66,8 @@ class IAMPolicy(AWSResource):
         """
 
         try:
-            policy_status = client.list_policies(Scope="All")
-        except:
+            policy_status = self.client.list_policies(Scope="All")
+        except ClientError as e:
             if e.response['Error']['Code'] == 'PolicyNotFoundException':
                 logger.warning("Policy {} was not found. Defaulting state for {} to terminated".format(self.policy_name, self.policy_name))
                 return {"status": "missing"}
@@ -71,9 +75,11 @@ class IAMPolicy(AWSResource):
                 raise e
 
         policy = [x for x in policy_status.get('Policies') if x.get("PolicyName") == self.policy_name]
+        self.current_state_definition = policy[0]
 
-        if policy_status_resp[0].get('Arn'):
-            self.policy_arn = policy_status_resp[0].get('Arn')
+        if policy:
+            if policy[0].get('Arn'):
+                self.policy_arn = policy[0].get('Arn')
             return {"status":"active"}
         else:
             return {"status": "missing"} 
@@ -111,14 +117,21 @@ class IAMPolicy(AWSResource):
             status = full_status.get("status", "missing").lower()
             self.state = IAMPolicy.state_lookup.get(status)
 
+
             # need way to determine current state definition without making so many api calls
-            self.current_state_definition = self.desired_state_definition
+            # self.current_state_definition = self.desired_state_definition
 
     def _update(self):
         """
-        Not Implemented
+        
         """
-        pass
+        desired_def = self.get_desired_state_definition()
+
+        new_policy = desired_def.get('PolicyDocument')
+        policy = self.resource.Policy(self.policy_arn)
+
+        return policy.create_version(PolicyDocument=new_policy, SetAsDefault=True)
+
 
     def is_state_equivalent(self, state1, state2):
         """
@@ -129,4 +142,5 @@ class IAMPolicy(AWSResource):
         Returns:
             bool
         """
+
         return IAMPolicy.equivalent_states.get(state1) == IAMPolicy.equivalent_states.get(state2)
