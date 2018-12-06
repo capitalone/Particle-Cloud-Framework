@@ -33,6 +33,7 @@ class LambdaPython(LambdaFunction):
     def __init__(self, particle_definition):
         super(LambdaFunction,self).__init__(particle_definition=particle_definition,resource_name="lambda")
         self.directory = self.custom_config.get("zip_directory")
+        self.lambda_requirements = self.custom_config.get("lambda_requirements","requirements.txt")
         self._generate_zip()
         super(LambdaPython, self).__init__(particle_definition=particle_definition)
 
@@ -51,7 +52,7 @@ class LambdaPython(LambdaFunction):
         if not self.directory:
             raise MissingException("generate_zip was set and zip_directory is missing")
 
-        with open(self.directory + "/requirements.txt",'r') as f:
+        with open(self.directory + "/" + self.lambda_requirements,'r') as f:
             requirements = [line.strip().split('=')[0] for line in f]
 
         with ZipFile(self.name + ".zip", "w") as zip:
