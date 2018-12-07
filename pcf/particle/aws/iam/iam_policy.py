@@ -16,13 +16,14 @@ from pcf.core import State
 from pcf.util import pcf_util
 from pcf.core.aws_resource import AWSResource
 from botocore.errorfactory import ClientError
-import boto3
+import json
 
 class IAMPolicy(AWSResource):
     """
     This is the implementation of Amazon's IAM Policy.
     """
     flavor = "iam_policy"
+
     state_lookup = {
         "missing": State.terminated,
         "active": State.running,
@@ -37,9 +38,7 @@ class IAMPolicy(AWSResource):
     START_PARAMS_FILTER = {
         "PolicyName",
         "PolicyDocument",
-    }
-    UPDATE_PARAM_CONVERSIONS = {
-        "PolicyDocument",
+        "Path"
     }
 
     UNIQUE_KEYS = ["aws_resource.PolicyName"]
@@ -54,13 +53,13 @@ class IAMPolicy(AWSResource):
 
     def _set_unique_keys(self):
         """
-        Logic that sets keys from state definition that are used to uniquely identify the S3 Bucket
+        Logic that sets keys from state definition that are used to uniquely identify IAM Policies
         """
         self.unique_keys = IAMPolicy.UNIQUE_KEYS
 
     def get_status(self):
         """
-        Determines if the iam policy exists
+        Determines if the IAM Policy exists
         Returns:
              status (dict)
         """
@@ -75,7 +74,6 @@ class IAMPolicy(AWSResource):
                 raise e
 
         policy = [x for x in policy_status.get('Policies') if x.get("PolicyName") == self.policy_name]
-        self.current_state_definition = policy[0]
 
         if policy:
             if policy[0].get('Arn'):
@@ -90,6 +88,17 @@ class IAMPolicy(AWSResource):
         Returns:
              response of boto3 delete_policy
         """
+
+        policy_versions = self.client.list_policy_versions(
+            PolicyArn=self.policy_arn,
+        )
+
+        # All policy versions must be deleted before default policy can be deleted. 
+        if policy_versions:
+            for v in policy_versions.get('Versions'):
+                if(not v.get('IsDefaultVersion')):
+                    self.client.delete_policy_version(PolicyArn=self.policy_arn, VersionId=v.get('VersionId'))
+
         return self.client.delete_policy(PolicyArn=self.policy_arn)
 
     def _start(self):
@@ -99,6 +108,7 @@ class IAMPolicy(AWSResource):
              response of boto3 create_policy
         """
         create_definition = pcf_util.param_filter(self.get_desired_state_definition(), IAMPolicy.START_PARAMS_FILTER)
+
         return self.client.create_policy(**create_definition)
 
     def _stop(self):
@@ -117,25 +127,37 @@ class IAMPolicy(AWSResource):
             status = full_status.get("status", "missing").lower()
             self.state = IAMPolicy.state_lookup.get(status)
 
+        if full_status.get('status') != 'missing':
+            policy = self.client.get_policy(
+                PolicyArn = self.policy_arn
+            )
 
-            # need way to determine current state definition without making so many api calls
-            # self.current_state_definition = self.desired_state_definition
+            policy_version = self.client.get_policy_version(
+                PolicyArn=self.policy_arn,
+                VersionId= policy['Policy']['DefaultVersionId']
+            )
+
+            a = str(policy_version.get('PolicyVersion').get('Document'))
+
+            self.current_state_definition['PolicyDocument'] = a.replace("'", '"')
+            self.current_state_definition['Path'] = policy.get('Path')
+            self.current_state_definition['PolicyName'] = self.policy_name
+
+
 
     def _update(self):
         """
-        
+            Updates the IAM Policy to match desired state definition. 
         """
-        desired_def = self.get_desired_state_definition()
 
-        new_policy = desired_def.get('PolicyDocument')
-        policy = self.resource.Policy(self.policy_arn)
+        new_desired_def = self.get_desired_state_definition().get('PolicyDocument')
 
-        return policy.create_version(PolicyDocument=new_policy, SetAsDefault=True)
+        return self.client.create_policy_version(PolicyArn=self.policy_arn, PolicyDocument=new_desired_def, SetAsDefault=True)
 
 
     def is_state_equivalent(self, state1, state2):
         """
-        Determines if states are equivalent. Uses equivalent_states defined in the S3Bucket class.
+        Determines if states are equivalent. Uses equivalent_states defined in the IAMPolicy class.
         Args:
             state1 (State):
             state1 (State):
@@ -144,3 +166,5 @@ class IAMPolicy(AWSResource):
         """
 
         return IAMPolicy.equivalent_states.get(state1) == IAMPolicy.equivalent_states.get(state2)
+
+
