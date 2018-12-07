@@ -107,7 +107,7 @@ class Subnet(AWSResource):
            boto3 create_subnet() response
         """
         if not self.desired_state_definition.get("VpcId"):
-            self.desired_state_definition["VpcId"] = self.get_vpc_id(self.parents, VPC)
+            self.desired_state_definition["VpcId"] = pcf_util.get_value_from_particles(self.parents, VPC, "vpc_id")
         resp = self.client.create_subnet(**pcf_util.param_filter(self.desired_state_definition, Subnet.START_PARAMS))
         self._subnet_id = resp['Subnet'].get("SubnetId")
         self.current_state_definition = resp

@@ -82,7 +82,7 @@ class SecurityGroup(AWSResource):
         """
         if not self.desired_state_definition.get("VpcId"):
             # need it defined in the definition for _start()
-            self.desired_state_definition["VpcId"] = self.get_vpc_id(self.parents, VPC)
+            self.desired_state_definition["VpcId"] = pcf_util.get_value_from_particles(self.parents, VPC, "vpc_id")
         self._vpc_id = self.desired_state_definition.get("VpcId")
 
     def _start(self):

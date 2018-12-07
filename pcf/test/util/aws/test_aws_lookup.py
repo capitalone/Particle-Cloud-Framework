@@ -130,29 +130,3 @@ class TestLookup:
         assert particle.desired_state_definition["SubnetId"][:6] == "subnet"
         assert particle.desired_state_definition["IamInstanceProfile"]["Arn"] == "arn:aws:iam::123456789012:instance-profileNoneInstanceProfile-Default"
 
-
-class MockVPC(AWSResource):
-    flavor = "mock_vpc"
-
-    vpc_id = "vpc-abc123"
-
-    def __init__(self):
-        pass
-
-    def sync_state(self):
-        pass
-
-
-class VPCChild(AWSResource):
-    flavor = "vpc_child"
-
-    def __init__(self):
-        pass
-
-
-class TestPassVPC:
-    def test_vpc_parent(self):
-        vpc_child = VPCChild()
-        parents = [MockVPC()]
-        assert vpc_child.get_vpc_id(parents, MockVPC) == "vpc-abc123"
-
