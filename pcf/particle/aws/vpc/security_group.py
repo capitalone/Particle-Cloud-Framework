@@ -97,19 +97,16 @@ class SecurityGroup(AWSResource):
         tags = self.custom_config.get("Tags", [])
         if tags:
             self.security_group_resource.create_tags(
-                DryRun=False,
                 Tags=tags
             )
         outbound = self.custom_config.get("IpPermissionsEgress", {})
         inbound = self.custom_config.get("IpPermissions", {})
         if outbound:
             self.security_group_resource.authorize_egress(
-                DryRun=False,
                 IpPermissions=outbound
             )
         if inbound:
             self.security_group_resource.authorize_ingress(
-                DryRun=False,
                 IpPermissions=inbound
             )
         return resp
@@ -139,7 +136,6 @@ class SecurityGroup(AWSResource):
         new_tags.pop("iterable_item_removed", None)
         if new_tags:
             self.security_group_resource.create_tags(
-                DryRun=False,
                 Tags=self.custom_config.get("Tags")
             )
         dd_egress = DeepDiff(self.current_state_definition.get("IpPermissionsEgress", {}),
@@ -150,23 +146,19 @@ class SecurityGroup(AWSResource):
         if dd_ingress:
             if dd_ingress.get("iterable_item_removed") or dd_ingress.get("values_changed"):
                 self.security_group_resource.revoke_ingress(
-                    DryRun=False,
                     IpPermissions=self.current_state_definition.get("IpPermissions")
                 )
             if dd_ingress.get("iterable_item_added") or dd_ingress.get("values_changed"):
                 self.security_group_resource.authorize_ingress(
-                    DryRun=False,
                     IpPermissions=self.custom_config.get("IpPermissions")
                 )
         if dd_egress:
             if dd_egress.get("iterable_item_removed") or dd_egress.get("values_changed"):
                 self.security_group_resource.revoke_egress(
-                    DryRun=False,
                     IpPermissions=self.current_state_definition.get("IpPermissionsEgress")
                 )
             if dd_egress.get("iterable_item_added") or dd_egress.get("values_changed"):
                 self.security_group_resource.authorize_egress(
-                    DryRun=False,
                     IpPermissions=self.custom_config.get("IpPermissionsEgress")
                 )
 

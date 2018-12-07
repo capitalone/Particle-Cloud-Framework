@@ -12,6 +12,14 @@ pcf.particle.aws.vpc.subnet module
     :undoc-members:
     :show-inheritance:
 
+pcf.particle.aws.vpc.security_group module
+--------------------------------------------
+
+.. automodule:: pcf.particle.aws.vpc.security_group
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 pcf.particle.aws.vpc.vpc module
 -------------------------------
 
