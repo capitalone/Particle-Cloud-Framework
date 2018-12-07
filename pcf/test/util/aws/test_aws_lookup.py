@@ -18,7 +18,6 @@ import os
 
 from pcf.particle.aws.ec2.ec2_instance import EC2Instance
 from pcf.core.aws_resource import AWSResource
-from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
 
 os.environ['AWS_DEFAULT_REGION'] = "us-east-1"
