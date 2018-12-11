@@ -106,11 +106,9 @@ class SQSQueue(AWSResource):
         Returns:
             response of boto3 create_queue
         """
-        start_definition = {key: self.desired_state_definition[key] for key in SQSQueue.START_PARAM_FILTER
-                            if key in self.desired_state_definition.keys()}
+        start_definition = pcf_util.param_filter(self.get_desired_state_definition(), SQSQueue.START_PARAM_FILTER)
         if "Attributes" in start_definition.keys():
-            start_definition["Attributes"] = {key: start_definition["Attributes"][key] for key in SQSQueue.START_ATTR
-                                              if key in start_definition["Attributes"].keys()}
+            start_definition["Attributes"] = pcf_util.param_filter(start_definition["Attributes"], SQSQueue.START_ATTR)
         response = self.client.create_queue(**start_definition)
         self.queue_url = response["QueueUrl"]
         if self.desired_state_definition.get("Tags"):
@@ -182,17 +180,13 @@ class SQSQueue(AWSResource):
         """
         self.sync_state()
         # use filters to remove any extra information
-        self.current_state_definition = {key: self.current_state_definition[key] for key in SQSQueue.DEFINITION_FILTER
-                                         if key in self.current_state_definition.keys()}
-        self.desired_state_definition = {key: self.desired_state_definition[key] for key in SQSQueue.DEFINITION_FILTER
-                                         if key in self.desired_state_definition.keys()}
-        self.desired_state_definition["Attributes"] = {key: self.desired_state_definition.get("Attributes")[key]
-                                                       for key in SQSQueue.START_ATTR if key in
-                                                       self.desired_state_definition.get("Attributes").keys()}
+        self.current_state_definition = pcf_util.param_filter(self.current_state_definition, SQSQueue.DEFINITION_FILTER)
+        self.desired_state_definition = pcf_util.param_filter(self.desired_state_definition, SQSQueue.DEFINITION_FILTER)
+        self.desired_state_definition["Attributes"] = pcf_util.param_filter(
+            self.desired_state_definition.get("Attributes"), SQSQueue.START_ATTR)
         # only compare attributes specified in desired, ignore all else
-        self.current_state_definition["Attributes"] = {key: self.current_state_definition.get("Attributes")[key] for key
-                                                       in self.desired_state_definition.get("Attributes").keys() if key
-                                                       in self.current_state_definition.get("Attributes").keys()}
+        self.current_state_definition["Attributes"] = pcf_util.param_filter(
+            self.current_state_definition.get("Attributes"), self.desired_state_definition.get("Attributes").keys())
 
         diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
         return diff_dict == {}

@@ -13,3 +13,4 @@ mock==2.0.0
 google-cloud-storage==1.10.0
 commentjson==0.7.1
 botocore==1.10.67
+deepdiff==3.3.0
