@@ -21,7 +21,7 @@ particle_definition = {
     "aws_resource": {
         "Description": "pcf security group",
         "GroupName": "hoos_security_group",
-        "VpcId": "vpc-0e46163f7b74ae6ec",
+        "VpcId": "vpc-1234567",
         "DryRun": False,
         "custom_config": {
             "Tags": [
