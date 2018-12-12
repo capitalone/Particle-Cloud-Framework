@@ -218,10 +218,10 @@ class Particle(object, metaclass=MetaParticle):
                 self.get_and_replace_parent_variables()
 
             while not self.is_state_equivalent(self.get_state(), self.desired_state):
-                if self.state == State.pending:
-                    if max_timeout and (time.time() - start_timeout) >= max_timeout:
-                        raise pcf_exceptions.MaxTimeoutException
+                if max_timeout and (time.time() - start_timeout) >= max_timeout:
+                    raise pcf_exceptions.MaxTimeoutException
 
+                if self.state == State.pending:
                     self.wait()
 
                     if not sync: break
@@ -256,12 +256,12 @@ class Particle(object, metaclass=MetaParticle):
 
                     if not sync: break
 
-                    if max_timeout and (time.time() - start_timeout) >= max_timeout:
-                        raise pcf_exceptions.MaxTimeoutException
-
                     self.wait()
 
             while self.get_state() == self.desired_state == State.running and not self.is_state_definition_equivalent():
+                if max_timeout and (time.time() - start_timeout) >= max_timeout:
+                    raise pcf_exceptions.MaxTimeoutException
+
                 try:
                     logger.debug(
                         "{0}: current_state_definition ({1}) doesn't match the desired_state_definition ({2})".format(
@@ -280,9 +280,6 @@ class Particle(object, metaclass=MetaParticle):
                     self.update(sync=sync, cascade=cascade)
 
                 if not sync: break
-
-                if max_timeout and (time.time() - start_timeout) >= max_timeout:
-                    raise pcf_exceptions.MaxTimeoutException
 
                 self.wait()
 
