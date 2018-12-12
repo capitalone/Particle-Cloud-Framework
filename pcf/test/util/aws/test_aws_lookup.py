@@ -17,6 +17,7 @@ import boto3
 import os
 
 from pcf.particle.aws.ec2.ec2_instance import EC2Instance
+from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 
 os.environ['AWS_DEFAULT_REGION'] = "us-east-1"
@@ -42,7 +43,6 @@ class TestLookup:
             "KeyName": "secret-key",
             "MaxCount": 1,
             "MinCount": 1,
-            "SecurityGroupIds": "$lookup$security_groups$test_sg:test_sg2",
             "SubnetId": "$lookup$subnet$Public",
             "IamInstanceProfile": {
                 "Arn": "$lookup$iam$instance-profile:InstanceProfile-Default"
@@ -61,17 +61,6 @@ class TestLookup:
         ec2_resource = boto3.resource('ec2', 'us-east-1')
         ec2_client = boto3.client('ec2', 'us-east-1')
         vpc = ec2_client.create_vpc(CidrBlock='10.0.0.0/16')['Vpc']
-
-        # mock up security group
-        ec2_client.create_security_group(
-            Description='test',
-            GroupName='test_sg'
-        )
-
-        ec2_client.create_security_group(
-            Description='test2',
-            GroupName='test_sg2'
-        )
 
         # mock up subnet
         subnetId = ec2_client.create_subnet(VpcId=vpc['VpcId'], CidrBlock='10.1.0.0/24')['Subnet']['SubnetId']
@@ -136,12 +125,8 @@ class TestLookup:
         particle.apply()
 
         assert particle.desired_state_definition["BlockDeviceMappings"][0]["Ebs"]["SnapshotId"][:4] == "snap"
-        assert isinstance(particle.desired_state_definition["SecurityGroupIds"], list)
-        for group in particle.desired_state_definition["SecurityGroupIds"]:
-            assert group[:2] == "sg"
         assert particle.desired_state_definition["custom_config"]["instance_name"] == "testname"
         assert particle.desired_state_definition["ImageId"][:3] == "ami"
         assert particle.desired_state_definition["SubnetId"][:6] == "subnet"
         assert particle.desired_state_definition["IamInstanceProfile"]["Arn"] == "arn:aws:iam::123456789012:instance-profileNoneInstanceProfile-Default"
-
 
