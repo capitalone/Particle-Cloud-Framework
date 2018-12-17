@@ -59,6 +59,7 @@ class Particle(object, metaclass=MetaParticle):
         self.name = self.particle_definition["pcf_name"]
         self.validate_unique_id()
         self.persist_on_termination = self.particle_definition.get("persist_on_termination", False)
+        self.persist_on_update = self.particle_definition.get("persist_on_update", False)
         self.callbacks = self.particle_definition.get("callbacks", {})
         self.desired_state = STATE_STRING_TO_ENUM.get(self.particle_definition.get("desired_state"))
         self.current_state_definition = {}
@@ -271,6 +272,12 @@ class Particle(object, metaclass=MetaParticle):
                     logger.debug(
                         "{0}: current_state_definition ({1}) doesn't match the desired_state_definition ({2})".format(
                             self.pcf_id, self.current_state_definition, self.get_desired_state_definition()))
+
+                # persist particle on update
+                if self.persist_on_update:
+                    logger.debug("{0}: update protection is set to True".format(self.pcf_id))
+                    break
+
                 if self.state == State.pending:
                     self.wait()
 

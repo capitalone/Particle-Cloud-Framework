@@ -263,3 +263,35 @@ def test_json_particle_definition():
             "lookup_id": "$lookup$make_sure_commentjson_doesn't_:filter_this_out"
         }
     }
+
+class UpdateParticle(Particle):
+    flavor = "update_particle"
+    UNIQUE_KEYS = []
+
+    def __init__(self,particle_definition):
+        super(UpdateParticle, self).__init__(particle_definition)
+        self.desired_state_definition = self.particle_definition
+
+    def sync_state(self):
+        self.current_state_definition = {"def":"blank"}
+        self.desired_state_definition = self.current_state_definition
+        self.state = State.running
+
+    def is_state_definition_equivalent(self):
+        return False
+
+
+def test_update_protection():
+    test_update_def = {
+        "pcf_name": "update_particle",
+        "flavor": "update_particle",
+        "persist_on_update":True
+    }
+
+    particle = UpdateParticle(test_update_def)
+    particle.set_desired_state(State.running)
+    particle.apply(sync=False)
+    particle.desired_state_definition = {"diff"}
+    particle.apply(sync=False)
+    assert particle.state == State.running
+    assert particle.current_state_definition != particle.desired_state_definition
