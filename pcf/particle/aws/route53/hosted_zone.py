@@ -15,6 +15,7 @@
 from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 from pcf.util import pcf_util
+from deepdiff import DeepDiff
 
 
 class HostedZone(AWSResource):
@@ -65,6 +66,11 @@ class HostedZone(AWSResource):
         start_definition = pcf_util.param_filter(self.desired_state_definition, HostedZone.START_PARAM_FILER)
         hosted_zone = self.client.create_hosted_zone(**start_definition)
         self._id = hosted_zone.get("HostedZone", {}).get("Id", None)
+        self.client.change_tags_for_resource(
+            ResourceType='hostedzone',
+            ResourceId=self._id,
+            AddTags=self.custom_config.get("Tags"),
+        )
         return hosted_zone
 
     def _terminate(self):
@@ -83,9 +89,19 @@ class HostedZone(AWSResource):
 
     def _update(self):
         """
-        No updates available. Changes made through Hosted Zone Record Set Particle
+        Removes existing tags and adds new tags using boto3 change_tags_for_resource and list_tags_for_resource
         """
-        raise NotImplemented
+        current_tags = self.client.list_tags_for_resource(
+            ResourceType='hostedzone',
+            ResourceId=self._id
+        ).get("ResourceTagSet", {}).get("Tags")
+        # one api call. might as well just remove all and add all, instead of iterating through tags for differences
+        self.client.change_tags_for_resource(
+            ResourceType='hostedzone',
+            ResourceId=self._id,
+            AddTags=self.custom_config.get("Tags"),
+            RemoveTagKeys=[keypair.get("Key") for keypair in current_tags]
+        )
 
     def get_status(self):
         """
@@ -124,8 +140,14 @@ class HostedZone(AWSResource):
 
     def is_state_definition_equivalent(self):
         """
-        Since there is no update available for hosted zones, this always returns True
+        This class is only concerned with changes to tags since there is a separate particle for record sets
         Returns:
              bool: True
         """
+        current_tags = self.client.list_tags_for_resource(
+            ResourceType='hostedzone',
+            ResourceId=self._id
+        ).get("ResourceTagSet", {}).get("Tags")
+        if DeepDiff(current_tags, self.custom_config.get("Tags"), ignore_order=True):
+            return False
         return True

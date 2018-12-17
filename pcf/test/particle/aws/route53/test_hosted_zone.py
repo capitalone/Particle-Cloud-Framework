@@ -23,6 +23,18 @@ class TestRoute53HostedZone:
         "flavor": "route53_hosted_zone",
         "aws_resource": {
             "Name": "www.hoooooos.com.",
+            "custom_config": {
+                "Tags": [
+                    {
+                        "Key": "Owner",
+                        "Value": "Hoo"
+                    },
+                    {
+                        "Key": "UID",
+                        "Value": "abc123"
+                    }
+                ]
+            },
             "VPC": {
                 "VPCRegion": "us-east-1",
                 "VPCId": "vpc-12345"
@@ -49,6 +61,17 @@ class TestRoute53HostedZone:
         assert particle.get_state() == State.running
 
         assert particle.get_status().get("Name") == "www.hoooooos.com."
+
+        # Test Update
+
+        self.particle_definition["aws_resource"]["custom_config"]["Tags"][0]["Value"] = "Wahoo"
+
+        particle = HostedZone(self.particle_definition)
+
+        particle.set_desired_state(State.running)
+        particle.apply(sync=True)
+
+        assert particle.is_state_definition_equivalent()
 
         # Test Terminate
 

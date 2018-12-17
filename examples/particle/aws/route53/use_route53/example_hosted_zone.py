@@ -22,6 +22,14 @@ particle_definition = {
     "flavor": "route53_hosted_zone",
     "aws_resource": {
         "Name": "www.hoooooos.com.",
+        "custom_config": {
+            "Tags": [
+                {
+                    "Key": "Owner",
+                    "Value": "Hoo"
+                }
+            ]
+        },
         "VPC": {
             "VPCRegion": "us-east-1",
             "VPCId": "vpc-12345"
