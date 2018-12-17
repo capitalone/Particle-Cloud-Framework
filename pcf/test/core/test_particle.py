@@ -13,11 +13,12 @@
 # limitations under the License.
 
 import os.path
+import time
 
 from pcf.core.particle import Particle
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
-from pcf.core.pcf_exceptions import InvalidConfigException, InvalidUniqueKeysException
+from pcf.core.pcf_exceptions import InvalidConfigException, InvalidUniqueKeysException, MaxTimeoutException
 
 
 class PlainParticle(Particle):
@@ -175,6 +176,25 @@ def test_validate_uid():
             assert False, "Invalid uid did not trigger error"
         except InvalidUniqueKeysException:
             assert True
+
+
+def test_max_timeout():
+    test_particle_def = {
+        "pcf_name": "good_particle",
+        "flavor": "particle_flavor_passing_vars",
+        "required_field": "present",
+        "aws_resource": {
+            "resource_name": "some service"
+        }
+    }
+    particle = ParticlePassingVars(test_particle_def)
+    particle.set_desired_state(State.running)
+    try:
+        particle.apply(max_timeout=2)
+        time.sleep(2)
+        assert False
+    except MaxTimeoutException:
+        assert True
 
 
 class CallbackParticle(Particle):
