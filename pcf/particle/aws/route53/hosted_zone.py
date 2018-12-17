@@ -17,7 +17,7 @@ from pcf.core import State
 from pcf.util import pcf_util
 
 
-class Route53HostedZone(AWSResource):
+class HostedZone(AWSResource):
     """
     Particle that maps to AWS hosted zone
     """
@@ -45,7 +45,7 @@ class Route53HostedZone(AWSResource):
         Args:
             particle_definition (definition): desired definition of the hosted zone
         """
-        super(Route53HostedZone, self).__init__(particle_definition, 'route53')
+        super(HostedZone, self).__init__(particle_definition, 'route53')
         self._name = self.desired_state_definition.get("Name")
         self._id = ""
         self._set_unique_keys()
@@ -54,7 +54,7 @@ class Route53HostedZone(AWSResource):
         """
         Logic that sets keys from state definition that are used to uniquely identify the Route53 Hosted Zone
         """
-        self.unique_keys = Route53HostedZone.UNIQUE_KEYS
+        self.unique_keys = HostedZone.UNIQUE_KEYS
 
     def _start(self):
         """
@@ -62,7 +62,7 @@ class Route53HostedZone(AWSResource):
         Returns:
             hosted_zone: boto3 response
         """
-        start_definition = pcf_util.param_filter(self.desired_state_definition, Route53HostedZone.START_PARAM_FILER)
+        start_definition = pcf_util.param_filter(self.desired_state_definition, HostedZone.START_PARAM_FILER)
         hosted_zone = self.client.create_hosted_zone(**start_definition)
         self._id = hosted_zone.get("HostedZone", {}).get("Id", None)
         return hosted_zone
@@ -120,7 +120,7 @@ class Route53HostedZone(AWSResource):
         Returns:
             bool: whether the two states are equivalent
         """
-        return Route53HostedZone.equivalent_states.get(state1) == Route53HostedZone.equivalent_states.get(state2)
+        return HostedZone.equivalent_states.get(state1) == HostedZone.equivalent_states.get(state2)
 
     def is_state_definition_equivalent(self):
         """
