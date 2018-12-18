@@ -185,7 +185,7 @@ class Particle(object, metaclass=MetaParticle):
             sync (bool): apply state transitions synchronously
             cascade (bool): apply state transitions to all family members
             validate_config (bool): specify whether or not to call particle config validation function
-            max_timeout (int): raise the max timeout exception after x(int) seconds reached
+            max_timeout (int): raise the max timeout exception after x(int) seconds reached, defaults to None
             src_cascade ("parent","child", or "none"): direction of cascade logic
             cache_ttl (int): allows self.state_cache_ttl to be configured to any time interval
         Returns:
