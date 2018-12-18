@@ -13,12 +13,12 @@
 # limitations under the License.
 
 import os.path
-import time
 
 from pcf.core.particle import Particle
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
 from pcf.core.pcf_exceptions import InvalidConfigException, InvalidUniqueKeysException, MaxTimeoutException
+from time import sleep
 
 
 class PlainParticle(Particle):
@@ -191,7 +191,7 @@ def test_max_timeout():
     particle.set_desired_state(State.running)
     try:
         particle.apply(max_timeout=2)
-        time.sleep(2)
+        sleep(2)
         assert False
     except MaxTimeoutException:
         assert True

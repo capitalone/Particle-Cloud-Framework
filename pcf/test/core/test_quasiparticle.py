@@ -12,11 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from pcf.core.particle import Particle
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
 from pcf.util import pcf_util
+from pcf.core.pcf_exceptions import MaxTimeoutException
+from time import sleep
 
 
 class ParticleTest(Particle):
@@ -176,4 +177,26 @@ def test_rollback():
     # assert(quasiparticle_rollback.get_state() == State.pending)
     # assert(quasiparticle_rollback.get_particle("rollback_flavor","pcf_particle_name").state == State.running)
     # assert(quasiparticle_rollback.get_particle("rollback_flavor","particle_error").state == State.terminated)
+
+def test_max_timeout():
+    test_particle_definition = {
+        "pcf_name": "pcf_particle_name",
+        "flavor":"rollback_flavor",
+    }
+
+    test_quasiparticle ={
+        "pcf_name":"quasiparticle",
+        "particles":[test_particle_definition],
+        "flavor": "rollback_flavor"
+    }
+    test_quasiparticle = Quasiparticle(test_quasiparticle)
+    test_quasiparticle.set_desired_state(State.running)
+    test_quasiparticle.apply()
+    test_quasiparticle.set_desired_state(State.running)
+    try:
+        test_quasiparticle.apply(max_timeout=2)g
+        sleep(2)
+        assert False
+    except MaxTimeoutException:
+        assert True
 
