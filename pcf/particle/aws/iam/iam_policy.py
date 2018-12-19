@@ -144,14 +144,13 @@ class IAMPolicy(AWSResource):
             self.current_state_definition['PolicyName'] = self.policy_name
 
 
-
     def _update(self):
         """
             Updates the IAM Policy to match desired state definition. 
         """
 
         new_desired_def = self.get_desired_state_definition().get('PolicyDocument')
-
+ 
         return self.client.create_policy_version(PolicyArn=self.policy_arn, PolicyDocument=new_desired_def, SetAsDefault=True)
 
 
