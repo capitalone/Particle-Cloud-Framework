@@ -22,17 +22,11 @@ iam_role_example_json = {
     "flavor":"iam_role", # Required
     "aws_resource":{
         "custom_config": {
-            "policy_arns": []
+            "policy_arns": ["arn:aws:iam::12345678910:policy/pcf-test", "arn:aws:iam::12345678910:policy/pcf-test2"]
 
         },
         "RoleName":"pcf-test", # Required
-        "AssumeRolePolicyDocument": assume_role_policy_document,
-        # "Tags": [
-        #     {
-        #         'Key': 'string',
-        #         'Value': 'string'
-        #     },
-        # ]
+        "AssumeRolePolicyDocument": json.dumps(assume_role_policy_document),
     },
 }
 
@@ -46,14 +40,14 @@ role.apply()
 print(role.state)
 print(role.current_state_definition)
 
-# example update
-# iam_policy_example_json['aws_resource']['PolicyDocument'] = json.dumps(update_managed_policy)
-# policy = IAMPolicy(iam_policy_example_json)
-# policy.set_desired_state(State.running)
-# policy.apply()
-# print(policy.current_state_definition)
+# remove or add policies from the policy_arns list to update iam role
+# iam_role_example_json["aws_resource"]["custom_config"]['policy_arns'] = []
+# print(iam_role_example_json)
+# role = IAMRole(iam_role_example_json)
+# role.apply()
+# print(role.current_state_definition)
 
-# # example update
-# policy.set_desired_state(State.terminated)
-# policy.apply()
-# print(policy.state)
+# example terminate
+role.set_desired_state(State.terminated)
+role.apply()
+print(role.state)

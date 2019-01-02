@@ -16,7 +16,6 @@ from pcf.core import State
 from pcf.util import pcf_util
 from pcf.core.aws_resource import AWSResource
 from botocore.errorfactory import ClientError
-from pcf.particle.aws.iam.iam_policy import IAMPolicy
 
 import json
 
@@ -54,8 +53,6 @@ class IAMRole(AWSResource):
             particle_definition=particle_definition,
             resource_name="iam",
         )
-        self.custom_config['policy_arns'] = []
-        self.current_state_definition['custom_config'] = {}
         self.role_name = self.desired_state_definition.get('RoleName')
         self._set_unique_keys()
 
@@ -158,10 +155,9 @@ class IAMRole(AWSResource):
         """
 
         desired_policy_arns =  self.custom_config.get('policy_arns', []) 
-        current_policy_arns = self.current_state_definition.get('custom_config', [])
+        current_policy_arns = self.current_state_definition['custom_config'].get('policy_arns', [])
 
-        if self.custom_config.get('policy_arns'):
-
+        if desired_policy_arns != current_policy_arns:
             add_policies = list(set(desired_policy_arns) - set(current_policy_arns)) 
             remove_policies = list(set(current_policy_arns) - set(desired_policy_arns))
 
@@ -194,9 +190,11 @@ class IAMRole(AWSResource):
         """
 
         self.current_state_definition = pcf_util.param_filter(self.current_state_definition, IAMRole.START_PARAMS_FILTER)
+        self.current_state_definition['custom_config'] = {}
+        diff_dict = {}
         self.get_iam_policies()
 
-        diff_dict = {}
+
         if self.desired_state != State.terminated:
             #Comparing currently attached policies to desired policies
             try:
@@ -207,13 +205,12 @@ class IAMRole(AWSResource):
             if attached_policy_arns.get('AttachedPolicies'):
                 current_policy_arns = [p.get('PolicyArn') for p in attached_policy_arns.get('AttachedPolicies')]
                 self.current_state_definition['custom_config']['policy_arns'] = current_policy_arns
+            else:
+                self.current_state_definition['custom_config']['policy_arns'] = []
 
             if isinstance(self.desired_state_definition.get('AssumeRolePolicyDocument'), str):    
                 self.desired_state_definition['AssumeRolePolicyDocument'] = json.loads(self.desired_state_definition.get('AssumeRolePolicyDocument'))
 
-
-            self.desired_state_definition['custom_config']['policy_arns'] == self.custom_config.get('policy_arns')
-            # self.desired_state_definition['AssumeRolePolicyDocument'] = policy_document
 
             diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
 

@@ -16,46 +16,42 @@ import moto
 import boto3
 import json
 
-from pcf.particle.aws.iam.iam_policy import IAMPolicy
+from pcf.particle.aws.iam.iam_role import IAMRole
 from pcf.core import State
 
 
-class IAMPolicy:
+class IAMRole:
 
-    my_managed_policy = {
-        'Version': '2012-10-17',
-        'Statement': [
+    assume_role_policy_document = {
+        "Version": "2012-10-17",
+        "Statement": [
             {
-                'Effect': 'Allow',
-                'Action': 'logs:CreateLogGroup',
-                'Resource': '*'
-            },
-            {
-                'Effect': 'Allow',
-                'Action': [
-                    'dynamodb:DeleteItem',
-                    'dynamodb:GetItem',
-                    'dynamodb:PutItem',
-                ],
-                'Resource': '*'
+                "Action": "sts:AssumeRole", 
+                "Principal": {
+                    "Service": "ec2.amazonaws.com"
+                }, 
+                "Effect": "Allow", 
             }
         ]
     }
 
-
-    # Edit example json to work in your account
-    iam_policy_example_json = {
-        "pcf_name": "pcf_iam_policy", # Required
-        "flavor":"iam_policy", # Required
+    iam_role_example_json = {
+        "pcf_name": "pcf_iam_role", # Required
+        "flavor":"iam_role", # Required
         "aws_resource":{
-            "PolicyName":"pcf-test", # Required
-            "PolicyDocument": json.dumps(my_managed_policy)
-        }
+            "custom_config": {
+                "policy_arns": []
+
+            },
+            "RoleName":"pcf-test", # Required
+            "AssumeRolePolicyDocument": json.dumps(assume_role_policy_document),
+        },
     }
+
 
     @moto.mock_iam
     def test_apply_states(self):
-        particle = IAMPolicy(self.iam_policy_example_json)
+        particle = IAMRole(self.iam_role_example_json)
 
         # Test start
 
