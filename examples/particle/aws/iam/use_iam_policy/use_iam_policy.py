@@ -61,6 +61,7 @@ policy.apply()
 print(policy.state)
 print(policy.current_state_definition)
 
+
 # example update
 iam_policy_example_json['aws_resource']['PolicyDocument'] = json.dumps(update_managed_policy)
 policy = IAMPolicy(iam_policy_example_json)
@@ -68,7 +69,7 @@ policy.set_desired_state(State.running)
 policy.apply()
 print(policy.current_state_definition)
 
-# example update
+# example terminate
 policy.set_desired_state(State.terminated)
 policy.apply()
 print(policy.state)
