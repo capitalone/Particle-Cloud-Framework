@@ -61,7 +61,7 @@ class IAMRole(AWSResource):
 
     def _set_unique_keys(self):
         """
-        Logic that sets keys from state definition that are used to uniquely identify IAM Policies
+        Logic that sets keys from state definition that are used to uniquely identify IAM Roles
         """
         self.unique_keys = IAMRole.UNIQUE_KEYS
 
@@ -92,7 +92,6 @@ class IAMRole(AWSResource):
         """
 
         # All role versions must be deleted before default role can be deleted. 
-
         attached_policies = self.client.list_attached_role_policies(RoleName=self.role_name, PathPrefix=self.desired_state_definition.get('Path', '/'))
         if attached_policies:
             for policy in attached_policies.get('AttachedPolicies'):
@@ -124,15 +123,15 @@ class IAMRole(AWSResource):
 
     def get_iam_policies(self):
         """
-        Check for iam policy parents and returns the iam polcy ids
+        Check for IAM Policy parents and returns the IAM Policy IDs
 
         Returns:
             iam_policy_id
         """
         desired_policy  = self.custom_config.get('policy_arns', [])
+
         if len(self.parents) > 0:
             iam_policy_parents = list(filter(lambda x: x.flavor == IAMPolicy.flavor, self.parents))
-
             if iam_policy_parents:
                 for policy_parent in iam_policy_parents:
                     policy_parent.sync_state()
@@ -149,7 +148,7 @@ class IAMRole(AWSResource):
             self.state = State.terminated
             return
 
-        self.current_definition = full_status
+        self.current_state_definition = full_status
         self.state = State.running
 
 
@@ -158,17 +157,14 @@ class IAMRole(AWSResource):
             Updates the IAM Role to match desired state definition. 
         """
 
-        print('need to update')
         desired_policy_arns =  self.custom_config.get('policy_arns', []) 
-        print(self.custom_config.get('policy_arns', []) )
-        current_policy_arns = self.current_state_definition.get('custom_config', {})
+        current_policy_arns = self.current_state_definition.get('custom_config', [])
 
-        print(self.current_state_definition.get('custom_config'))
-        print(self.custom_config.get('policy_arns'))
         if self.custom_config.get('policy_arns'):
-            print('asdf')
+
             add_policies = list(set(desired_policy_arns) - set(current_policy_arns)) 
             remove_policies = list(set(current_policy_arns) - set(desired_policy_arns))
+
             if add_policies: 
                 for policy_arn in desired_policy_arns:
                     self.client.attach_role_policy(RoleName=self.role_name, PolicyArn=policy_arn)
@@ -197,22 +193,29 @@ class IAMRole(AWSResource):
             bool
         """
 
-        self.current_state_definition = pcf_util.param_filter(self.current_definition, IAMRole.START_PARAMS_FILTER)
+        self.current_state_definition = pcf_util.param_filter(self.current_state_definition, IAMRole.START_PARAMS_FILTER)
         self.get_iam_policies()
 
-        #Comparing currently attached policies to desired policies
-        attached_policy_arns = self.client.list_attached_role_policies(RoleName=self.role_name, PathPrefix=self.desired_state_definition.get('Path', '/'))
+        diff_dict = {}
+        if self.desired_state != State.terminated:
+            #Comparing currently attached policies to desired policies
+            try:
+                attached_policy_arns = self.client.list_attached_role_policies(RoleName=self.role_name, PathPrefix=self.desired_state_definition.get('Path', '/'))
+            except ClientError as e:
+                attached_policy_arns = {}
 
-        if attached_policy_arns.get('AttachedPolicies'):
-            current_policy_arns = [p.get('PolicyArn') for p in attached_policy_arns.get('AttachedPolicies')]
-            self.current_state_definition['custom_config']['policy_arns'] = current_policy_arns
+            if attached_policy_arns.get('AttachedPolicies'):
+                current_policy_arns = [p.get('PolicyArn') for p in attached_policy_arns.get('AttachedPolicies')]
+                self.current_state_definition['custom_config']['policy_arns'] = current_policy_arns
 
-        policy_document = json.loads(self.desired_state_definition.get('AssumeRolePolicyDocument'))
+            if isinstance(self.desired_state_definition.get('AssumeRolePolicyDocument'), str):    
+                self.desired_state_definition['AssumeRolePolicyDocument'] = json.loads(self.desired_state_definition.get('AssumeRolePolicyDocument'))
 
-        self.desired_state_definition['custom_config']['policy_arns'].append(self.custom_config.get('policy_arns'))
-        self.desired_state_definition['AssumeRolePolicyDocument'] = policy_document
-        diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
-        print(diff_dict)
+
+            self.desired_state_definition['custom_config']['policy_arns'] == self.custom_config.get('policy_arns')
+            # self.desired_state_definition['AssumeRolePolicyDocument'] = policy_document
+
+            diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
 
         return diff_dict == {}
 

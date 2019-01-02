@@ -88,7 +88,6 @@ class IAMPolicy(AWSResource):
         Returns:
              response of boto3 delete_policy
         """
-
         policy_versions = self.client.list_policy_versions(
             PolicyArn=self.policy_arn,
         )
@@ -142,6 +141,7 @@ class IAMPolicy(AWSResource):
             self.current_state_definition['PolicyDocument'] = a.replace("'", '"')
             self.current_state_definition['Path'] = policy.get('Path')
             self.current_state_definition['PolicyName'] = self.policy_name
+            self.current_state_definition['custom_config'] = self.custom_config
 
 
     def _update(self):

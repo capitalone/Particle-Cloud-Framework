@@ -44,6 +44,7 @@ quasiparticle_definition = {
             "flavor": "iam_policy",
             "pcf_name":"iam_policy_parent",
             "aws_resource": {
+                "custom_config": {},
                 "PolicyName":"pcf-test", # Required
                 "PolicyDocument": json.dumps(my_managed_policy)
             }
@@ -52,6 +53,7 @@ quasiparticle_definition = {
             "flavor": "iam_role",
             "parents":["iam_policy:iam_policy_parent"],
             "aws_resource": {
+                "custom_config": {},
                 "RoleName":"pcf-test", # Required
                 "AssumeRolePolicyDocument": assume_role_policy_document,
             }
@@ -59,15 +61,6 @@ quasiparticle_definition = {
     ]
 }
 
-
-iam_policy_example_json = {
-    "pcf_name": "pcf_iam_policy", # Required
-    "flavor":"iam_policy", # Required
-    "aws_resource":{
-        "PolicyName":"pcf-test", # Required
-        "PolicyDocument": json.dumps(my_managed_policy)
-    }
-}
 
 iam_quasiparticle = Quasiparticle(quasiparticle_definition)
 
