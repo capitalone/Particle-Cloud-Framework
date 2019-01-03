@@ -194,7 +194,7 @@ def test_max_timeout():
     test_quasiparticle.apply()
     test_quasiparticle.set_desired_state(State.running)
     try:
-        test_quasiparticle.apply(max_timeout=2)g
+        test_quasiparticle.apply(max_timeout=2)
         sleep(2)
         assert False
     except MaxTimeoutException:
