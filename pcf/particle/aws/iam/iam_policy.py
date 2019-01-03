@@ -91,7 +91,7 @@ class IAMPolicy(AWSResource):
         policy_versions = self.client.list_policy_versions(
             PolicyArn=self.policy_arn,
         )
-        print(len(policy_versions.get('Versions')))
+
         # All policy versions must be deleted before default policy can be deleted. 
         if policy_versions:
             for v in policy_versions.get('Versions'):
