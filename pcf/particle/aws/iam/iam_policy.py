@@ -65,7 +65,7 @@ class IAMPolicy(AWSResource):
         """
 
         try:
-            policy_status = self.client.list_policies(Scope="All")
+            policy_status = self.client.list_policies(Scope="Local")
         except ClientError as e:
             if e.response['Error']['Code'] == 'PolicyNotFoundException':
                 logger.warning("Policy {} was not found. Defaulting state for {} to terminated".format(self.policy_name, self.policy_name))
@@ -91,11 +91,11 @@ class IAMPolicy(AWSResource):
         policy_versions = self.client.list_policy_versions(
             PolicyArn=self.policy_arn,
         )
-
+        print(len(policy_versions.get('Versions')))
         # All policy versions must be deleted before default policy can be deleted. 
         if policy_versions:
             for v in policy_versions.get('Versions'):
-                if(not v.get('IsDefaultVersion')):
+                if(not v.get('IsDefaultVersion') and len(policy_versions.get('Versions')) != 1):
                     self.client.delete_policy_version(PolicyArn=self.policy_arn, VersionId=v.get('VersionId'))
 
         return self.client.delete_policy(PolicyArn=self.policy_arn)
@@ -108,7 +108,10 @@ class IAMPolicy(AWSResource):
         """
         create_definition = pcf_util.param_filter(self.get_desired_state_definition(), IAMPolicy.START_PARAMS_FILTER)
 
-        return self.client.create_policy(**create_definition)
+        try:
+            return self.client.create_policy(**create_definition)
+        except ClientError as e:
+            raise e
 
     def _stop(self):
         """
@@ -136,9 +139,7 @@ class IAMPolicy(AWSResource):
                 VersionId= policy['Policy']['DefaultVersionId']
             )
 
-            a = str(policy_version.get('PolicyVersion').get('Document'))
-
-            self.current_state_definition['PolicyDocument'] = a.replace("'", '"')
+            self.current_state_definition['PolicyDocument'] = json.dumps(policy_version.get('PolicyVersion').get('Document'))
             self.current_state_definition['Path'] = policy.get('Path')
             self.current_state_definition['PolicyName'] = self.policy_name
             self.current_state_definition['custom_config'] = self.custom_config
