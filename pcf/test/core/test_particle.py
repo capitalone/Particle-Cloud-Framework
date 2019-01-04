@@ -18,7 +18,6 @@ from pcf.core.particle import Particle
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
 from pcf.core.pcf_exceptions import InvalidConfigException, InvalidUniqueKeysException, MaxTimeoutException
-from time import sleep
 
 
 class PlainParticle(Particle):
@@ -28,6 +27,39 @@ class PlainParticle(Particle):
     def __init__(self,particle_definition):
         super(PlainParticle, self).__init__(particle_definition)
         self.desired_state_definition = self.particle_definition
+
+    def _terminate(self):
+        pass
+
+    def _update(self):
+        pass
+
+    def _start(self):
+        pass
+
+    def sync_state(self):
+        try:
+            self.state
+        except Exception as e:
+            self.state = State.terminated
+        return self.state
+
+def test_max_timeout():
+    test_particle_def = {
+        "pcf_name": "good_particle",
+        "flavor": "plain_particle",
+        "required_field": "present",
+        "aws_resource": {
+            "resource_name": "some service"
+        }
+    }
+    particle = PlainParticle(test_particle_def)
+    particle.set_desired_state(State.running)
+    try:
+        particle.apply(max_timeout=5)
+        assert False
+    except MaxTimeoutException:
+        assert True
 
 
 class ParticlePassingVars(Particle):
@@ -176,26 +208,6 @@ def test_validate_uid():
             assert False, "Invalid uid did not trigger error"
         except InvalidUniqueKeysException:
             assert True
-
-
-def test_max_timeout():
-    test_particle_def = {
-        "pcf_name": "good_particle",
-        "flavor": "particle_flavor_passing_vars",
-        "required_field": "present",
-        "aws_resource": {
-            "resource_name": "some service"
-        }
-    }
-    particle = ParticlePassingVars(test_particle_def)
-    particle.set_desired_state(State.running)
-    try:
-        particle.apply(max_timeout=2)
-        sleep(2)
-        assert False
-    except MaxTimeoutException:
-        assert True
-
 
 class CallbackParticle(Particle):
     flavor = "callback_particle"
