@@ -18,6 +18,7 @@ from pcf.core.particle import Particle
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
 from pcf.core.pcf_exceptions import InvalidConfigException, InvalidUniqueKeysException, MaxTimeoutException
+from pytest import raises
 
 
 class PlainParticle(Particle):
@@ -48,19 +49,14 @@ def test_max_timeout():
     test_particle_def = {
         "pcf_name": "good_particle",
         "flavor": "plain_particle",
-        "required_field": "present",
         "aws_resource": {
             "resource_name": "some service"
         }
     }
     particle = PlainParticle(test_particle_def)
     particle.set_desired_state(State.running)
-    try:
+    with raises(MaxTimeoutException):
         particle.apply(max_timeout=5)
-        assert False
-    except MaxTimeoutException:
-        assert True
-
 
 class ParticlePassingVars(Particle):
     flavor = "particle_flavor_passing_vars"
