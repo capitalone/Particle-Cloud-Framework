@@ -22,11 +22,11 @@ iam_role_example_json = {
     "flavor":"iam_role", # Required
     "aws_resource":{
         "custom_config": {
+            #optional: leave list empty if no desired policies to attach
             "policy_arns": ["arn:aws:iam::12345678910:policy/pcf-test", "arn:aws:iam::12345678910:policy/pcf-test2"]
-
         },
         "RoleName":"pcf-test", # Required
-        "AssumeRolePolicyDocument": json.dumps(assume_role_policy_document),
+        "AssumeRolePolicyDocument": json.dumps(assume_role_policy_document), #Required
     },
 }
 

@@ -16,6 +16,7 @@ from pcf.core import State
 from pcf.util import pcf_util
 from pcf.core.aws_resource import AWSResource
 from botocore.errorfactory import ClientError
+from pcf.particle.aws.iam.iam_policy import IAMPolicy 
 
 import json
 
@@ -54,12 +55,14 @@ class IAMRole(AWSResource):
             resource_name="iam",
         )
         self.role_name = self.desired_state_definition.get('RoleName')
+        self.custom_config['policy_arns'] = self.custom_config.get('policy_arns', [])
         self._set_unique_keys()
 
     def _set_unique_keys(self):
         """
         Logic that sets keys from state definition that are used to uniquely identify IAM Roles
         """
+
         self.unique_keys = IAMRole.UNIQUE_KEYS
 
 
@@ -73,7 +76,6 @@ class IAMRole(AWSResource):
         try:
             current_definition = self.client.get_role(RoleName=self.role_name)
         except ClientError as e:
-            print(e.response['Error']['Code'])
             if e.response['Error']['Code'] == 'NoSuchEntity':
                 return {"status": "missing"}
             else:
@@ -88,8 +90,9 @@ class IAMRole(AWSResource):
              response of boto3 delete_role
         """
 
-        # All role versions must be deleted before default role can be deleted. 
+        # All policy versions must be deleted before default policy can be deleted. 
         attached_policies = self.client.list_attached_role_policies(RoleName=self.role_name, PathPrefix=self.desired_state_definition.get('Path', '/'))
+
         if attached_policies:
             for policy in attached_policies.get('AttachedPolicies'):
                 self.client.detach_role_policy(RoleName=self.role_name, PolicyArn=policy.get('PolicyArn'))
@@ -106,10 +109,11 @@ class IAMRole(AWSResource):
         """
 
         create_definition = pcf_util.param_filter(self.get_desired_state_definition(), IAMRole.START_PARAMS_FILTER)
+        
         try:
             self.client.create_role(**create_definition)
         except ClientError as e:
-            print(e)
+            raise e
 
     def _stop(self):
         """
@@ -120,7 +124,7 @@ class IAMRole(AWSResource):
 
     def get_iam_policies(self):
         """
-        Check for IAM Policy parents and returns the IAM Policy IDs
+        Check for IAM Policy parents and sets the IAM Policy IDs
 
         Returns:
             iam_policy_id
@@ -128,6 +132,7 @@ class IAMRole(AWSResource):
         desired_policy  = self.custom_config.get('policy_arns', [])
 
         if len(self.parents) > 0:
+
             iam_policy_parents = list(filter(lambda x: x.flavor == IAMPolicy.flavor, self.parents))
             if iam_policy_parents:
                 for policy_parent in iam_policy_parents:
@@ -191,15 +196,15 @@ class IAMRole(AWSResource):
 
         self.current_state_definition = pcf_util.param_filter(self.current_state_definition, IAMRole.START_PARAMS_FILTER)
         self.current_state_definition['custom_config'] = {}
-        diff_dict = {}
         self.get_iam_policies()
-
+        diff_dict = {}
 
         if self.desired_state != State.terminated:
             #Comparing currently attached policies to desired policies
             try:
                 attached_policy_arns = self.client.list_attached_role_policies(RoleName=self.role_name, PathPrefix=self.desired_state_definition.get('Path', '/'))
             except ClientError as e:
+                #No attached policies
                 attached_policy_arns = {}
 
             if attached_policy_arns.get('AttachedPolicies'):
@@ -210,7 +215,6 @@ class IAMRole(AWSResource):
 
             if isinstance(self.desired_state_definition.get('AssumeRolePolicyDocument'), str):    
                 self.desired_state_definition['AssumeRolePolicyDocument'] = json.loads(self.desired_state_definition.get('AssumeRolePolicyDocument'))
-
 
             diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
 

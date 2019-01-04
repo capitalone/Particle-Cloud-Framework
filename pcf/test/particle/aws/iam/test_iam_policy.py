@@ -20,54 +20,80 @@ from pcf.particle.aws.iam.iam_policy import IAMPolicy
 from pcf.core import State
 
 
-class IAMPolicy:
-
-    my_managed_policy = {
-        'Version': '2012-10-17',
-        'Statement': [
-            {
-                'Effect': 'Allow',
-                'Action': 'logs:CreateLogGroup',
-                'Resource': '*'
-            },
-            {
-                'Effect': 'Allow',
-                'Action': [
-                    'dynamodb:DeleteItem',
-                    'dynamodb:GetItem',
-                    'dynamodb:PutItem',
-                ],
-                'Resource': '*'
-            }
-        ]
-    }
-
-
-    # Edit example json to work in your account
-    iam_policy_example_json = {
-        "pcf_name": "pcf_iam_policy", # Required
-        "flavor":"iam_policy", # Required
-        "aws_resource":{
-            "PolicyName":"pcf-test", # Required
-            "PolicyDocument": json.dumps(my_managed_policy)
-        }
-    }
+class TestIAMPolicy:
 
     @moto.mock_iam
     def test_apply_states(self):
-        particle = IAMPolicy(self.iam_policy_example_json)
+        iam = boto3.resource('iam', region_name='us-east-1')
+        conn = boto3.client('iam', region_name='us-east-1')
+        policy_name = "pcf-policy-test"
+        user = iam.create_user(UserName='test-user')
 
-        # Test start
+        iam_policy_example_json = {
+            "pcf_name": "pcf-policy-test", # Required
+            "flavor":"iam_policy", # Required
+            "aws_resource":{
+                "PolicyName":"pcf-policy-test", # Required
+                "PolicyDocument": json.dumps(
+                    {
+                'Version': '2012-10-17',
+                'Statement': [
+                    {
+                        'Effect': 'Allow',
+                        'Action': 'logs:CreateLogGroup',
+                        'Resource': '*'
+                    },
+                    {
+                        'Effect': 'Allow',
+                        'Action': [
+                            'dynamodb:DeleteItem',
+                            'dynamodb:GetItem',
+                            'dynamodb:PutItem',
+                        ],
+                        'Resource': '*'
+                    }
+                ]
+                })
+            }
+        }
 
+        policy = conn.create_policy(
+            PolicyName=policy_name,
+            PolicyDocument=json.dumps(iam_policy_example_json),
+            Description='Test Policy'
+        )
+
+        particle = IAMPolicy(iam_policy_example_json)
+
+        ## Test start
         particle.set_desired_state(State.running)
-        particle.apply(sync=True)
+        particle.apply()
 
         assert particle.get_state() == State.running
 
-        # Test Terminate
+        update_managed_policy = {
+            'Version': '2012-10-17',
+            'Statement': [
+                {
+                    'Effect': 'Allow',
+                    'Action': 'logs:CreateLogGroup',
+                    'Resource': '*'
+                },
+                {
+                    'Effect': 'Allow',
+                    'Action': [
+                        'dynamodb:DeleteItem',
+                        'dynamodb:GetItem',
+                    ],
+                    'Resource': '*'
+                }
+            ]
+        }
 
-        particle.set_desired_state(State.terminated)
-        particle.apply(sync=True)
-
-        assert particle.get_state() == State.terminated
+        iam_policy_example_json['aws_resource']['PolicyDocument'] = json.dumps(update_managed_policy)
+        particle = IAMPolicy(iam_policy_example_json)
+        particle.set_desired_state(State.running)
+        particle.apply()
+        
+        assert particle.get_current_state_definition().get('PolicyDocument') == json.dumps(update_managed_policy)
 

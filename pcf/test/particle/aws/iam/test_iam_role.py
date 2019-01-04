@@ -20,50 +20,73 @@ from pcf.particle.aws.iam.iam_role import IAMRole
 from pcf.core import State
 
 
-class IAMRole:
-
-    assume_role_policy_document = {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Action": "sts:AssumeRole", 
-                "Principal": {
-                    "Service": "ec2.amazonaws.com"
-                }, 
-                "Effect": "Allow", 
-            }
-        ]
-    }
-
-    iam_role_example_json = {
-        "pcf_name": "pcf_iam_role", # Required
-        "flavor":"iam_role", # Required
-        "aws_resource":{
-            "custom_config": {
-                "policy_arns": []
-
-            },
-            "RoleName":"pcf-test", # Required
-            "AssumeRolePolicyDocument": json.dumps(assume_role_policy_document),
-        },
-    }
-
+class TestIAMRole:
 
     @moto.mock_iam
     def test_apply_states(self):
-        particle = IAMRole(self.iam_role_example_json)
+        iam = boto3.resource('iam', region_name='us-east-1')
+        conn = boto3.client('iam', region_name='us-east-1')
 
-        # Test start
+        assume_role_policy_document = {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Action": "sts:AssumeRole", 
+                    "Principal": {
+                        "Service": "ec2.amazonaws.com"
+                    }, 
+                    "Effect": "Allow", 
+                }
+            ]
+        }
 
+        iam_role_example_json = {
+            "pcf_name": "pcf_iam_role", # Required
+            "flavor":"iam_role", # Required
+            "aws_resource":{
+                "custom_config": {
+                    "policy_arns": []
+
+                },
+                "RoleName":"pcf-test", # Required
+                "AssumeRolePolicyDocument": json.dumps(assume_role_policy_document),
+            },
+        }
+
+        conn.create_role(RoleName="pcf-test", AssumeRolePolicyDocument=json.dumps(assume_role_policy_document))
+
+        particle = IAMRole(iam_role_example_json)
+
+        ## Test start
         particle.set_desired_state(State.running)
-        particle.apply(sync=True)
+        particle.apply()
 
         assert particle.get_state() == State.running
 
-        # Test Terminate
+        updated_policy_document = {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Action": "sts:AssumeRole", 
+                    "Principal": {
+                        "Service": "ec2.amazonaws.com"
+                    }, 
+                    "Effect": "Allow", 
+                }
+            ]
+        }
+
+        iam_role_example_json['aws_resource']['AssumeRolePolicyDocument'] = json.dumps(updated_policy_document)
+        particle = IAMRole(iam_role_example_json)
+        particle.set_desired_state(State.running)
+        particle.apply()
+        
+        assert particle.get_current_state_definition().get('AssumeRolePolicyDocument') == updated_policy_document
 
         particle.set_desired_state(State.terminated)
-        particle.apply(sync=True)
+        particle.apply()
 
         assert particle.get_state() == State.terminated
+
+
 
