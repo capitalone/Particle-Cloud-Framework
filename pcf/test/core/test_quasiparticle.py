@@ -17,7 +17,7 @@ from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
 from pcf.util import pcf_util
 from pcf.core.pcf_exceptions import MaxTimeoutException
-from time import sleep
+from pytest import raises
 
 
 class ParticleTest(Particle):
@@ -106,7 +106,6 @@ def test_base_config():
     assert(quasiparticle.get_particle("particle_flavor","pcf_particle_name_2").particle_definition["extra_config"] == "extra_value")
     assert(quasiparticle.get_particle("particle_flavor","pcf_particle_name_2").particle_definition["override_nested"]["nested"] == "new_nested_value")
 
-
 class TestRollbackParticle(Particle):
     flavor = "rollback_flavor"
 
@@ -178,25 +177,48 @@ def test_rollback():
     # assert(quasiparticle_rollback.get_particle("rollback_flavor","pcf_particle_name").state == State.running)
     # assert(quasiparticle_rollback.get_particle("rollback_flavor","particle_error").state == State.terminated)
 
+class QuasiParticleTest(Particle):
+    flavor = "quasiparticle_flavor"
+
+    def _terminate(self):
+        self.state = State.terminated
+
+    def _update(self):
+        pass
+
+    def _start(self):
+        pass
+
+    def _stop(self):
+        pass
+
+    def sync_state(self):
+        try:
+            self.state
+        except Exception as e:
+            self.state = State.terminated
+        return self.state
+
+    def _set_unique_keys(self):
+        pass
+
 def test_max_timeout():
     test_particle_definition = {
         "pcf_name": "pcf_particle_name",
-        "flavor":"rollback_flavor",
+        "flavor":"quasiparticle_flavor",
     }
 
-    test_quasiparticle ={
+    test_particle_definition_2 = {
+        "pcf_name": "pcf_particle_name_2",
+        "flavor":"quasiparticle_flavor",
+    }
+
+    test_quasiparticle_def ={
         "pcf_name":"quasiparticle",
-        "particles":[test_particle_definition],
-        "flavor": "rollback_flavor"
+        "particles":[test_particle_definition, test_particle_definition_2],
+        "flavor": "quasiparticle_flavor"
     }
-    test_quasiparticle = Quasiparticle(test_quasiparticle)
+    test_quasiparticle = Quasiparticle(test_quasiparticle_def)
     test_quasiparticle.set_desired_state(State.running)
-    test_quasiparticle.apply()
-    test_quasiparticle.set_desired_state(State.running)
-    try:
-        test_quasiparticle.apply(max_timeout=2)
-        sleep(2)
-        assert False
-    except MaxTimeoutException:
-        assert True
-
+    with raises(MaxTimeoutException) as e:
+        test_quasiparticle.apply(max_timeout=5)
