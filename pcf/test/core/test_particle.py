@@ -17,7 +17,7 @@ import os.path
 from pcf.core.particle import Particle
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
-from pcf.core.pcf_exceptions import InvalidConfigException, InvalidUniqueKeysException, MaxTimeoutException
+from pcf.core.pcf_exceptions import InvalidConfigException, InvalidValueReplaceException, InvalidUniqueKeysException, MaxTimeoutException
 from pytest import raises
 
 
@@ -92,7 +92,6 @@ class ParticlePassingVars(Particle):
     def _validate_config(self):
         raise InvalidConfigException()
 
-
 def test_passing_vars():
     test_particle_definition_parent = {
         "pcf_name": "parent",
@@ -127,7 +126,9 @@ def test_passing_vars():
 
     quasiparticle = Quasiparticle(test_quasiparticle_base_config)
     quasiparticle.set_desired_state(State.running)
-    quasiparticle.apply()
+    with raises(InvalidValueReplaceException):
+        quasiparticle.apply()
+
     assert(quasiparticle.get_particle("particle_flavor_passing_vars","child").particle_definition["parent_var"] == "var_to_be_passed")
     assert(quasiparticle.get_particle("particle_flavor_passing_vars","child").particle_definition["nested_parent_var"] == "nested_var")
     assert(quasiparticle.get_particle("particle_flavor_passing_vars","child").particle_definition["no_parent_exists"] == "$inherit$particle_flavor_passing_vars:does_not_exist$key")
