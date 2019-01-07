@@ -1,3 +1,4 @@
+awscli==1.16.82
 pytest==3.2.3
 pytest-bdd==2.18.2
 pytest-cov==2.5.1
