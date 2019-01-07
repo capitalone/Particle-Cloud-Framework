@@ -171,7 +171,8 @@ def test_rollback():
     assert(quasiparticle_rollback.get_particle("rollback_flavor","pcf_particle_name").state == State.terminated)
 
     quasiparticle_rollback.set_desired_state(State.running)
-    quasiparticle_rollback.apply(rollback=False)
+    with raises(ValueError, message='error'):
+        quasiparticle_rollback.apply(rollback=False)
     # TODO issue with pytest here .fails every other time.
     # assert(quasiparticle_rollback.get_state() == State.pending)
     # assert(quasiparticle_rollback.get_particle("rollback_flavor","pcf_particle_name").state == State.running)
@@ -220,5 +221,5 @@ def test_max_timeout():
     }
     test_quasiparticle = Quasiparticle(test_quasiparticle_def)
     test_quasiparticle.set_desired_state(State.running)
-    with raises(MaxTimeoutException) as e:
+    with raises(MaxTimeoutException):
         test_quasiparticle.apply(max_timeout=5)

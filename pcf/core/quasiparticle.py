@@ -20,6 +20,7 @@ from pcf.core.particle import Particle
 from pcf.core.pcf import PCF
 from pcf.core import State
 from pcf.util import pcf_util
+from pcf.core.pcf_exceptions import MaxTimeoutException
 
 logger = logging.getLogger(__name__)
 
@@ -125,6 +126,8 @@ class Quasiparticle(Particle):
                 logger.info("Rollback set to true. Performing rollback.")
                 self.set_desired_state(State.terminated)
                 self.pcf_field.apply(sync=sync, cascade=cascade, validate_config=False, max_timeout=max_timeout)
+            else:
+                raise error
 
     def sync_state(self):
         pass

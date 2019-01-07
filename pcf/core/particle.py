@@ -287,7 +287,6 @@ class Particle(object, metaclass=MetaParticle):
                     self.update(sync=sync, cascade=cascade)
 
                 if not sync: break
-
                 self.wait()
 
         self.current_state_transiton = None
