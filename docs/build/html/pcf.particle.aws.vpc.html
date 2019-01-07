@@ -108,6 +108,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">pcf.particle.aws.vpc package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-pcf.particle.aws.vpc.subnet">pcf.particle.aws.vpc.subnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pcf-particle-aws-vpc-security-group-module">pcf.particle.aws.vpc.security_group module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-pcf.particle.aws.vpc.vpc">pcf.particle.aws.vpc.vpc module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-pcf.particle.aws.vpc">Module contents</a></li>
 </ul>
@@ -248,13 +249,6 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.vpc.subnet.Subnet._set_vpc_id">
-<code class="descname">_set_vpc_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.subnet.Subnet._set_vpc_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks to see if user specified a vpc_id in the particle definition. If not the vpc_id is retrieved from it’s parent.
-If there is no parent vpc particle an exception is returned since a vpc_id is required for creating a new subnet.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pcf.particle.aws.vpc.subnet.Subnet._start">
 <code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.subnet.Subnet._start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates subnet and adds tag for PCFName. The VpcId field or a parent vpc particle is required.</p>
@@ -381,6 +375,9 @@ If there is no parent vpc particle an exception is returned since a vpc_id is re
 
 </dd></dl>
 
+</div>
+<div class="section" id="pcf-particle-aws-vpc-security-group-module">
+<h2>pcf.particle.aws.vpc.security_group module<a class="headerlink" href="#pcf-particle-aws-vpc-security-group-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-pcf.particle.aws.vpc.vpc">
 <span id="pcf-particle-aws-vpc-vpc-module"></span><h2>pcf.particle.aws.vpc.vpc module<a class="headerlink" href="#module-pcf.particle.aws.vpc.vpc" title="Permalink to this headline">¶</a></h2>

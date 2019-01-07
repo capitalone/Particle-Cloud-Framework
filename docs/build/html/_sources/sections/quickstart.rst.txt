@@ -2,6 +2,12 @@
 User Quickstart
 =================
 
+Overview
+----------
+Particle Cloud Framework is a cloud resource provisioning framework that is fully customizable and extensible, callable by code,
+and does not require manually maintaining states of resources. Particle Cloud Framework enables the standardization of modeling
+hierarchical cloud infrastructure, automating deployments, and managing lifecycles of cloud resources.
+
 
 Installation
 ------------

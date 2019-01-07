@@ -9,7 +9,8 @@ Documentation of current Particle Cloud Framework features
 * :ref:`baseconfig`
 * :ref:`lookup`
 * :ref:`callback`
-* :ref:`protection`
+* :ref:`update_protection`
+* :ref:`termination_protection`
 * :ref:`rollback`
 
 
@@ -19,7 +20,7 @@ Multiplier
 ------------
 
 The multipler lets you easily create multiple instances of the same resource. This can be used in any quasiparticle and
-will create copies of the same particle with the unique keys being indexed from '-0' to whatever multiplier you specify.
+will create copies of the same particle with the unique keys being indexed from `-0` to whatever multiplier you specify.
 
 This is an example of how to use multipler to create 3 ec2 instances with names `multi-name-0` , `multi-name-1` , `multi-name-2`
 
@@ -48,8 +49,8 @@ Inherit Parent Variables
 ------------------------
 
 In quasiparticles some particles may require certain variables from their parents to run. Variables can be dynamically passed to a parent's
-child by using the notation "$inherit$particle_type:pcf_name$variable." Any variable that in the parent's current definition can be passed. If it
-is a nested variable then you can use '.' to signify nested. For example "variable.nested_variable"
+child by using the notation `$inherit$particle_type:pcf_name$variable.` Any variable that in the parent's current definition can be passed. If it
+is a nested variable then you can use `.` to signify nested. For example `variable.nested_variable`
 
 For example a PrivateIpAddress can be passed to the child's userdata as a param.
 
@@ -88,8 +89,8 @@ For example a PrivateIpAddress can be passed to the child's userdata as a param.
 Base Config
 ------------
 
-If you have similar particles with only a few differences in a quasiparticle, you can use the base_particle_config flag to grab all configurations
-from another particle already defined in the quasiparticle. This flag takes in the pcf_name of the base particle.
+If you have similar particles with only a few differences in a quasiparticle, you can use the `base_particle_config` flag to grab all configurations
+from another particle already defined in the quasiparticle. This flag takes in the `pcf_name` of the base particle.
 
 For example, if you have multiple ec2 instances, but what them to share the same sg's but want to change the instance size,
 you can use the flag and only override the instance param.
@@ -133,13 +134,13 @@ you can use the flag and only override the instance param.
 Lookup
 ------------
 
-Lookup allows you to get id's for resources by their names. In the particle definition, set the value of the id field to "$lookup$(resource type)$(resource names)"
+Lookup allows you to get id's for resources by their names. In the particle definition, set the value of the id field to `$lookup$(resource type)$(resource names)`
 
-When there is a list of names (security groups), separate them using ':'
+When there is a list of names (security groups), separate them using `:`
 
 As of now only an AWS lookup for SnapshotId, ResourceName, ImageId, SecurityGroupIds, Ami, and SubnetId are implemented.
 
-For Ami, either "instance-profile" or "role" must be set in the (resource names) and appended by ':' and name.
+For Ami, either "instance-profile" or "role" must be set in the (resource names) and appended by `:` and name.
 
 .. code::
 
@@ -202,14 +203,14 @@ Parameters are passed to the function as a dictionary, as shown in the example
      }
 
 
-.. _protection:
+.. _termination_protection:
 
 Termination Protection
 ----------------------
 
 Termination protection is a flag that can be set for particles in a quasipaerticle. This allows for you to set the desired
 state of the quasiparticle to terminated and get to that state while still having resources you need to be persisted. For example,
-you may have a db as a parent and want terminate all other particles. You can set the termination protection flag to true for the
+you may have a db as a parent and want terminate all other particles. You can set `persist_on_terminate` flag to true for the
 db particle and then simply terminate the quasiparticle.
 
 .. code::
@@ -237,6 +238,21 @@ db particle and then simply terminate the quasiparticle.
               ]
           }
 
+.. _update_protection:
+
+Update Protection
+----------------------
+
+Update protection is a flag that can be set for particles. This prevents your particles from updating if the desired definition
+becomes different than the current definition. This is particularly useful for particles that maintain state and you don't want
+an update to accidentally trigger an update causing a loss of state. To enable this feature set `persist_on_update` to True
+
+.. code::
+
+          example_definition = {
+              "pcf_name": "prevent_update",
+              "flavor": "particle",
+              "persist_on_update":True
 
 .. _rollback:
 
