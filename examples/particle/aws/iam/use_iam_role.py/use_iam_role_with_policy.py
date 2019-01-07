@@ -106,7 +106,6 @@ updated_quasiparticle_definition = {
             "flavor": "iam_policy",
             "pcf_name":"iam_policy_parent",
             "aws_resource": {
-                "custom_config": {},
                 "PolicyName":"pcf-test", # Required
                 "PolicyDocument": json.dumps(my_managed_policy)
             }
@@ -115,7 +114,6 @@ updated_quasiparticle_definition = {
             "flavor": "iam_role",
             "parents":["iam_policy:iam_policy_parent"],
             "aws_resource": {
-                "custom_config": {},
                 "RoleName":"pcf-test", # Required
                 "AssumeRolePolicyDocument": assume_role_policy_document,
             }

@@ -17,6 +17,7 @@ import boto3
 import json
 
 from pcf.particle.aws.iam.iam_role import IAMRole
+from pcf.particle.aws.iam.iam_policy import IAMPolicy
 from pcf.core import State
 
 

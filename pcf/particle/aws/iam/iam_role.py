@@ -69,6 +69,7 @@ class IAMRole(AWSResource):
     def get_status(self):
         """
         Determines if the IAM Role exists
+
         Returns:
              status (dict)
         """
@@ -86,6 +87,7 @@ class IAMRole(AWSResource):
     def _terminate(self):
         """
         Deletes the IAM Role
+
         Returns:
              response of boto3 delete_role
         """
@@ -104,6 +106,7 @@ class IAMRole(AWSResource):
     def _start(self):
         """
         Creates the IAM Role
+
         Returns:
              response of boto3 create_role
         """
@@ -177,9 +180,11 @@ class IAMRole(AWSResource):
     def is_state_equivalent(self, state1, state2):
         """
         Determines if states are equivalent. Uses equivalent_states defined in the IAMRole class.
+        
         Args:
             state1 (State):
             state1 (State):
+        
         Returns:
             bool
         """
