@@ -58,7 +58,6 @@ quasiparticle_definition = {
             "flavor": "iam_policy",
             "pcf_name":"iam_policy_parent",
             "aws_resource": {
-                "custom_config": {},
                 "PolicyName":"pcf-test", # Required
                 "PolicyDocument": json.dumps(my_managed_policy)
             }
@@ -67,7 +66,6 @@ quasiparticle_definition = {
             "flavor": "iam_policy",
             "pcf_name":"iam_policy_parent2",
             "aws_resource": {
-                "custom_config": {},
                 "PolicyName":"pcf-test2", # Required
                 "PolicyDocument": json.dumps(my_managed_policy2)
             }
@@ -76,7 +74,6 @@ quasiparticle_definition = {
             "flavor": "iam_role",
             "parents":["iam_policy:iam_policy_parent", "iam_policy:iam_policy_parent2"],
             "aws_resource": {
-                "custom_config": {},
                 "RoleName":"pcf-test", # Required
                 "AssumeRolePolicyDocument": assume_role_policy_document,
             }
