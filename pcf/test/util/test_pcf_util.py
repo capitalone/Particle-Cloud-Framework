@@ -207,3 +207,21 @@ def test_diff_dict():
     diff = pcf_util.diff_dict(orig, update)
 
     assert(diff == {})
+
+
+class AttrSearch:
+    flavor = "hoos"
+    value = "wahoo"
+
+    def sync_state(self):
+        pass
+
+
+def test_attr_search():
+    particle = AttrSearch()
+    assert pcf_util.get_value_from_particles([particle], AttrSearch, "value") == "wahoo"
+    try:
+        pcf_util.get_value_from_particles([particle, particle], AttrSearch, "value")
+        assert False
+    except Exception:
+        assert True

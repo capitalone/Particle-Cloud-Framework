@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from copy import deepcopy
+from pcf.core.pcf_exceptions import InvalidConfigException
 
 
 def generate_pcf_id(flavor, pcf_name):
@@ -307,3 +308,26 @@ def list_to_dict(key_name, dict_list):
     """
     dict_from_list = {d[key_name]: d for d in dict_list}
     return dict_from_list
+
+
+def get_value_from_particles(particles, particle_class, attr_name):
+    """
+    Searches a list for particles of a specified class and returns one of its attributes
+
+    Args:
+        particles (list): list of particles
+        particle_class (class): class that is being searched for
+        attr_name (string): name of the attribute being returned
+
+    Returns:
+        value (string): value of the attr
+
+    """
+    if len(particles) > 0:
+        particle_list = list(filter(lambda x: x.flavor == particle_class.flavor, particles))
+        if len(particle_list) == 1:
+            particle_list[0].sync_state()
+            value = getattr(particle_list[0], attr_name, None)
+            if value:
+                return value
+    raise InvalidConfigException("No parents to get value to from. Please provide the value for {}".format(attr_name))

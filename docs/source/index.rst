@@ -3,9 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-=================================
+====================================================
 Welcome to Particle Cloud Framework's documentation!
-=================================
+====================================================
+
+Overview
+----------
+Particle Cloud Framework is a cloud resource provisioning framework that is fully customizable and extensible, callable by code,
+and does not require manually maintaining states of resources. Particle Cloud Framework enables the standardization of modeling
+hierarchical cloud infrastructure, automating deployments, and managing lifecycles of cloud resources.
+
 
 
 Installation

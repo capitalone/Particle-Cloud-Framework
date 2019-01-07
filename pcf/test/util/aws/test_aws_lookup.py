@@ -17,6 +17,7 @@ import boto3
 import os
 
 from pcf.particle.aws.ec2.ec2_instance import EC2Instance
+from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 
 os.environ['AWS_DEFAULT_REGION'] = "us-east-1"
@@ -128,5 +129,4 @@ class TestLookup:
         assert particle.desired_state_definition["ImageId"][:3] == "ami"
         assert particle.desired_state_definition["SubnetId"][:6] == "subnet"
         assert particle.desired_state_definition["IamInstanceProfile"]["Arn"] == "arn:aws:iam::123456789012:instance-profileNoneInstanceProfile-Default"
-
 

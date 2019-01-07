@@ -342,6 +342,7 @@ class EC2Instance(AWSResource):
         raise NotImplementedError
 
     def is_state_definition_equivalent(self):
+        logger.debug("is_state_definition_equivalent and _update are not implemented for {0}".format(self.get_pcf_id()))
         return True
         #TODO: This needs to be updated along with the _update implementation
         # self.sync_state()
