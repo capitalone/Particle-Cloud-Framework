@@ -1,3 +1,4 @@
+awscli==1.16.82
 pytest==3.2.3
 pytest-bdd==2.18.2
 pytest-cov==2.5.1
@@ -11,6 +12,7 @@ Jinja2==2.9.6
 moto==1.3.7
 mock==2.0.0
 google-cloud-storage==1.10.0
+google-api-python-client==1.7.4
 commentjson==0.7.1
 botocore==1.10.67
 deepdiff==3.3.0
