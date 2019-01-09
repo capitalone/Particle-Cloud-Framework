@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from pcf.particle.aws.cloudfront.cloudfront import CloudFront
 from pcf.core import State
 import random
 import string
