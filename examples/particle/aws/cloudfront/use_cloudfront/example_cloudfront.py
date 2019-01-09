@@ -20,6 +20,9 @@ import string
 # Only included required fields. For all fields,
 # https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudfront.html#CloudFront.Client.create_distribution
 particle_definition = {
+    "pcf_name": "pcf_cloudfront",
+    "flavor": "cloudfront",
+    "aws_resource": {
         "Tags": [
             {
                 "Key": "Name",
@@ -54,6 +57,7 @@ particle_definition = {
         },
         "Enabled": True,
     }
+}
 
 
 particle = CloudFront(particle_definition)

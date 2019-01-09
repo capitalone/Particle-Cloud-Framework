@@ -20,39 +20,43 @@ from pcf.core import State
 
 class TestCloudFront:
     particle_definition = {
-        "Tags": [
-            {
-                "Key": "Name",
-                "Value": "cloud-front1"
-            }
-        ],
-        "Comment": "pcf-cloud-front", # used as the uid bc getting a distribution and its tags are separate api calls
-        "CallerReference": "sdfa6df5a4sdf5asd7f9asd6fa5sd6f7a8sd9fa8sdf",
-        "Origins": {
-            "Quantity": 1,
-            "Items": [
+        "pcf_name": "pcf_cloudfront",
+        "flavor": "cloudfront",
+        "aws_resource": {
+            "Tags": [
                 {
-                    "Id": "wahoo",
-                    "DomainName": "hoo.com",
-                },
-            ]
-        },
-        "DefaultCacheBehavior": {
-            "TargetOriginId": "string",
-            "ForwardedValues": {
-                "QueryString": False,
-                "Cookies": {
-                    "Forward": "none",
-                },
+                    "Key": "Name",
+                    "Value": "cloud-front1"
+                }
+            ],
+            "Comment": "pcf-cloud-front", # used as the uid bc getting a distribution and its tags are separate api calls
+            "CallerReference": "sdfa6df5a4sdf5asd7f9asd6fa5sd6f7a8sd9fa8sdf",
+            "Origins": {
+                "Quantity": 1,
+                "Items": [
+                    {
+                        "Id": "wahoo",
+                        "DomainName": "hoo.com",
+                    },
+                ]
             },
-            "TrustedSigners": {
-                "Enabled": True,
-                "Quantity": 12,
+            "DefaultCacheBehavior": {
+                "TargetOriginId": "string",
+                "ForwardedValues": {
+                    "QueryString": False,
+                    "Cookies": {
+                        "Forward": "none",
+                    },
+                },
+                "TrustedSigners": {
+                    "Enabled": True,
+                    "Quantity": 12,
+                },
+                "ViewerProtocolPolicy": "allow-all",
+                "MinTTL": 50,
             },
-            "ViewerProtocolPolicy": "allow-all",
-            "MinTTL": 50,
-        },
-        "Enabled": True,
+            "Enabled": True,
+        }
     }
     """No cloudfront implementaiton in moto"""
     # @moto.mock_cloudfront
