@@ -12,3 +12,4 @@ docs/build/
 dist
 build
 pcf.egg-info
+venv
