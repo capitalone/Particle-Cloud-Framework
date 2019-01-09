@@ -62,7 +62,7 @@ class CloudFront(AWSResource):
 
     def _set_unique_keys(self):
         """
-        Logic that sets keys from state definition that are used to uniquely identify the Route53 Hosted Zone
+        Logic that sets keys from state definition that are used to uniquely identify the distribution
         """
         self.unique_keys = CloudFront.UNIQUE_KEYS
 
