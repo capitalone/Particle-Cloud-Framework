@@ -178,8 +178,8 @@ def test_rollback():
     # assert(quasiparticle_rollback.get_particle("rollback_flavor","pcf_particle_name").state == State.running)
     # assert(quasiparticle_rollback.get_particle("rollback_flavor","particle_error").state == State.terminated)
 
-class QuasiParticleTest(Particle):
-    flavor = "quasiparticle_flavor"
+class TestMaxTimeout(Particle):
+    flavor = "quasiparticle"
 
     def _terminate(self):
         self.state = State.terminated
@@ -206,18 +206,18 @@ class QuasiParticleTest(Particle):
 def test_max_timeout():
     test_particle_definition = {
         "pcf_name": "pcf_particle_name",
-        "flavor":"quasiparticle_flavor",
+        "flavor":"quasiparticle",
     }
 
     test_particle_definition_2 = {
         "pcf_name": "pcf_particle_name_2",
-        "flavor":"quasiparticle_flavor",
+        "flavor":"quasiparticle",
     }
 
     test_quasiparticle_def ={
         "pcf_name":"quasiparticle",
         "particles":[test_particle_definition, test_particle_definition_2],
-        "flavor": "quasiparticle_flavor"
+        "flavor": "quasiparticle"
     }
     test_quasiparticle = Quasiparticle(test_quasiparticle_def)
     test_quasiparticle.set_desired_state(State.running)
