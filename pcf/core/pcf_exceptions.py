@@ -80,3 +80,7 @@ class InvalidValueReplaceException(Exception):
 class MissingException(Exception):
     def __init__(self, message="Attempted to use missing value"):
         Exception.__init__(self, message)
+
+class MaxTimeoutException(Exception):
+    def __init__(self, message="Max timeout reached while in apply()"):
+        Exception.__init__(self, message)

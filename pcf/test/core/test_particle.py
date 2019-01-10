@@ -17,7 +17,8 @@ import os.path
 from pcf.core.particle import Particle
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
-from pcf.core.pcf_exceptions import InvalidConfigException, InvalidUniqueKeysException
+from pcf.core.pcf_exceptions import InvalidConfigException, InvalidValueReplaceException, InvalidUniqueKeysException, MaxTimeoutException
+from pytest import raises
 
 
 class PlainParticle(Particle):
@@ -28,6 +29,34 @@ class PlainParticle(Particle):
         super(PlainParticle, self).__init__(particle_definition)
         self.desired_state_definition = self.particle_definition
 
+    def _terminate(self):
+        pass
+
+    def _update(self):
+        pass
+
+    def _start(self):
+        pass
+
+    def sync_state(self):
+        try:
+            self.state
+        except Exception as e:
+            self.state = State.terminated
+        return self.state
+
+def test_max_timeout():
+    test_particle_def = {
+        "pcf_name": "good_particle",
+        "flavor": "plain_particle",
+        "aws_resource": {
+            "resource_name": "some service"
+        }
+    }
+    particle = PlainParticle(test_particle_def)
+    particle.set_desired_state(State.running)
+    with raises(MaxTimeoutException):
+        particle.apply(max_timeout=5)
 
 class ParticlePassingVars(Particle):
     flavor = "particle_flavor_passing_vars"
@@ -63,7 +92,6 @@ class ParticlePassingVars(Particle):
     def _validate_config(self):
         raise InvalidConfigException()
 
-
 def test_passing_vars():
     test_particle_definition_parent = {
         "pcf_name": "parent",
@@ -98,7 +126,9 @@ def test_passing_vars():
 
     quasiparticle = Quasiparticle(test_quasiparticle_base_config)
     quasiparticle.set_desired_state(State.running)
-    quasiparticle.apply()
+    with raises(InvalidValueReplaceException):
+        quasiparticle.apply()
+
     assert(quasiparticle.get_particle("particle_flavor_passing_vars","child").particle_definition["parent_var"] == "var_to_be_passed")
     assert(quasiparticle.get_particle("particle_flavor_passing_vars","child").particle_definition["nested_parent_var"] == "nested_var")
     assert(quasiparticle.get_particle("particle_flavor_passing_vars","child").particle_definition["no_parent_exists"] == "$inherit$particle_flavor_passing_vars:does_not_exist$key")
@@ -175,7 +205,6 @@ def test_validate_uid():
             assert False, "Invalid uid did not trigger error"
         except InvalidUniqueKeysException:
             assert True
-
 
 class CallbackParticle(Particle):
     flavor = "callback_particle"
