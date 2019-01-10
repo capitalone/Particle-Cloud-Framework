@@ -16,3 +16,4 @@ google-api-python-client==1.7.4
 commentjson==0.7.1
 botocore==1.10.67
 deepdiff==3.3.0
+click==7.0
