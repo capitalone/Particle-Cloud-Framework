@@ -23,7 +23,7 @@ iam_role_example_json = {
     "aws_resource":{
         "custom_config": {
             #optional: leave list empty if no desired policies to attach
-            "policy_arns": ["arn:aws:iam::471916315075:policy/pcf-test2"],
+            "policy_arns": ["arn:aws:iam::12345678910:policy/pcf-test", "arn:aws:iam::12345678910:policy/pcf-test2"],
             #optional
             "IsInstanceProfile": True
         },

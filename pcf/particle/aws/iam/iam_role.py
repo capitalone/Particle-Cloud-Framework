@@ -130,7 +130,7 @@ class IAMRole(AWSResource):
         create_definition = pcf_util.param_filter(self.get_desired_state_definition(), IAMRole.START_PARAMS_FILTER)
         
         try:
-            role = self.client.create_role(**create_definition)
+            self.client.create_role(**create_definition)
         except ClientError as e:
             raise e
 
@@ -247,10 +247,9 @@ class IAMRole(AWSResource):
 
             if isinstance(self.desired_state_definition.get('AssumeRolePolicyDocument'), str):    
                 self.desired_state_definition['AssumeRolePolicyDocument'] = json.loads(self.desired_state_definition.get('AssumeRolePolicyDocument'))
-
             self.current_state_definition['custom_config']['IsInstanceProfile'] = self.custom_config.get('IsInstanceProfile', False)
-
             diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
+
         return diff_dict == {}
 
 
