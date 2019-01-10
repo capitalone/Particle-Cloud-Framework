@@ -33,12 +33,11 @@ setup(
     url='https://github.com/capitalone/Particle-Cloud-Framework',
     install_requires=[
         "boto==2.48.0",
-        "boto3==1.8.5",
+        "boto3==1.9.76",
         "Jinja2==2.9.6",
         "google-cloud-storage==1.10.0",
         "google-api-python-client==1.7.4",
         "commentjson==0.7.1",
-        "botocore==1.10.67",
         "deepdiff==3.3.0"
     ],
     package_data={'pcf': glob('**/*.j2', recursive=True)},
