@@ -55,6 +55,7 @@ class PCFCLI(click.MultiCommand):
 
 @click.command(
     cls=PCFCLI,
+    invoke_without_command=True,
     options_metavar="[--version] [--help]",
     subcommand_metavar="<command> [<args>...]",
     context_settings=CONTEXT_SETTINGS,
@@ -66,6 +67,9 @@ def cli(ctx, version):
 
     if version:
         ctx.command.print_version(ctx)
+    elif ctx.invoked_subcommand is None:
+        click.echo(ctx.command.get_help(ctx))
+        ctx.exit()
 
 
 if __name__ == "__main__":
