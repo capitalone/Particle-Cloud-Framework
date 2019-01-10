@@ -46,7 +46,8 @@ class TestIAMRole:
             "flavor":"iam_role", # Required
             "aws_resource":{
                 "custom_config": {
-                    "policy_arns": []
+                    "policy_arns": [],
+                    "IsInstanceProfile": True
 
                 },
                 "RoleName":"pcf-test", # Required
