@@ -3,13 +3,15 @@
 import os
 import sys
 import click
+from Levenshtein import distance
+from math import ceil
 
 
 def no_color():
     """ Determine if user has set the NO_COLOR environment variable to any value
         https://no-color.org
     """
-    return bool(os.envion.get("NO_COLOR"))
+    return bool(os.environ.get("NO_COLOR"))
 
 
 def color(color):
@@ -17,7 +19,16 @@ def color(color):
     return None if no_color() else color
 
 
-def fail(error_msg):
+def fail(error_msg, fg="red"):
     """ Display the error message and fail the CLI """
-    click.secho(error_msg, fg=color("red"))
+    click.secho(error_msg, fg=color(fg))
     sys.exit(1)
+
+
+def similar_strings(given_str, search_list=[]):
+    """ Returns a list of similar strings to given_str from an iterable of potentially
+        similar strings, search_list.
+    """
+    threshold = ceil(len(given_str) / 2.5)
+    similar = [st for st in search_list if distance(given_str, st) <= threshold]
+    return similar

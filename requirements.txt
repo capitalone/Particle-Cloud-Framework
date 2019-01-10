@@ -18,3 +18,4 @@ botocore==1.12.72
 deepdiff==3.3.0
 placebo==0.8.2
 click==7.0
+python-Levenshtein==0.12.0
