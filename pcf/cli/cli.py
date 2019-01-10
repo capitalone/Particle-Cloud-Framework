@@ -12,13 +12,23 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 
 class PCFCLI(click.MultiCommand):
 
-    command_directory = os.path.join(os.path.dirname(__file__), "commands")
-    supported_commands = ["apply"]
+    command_dir = os.path.join(os.path.dirname(__file__), "commands")
 
     @staticmethod
     def print_version(ctx):
         """ Print the pcf version """
         click.echo("Particle Cloud Framework\n\nv{}".format(VERSION))
+        ctx.exit()
+
+    def list_commands(self, ctx=None):
+        """ List command names and their descriptions """
+        cmds = [
+            cmd[:-3]
+            for cmd in os.listdir(self.command_dir)
+            if cmd.endswith(".py") and cmd != "__init__.py"
+        ]
+        cmds.sort()
+        return cmds
 
     def get_command(self, ctx, cmd_name):
         """ Attempt to load and return the command provided by the user """
@@ -30,7 +40,7 @@ class PCFCLI(click.MultiCommand):
 
         except ModuleNotFoundError:
             error_msg = "'{}' is not a vaild command.".format(cmd_name)
-            similar_commands = similar_strings(cmd_name, self.supported_commands)
+            similar_commands = similar_strings(cmd_name, self.list_commands())
 
             if similar_commands:
                 suffix = "this" if len(similar_commands) == 1 else "one of these"
@@ -45,7 +55,6 @@ class PCFCLI(click.MultiCommand):
 
 @click.command(
     cls=PCFCLI,
-    invoke_without_command=True,
     options_metavar="[--version] [--help]",
     subcommand_metavar="<command> [<args>...]",
     context_settings=CONTEXT_SETTINGS,
