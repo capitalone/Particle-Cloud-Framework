@@ -32,6 +32,10 @@ setup(
     author='anovis',
     packages=find_packages(),
     url='https://github.com/capitalone/Particle-Cloud-Framework',
+    entry_points='''
+        [console_scripts]
+        pcf=pcf.cli.cli:cli
+    ''',
     install_requires=[
         "boto==2.48.0",
         "boto3==1.9.76",
