@@ -75,6 +75,13 @@ EMR
 
    pcf.particle.aws.emr
 
+IAM
+--------------------------
+.. toctree::
+   :maxdepth: 2
+
+   pcf.particle.aws.iam
+
 LambdaFunction
 --------------------------
 .. toctree::
