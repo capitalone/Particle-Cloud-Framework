@@ -5,7 +5,6 @@ import importlib
 import click
 from pcf.cli.utils import color, fail, similar_strings
 from pcf import VERSION
-from Levenshtein import distance
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 
