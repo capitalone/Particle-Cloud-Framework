@@ -1,4 +1,4 @@
-# Copyright 2018 Capital One Services, LLC
+# Copyright 2019 Capital One Services, LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
 from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 from pcf.util import pcf_util
+import time
+from datetime import datetime, timedelta
 
 
 class CloudFront(AWSResource):
@@ -59,6 +61,7 @@ class CloudFront(AWSResource):
         """
         super(CloudFront, self).__init__(particle_definition, 'cloudfront')
         self._id = ""
+        self._ifMatch = ""
 
     def _set_unique_keys(self):
         """
@@ -77,11 +80,12 @@ class CloudFront(AWSResource):
             DistributionConfigWithTags={
                 "DistributionConfig": start_definition,
                 "Tags": {
-                    "Items": self.desired_state_definition.get("Tags")
+                    "Items": self.desired_state_definition.get("Tags", [])
                 }
             }
         )
         self._id = response.get("Distribution", {}).get("Id")
+        self._ifMatch = response.get("ETag")
         return response
 
     def _terminate(self):
@@ -90,13 +94,38 @@ class CloudFront(AWSResource):
         Returns:
             boto3 response
         """
-        return self.client.delete_distribution(Id=self._id)
+        self.stop()
+        return self.client.delete_distribution(Id=self._id, IfMatch=self._ifMatch)
 
     def _stop(self):
         """
-        Calls _terminate
+        Sets the distribution to disabled and waits until it is finished
         """
-        return self._terminate()
+        status = self.client.get_distribution(Id=self._id)
+        if status.get('Distribution', {}).get('DistributionConfig', {}).get('Enabled', False):
+            self.desired_state_definition["Enabled"] = False
+            self.client.update_distribution(
+                DistributionConfig=self.desired_state_definition,
+                Id=self._id,
+                IfMatch=self._ifMatch
+            )
+            print("Waiting for disabling the distribution...This may take a while....")
+            timeout_min = 60
+            wait_until = datetime.now() + timedelta(minutes=timeout_min)
+            while 1:
+                # check for timeout
+                if wait_until < datetime.now():
+                    # timeout
+                    print("Distribution took too long to disable. Exiting")
+                    return
+                # check status
+                status = self.client.get_distribution(Id=self._id)
+                if status.get('Distribution', {}).get('DistributionConfig', {}).get('Enabled', False) and status.get("Distribution", {}).get("Status") == 'Deployed':
+                    self._ifMatch = status.get("ETag")
+                    return
+                # wait
+                print("Not completed yet. Sleeping 60 seconds....")
+                time.sleep(60)
 
     def _update(self):
         """
@@ -116,10 +145,12 @@ class CloudFront(AWSResource):
         distribution_list = response.get("Items")
         while response.get("IsTruncated", False):
             response = self.client.list_distributions(Marker=response.get("NextMarker")).get("DistributionList")
-            distribution_list.append(response.get("Items"))
+            distribution_list += response.get("Items")
         for distribution in distribution_list:
             if distribution.get("Comment") == self.desired_state_definition.get("Comment"):
                 self._id = distribution.get("Id")
+                status = self.client.get_distribution(Id=self._id)
+                self._ifMatch = status.get("ETag")
                 return distribution
 
     def sync_state(self):
