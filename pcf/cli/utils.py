@@ -2,7 +2,9 @@
 
 import os
 import sys
+import json
 import click
+import yaml
 import inspect
 import pkgutil
 import importlib
@@ -49,6 +51,66 @@ def did_you_mean(suggestions=[], fg=None, exit_after=True, exit_code=1):
 
     if exit_after:
         sys.exit(exit_code)
+
+
+def load_pcf_config_from_file(filename):
+    """ Attempts to load and return the config dict as specified in the given file with
+        the following default config file precedence:
+        1. pcf.json
+        2. pcf.yml
+        3. pcf.yaml
+    """
+    file_ext = os.path.splitext(filename)[1]
+    if file_ext not in ("json", "yml", "yaml"):
+        fail(
+            (
+                "Error: {0} is not a valid PCF config file:\n\nPCF supports JSON and "
+                "YAML config files. Valid file extensions are .json, .yml, and .yaml"
+            ).format(filename)
+        )
+
+    if filename == "pcf.json":
+        for default_config_file in ("pcf.json", "pcf.yml", "pcf.yaml"):
+            if os.path.isfile(filename):
+                return read_config_file(filename, file_ext)
+        fail(
+            (
+                "Error loading PCF config file:\n\nCould not find a PCF config file.\n"
+                "If your config file is not named 'pcf.json', 'pcf.yml', or 'pcf.yaml', "
+                "make sure you are using the '--file' option to specify the name of your"
+                "config file, e.g.\n\tpcf apply --file my_pcf_config.json\nor using "
+                "the '--directory' option to specify the path to the directory containing "
+                "a valid PCF config file, e.g.\n\tpcf apply --directory path/to/pcf/directory"
+            )
+        )
+
+    if os.path.isfile(filename):
+        return read_config_file(filename, file_ext)
+    else:
+        fail(
+            (
+                "Error loading PCF config file:\n\nCould not find PCF config file {0}.\n"
+                "If your config file is not named 'pcf.json', 'pcf.yml', or 'pcf.yaml', "
+                "make sure you are using the '--file' option to specify the name of your"
+                "config file, e.g.\n\tpcf apply --file {0}\nor using the '--directory' "
+                "option to specify the path to the directory containing a valid PCF"
+                "config file, e.g.\n\tpcf apply --directory path/to/pcf/directory"
+            ).format(filename)
+        )
+
+
+def read_config_file(filename, file_ext):
+    """ Loads the JSON/YAML filename and returns it as a dict.
+    """
+    with open(filename, "r") as config_file:
+        try:
+            if file_ext == "json":
+                return json.load(config_file)
+            else:
+                return yaml.safe_load(config_file.read())
+        except (ValueError, yaml.YAMLError) as error:
+            fail("Error reading PCF config file {0}:\n\n{1}".format(filename, error))
+
 
 def pkg_submodules(package, recursive=True):
     """ Return a list of all submodules in a given package, recursively if desired """
