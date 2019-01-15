@@ -60,8 +60,8 @@ class CloudFront(AWSResource):
             particle_definition (definition): desired configuration of the particle
         """
         super(CloudFront, self).__init__(particle_definition, 'cloudfront')
-        self._id = ""
-        self._ifMatch = ""
+        self._id = None
+        self._ifMatch = None
 
     def _set_unique_keys(self):
         """
@@ -72,6 +72,7 @@ class CloudFront(AWSResource):
     def _start(self):
         """
         Creates the distribution according to the particle definition and adds tags if necessary
+
         Returns:
             hosted_zone: boto3 response
         """
@@ -91,6 +92,7 @@ class CloudFront(AWSResource):
     def _terminate(self):
         """
         Deletes the distribution using its id
+
         Returns:
             boto3 response
         """
@@ -138,6 +140,7 @@ class CloudFront(AWSResource):
         Gets the current definition of the cloudfront distribution
         Must list all distributions and search for matching comment field, bc
         no filtering by name or tagging exists for this resource
+
         Returns:
             current definition of the distribution
         """
@@ -160,7 +163,6 @@ class CloudFront(AWSResource):
         full_status = self.get_status()
         if not full_status:
             self.state = State.terminated
-            self.current_state_definition = {}
         else:
             self.current_state_definition = full_status
             self.state = State.running
