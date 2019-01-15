@@ -45,7 +45,8 @@ setup(
         "commentjson==0.7.1",
         "deepdiff==3.3.0",
         "click==7.0",
-        "python-Levenshtein==0.12.0"
+        "python-Levenshtein==0.12.0",
+        "pyyaml==3.13"
     ],
     package_data={'pcf': glob('**/*.j2', recursive=True)},
     include_package_data=True,
