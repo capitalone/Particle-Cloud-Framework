@@ -99,12 +99,26 @@ def load_pcf_config_from_file(filename):
 def read_config_file(filename, file_ext):
     """ Loads the JSON/YAML filename and returns it as a dict.
     """
+    basename = os.path.basename(filename)
     with open(filename, "r") as config_file:
         try:
             if file_ext == ".json":
-                return json.load(config_file)
+                pcf_config = json.load(config_file)
             else:
-                return yaml.safe_load(config_file.read())
+                pcf_config = yaml.safe_load(config_file.read())
+
+            if isinstance(pcf_config, dict):
+                pcf_config = [pcf_config]
+
+            if not isinstance(pcf_config, list):
+                fail(
+                    (
+                        "Error: PCF config file {0} must contain a single particle "
+                        "defintition dict/map or a list of particle definition dicts/maps"
+                    ).format(basename)
+                )
+            return pcf_config, filename
+
         except (ValueError, yaml.YAMLError) as error:
             fail("Error reading PCF config file {0}:\n\n{1}".format(filename, error))
 
