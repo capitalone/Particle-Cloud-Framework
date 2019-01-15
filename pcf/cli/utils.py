@@ -32,3 +32,17 @@ def similar_strings(given_str, search_list=[]):
     threshold = ceil(len(given_str) / 2.5)
     similar = [st for st in search_list if distance(given_str, st) <= threshold]
     return similar
+
+
+def did_you_mean(suggestions=[], fg=None, exit_after=True, exit_code=1):
+    """ Print the 'Did you mean' message for the given suggestion string(s) in the
+        optional color.
+    """
+    suggestions = list(suggestions)
+    suffix = "this" if len(suggestions) == 1 else "one of these"
+    cmd_list = "\t" + "\n\t".join(similar_commands)
+    help_msg = "\nDid you mean {0}?\n{1}".format(suffix, cmd_list)
+    click.secho(help_msg, fg=color(fg))
+
+    if exit_after:
+        sys.exit(exit_code)
