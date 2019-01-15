@@ -45,7 +45,7 @@ def did_you_mean(suggestions=[], fg=None, exit_after=True, exit_code=1):
     """
     suggestions = list(suggestions)
     suffix = "this" if len(suggestions) == 1 else "one of these"
-    cmd_list = "\t" + "\n\t".join(similar_commands)
+    cmd_list = "\t" + "\n\t".join(suggestions)
     help_msg = "\nDid you mean {0}?\n{1}".format(suffix, cmd_list)
     click.secho(help_msg, fg=color(fg))
 
@@ -61,7 +61,7 @@ def load_pcf_config_from_file(filename):
         3. pcf.yaml
     """
     file_ext = os.path.splitext(filename)[1]
-    if file_ext not in ("json", "yml", "yaml"):
+    if file_ext not in (".json", ".yml", ".yaml"):
         fail(
             (
                 "Error: {0} is not a valid PCF config file:\n\nPCF supports JSON and "
@@ -69,18 +69,17 @@ def load_pcf_config_from_file(filename):
             ).format(filename)
         )
 
-    if filename == "pcf.json":
+    if filename.split("/")[-1] == "pcf.json":
         for default_config_file in ("pcf.json", "pcf.yml", "pcf.yaml"):
-            if os.path.isfile(filename):
-                return read_config_file(filename, file_ext)
+            if os.path.isfile(default_config_file):
+                tmp_file_ext = os.path.splitext(default_config_file)[1]
+                return read_config_file(default_config_file, tmp_file_ext)
         fail(
             (
-                "Error loading PCF config file:\n\nCould not find a PCF config file.\n"
-                "If your config file is not named 'pcf.json', 'pcf.yml', or 'pcf.yaml', "
-                "make sure you are using the '--file' option to specify the name of your"
-                "config file, e.g.\n\tpcf apply --file my_pcf_config.json\nor using "
-                "the '--directory' option to specify the path to the directory containing "
-                "a valid PCF config file, e.g.\n\tpcf apply --directory path/to/pcf/directory"
+                "Error: could not find a PCF config file.\n\n"
+                "If your config file is not named 'pcf.json', 'pcf.yml', or 'pcf.yaml',\n"
+                "make sure you are using the '--file' option to specify the name of your "
+                "config file, e.g.\n\n\tpcf apply --file my_pcf_config.json"
             )
         )
 
@@ -89,12 +88,10 @@ def load_pcf_config_from_file(filename):
     else:
         fail(
             (
-                "Error loading PCF config file:\n\nCould not find PCF config file {0}.\n"
-                "If your config file is not named 'pcf.json', 'pcf.yml', or 'pcf.yaml', "
+                "Error: could not find PCF config file {0}\n\n"
+                "If your config file is not named 'pcf.json', 'pcf.yml', or 'pcf.yaml',\n"
                 "make sure you are using the '--file' option to specify the name of your"
-                "config file, e.g.\n\tpcf apply --file {0}\nor using the '--directory' "
-                "option to specify the path to the directory containing a valid PCF"
-                "config file, e.g.\n\tpcf apply --directory path/to/pcf/directory"
+                "config file, e.g.\n\n\tpcf apply --file {0}"
             ).format(filename)
         )
 
@@ -104,7 +101,7 @@ def read_config_file(filename, file_ext):
     """
     with open(filename, "r") as config_file:
         try:
-            if file_ext == "json":
+            if file_ext == ".json":
                 return json.load(config_file)
             else:
                 return yaml.safe_load(config_file.read())
@@ -113,7 +110,7 @@ def read_config_file(filename, file_ext):
 
 
 def pkg_submodules(package, recursive=True):
-    """ Return a list of all submodules in a given package, recursively if desired """
+    """ Return a list of all submodules in a given package, recursively by default """
     if isinstance(package, str):
         package = importlib.import_module(package)
 
@@ -122,7 +119,7 @@ def pkg_submodules(package, recursive=True):
         full_name = package.__name__ + "." + name
         submodules.append(importlib.import_module(full_name))
         if recursive and is_pkg:
-            submodules.append(import_submodules(full_name))
+            submodules += pkg_submodules(full_name)
 
     return submodules
 
