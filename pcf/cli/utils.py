@@ -156,3 +156,41 @@ def particle_class_from_flavor(flavor):
                     return class_obj
 
     return None
+
+
+def particle_from_file(pcf_name, filename):
+    """ Search for the Particle class object of the desired flavor as specified in
+            the given config file and return it
+        """
+
+    pcf_config, used_config_filename = load_pcf_config_from_file(filename)
+
+    user_pcf_names = []
+    for particle in pcf_config:
+        if not isinstance(particle, dict):
+            continue
+
+        name = particle.get("pcf_name")
+        user_pcf_names.append(name)
+
+        if name == pcf_name.strip():
+            flavor = particle.get("flavor")
+            if flavor is None:
+                fail("Must specify flavor")
+
+            particle_class = particle_class_from_flavor(str(flavor).strip())
+            if particle_class is None:
+                fail("No particle class found")
+            else:
+                return particle_class(particle)
+
+    click.secho(
+        "Error: could not find Particle or Quasiparticle '{0}' in {1}".format(
+            pcf_name, os.path.basename(used_config_filename)
+        ),
+        fg=color("red"),
+    )
+
+    similar_names = similar_strings(pcf_name, user_pcf_names)
+    if similar_names:
+        did_you_mean(similar_names)
