@@ -3,8 +3,11 @@
 import os
 import sys
 import click
-from Levenshtein import distance
+import inspect
+import pkgutil
+import importlib
 from math import ceil
+from Levenshtein import distance
 
 
 def no_color():
@@ -46,3 +49,37 @@ def did_you_mean(suggestions=[], fg=None, exit_after=True, exit_code=1):
 
     if exit_after:
         sys.exit(exit_code)
+
+def pkg_submodules(package, recursive=True):
+    """ Return a list of all submodules in a given package, recursively if desired """
+    if isinstance(package, str):
+        package = importlib.import_module(package)
+
+    submodules = []
+    for _loader, name, is_pkg in pkgutil.walk_packages(package.__path__):
+        full_name = package.__name__ + "." + name
+        submodules.append(importlib.import_module(full_name))
+        if recursive and is_pkg:
+            submodules.append(import_submodules(full_name))
+
+    return submodules
+
+
+def particle_class_from_flavor(flavor):
+    """ Return the class object of the given flavor (or None) by searching
+        through all particle and quasiparticle submodules in the pcf module
+    """
+
+    particle_submodules = pkg_submodules("pcf.particle")
+    quasiparticle_submodules = pkg_submodules("pcf.quasiparticle")
+    modules = particle_submodules + quasiparticle_submodules
+
+    for module in modules:
+        classes = inspect.getmembers(module, inspect.isclass)
+
+        if classes:
+            for _name, class_obj in classes:
+                if getattr(class_obj, "flavor", None) == flavor:
+                    return class_obj
+
+    return None
