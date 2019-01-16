@@ -4,7 +4,7 @@ import click
 from pcf.cli.utils import execute_applying_command
 
 
-@click.command(name="apply")
+@click.command(name="apply", short_help="Set a desired state and apply changes")
 @click.option(
     "-f",
     "--file",
@@ -25,9 +25,12 @@ from pcf.cli.utils import execute_applying_command
 @click.argument("pcf_name", required=True)
 @click.pass_context
 def apply(ctx, pcf_name, file_, state):
-    """ Set desired state and apply changes to your infrastructure\n
+    """ Set a desired state and apply changes to your infrastructure
+
         PCF_NAME : The deployment name to apply changes to as specified in your
-        PCF config file, e.g.\n\n\tpcf apply my_ec2_instance
+        PCF config file, e.g.
+
+            pcf apply my_ec2_instance
     """
 
     execute_applying_command(pcf_name, file_, state)
