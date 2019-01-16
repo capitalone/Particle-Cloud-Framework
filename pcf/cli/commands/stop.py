@@ -23,4 +23,4 @@ def stop(ctx, pcf_name, file_):
         PCF config file, e.g.\n\n\tpcf stop my_ec2_instance
     """
 
-    execute_applying_command(pcf_name, file_, 'stopped')
+    execute_applying_command(pcf_name, file_, "stopped")
