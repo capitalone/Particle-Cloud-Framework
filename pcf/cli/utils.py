@@ -31,7 +31,9 @@ def similar_strings(given_str, search_list=[]):
         similar strings, search_list.
     """
     threshold = ceil(len(given_str) / 2.5)
-    similar = [st for st in search_list if distance(given_str, st) <= threshold]
+    similar = [
+        st for st in search_list if distance(given_str.lower(), st.lower()) <= threshold
+    ]
     return similar
 
 
