@@ -5,7 +5,9 @@ from pcf.core import State
 from pcf.cli.utils import execute_applying_command
 
 
-@click.command(name="stop", short_help="Set desired state to 'stopped' and apply changes")
+@click.command(
+    name="stop", short_help="Set desired state to 'stopped' and apply changes"
+)
 @click.option(
     "-f",
     "--file",
