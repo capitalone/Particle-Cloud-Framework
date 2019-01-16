@@ -1,0 +1,28 @@
+""" Logic for pcf run command """
+
+import click
+from pcf.core import State
+from pcf.cli.utils import particle_from_file
+
+
+@click.command(name="run")
+@click.option(
+    "-f",
+    "--file",
+    "file_",
+    type=click.Path(dir_okay=False, resolve_path=True),
+    default="pcf.json",
+    show_default=True,
+    help="The JSON or YAML file defining your infrastructure configuration",
+)
+@click.argument("pcf_name", required=True)
+@click.pass_context
+def run(ctx, pcf_name, file_):
+    """ Set desired state to 'running' and apply changes to your infrastructure\n
+        PCF_NAME : The deployment name to apply changes to as specified in your
+        PCF config file, e.g.\n\n\tpcf run my_ec2_instance
+    """
+
+    particle = particle_from_file(pcf_name, file_)
+    particle.set_desired_state(State.running)
+    particle.apply()
