@@ -23,4 +23,4 @@ def run(ctx, pcf_name, file_):
         PCF config file, e.g.\n\n\tpcf run my_ec2_instance
     """
 
-    execute_applying_command(pcf_name, file_, 'running')
+    execute_applying_command(pcf_name, file_, "running")

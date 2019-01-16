@@ -23,4 +23,4 @@ def terminate(ctx, pcf_name, file_):
         PCF config file, e.g.\n\n\tpcf terminate my_ec2_instance
     """
 
-    execute_applying_command(pcf_name, file_, 'terminated')
+    execute_applying_command(pcf_name, file_, "terminated")
