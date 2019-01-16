@@ -2,7 +2,7 @@
 
 import click
 from pcf.core import State
-from pcf.cli.utils import particle_from_file
+from pcf.cli.utils import execute_applying_command
 
 
 @click.command(name="terminate")
@@ -23,6 +23,4 @@ def terminate(ctx, pcf_name, file_):
         PCF config file, e.g.\n\n\tpcf terminate my_ec2_instance
     """
 
-    particle = particle_from_file(pcf_name, file_)
-    particle.set_desired_state(State.terminated)
-    particle.apply()
+    execute_applying_command(pcf_name, file_, 'terminated')

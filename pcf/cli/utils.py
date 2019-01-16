@@ -10,6 +10,7 @@ import pkgutil
 import importlib
 from math import ceil
 from Levenshtein import distance
+from pcf.core import State
 
 
 def no_color():
@@ -160,8 +161,8 @@ def particle_class_from_flavor(flavor):
 
 def particle_from_file(pcf_name, filename):
     """ Search for the Particle class object of the desired flavor as specified in
-            the given config file and return it
-        """
+        the given config file and return it
+    """
 
     pcf_config, used_config_filename = load_pcf_config_from_file(filename)
 
@@ -194,3 +195,35 @@ def particle_from_file(pcf_name, filename):
     similar_names = similar_strings(pcf_name, user_pcf_names)
     if similar_names:
         did_you_mean(similar_names)
+
+
+def execute_applying_command(pcf_name, config_file, desired_state, silent=False):
+    """ Executes the apply command for the desired particle and state as specified in
+        the config_file. Used for apply, run, stop, and terminate commands. Contains
+        CLI output for info.
+    """
+    if not silent:
+        click.secho(
+            "Loading Particle/Quasiparticle flavor for {0}...".format(pcf_name),
+            fg=color("blue"),
+        )
+
+    particle = particle_from_file(pcf_name, config_file)
+
+    if not silent:
+        click.secho(
+            "Setting desired state of {0} to {1}...".format(pcf_name, desired_state),
+            fg=color("blue"),
+        )
+
+    particle.set_desired_state(getattr(State, desired_state))
+
+    if not silent:
+        click.secho("Applying changes to {0}...".format(pcf_name), fg=color("blue"))
+
+    particle.apply()
+
+    if not silent:
+        click.secho(
+            "Successfully applied changes to {0}".format(pcf_name), fg=color("green")
+        )
