@@ -1,8 +1,7 @@
 """ Logic for pcf apply command """
 
 import click
-from pcf.core import State
-from pcf.cli.utils import particle_from_file
+from pcf.cli.utils import execute_applying_command
 
 
 @click.command(name="apply")
@@ -31,6 +30,4 @@ def apply(ctx, pcf_name, file_, state):
         PCF config file, e.g.\n\n\tpcf apply my_ec2_instance
     """
 
-    particle = particle_from_file(pcf_name, file_)
-    particle.set_desired_state(getattr(State, state))
-    particle.apply()
+    execute_applying_command(pcf_name, file_, state)
