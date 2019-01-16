@@ -13,16 +13,11 @@ from Levenshtein import distance
 from pcf.core import State
 
 
-def no_color():
-    """ Determine if user has set the NO_COLOR environment variable to any value
+def color(color):
+    """ Return the desired color name or None if the NO_COLOR env var is set
         https://no-color.org
     """
-    return bool(os.environ.get("NO_COLOR"))
-
-
-def color(color):
-    """ Return the desired color name or None if the NO_COLOR env var is set """
-    return None if no_color() else color
+    return None if bool(os.environ.get("NO_COLOR")) else color
 
 
 def fail(error_msg, fg="red"):
