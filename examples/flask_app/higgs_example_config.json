@@ -1,0 +1,52 @@
+ec2_route53_example_definition = {
+    "pcf_name": "pcf-example",  
+    "flavor": "ec2_route53",  
+    "particles": [{
+        "flavor": "ec2_instance",  
+        "multiplier": 2,
+        "aws_resource": {
+            "custom_config": {
+                "instance_name": "pcf-ec2-test",  
+                "tags": {
+                    "OwnerContact": "you@yourcompany.com"
+                },
+
+            },
+            "ImageId": "ami-11111111",  
+            "InstanceType": "t2.nano",  
+            "KeyName": "my-key",
+            "MaxCount": 1,
+            "MinCount": 1,
+            "SecurityGroupIds": [
+                "sg-11111111",
+                "sg-22222222"
+            ],
+            "SubnetId": "subnet-11111111",  
+            "UserData": "echo abc123",
+            "IamInstanceProfile": {
+                "Arn": "arn:aws:iam::111111111111:instance-profile/someRole"
+            },
+            "BlockDeviceMappings": [ 
+                {
+                    "DeviceName": "/dev/sda1",  
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "VolumeSize": 100,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ]
+        }
+    },
+        {
+            "flavor": "route53_record", 
+            "aws_resource": {
+                "Name": "testingtesting.aws-inno-dqa.cb4good.com.", 
+                "HostedZoneId": "1A1A1A1A1A1A1A", 
+                "TTL": 300,
+                "ResourceRecords": [],  
+                "Type": "A"  
+            }
+        }
+    ]
+}
