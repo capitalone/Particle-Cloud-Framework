@@ -3,6 +3,7 @@ import json
 import pytest
 from pcf.core import State
 from pcf.core import particle_flavor_scanner
+from contextlib import ExitStack
 
 from pcf.particle.aws.route53 import hosted_zone
 
@@ -17,8 +18,9 @@ values = [tuple(v) for v in values]
 def test_apply(definition, updated_definition, mototag):
     flavor = definition.get("flavor")
     particle_class = particle_flavor_scanner.get_particle_flavor(flavor)
-    mock = getattr(moto, mototag)
-    with mock():
+    with ExitStack() as stack:
+        for context in mototag:
+            stack.enter_context(getattr(moto, context)())
         particle = particle_class(definition)
         particle.set_desired_state(State.running)
         particle.apply()

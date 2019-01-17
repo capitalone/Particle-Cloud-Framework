@@ -56,6 +56,6 @@
                   }
               }
           },
-          "mock_route53"
+          ["mock_route53", "mock_ec2"]
       ]
 }
