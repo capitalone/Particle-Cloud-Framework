@@ -17,9 +17,15 @@ from pcf.cli.utils import execute_applying_command
     show_default=True,
     help="The JSON or YAML file defining your infrastructure configuration",
 )
+@click.option(
+    "-q",
+    "--quiet",
+    is_flag=True,
+    help="Execute stop in quiet mode (No output except for errors)",
+)
 @click.argument("pcf_name", required=True)
 @click.pass_context
-def stop(ctx, pcf_name, file_):
+def stop(ctx, pcf_name, quiet, file_):
     """ Set desired state to 'stopped' and apply changes
 
         PCF_NAME : The deployment name to apply changes to as specified in your
@@ -28,4 +34,4 @@ def stop(ctx, pcf_name, file_):
             pcf stop my_ec2_instance
     """
 
-    execute_applying_command(pcf_name, file_, "stopped")
+    execute_applying_command(pcf_name, file_, "stopped", quiet=quiet)

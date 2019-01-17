@@ -22,9 +22,15 @@ from pcf.cli.utils import execute_applying_command
     show_default=True,
     help="The desired state to set for your infrastructure",
 )
+@click.option(
+    "-q",
+    "--quiet",
+    is_flag=True,
+    help="Execute apply in quiet mode (No output except for errors)",
+)
 @click.argument("pcf_name", required=True)
 @click.pass_context
-def apply(ctx, pcf_name, file_, state):
+def apply(ctx, pcf_name, quiet, file_, state):
     """ Set a desired state and apply changes to your infrastructure
 
         PCF_NAME : The deployment name to apply changes to as specified in your
@@ -33,4 +39,4 @@ def apply(ctx, pcf_name, file_, state):
             pcf apply my_ec2_instance
     """
 
-    execute_applying_command(pcf_name, file_, state)
+    execute_applying_command(pcf_name, file_, state, quiet=quiet)
