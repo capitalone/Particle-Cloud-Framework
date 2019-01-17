@@ -59,15 +59,17 @@ def load_pcf_config_from_file(filename):
         3. pcf.yaml
     """
     file_ext = os.path.splitext(filename)[1]
+    basename = os.path.basename(filename)
+
     if file_ext not in (".json", ".yml", ".yaml"):
         fail(
             (
                 "Error: {0} is not a valid PCF config file:\n\nPCF supports JSON and "
                 "YAML config files. Valid file extensions are .json, .yml, and .yaml"
-            ).format(filename)
+            ).format(basename)
         )
 
-    if filename.split("/")[-1] == "pcf.json":
+    if basename == "pcf.json":
         for default_config_file in ("pcf.json", "pcf.yml", "pcf.yaml"):
             if os.path.isfile(default_config_file):
                 tmp_file_ext = os.path.splitext(default_config_file)[1]
