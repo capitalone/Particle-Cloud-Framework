@@ -156,7 +156,6 @@ def particle_from_file(pcf_name, filename):
     """ Search for the Particle class object of the desired flavor as specified in
         the given config file and return it
     """
-
     pcf_config, used_config_filename = load_pcf_config_from_file(filename)
 
     user_pcf_names = []
@@ -170,11 +169,11 @@ def particle_from_file(pcf_name, filename):
         if name.strip() == pcf_name.strip():
             flavor = particle.get("flavor")
             if flavor is None:
-                fail("Must specify flavor")
+                fail("Error: No flavor specified in {} configuration".format(pcf_name))
 
             particle_class = particle_class_from_flavor(str(flavor).strip())
             if particle_class is None:
-                fail("No particle class found")
+                fail("Error: {} is not a supported Particle or Quasiparticle flavor ".format(flavor))
             else:
                 return particle_class(particle)
 
@@ -188,6 +187,8 @@ def particle_from_file(pcf_name, filename):
     similar_names = similar_strings(pcf_name, user_pcf_names)
     if similar_names:
         did_you_mean(similar_names)
+    else:
+        sys.exit(1)
 
 
 def execute_applying_command(pcf_name, config_file, desired_state, silent=False):
