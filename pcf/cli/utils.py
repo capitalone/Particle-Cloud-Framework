@@ -72,8 +72,7 @@ def load_pcf_config_from_file(filename):
     if basename == "pcf.json":
         for default_config_file in ("pcf.json", "pcf.yml", "pcf.yaml"):
             if os.path.isfile(default_config_file):
-                tmp_file_ext = os.path.splitext(default_config_file)[1]
-                return read_config_file(default_config_file, tmp_file_ext)
+                return read_config_file(default_config_file)
         fail(
             (
                 "Error: could not find a PCF config file.\n\n"
@@ -84,7 +83,7 @@ def load_pcf_config_from_file(filename):
         )
 
     if os.path.isfile(filename):
-        return read_config_file(filename, file_ext)
+        return read_config_file(filename)
     else:
         fail(
             (
@@ -96,10 +95,12 @@ def load_pcf_config_from_file(filename):
         )
 
 
-def read_config_file(filename, file_ext):
+def read_config_file(filename):
     """ Loads the JSON/YAML filename and returns it as a dict.
     """
+    file_ext = os.path.splitext(filename)[1]
     basename = os.path.basename(filename)
+
     with open(filename, "r") as config_file:
         try:
             if file_ext == ".json":
@@ -110,13 +111,6 @@ def read_config_file(filename, file_ext):
             if isinstance(pcf_config, dict):
                 pcf_config = [pcf_config]
 
-            if not isinstance(pcf_config, list):
-                fail(
-                    (
-                        "Error: PCF config file {0} must contain a single particle "
-                        "defintition dict/map or a list of particle definition dicts/maps"
-                    ).format(basename)
-                )
             return pcf_config, filename
 
         except (ValueError, yaml.YAMLError) as error:
@@ -173,7 +167,7 @@ def particle_from_file(pcf_name, filename):
         name = particle.get("pcf_name")
         user_pcf_names.append(name)
 
-        if name == pcf_name.strip():
+        if name.strip() == pcf_name.strip():
             flavor = particle.get("flavor")
             if flavor is None:
                 fail("Must specify flavor")
