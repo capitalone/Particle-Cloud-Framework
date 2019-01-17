@@ -173,7 +173,11 @@ def particle_from_file(pcf_name, filename):
 
             particle_class = particle_class_from_flavor(str(flavor).strip())
             if particle_class is None:
-                fail("Error: {} is not a supported Particle or Quasiparticle flavor ".format(flavor))
+                fail(
+                    "Error: {} is not a supported Particle or Quasiparticle flavor ".format(
+                        flavor
+                    )
+                )
             else:
                 return particle_class(particle)
 
@@ -191,12 +195,12 @@ def particle_from_file(pcf_name, filename):
         sys.exit(1)
 
 
-def execute_applying_command(pcf_name, config_file, desired_state, silent=False):
+def execute_applying_command(pcf_name, config_file, desired_state, quiet=False):
     """ Executes the apply command for the desired particle and state as specified in
         the config_file. Used for apply, run, stop, and terminate commands. Contains
         CLI output for info.
     """
-    if not silent:
+    if not quiet:
         click.secho(
             "Loading Particle/Quasiparticle flavor for {0}...".format(pcf_name),
             fg=color("blue"),
@@ -204,7 +208,7 @@ def execute_applying_command(pcf_name, config_file, desired_state, silent=False)
 
     particle = particle_from_file(pcf_name, config_file)
 
-    if not silent:
+    if not quiet:
         click.secho(
             "Setting desired state of {0} to {1}...".format(pcf_name, desired_state),
             fg=color("blue"),
@@ -212,12 +216,12 @@ def execute_applying_command(pcf_name, config_file, desired_state, silent=False)
 
     particle.set_desired_state(getattr(State, desired_state))
 
-    if not silent:
+    if not quiet:
         click.secho("Applying changes to {0}...".format(pcf_name), fg=color("blue"))
 
     particle.apply()
 
-    if not silent:
+    if not quiet:
         click.secho(
             "Successfully applied changes to {0}".format(pcf_name), fg=color("green")
         )
