@@ -1,6 +1,15 @@
 ---
-pcf_name: test_ec2
-flavor: ec2_instance
-aws_resource:
-  custom_config:
-    instance_name: my-ec2
+- pcf_name: test_ec2
+  flavor: ec2_instance
+  aws_resource:
+    custom_config:
+      instance_name: my-ec2
+
+- pcf_name: unsupported_flavor_particle
+  flavor: unsupported_flavor
+  aws_resource:
+      custom_config:
+        foo: bar
+
+- pcf_name: no_flavor_particle
+  purpose: to test an error is thrown or particles with no flavor specified
