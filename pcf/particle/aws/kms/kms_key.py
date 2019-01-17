@@ -3,6 +3,7 @@ from pcf.core import State
 from pcf.util import pcf_util
 import json
 import logging
+from deepdiff import DeepDiff
 
 logger = logging.getLogger(__name__)
 
@@ -85,8 +86,6 @@ class KMSKey(AWSResource):
     start_params = {
         "Policy",
         "Description",
-        "KeyUsage",
-        "Origin",
         "CustomKeyStoreId",
         "BypassPolicyLockoutSafetyCheck",
         "Tags"
@@ -119,6 +118,13 @@ class KMSKey(AWSResource):
             self.state = State.terminated
             self.current_state_definition = {}
             return
+        # Remove the BypassPolicyLockout key from the input. Not returned by methods, cant change
+        self.desired_state_definition.pop('BypassPolicyLockoutSafetyCheck', None)
+        if 'Tags' in self.desired_state_definition:
+            status["Tags"] = self.client.list_resource_tags(KeyId=status.get('KeyId')).get('Tags')
+        if 'Policy' in self.desired_state_definition:
+            status["Policy"] = self.client.get_key_policy(KeyId=status.get('KeyId'),
+                                                          PolicyName='default')
         self.current_state_definition = status
         self.state = KMSKey.state_lookup.get(status.get('KeyState'))
 
@@ -136,19 +142,33 @@ class KMSKey(AWSResource):
         Returns:
             bool
         """
+        # Policy, Tags, BypassSafetyLockout not returned.
         current_filtered = pcf_util.param_filter(self.current_state_definition,
                                                  KMSKey.start_params)
         desired_filtered = pcf_util.param_filter(self.desired_state_definition,
                                                  KMSKey.start_params)
-        diff = pcf_util.diff_dict(current_filtered, desired_filtered)
+        # Filtering with allowed start params means you will need to supply them in the current
+        # config if you add new possible start params.
+        if 'Policy' in desired_filtered:
+            policy_diff = DeepDiff(json.loads(desired_filtered['Policy']),
+                                   json.loads(current_filtered['Policy']), ignore_order=True)
+            if policy_diff:
+                logger.debug("Key policy is not equivalent for {0} with diff: {1}".format(
+                    self.key_name, json.dumps(policy_diff)))
+                return False  # Assumes policy can be corrected with update method
+            # Remove policy strings since they are equivalent
+            desired_filtered.pop('Policy')
+            current_filtered.pop('Policy')
+        diff = DeepDiff(desired_filtered, current_filtered, ignore_order=True)
         if not diff or len(diff) == 0:
             return True
         else:
             # can't json dump function
+            print(diff)
             if diff.get('callbacks'):
                 diff['callbacks'] = {'new': '<function>'}
             logger.debug("State is not equivalent for {0} with diff: {1}".format(
-                self.get_pcf_id(), json.dumps(diff)))
+                self.get_pcf_id(), diff))
             return False
 
     def _terminate(self):
@@ -238,6 +258,8 @@ class KMSKey(AWSResource):
         status = {} if not alias else self.client.describe_key(KeyId=alias.get('TargetKeyId')).get('KeyMetadata')
         if not self._arn:
             self._arn = status.get('Arn')
+        if not hasattr(self, 'key_id') and status:
+            self.key_id = status.get('KeyId')
         return status
 
     def _validate_config(self):
