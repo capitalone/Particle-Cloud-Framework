@@ -21,9 +21,15 @@ from pcf.cli.utils import execute_applying_command
     is_flag=True,
     help="Execute run in quiet mode (No output except for errors)",
 )
+@click.option(
+    "-c",
+    "--cascade",
+    is_flag=True,
+    help="Apply state transitions to all family members",
+)
 @click.argument("pcf_name", required=True)
 @click.pass_context
-def run(ctx, pcf_name, quiet, file_):
+def run(ctx, pcf_name, cascade, quiet, file_):
     """ Set desired state to 'running' and apply changes\n
 
         PCF_NAME : The deployment name to apply changes to as specified in your
@@ -32,4 +38,4 @@ def run(ctx, pcf_name, quiet, file_):
             pcf run my_ec2_instance
     """
 
-    execute_applying_command(pcf_name, file_, "running", quiet=quiet)
+    execute_applying_command(pcf_name, file_, "running", cascade=cascade, quiet=quiet)
