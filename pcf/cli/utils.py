@@ -119,13 +119,22 @@ def read_config_file(filename):
 
 def pkg_submodules(package, recursive=True):
     """ Return a list of all submodules in a given package, recursively by default """
+
     if isinstance(package, str):
-        package = importlib.import_module(package)
+        try:
+            package = importlib.import_module(package)
+        except ImportError:
+            return []
 
     submodules = []
     for _loader, name, is_pkg in pkgutil.walk_packages(package.__path__):
         full_name = package.__name__ + "." + name
-        submodules.append(importlib.import_module(full_name))
+
+        try:
+            submodules.append(importlib.import_module(full_name))
+        except ImportError:
+            continue
+
         if recursive and is_pkg:
             submodules += pkg_submodules(full_name)
 
