@@ -173,6 +173,12 @@ class TestUtils:
         assert (aws_mod in aws_results for aws_mod in expected_aws_modules)
 
     @staticmethod
+    def test_pkg_submodules_nonexistent_module():
+        """ Ensure an empty list is returned for non-importable/nonexistent modules """
+        result = pkg_submodules("non-existent-module")
+        assert result == []
+
+    @staticmethod
     def test_particle_class_from_flavor():
         """ Ensure Particle/Quasiparticle classes are returned if the flavor exists """
         ec2_instance_class = particle_class_from_flavor("ec2_instance")
