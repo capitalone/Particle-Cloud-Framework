@@ -7,15 +7,17 @@ from pcf.cli.cli import cli, PCFCLI
 
 
 class TestCli:
+
     @pytest.mark.parametrize("flag", ["-v", "--version"])
     def test_cli_prints_version(self, flag, cli_runner):
         result = cli_runner.invoke(cli, [flag])
         assert result.exit_code == 0
         assert "v{}".format(VERSION) in result.output
 
-    @pytest.mark.parametrize("flag", ["-h", "--help"])
+    @pytest.mark.parametrize("flag", ["-h", "--help", None])
     def test_cli_prints_help(self, flag, cli_runner):
-        result = cli_runner.invoke(cli, [flag])
+        flag = [flag] if flag is not None else None
+        result = cli_runner.invoke(cli, flag)
         assert result.exit_code == 0
         assert "Usage" in result.output
         assert "Options" in result.output

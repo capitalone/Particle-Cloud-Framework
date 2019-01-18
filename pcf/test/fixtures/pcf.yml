@@ -13,3 +13,5 @@
 
 - pcf_name: no_flavor_particle
   purpose: to test an error is thrown or particles with no flavor specified
+
+- Ensure non-dict entries are skipped during particle loading
