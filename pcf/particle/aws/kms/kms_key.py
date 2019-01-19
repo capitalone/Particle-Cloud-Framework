@@ -62,6 +62,10 @@ class KMSKey(AWSResource):
     +----------------+------------------+-------------------------------------------------------+
     | Terminated     | Pending Deletion | Schedules key for deletion in 30 days, removes alias  |
     +----------------+------------------+-------------------------------------------------------+
+    | Pending        | Pending Import   | Not used by KMS-generated keys, not supported         |
+    +----------------+------------------+-------------------------------------------------------+
+    | Pending        | Unavailable      | Not used by KMS-generated keys, not supported         |
+    +----------------+------------------+-------------------------------------------------------+
 
     """
 
@@ -83,7 +87,7 @@ class KMSKey(AWSResource):
     """
 
     # No required AWS params.
-    start_params = {
+    START_PARAMS = {
         "Policy",
         "Description",
         "CustomKeyStoreId",
@@ -144,9 +148,9 @@ class KMSKey(AWSResource):
         """
         # Policy, Tags, BypassSafetyLockout not returned.
         current_filtered = pcf_util.param_filter(self.current_state_definition,
-                                                 KMSKey.start_params)
+                                                 KMSKey.START_PARAMS)
         desired_filtered = pcf_util.param_filter(self.desired_state_definition,
-                                                 KMSKey.start_params)
+                                                 KMSKey.START_PARAMS)
         # Filtering with allowed start params means you will need to supply them in the current
         # config if you add new possible start params.
         if 'Policy' in desired_filtered:
@@ -204,7 +208,7 @@ class KMSKey(AWSResource):
         else:
             # TODO add check for KeyId in desired state definition so existing keys can be reused
             start_definition = pcf_util.param_filter(self.get_desired_state_definition(),
-                                                     KMSKey.start_params)
+                                                     KMSKey.START_PARAMS)
             create_response = self.client.create_key(**start_definition)
             # TODO add a check for uniqueness of alias
             self.client.create_alias(AliasName='alias/'+self.key_name,
