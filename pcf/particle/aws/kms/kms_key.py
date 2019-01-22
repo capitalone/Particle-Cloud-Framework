@@ -146,20 +146,44 @@ class KMSKey(AWSResource):
         Returns:
             bool
         """
-        # Policy, Tags, BypassSafetyLockout not returned.
+        # Policy, Tags, BypassSafetyLockout not returned by describe API.
         current_filtered = pcf_util.param_filter(self.current_state_definition,
                                                  KMSKey.START_PARAMS)
         desired_filtered = pcf_util.param_filter(self.desired_state_definition,
                                                  KMSKey.START_PARAMS)
-        # Filtering with allowed start params means you will need to supply them in the current
-        # config if you add new possible start params.
+        """
+        The following code does two diff operations. Here is why:
+        
+        The create key API and the describe policy API take/return a JSON formatted string for the 
+        policy. Since the user has to supply a string, and since the operations dealing with the 
+        policy all take a string, the idea of deserializing their input (and the return of the 
+        other APIs) doesn't seem right. It would confuse the update process (assuming update for 
+        policies is introduced), and it would add a bit more serialization than is necessary.
+
+        The solution used here was to keep the policy as a JSON-formatted string in the state 
+        dictionaries. However, this means if a DeepDiff is performed on the strings, there is a 
+        high chance of failure just due to formatting and ordering, even if the policies are the 
+        same. So first, if there is a Policy attribute, do a DeepDiff of just the JSON parsed from 
+        the strings of both, then if they match, remove the elements from the dictionaries. Then 
+        there is another DeepDiff on the rest of the state, which wont fail erroneously now that 
+        the policy strings have been removed.
+
+        There is another fun little detail to note here. By deleting the policy from the desired 
+        state definition, it prevents future lookups of the policy, and comparisons of the policy 
+        with the current state, since both are only performed if the Policy key is present. When 
+        the user goes to update the policy, the key is reintroduced, and this whole process would 
+        happen once more.
+        """
         if 'Policy' in desired_filtered:
             policy_diff = DeepDiff(json.loads(desired_filtered['Policy']),
                                    json.loads(current_filtered['Policy']), ignore_order=True)
             if policy_diff:
                 logger.debug("Key policy is not equivalent for {0} with diff: {1}".format(
                     self.key_name, json.dumps(policy_diff)))
-                return False  # Assumes policy can be corrected with update method
+                logger.warning(
+                    'Update for policies not implemented. Will assert equivalence (incorrectly)')
+                # TODO: Change to return False once policy updates are supported
+                return True
             # Remove policy strings since they are equivalent
             desired_filtered.pop('Policy')
             current_filtered.pop('Policy')
@@ -167,10 +191,7 @@ class KMSKey(AWSResource):
         if not diff or len(diff) == 0:
             return True
         else:
-            # can't json dump function
             print(diff)
-            if diff.get('callbacks'):
-                diff['callbacks'] = {'new': '<function>'}
             logger.debug("State is not equivalent for {0} with diff: {1}".format(
                 self.get_pcf_id(), diff))
             return False
