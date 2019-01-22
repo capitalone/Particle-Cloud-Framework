@@ -1,16 +1,15 @@
-ec2_route53_example_definition = {
+{
     "pcf_name": "pcf-example",  
     "flavor": "ec2_route53",  
     "particles": [{
         "flavor": "ec2_instance",  
-        "multiplier": 2,
+        "multiplier": 1,
         "aws_resource": {
             "custom_config": {
                 "instance_name": "pcf-ec2-test",  
                 "tags": {
                     "OwnerContact": "you@yourcompany.com"
-                },
-
+                }
             },
             "ImageId": "ami-11111111",  
             "InstanceType": "t2.nano",  
