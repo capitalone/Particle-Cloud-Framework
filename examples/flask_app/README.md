@@ -5,7 +5,7 @@
 
 ##
 
-Interact with Flask App Locally using Docker
+Run Flask App Locally with Docker
 ------------
 
 `docker build -t pcf_flask_api .`
@@ -13,7 +13,7 @@ Interact with Flask App Locally using Docker
 `docker run -it -p 5000:5000 pcf_flask_api `
 
 
-Run Flask App Locally with Docker
+Interact with PCF Flask API
 ------------
 Once we have the flask app running locally, we can hit the endpoint to spin up the quasiparticle. 
 First, set the desired configuration in pcf_example_config.json file.
@@ -22,6 +22,9 @@ To spin up the ec2-route53 quasiparticle with the desired configuration:
 
 `curl -X POST http://localhost:5000/pcf`
 
+To spin up multiple ec2 instances, specify the desired count in the request payload:
+
+`curl -X POST --header "Content-Type: application/json" -d "{ \"ec2_multiplier\": 2 }" http://localhost:5000/pcf`
 
 To get the state of the ec2-route53 quasiparticle:
 

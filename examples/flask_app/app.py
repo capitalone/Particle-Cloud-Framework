@@ -12,6 +12,7 @@ with open('pcf_example_config.json', 'r') as f:
     pcf_config = json.load(f)
 
 #Here we initialize the desired state definitions
+ec2_route53_quasiparticle.set_desired_state(State.running)
 
 #GET /pcf endpoint returns the current state of our EC2 Route53 Quasiparticle
 @app.route('/pcf', methods=['GET'])
