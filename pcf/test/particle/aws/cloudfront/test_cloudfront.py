@@ -11,11 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-import moto
-
 from pcf.particle.aws.cloudfront.cloudfront import CloudFront
 from pcf.core import State
+import placebo
+import boto3
 
 
 class TestCloudFront:
@@ -23,25 +22,29 @@ class TestCloudFront:
         "pcf_name": "pcf_cloudfront",
         "flavor": "cloudfront",
         "aws_resource": {
+            "Comment": "pcf-cloud-front2",
+        # used as the uid bc getting a distribution and its tags are separate api calls
             "Tags": [
                 {
                     "Key": "Name",
                     "Value": "cloud-front1"
                 }
             ],
-            "Comment": "pcf-cloud-front", # used as the uid bc getting a distribution and its tags are separate api calls
-            "CallerReference": "sdfa6df5a4sdf5asd7f9asd6fa5sd6f7a8sd9fa8sdf",
+            "CallerReference": "sdfa6df5a4sdf5asd7f9asd6fa5sdcf7a8oilwkerdk0",
             "Origins": {
                 "Quantity": 1,
                 "Items": [
                     {
-                        "Id": "wahoo",
-                        "DomainName": "hoo.com",
+                        "Id": "S3-wah",
+                        "DomainName": "wah.s3.amazonaws.com",
+                        "S3OriginConfig": {
+                            "OriginAccessIdentity": ""
+                        },
                     },
                 ]
             },
             "DefaultCacheBehavior": {
-                "TargetOriginId": "string",
+                "TargetOriginId": "S3-wah",
                 "ForwardedValues": {
                     "QueryString": False,
                     "Cookies": {
@@ -49,32 +52,35 @@ class TestCloudFront:
                     },
                 },
                 "TrustedSigners": {
-                    "Enabled": True,
-                    "Quantity": 12,
+                    "Enabled": False,
+                    "Quantity": 0,
                 },
                 "ViewerProtocolPolicy": "allow-all",
                 "MinTTL": 50,
             },
             "Enabled": True,
+            "PriceClass": "PriceClass_100"
         }
     }
-    """No cloudfront implementaiton in moto"""
-    # @moto.mock_cloudfront
+
     def test_apply_states(self):
-        assert True
-    #     # define particle
-    #     particle = CloudFront(self.particle_definition)
-    #
-    #     # Test start
-    #
-    #     particle.set_desired_state(State.running)
-    #     particle.apply(sync=True)
-    #
-    #     assert particle.get_state() == State.running
-    #
-    #     # Test Terminate
-    #
-    #     particle.set_desired_state(State.terminated)
-    #     particle.apply(sync=True)
-    #
-    #     assert particle.get_state() == State.terminated
+        boto3.setup_default_session()
+        session = boto3.DEFAULT_SESSION
+        pill = placebo.attach(session, data_path='replay')
+        pill.playback()
+        # define particle
+        particle = CloudFront(self.particle_definition)
+
+        # Test start
+
+        particle.set_desired_state(State.running)
+        particle.apply(sync=True)
+
+        assert particle.get_state() == State.running
+
+        # Test Terminate
+
+        particle.set_desired_state(State.terminated)
+        particle.apply(sync=True)
+
+        assert particle.get_state() == State.terminated

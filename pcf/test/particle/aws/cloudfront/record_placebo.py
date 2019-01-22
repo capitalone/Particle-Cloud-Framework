@@ -1,4 +1,4 @@
-# Copyright 2018 Capital One Services, LLC
+# Copyright 2019 Capital One Services, LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,14 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import boto3
+import placebo
 
 from pcf.particle.aws.cloudfront.cloudfront import CloudFront
 from pcf.core import State
-import random
-import string
 
-# Only included required fields. For all fields,
-# https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudfront.html#CloudFront.Client.create_distribution
+
+boto3.setup_default_session()
+session = boto3.DEFAULT_SESSION
+pill = placebo.attach(session, data_path='replay')
+pill.record(services='cloudfront')
+
 particle_definition = {
     "pcf_name": "pcf_cloudfront",
     "flavor": "cloudfront",
@@ -66,8 +70,12 @@ particle_definition = {
 
 particle = CloudFront(particle_definition)
 
+# Test start
+
 particle.set_desired_state(State.running)
 particle.apply(sync=True)
+
+# Test Terminate
 
 particle.set_desired_state(State.terminated)
 particle.apply(sync=True)

@@ -52,7 +52,7 @@ class CloudFront(AWSResource):
         State.terminated: 0,
     }
 
-    UNIQUE_KEYS = ["aws_resource.Comments"]
+    UNIQUE_KEYS = ["aws_resource.Comment"]
 
     def __init__(self, particle_definition):
         """
@@ -104,30 +104,27 @@ class CloudFront(AWSResource):
         Sets the distribution to disabled and waits until it is finished
         """
         status = self.client.get_distribution(Id=self._id)
+        # wait if the distribution is already being updated
         if status.get('Distribution', {}).get('DistributionConfig', {}).get('Enabled', False):
-            self.desired_state_definition["Enabled"] = False
+            # using the current definition from get_distribution() to fill in all the extra required fields
+            self.current_state_definition["Enabled"] = False
             self.client.update_distribution(
-                DistributionConfig=self.desired_state_definition,
+                DistributionConfig=self.current_state_definition,
                 Id=self._id,
                 IfMatch=self._ifMatch
             )
-            print("Waiting for disabling the distribution...This may take a while....")
-            timeout_min = 60
-            wait_until = datetime.now() + timedelta(minutes=timeout_min)
-            while 1:
-                # check for timeout
-                if wait_until < datetime.now():
-                    # timeout
-                    print("Distribution took too long to disable. Exiting")
-                    return
-                # check status
-                status = self.client.get_distribution(Id=self._id)
-                if status.get('Distribution', {}).get('DistributionConfig', {}).get('Enabled', False) and status.get("Distribution", {}).get("Status") == 'Deployed':
-                    self._ifMatch = status.get("ETag")
-                    return
-                # wait
-                print("Not completed yet. Sleeping 60 seconds....")
-                time.sleep(60)
+        print("Waiting for disabled distribution... This may take a while")
+        timeout_min = 60
+        wait_until = datetime.now() + timedelta(minutes=timeout_min)
+        while status.get("Distribution", {}).get("Status") == "InProgress":
+            print("Not completed yet. Sleeping 3 mins....")
+            time.sleep(180)
+            # check for timeout
+            if wait_until < datetime.now():
+                # timeout
+                raise Exception("Distribution took too long to disable")
+            # check status
+            status = self.client.get_distribution(Id=self._id)
 
     def _update(self):
         """
@@ -139,22 +136,29 @@ class CloudFront(AWSResource):
         """
         Gets the current definition of the cloudfront distribution
         Must list all distributions and search for matching comment field, bc
-        no filtering by name or tagging exists for this resource
+        no filtering by name and getting tags require another api call
 
         Returns:
             current definition of the distribution
         """
-        response = self.client.list_distributions().get("DistributionList")
-        distribution_list = response.get("Items")
-        while response.get("IsTruncated", False):
-            response = self.client.list_distributions(Marker=response.get("NextMarker")).get("DistributionList")
-            distribution_list += response.get("Items")
-        for distribution in distribution_list:
-            if distribution.get("Comment") == self.desired_state_definition.get("Comment"):
-                self._id = distribution.get("Id")
-                status = self.client.get_distribution(Id=self._id)
-                self._ifMatch = status.get("ETag")
-                return distribution
+        if not self._id:
+            response = self.client.list_distributions().get("DistributionList", {})
+            distribution_list = response.get("Items", {})
+            while response.get("IsTruncated", False):
+                response = self.client.list_distributions(Marker=response.get("NextMarker")).get("DistributionList")
+                distribution_list += response.get("Items")
+            if len(distribution_list) < 1:
+                return None
+            for distribution in distribution_list:
+                # use comment as uid
+                if distribution.get("Comment") == self.desired_state_definition.get("Comment"):
+                    self._id = distribution.get("Id")
+        try:
+            status = self.client.get_distribution(Id=self._id)
+        except:
+            return None
+        self._ifMatch = status.get("ETag")
+        return status.get("Distribution", {}).get("DistributionConfig", {})
 
     def sync_state(self):
         """
