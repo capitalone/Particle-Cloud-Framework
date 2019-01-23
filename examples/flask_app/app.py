@@ -12,7 +12,7 @@ with open('pcf_example_config.json', 'r') as f:
     pcf_config = json.load(f)
 
 #Here we initialize the desired state definitions
-ec2_route53_quasiparticle.set_desired_state(State.running)
+ec2_route53_quasiparticle = EC2Route53(pcf_config)
 
 #GET /pcf endpoint returns the current state of our EC2 Route53 Quasiparticle
 @app.route('/pcf', methods=['GET'])
@@ -22,13 +22,13 @@ def get_pcf_status():
 #POST /pcf endpoint creates the EC2 Route53 Quasiparticle with the desired configuration
 @app.route('/pcf', methods=['POST'])
 def create():
-    ec2_route53_quasiparticle.set_desired_state(State.running)
-
     if request.data:
         payload = json.loads(request.data)
         multiplier = payload.get('ec2_multiplier')
         pcf_config['particles'][0]['multiplier'] = multiplier
         ec2_route53_quasiparticle = EC2Route53(pcf_config)
+        
+    ec2_route53_quasiparticle.set_desired_state(State.running)
 
     try:
         ec2_route53_quasiparticle.apply(sync=True)
