@@ -54,12 +54,12 @@ class CloudFront(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.Comment"]
 
-    def __init__(self, particle_definition):
+    def __init__(self, particle_definition, session=None):
         """
         Args:
             particle_definition (definition): desired configuration of the particle
         """
-        super(CloudFront, self).__init__(particle_definition, 'cloudfront')
+        super(CloudFront, self).__init__(particle_definition, 'cloudfront', session=session)
         self._id = None
         self._ifMatch = None
 

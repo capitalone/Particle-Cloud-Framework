@@ -35,12 +35,13 @@ class AWSResource(Particle):
 
         self._client = None
         self._resource = None
+        self._session = session
 
     @property
     def client(self):
         if not self._client:
             region_name = self.particle_definition["aws_resource"].get("region_name")
-            self._client = self._get_client(None, region_name=region_name)
+            self._client = self._get_client(self._session, region_name=region_name)
         return self._client
 
     @property
@@ -48,7 +49,7 @@ class AWSResource(Particle):
         """Returns the aws resource object"""
         if not self._resource:
             region_name = self.particle_definition["aws_resource"].get("region_name")
-            self._resource = self._get_resource(None, region_name=region_name)
+            self._resource = self._get_resource(self._session, region_name=region_name)
         return self._resource
 
     def _get_client(self, session, **kwargs):

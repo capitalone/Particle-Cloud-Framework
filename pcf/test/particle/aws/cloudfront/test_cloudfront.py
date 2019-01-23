@@ -15,6 +15,7 @@ from pcf.particle.aws.cloudfront.cloudfront import CloudFront
 from pcf.core import State
 import placebo
 import boto3
+import sys
 
 
 class TestCloudFront:
@@ -64,12 +65,11 @@ class TestCloudFront:
     }
 
     def test_apply_states(self):
-        boto3.setup_default_session()
-        session = boto3.DEFAULT_SESSION
-        pill = placebo.attach(session, data_path='replay')
+        session = boto3.Session()
+        pill = placebo.attach(session, data_path=sys.path[0]+"/replay")
         pill.playback()
         # define particle
-        particle = CloudFront(self.particle_definition)
+        particle = CloudFront(self.particle_definition, session)
 
         # Test start
 
@@ -84,3 +84,4 @@ class TestCloudFront:
         particle.apply(sync=True)
 
         assert particle.get_state() == State.terminated
+        pill.stop()
