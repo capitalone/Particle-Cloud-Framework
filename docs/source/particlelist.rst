@@ -14,6 +14,12 @@ ALB
 
    pcf.particle.aws.ec2.alb
 
+CloudFront
+----------------------------
+.. toctree::
+   :maxdepth: 2
+
+   pcf.particle.aws.cloudfront
 
 Cloudwatch
 --------------------------
