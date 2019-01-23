@@ -15,7 +15,7 @@ from pcf.particle.aws.cloudfront.cloudfront import CloudFront
 from pcf.core import State
 import placebo
 import boto3
-import sys
+import os
 
 
 class TestCloudFront:
@@ -66,7 +66,9 @@ class TestCloudFront:
 
     def test_apply_states(self):
         session = boto3.Session()
-        pill = placebo.attach(session, data_path=sys.path[0]+"/replay")
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, 'replay')
+        pill = placebo.attach(session, data_path=filename)
         pill.playback()
         # define particle
         particle = CloudFront(self.particle_definition, session)
