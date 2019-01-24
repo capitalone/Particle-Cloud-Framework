@@ -7,12 +7,12 @@ pytest-mock==1.8.0
 pytest-env==0.6.2
 coverage==4.4.1
 boto==2.48.0
-boto3==1.8.5
+boto3==1.9.76
 Jinja2==2.9.6
 moto==1.3.7
 mock==2.0.0
 google-cloud-storage==1.10.0
 google-api-python-client==1.7.4
 commentjson==0.7.1
-botocore==1.10.67
 deepdiff==3.3.0
+placebo==0.8.2
