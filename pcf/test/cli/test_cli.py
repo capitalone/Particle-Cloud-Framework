@@ -7,7 +7,6 @@ from pcf.cli.cli import cli, PCFCLI
 
 
 class TestCli:
-
     @pytest.mark.parametrize("flag", ["-v", "--version"])
     def test_cli_prints_version(self, flag, cli_runner):
         result = cli_runner.invoke(cli, [flag])

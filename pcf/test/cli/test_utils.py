@@ -163,34 +163,6 @@ class TestUtils:
                 assert "Error reading PCF config file" in stdout
 
     @staticmethod
-    def test_pkg_submodules():
-        """ Ensure submodule lists are returned given a module object or name """
-        expected_command_modules = (apply, run, stop, terminate)
-        commands_result = pkg_submodules(commands)
-        assert all(cmd_mod in commands_result for cmd_mod in expected_command_modules)
-
-        expected_aws_modules = (ec2, s3, iam, cloudwatch, elb)
-        aws_results = pkg_submodules("pcf.particle.aws")
-        assert (aws_mod in aws_results for aws_mod in expected_aws_modules)
-
-    @staticmethod
-    def test_pkg_submodules_nonexistent_module():
-        """ Ensure an empty list is returned for non-importable/nonexistent modules """
-        result = pkg_submodules("non-existent-module")
-        assert result == []
-
-    @staticmethod
-    def test_particle_class_from_flavor():
-        """ Ensure Particle/Quasiparticle classes are returned if the flavor exists """
-        ec2_instance_class = particle_class_from_flavor("ec2_instance")
-        ecs_instance_quasi_class = particle_class_from_flavor("ecs_instance_quasi")
-        no_particle_class = particle_class_from_flavor("no particle for this flavor")
-
-        assert ec2_instance_class == EC2Instance
-        assert ecs_instance_quasi_class == ECSInstanceQuasi
-        assert no_particle_class is None
-
-    @staticmethod
     @pytest.mark.parametrize("filename", ["pcf.json", "pcf.yml", "pcf.yaml"])
     def test_particle_from_file(filename, copy_pcf_config_file, cli_runner):
         """ Ensure individual Particle/Quasiparticle configs are loaded from files
@@ -290,13 +262,17 @@ class TestUtils:
 
     @staticmethod
     @patch.object(EC2Instance, "apply", side_effect=MaxTimeoutException())
-    def test_execute_applying_command_timeout(apply_mock, cli_runner, copy_pcf_config_file, capsys):
+    def test_execute_applying_command_timeout(
+        apply_mock, cli_runner, copy_pcf_config_file, capsys
+    ):
         """ Ensure errors thrown when max timeouts are reached """
         with cli_runner.isolated_filesystem():
             copy_pcf_config_file("pcf.json")
 
             with pytest.raises(SystemExit) as sys_exit:
-                execute_applying_command("test_ec2", "pcf.json", "running", quiet=True, timeout=50)
+                execute_applying_command(
+                    "test_ec2", "pcf.json", "running", quiet=True, timeout=50
+                )
                 stdout, _ = capsys.readouterr()
                 assert sys_exit.value.code == 1
                 assert apply_mock.called
