@@ -13,6 +13,17 @@ from Levenshtein import distance
 from pcf.core import State
 
 
+def click_options(options):
+    """ Decorator used to add a list of click.options to click command functions """
+
+    def _add_options(func):
+        for option in options:
+            func = option(func)
+        return func
+
+    return _add_options
+
+
 def color(color):
     """ Return the desired color name or None if the NO_COLOR env var is set
         https://no-color.org
