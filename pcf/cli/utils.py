@@ -130,7 +130,7 @@ def read_config_file(filename):
             fail("Error reading PCF config file {0}:\n\n{1}".format(filename, error))
 
 
-def particle_from_file(pcf_name, filename):
+def particle_from_file(pcf_name, filename, quiet=False):
     """ Search for the Particle class object of the desired flavor as specified in
         the given config file and return it
     """
@@ -146,8 +146,17 @@ def particle_from_file(pcf_name, filename):
 
         if name.strip() == pcf_name.strip():
             flavor = particle.get("flavor")
+
             if flavor is None:
                 fail("Error: No flavor specified in {} configuration".format(pcf_name))
+            else:
+                if not quiet:
+                    click.secho(
+                        "Loading Particle/Quasiparticle flavor {0} for {1}...".format(
+                            flavor, pcf_name
+                        ),
+                        fg=color("blue"),
+                    )
 
             particle_class = particle_class_from_flavor(str(flavor).strip())
             if particle_class is None:
@@ -180,13 +189,8 @@ def execute_applying_command(
         the config_file. Used for apply, run, stop, and terminate commands. Contains
         CLI output for info.
     """
-    if not quiet:
-        click.secho(
-            "Loading Particle/Quasiparticle flavor for {0}...".format(pcf_name),
-            fg=color("blue"),
-        )
 
-    particle = particle_from_file(pcf_name, config_file)
+    particle = particle_from_file(pcf_name, config_file, quiet=quiet)
 
     if not quiet:
         click.secho(
@@ -202,7 +206,7 @@ def execute_applying_command(
     try:
         particle.apply(cascade=cascade, max_timeout=timeout)
     except pcf_exceptions.MaxTimeoutException:
-        fail("Error: Max timeout of {} seconds reached".format(timeout))
+        fail("Error: Max timeout of {0} seconds reached".format(timeout))
 
     if not quiet:
         click.secho(
