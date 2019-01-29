@@ -170,7 +170,7 @@ class TestUtils:
         """
         with cli_runner.isolated_filesystem():
             copy_pcf_config_file(filename)
-            particle_instance = particle_from_file("test_ec2", filename)
+            particle_instance = particles_from_file("test_ec2", filename)[0]
             assert isinstance(particle_instance, EC2Instance)
 
     @staticmethod
@@ -180,7 +180,7 @@ class TestUtils:
             copy_pcf_config_file("pcf.yml")
 
             with pytest.raises(SystemExit) as sys_exit:
-                particle_from_file("no_flavor_particle", "pcf.yml")
+                particles_from_file("no_flavor_particle", "pcf.yml")
                 stdout, _ = capsys.readouterr()
                 assert sys_exit.value.code == 1
                 assert "Error: No flavor specified in no_flavor_particle" in stdout
@@ -191,10 +191,10 @@ class TestUtils:
     ):
         """ Ensure an error is shown when a particle specifies an unsupported flavor """
         with cli_runner.isolated_filesystem():
-            copy_pcf_config_file("pcf.yml")
+            copy_pcf_config_file("no_flavor.yml")
 
             with pytest.raises(SystemExit) as sys_exit:
-                particle_from_file("unsupported_flavor_particle", "pcf.yml")
+                particles_from_file("unsupported_flavor_particle", "no_flavor.yml")
                 stdout, _ = capsys.readouterr()
                 assert sys_exit.value.code == 1
                 assert "unsupported_flavor is not a supported" in stdout
@@ -206,7 +206,7 @@ class TestUtils:
             copy_pcf_config_file("pcf.yml")
 
             with pytest.raises(SystemExit) as sys_exit:
-                particle_from_file("unspecified", "pcf.yml")
+                particles_from_file("unspecified", "pcf.yml")
                 stdout, _ = capsys.readouterr()
                 assert sys_exit.value.code == 1
                 assert (
@@ -220,7 +220,7 @@ class TestUtils:
             copy_pcf_config_file("pcf.yml")
 
             with pytest.raises(SystemExit) as sys_exit:
-                particle_from_file("test_ec3", "pcf.yml")
+                particles_from_file("test_ec3", "pcf.yml")
                 stdout, _ = capsys.readouterr()
                 assert sys_exit.value.code == 1
                 assert "could not find Particle or Quasiparticle 'test_ec3'" in stdout

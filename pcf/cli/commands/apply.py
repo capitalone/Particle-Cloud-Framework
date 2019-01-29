@@ -15,7 +15,7 @@ from pcf.cli.commands import COMMON_OPTIONS
     help="The desired state to set for your infrastructure",
 )
 @click_options(COMMON_OPTIONS)
-@click.argument("pcf_name", required=True)
+@click.argument("pcf_name", required=False)
 @click.pass_context
 def apply(ctx, pcf_name, cascade, quiet, file_, timeout, state):
     """ Set a desired state and apply changes to your infrastructure
@@ -24,6 +24,9 @@ def apply(ctx, pcf_name, cascade, quiet, file_, timeout, state):
         PCF config file, e.g.
 
             pcf apply my_ec2_instance
+
+        If no PCF_NAME is specified, this command will set the desired state given for
+        all Particles and Quasiparticles in your PCF config file.
     """
 
     execute_applying_command(
