@@ -6,9 +6,11 @@ docs:
 docs-add:
 	cd docs; sphinx-apidoc -o source ../pcf ../pcf/test/*
 
-pypi-build:
+build:
 	export PCF_TAG=$(PCF_TAG)
 	python setup.py bdist_wheel
+
+publish:
 	python -m twine upload dist/*
 
 lint:
