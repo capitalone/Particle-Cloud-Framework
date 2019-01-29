@@ -16,6 +16,7 @@ import os
 from glob import glob
 from pathlib import Path
 from setuptools import setup, find_packages
+from pcf import VERSION
 
 
 def read(fname):
@@ -24,7 +25,7 @@ def read(fname):
 
 setup(
     name='pcf',
-    version=os.environ.get('PCF_TAG', '0.1.1'),
+    version=os.environ.get('PCF_TAG', VERSION),
     description='pcf',
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
