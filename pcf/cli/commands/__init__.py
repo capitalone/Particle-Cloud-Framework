@@ -22,4 +22,10 @@ COMMON_OPTIONS = [
         is_flag=True,
         help="Apply state transitions to all family members",
     ),
+    click.option(
+        "-t",
+        "--timeout",
+        type=int,
+        help="The maximum number of seconds to wait before a timeout error is thrown",
+    ),
 ]

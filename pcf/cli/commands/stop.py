@@ -12,7 +12,7 @@ from pcf.cli.commands import COMMON_OPTIONS
 @click_options(COMMON_OPTIONS)
 @click.argument("pcf_name", required=True)
 @click.pass_context
-def stop(ctx, pcf_name, cascade, quiet, file_):
+def stop(ctx, pcf_name, cascade, quiet, file_, timeout):
     """ Set desired state to 'stopped' and apply changes
 
         PCF_NAME : The deployment name to apply changes to as specified in your
@@ -21,4 +21,6 @@ def stop(ctx, pcf_name, cascade, quiet, file_):
             pcf stop my_ec2_instance
     """
 
-    execute_applying_command(pcf_name, file_, "stopped", cascade=cascade, quiet=quiet)
+    execute_applying_command(
+        pcf_name, file_, "stopped", cascade=cascade, quiet=quiet, timeout=timeout
+    )
