@@ -11,6 +11,7 @@ from pcf.particle.aws import ec2, s3, iam, cloudwatch
 from pcf.particle.aws.ec2 import elb
 from pcf.particle.aws.ec2.ec2_instance import EC2Instance
 from pcf.quasiparticle.aws.ecs_instance_quasi.ecs_instance_quasi import ECSInstanceQuasi
+from pcf.core.pcf_exceptions import MaxTimeoutException
 
 
 class TestUtils:
@@ -286,3 +287,17 @@ class TestUtils:
             stdout, _ = capsys.readouterr()
             assert "" == stdout
             assert apply_mock.called
+
+    @staticmethod
+    @patch.object(EC2Instance, "apply", side_effect=MaxTimeoutException())
+    def test_execute_applying_command_timeout(apply_mock, cli_runner, copy_pcf_config_file, capsys):
+        """ Ensure errors thrown when max timeouts are reached """
+        with cli_runner.isolated_filesystem():
+            copy_pcf_config_file("pcf.json")
+
+            with pytest.raises(SystemExit) as sys_exit:
+                execute_applying_command("test_ec2", "pcf.json", "running", quiet=True, timeout=50)
+                stdout, _ = capsys.readouterr()
+                assert sys_exit.value.code == 1
+                assert apply_mock.called
+                assert "Error: Max timeout of 50 seconds reached" in stdout

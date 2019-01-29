@@ -11,6 +11,7 @@ import importlib
 from math import ceil
 from Levenshtein import distance
 from pcf.core import State
+from pcf.core import pcf_exceptions
 
 
 def click_options(options):
@@ -216,7 +217,7 @@ def particle_from_file(pcf_name, filename):
 
 
 def execute_applying_command(
-    pcf_name, config_file, desired_state, cascade=False, quiet=False
+    pcf_name, config_file, desired_state, cascade=False, quiet=False, timeout=None
 ):
     """ Executes the apply command for the desired particle and state as specified in
         the config_file. Used for apply, run, stop, and terminate commands. Contains
@@ -241,7 +242,10 @@ def execute_applying_command(
     if not quiet:
         click.secho("Applying changes to {0}...".format(pcf_name), fg=color("blue"))
 
-    particle.apply(cascade=cascade)
+    try:
+        particle.apply(cascade=cascade, max_timeout=timeout)
+    except pcf_exceptions.MaxTimeoutException:
+        fail("Error: Max timeout of {} seconds reached".format(timeout))
 
     if not quiet:
         click.secho(

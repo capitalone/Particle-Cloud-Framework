@@ -17,7 +17,7 @@ from pcf.cli.commands import COMMON_OPTIONS
 @click_options(COMMON_OPTIONS)
 @click.argument("pcf_name", required=True)
 @click.pass_context
-def apply(ctx, pcf_name, cascade, quiet, file_, state):
+def apply(ctx, pcf_name, cascade, quiet, file_, timeout, state):
     """ Set a desired state and apply changes to your infrastructure
 
         PCF_NAME : The deployment name to apply changes to as specified in your
@@ -26,4 +26,6 @@ def apply(ctx, pcf_name, cascade, quiet, file_, state):
             pcf apply my_ec2_instance
     """
 
-    execute_applying_command(pcf_name, file_, state, cascade=cascade, quiet=quiet)
+    execute_applying_command(
+        pcf_name, file_, state, cascade=cascade, quiet=quiet, timeout=timeout
+    )
