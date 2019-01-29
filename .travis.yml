@@ -8,9 +8,10 @@ matrix:
       dist: xenial
       sudo: true
 
-install: pip install invoke
+install:
+  - pip install invoke
+  - pip install -r requirements.txt -r requirements-dev.txt
 
 script:
-  - invoke setup
   - invoke test
   - invoke build
