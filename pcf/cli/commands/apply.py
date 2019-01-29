@@ -1,19 +1,11 @@
 """ Logic for pcf apply command """
 
 import click
-from pcf.cli.utils import execute_applying_command
+from pcf.cli.utils import execute_applying_command, click_options
+from pcf.cli.commands import COMMON_OPTIONS
 
 
 @click.command(name="apply", short_help="Set a desired state and apply changes")
-@click.option(
-    "-f",
-    "--file",
-    "file_",
-    type=click.Path(dir_okay=False, resolve_path=True),
-    default="pcf.json",
-    show_default=True,
-    help="The JSON or YAML file defining your infrastructure configuration",
-)
 @click.option(
     "-s",
     "--state",
@@ -22,18 +14,7 @@ from pcf.cli.utils import execute_applying_command
     show_default=True,
     help="The desired state to set for your infrastructure",
 )
-@click.option(
-    "-q",
-    "--quiet",
-    is_flag=True,
-    help="Execute apply in quiet mode (No output except for errors)",
-)
-@click.option(
-    "-c",
-    "--cascade",
-    is_flag=True,
-    help="Apply state transitions to all family members",
-)
+@click_options(COMMON_OPTIONS)
 @click.argument("pcf_name", required=True)
 @click.pass_context
 def apply(ctx, pcf_name, cascade, quiet, file_, state):
