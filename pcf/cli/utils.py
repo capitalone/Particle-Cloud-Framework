@@ -12,6 +12,7 @@ from math import ceil
 from Levenshtein import distance
 from pcf.core import State
 from pcf.core import pcf_exceptions
+from pcf.util.pcf_util import particle_class_from_flavor
 
 
 def click_options(options):
@@ -127,50 +128,6 @@ def read_config_file(filename):
 
         except (ValueError, yaml.YAMLError) as error:
             fail("Error reading PCF config file {0}:\n\n{1}".format(filename, error))
-
-
-def pkg_submodules(package, recursive=True):
-    """ Return a list of all submodules in a given package, recursively by default """
-
-    if isinstance(package, str):
-        try:
-            package = importlib.import_module(package)
-        except ImportError:
-            return []
-
-    submodules = []
-    for _loader, name, is_pkg in pkgutil.walk_packages(package.__path__):
-        full_name = package.__name__ + "." + name
-
-        try:
-            submodules.append(importlib.import_module(full_name))
-        except ImportError:
-            continue
-
-        if recursive and is_pkg:
-            submodules += pkg_submodules(full_name)
-
-    return submodules
-
-
-def particle_class_from_flavor(flavor):
-    """ Return the class object of the given flavor (or None) by searching
-        through all particle and quasiparticle submodules in the pcf module
-    """
-
-    particle_submodules = pkg_submodules("pcf.particle")
-    quasiparticle_submodules = pkg_submodules("pcf.quasiparticle")
-    modules = particle_submodules + quasiparticle_submodules
-
-    for module in modules:
-        classes = inspect.getmembers(module, inspect.isclass)
-
-        if classes:
-            for _name, class_obj in classes:
-                if getattr(class_obj, "flavor", None) == flavor:
-                    return class_obj
-
-    return None
 
 
 def particle_from_file(pcf_name, filename):
