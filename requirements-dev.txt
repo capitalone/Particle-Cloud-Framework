@@ -10,3 +10,4 @@ mock==2.0.0
 pylint==2.2.2
 twine==1.12.1
 placebo==0.8.2
+pyopenssl==19.0.0
