@@ -3,6 +3,7 @@
 !.editorconfig
 !.lgtmeow
 !.pylintrc
+!.coveragerc
 !.travis.yml
 *.iml
 *.pyc
