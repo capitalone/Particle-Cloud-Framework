@@ -58,3 +58,25 @@ class TestApply:
             assert expected in result.output
             assert result.exit_code == 0
             assert apply_mock.called
+
+    @patch.object(EC2Instance, "apply", return_value=None)
+    @pytest.mark.parametrize(
+        "config_file", ["custom.json", "custom.yml", "custom.yaml"]
+    )
+    def test_apply_with_no_pcf_name_given(
+        self, apply_mock, config_file, cli_runner, copy_pcf_config_file
+    ):
+        """ Ensure the apply command will execute apply for all Particles/Quasiparticles
+            if no pcf_name arg is passed to the command
+        """
+
+        with cli_runner.isolated_filesystem():
+            copy_pcf_config_file(config_file)
+            result = cli_runner.invoke(apply, ["-f", config_file])
+
+            expected = "Setting desired state of {0} to {1}".format(
+                self.particle_pcf_name, "running"
+            )
+            assert expected in result.output
+            assert result.exit_code == 0
+            assert apply_mock.called

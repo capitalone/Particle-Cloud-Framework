@@ -130,26 +130,40 @@ def read_config_file(filename):
             fail("Error reading PCF config file {0}:\n\n{1}".format(filename, error))
 
 
-def particle_from_file(pcf_name, filename, quiet=False):
-    """ Search for the Particle class object of the desired flavor as specified in
-        the given config file and return it
+def particle_class_instance(flavor, particle_config):
+    """ Return a particle class from a flavor or handle CLI error message """
+    particle_class = particle_class_from_flavor(str(flavor).strip())
+    if particle_class is None:
+        fail(
+            "Error: {} is not a supported Particle or Quasiparticle flavor ".format(
+                flavor
+            )
+        )
+    else:
+        return particle_class(particle_config)
+
+
+def particles_from_file(pcf_name, filename, quiet=False):
+    """ Return a list of Particles from a PCF config file, returning only one Particle
+        if pcf_name is not None
     """
     pcf_config, used_config_filename = load_pcf_config_from_file(filename)
 
     user_pcf_names = []
+    particles_to_return = []
     for particle in pcf_config:
         if not isinstance(particle, dict):
             continue
 
         name = particle.get("pcf_name")
+        flavor = particle.get("flavor")
         user_pcf_names.append(name)
 
-        if name.strip() == pcf_name.strip():
-            flavor = particle.get("flavor")
+        if flavor is None:
+            fail("Error: No flavor specified in {} configuration".format(name))
 
-            if flavor is None:
-                fail("Error: No flavor specified in {} configuration".format(pcf_name))
-            else:
+        if pcf_name:
+            if name.strip() == pcf_name.strip():
                 if not quiet:
                     click.secho(
                         "Loading Particle/Quasiparticle flavor {0} for {1}...".format(
@@ -157,58 +171,59 @@ def particle_from_file(pcf_name, filename, quiet=False):
                         ),
                         fg=color("blue"),
                     )
+                return [particle_class_instance(flavor, particle)]
+        else:
+            particles_to_return.append(particle_class_instance(flavor, particle))
 
-            particle_class = particle_class_from_flavor(str(flavor).strip())
-            if particle_class is None:
-                fail(
-                    "Error: {} is not a supported Particle or Quasiparticle flavor ".format(
-                        flavor
-                    )
-                )
-            else:
-                return particle_class(particle)
+    if pcf_name:
+        click.secho(
+            "Error: could not find Particle or Quasiparticle '{0}' in {1}".format(
+                pcf_name, os.path.basename(used_config_filename)
+            ),
+            fg=color("red"),
+        )
 
-    click.secho(
-        "Error: could not find Particle or Quasiparticle '{0}' in {1}".format(
-            pcf_name, os.path.basename(used_config_filename)
-        ),
-        fg=color("red"),
-    )
-
-    similar_names = similar_strings(pcf_name, user_pcf_names)
-    if similar_names:
-        did_you_mean(similar_names)
+        similar_names = similar_strings(pcf_name, user_pcf_names)
+        if similar_names:
+            did_you_mean(similar_names)
+        else:
+            sys.exit(1)
     else:
-        sys.exit(1)
+        return particles_to_return
 
 
 def execute_applying_command(
     pcf_name, config_file, desired_state, cascade=False, quiet=False, timeout=None
 ):
-    """ Executes the apply command for the desired particle and state as specified in
+    """ Executes the apply command for the desired particle(s) and state as specified in
         the config_file. Used for apply, run, stop, and terminate commands. Contains
         CLI output for info.
     """
+    particles = particles_from_file(pcf_name, config_file, quiet=quiet)
 
-    particle = particle_from_file(pcf_name, config_file, quiet=quiet)
+    for particle in particles:
+        pcf_name = particle.name
 
-    if not quiet:
-        click.secho(
-            "Setting desired state of {0} to {1}...".format(pcf_name, desired_state),
-            fg=color("blue"),
-        )
+        if not quiet:
+            click.secho(
+                "Setting desired state of {0} to {1}...".format(
+                    pcf_name, desired_state
+                ),
+                fg=color("blue"),
+            )
 
-    particle.set_desired_state(getattr(State, desired_state))
+        particle.set_desired_state(getattr(State, desired_state))
 
-    if not quiet:
-        click.secho("Applying changes to {0}...".format(pcf_name), fg=color("blue"))
+        if not quiet:
+            click.secho("Applying changes to {0}...".format(pcf_name), fg=color("blue"))
 
-    try:
-        particle.apply(cascade=cascade, max_timeout=timeout)
-    except pcf_exceptions.MaxTimeoutException:
-        fail("Error: Max timeout of {0} seconds reached".format(timeout))
+        try:
+            particle.apply(cascade=cascade, max_timeout=timeout)
+        except pcf_exceptions.MaxTimeoutException:
+            fail("Error: Max timeout of {0} seconds reached".format(timeout))
 
-    if not quiet:
-        click.secho(
-            "Successfully applied changes to {0}".format(pcf_name), fg=color("green")
-        )
+        if not quiet:
+            click.secho(
+                "Successfully applied changes to {0}".format(pcf_name),
+                fg=color("green"),
+            )
