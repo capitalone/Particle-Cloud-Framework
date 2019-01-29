@@ -11,5 +11,8 @@ pypi-build:
 	python setup.py bdist_wheel
 	python -m twine upload dist/*
 
+lint:
+	pylint pcf
+
 test:
 	pytest --cov-config .coveragerc --cov=pcf --cov-report term-missing
