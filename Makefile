@@ -13,6 +13,8 @@ build:
 publish:
 	python -m twine upload dist/*
 
+pypi-build: build publish
+
 lint:
 	pylint pcf
 
