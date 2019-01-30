@@ -1,3 +1,5 @@
+from pcf.util import pcf_util
+
 base_particle = {
     "pcf_name":"PCF_NAME",
     "flavor":"FLAVOR",
@@ -26,10 +28,23 @@ class PropertyConversion(Conversion):
     pcf_field="aws_resource"
 
 
+class RefConversion(Conversion):
+
+    cft_field="Ref"
+    pcf_field="lookup"
+
+    def convert(self):
+        var_list = pcf_util.find_nested_keys(self.cft_def,"Ref")
+        for (nested_key, id_var) in var_list:
+            if nested_key == "Ref":
+                print(id_var)
+
+
 class ConvertResource:
 
     CONVERSIONS= [
-        PropertyConversion
+        PropertyConversion,
+        RefConversion
     ]
 
     def __init__(self,cft_resource):

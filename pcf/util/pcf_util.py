@@ -243,6 +243,37 @@ def find_nested_vars(curr_dict, nested_key=None, var_list=[]):
     return var_list
 
 
+def find_nested_keys(curr_dict, search_key, nested_key=None, var_list=[]):
+    """
+    Returns a list of tuples with the nested keys and its value
+
+    Args:
+        curr_dict (dict): dictionary (can be nested)
+        key (str): key's that are being searched for
+        nested_key (str): used for keeping track of nested keys for easy replaces later on
+        var_list (list of tuples): used to keep track of all key, var keep pair during recursion
+
+    Returns:
+         [(nested_key, value), ... ]
+    """
+    for key, value in curr_dict.items():
+        if nested_key:
+            new_nested_key = nested_key + '.' + key
+        else:
+            new_nested_key = key
+
+        if isinstance(value, dict):
+            find_nested_keys(value, search_key=search_key, nested_key=new_nested_key, var_list=var_list)
+        elif isinstance(value, list):
+            for item in value:
+                if isinstance(item, dict) or isinstance(item, list):
+                    find_nested_keys(item, search_key=search_key, nested_key=new_nested_key, var_list=var_list)
+
+        if key == search_key:
+            var_list.append((new_nested_key, value))
+
+    return var_list
+
 def param_filter(curr_dict, key_set, remove=False):
     """
     Filters param dictionary to only have keys in the key set
