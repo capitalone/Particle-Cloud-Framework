@@ -1,6 +1,7 @@
 # What is Just in Time Infrastructure
 Just in Time Infrastructure (JiTI) is a deployment model in which the entire infrastructure required for an application is written in code and deployed with the same life cycles alongside
-the application. Check our docs for more infomation on JiTI and the benifits this provides.
+the application. This ensures that your infrastructure code is always the most recent version, providing security and resiliency. JiTI also makes it easier to share and deploy your
+application into different accounts since there are no account specific configurations or dependencies. Check our docs for more information on JiTI and the benefits this provides.
 
 # What does this example do?
 - This example deploys an ec2 (application layer) alongside all required infrastructure pieces and then proceeds to terminate them all. This example requires no configuration
