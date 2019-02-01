@@ -200,8 +200,29 @@ def execute_applying_command(
         CLI output for info.
     """
     particles = particles_from_file(pcf_name, config_file, quiet=quiet)
+    num_particles = len(particles)
 
-    for particle in particles:
+    if num_particles == 0:
+        click.secho("No particle or quaisparticle definitions found.")
+
+    elif num_particles > 1:
+        with click.progressbar(
+            particles,
+            label="Applying changes to {} particles".format(num_particles),
+            length=num_particles,
+        ) as particle_progress:
+
+            for particle in particle_progress:
+                pcf_name = particle.name
+                particle.set_desired_state(getattr(State, desired_state))
+
+                try:
+                    particle.apply(cascade=cascade, max_timeout=timeout)
+                except pcf_exceptions.MaxTimeoutException:
+                    fail("Error: Max timeout of {0} seconds reached".format(timeout))
+
+    else:
+        particle = particles[0]
         pcf_name = particle.name
 
         if not quiet:
