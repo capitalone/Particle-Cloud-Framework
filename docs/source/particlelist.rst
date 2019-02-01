@@ -14,6 +14,12 @@ ALB
 
    pcf.particle.aws.ec2.alb
 
+CloudFront
+----------------------------
+.. toctree::
+   :maxdepth: 2
+
+   pcf.particle.aws.cloudfront
 
 Cloudwatch
 --------------------------
@@ -75,6 +81,13 @@ IAM
    :maxdepth: 2
 
    pcf.particle.aws.iam
+
+KMS
+--------------------------
+.. toctree::
+   :maxdepth: 2
+
+   pcf.particle.aws.kms
 
 LambdaFunction
 --------------------------
