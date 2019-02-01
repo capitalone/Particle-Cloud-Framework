@@ -11,7 +11,7 @@ from pcf.cli.commands import COMMON_APPLY_OPTIONS
 @click.argument("pcf_name", required=False)
 @click.pass_context
 def run(ctx, pcf_name, cascade, quiet, file_, timeout):
-    """ Set desired state to 'running' and apply changes\n
+    """ Set desired state to 'running' and apply
 
         PCF_NAME : The deployment name to apply changes to as specified in your
         PCF config file, e.g.
