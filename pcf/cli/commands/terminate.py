@@ -13,7 +13,7 @@ from pcf.cli.commands import COMMON_APPLY_OPTIONS
 @click.argument("pcf_name", required=False)
 @click.pass_context
 def terminate(ctx, pcf_name, cascade, quiet, file_, timeout):
-    """ Set desired state to 'terminated' and apply changes
+    """ Set desired state to 'terminated' and apply
 
         PCF_NAME : The deployment name to apply changes to as specified in your
         PCF config file, e.g.

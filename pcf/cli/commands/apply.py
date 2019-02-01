@@ -18,7 +18,7 @@ from pcf.cli.commands import COMMON_APPLY_OPTIONS
 @click.argument("pcf_name", required=False)
 @click.pass_context
 def apply(ctx, pcf_name, cascade, quiet, file_, timeout, state):
-    """ Set a desired state and apply changes to your infrastructure
+    """ Set a desired state and apply
 
         PCF_NAME : The deployment name to apply changes to as specified in your
         PCF config file, e.g.
