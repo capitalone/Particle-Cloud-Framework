@@ -2,10 +2,10 @@
 
 import click
 from pcf.cli.utils import execute_applying_command, click_options
-from pcf.cli.commands import COMMON_OPTIONS
+from pcf.cli.commands import COMMON_APPLY_OPTIONS
 
 
-@click.command(name="apply", short_help="Set a desired state and apply changes")
+@click.command(name="apply", short_help="Set a desired state and apply")
 @click.option(
     "-s",
     "--state",
@@ -14,7 +14,7 @@ from pcf.cli.commands import COMMON_OPTIONS
     show_default=True,
     help="The desired state to set for your infrastructure",
 )
-@click_options(COMMON_OPTIONS)
+@click_options(COMMON_APPLY_OPTIONS)
 @click.argument("pcf_name", required=False)
 @click.pass_context
 def apply(ctx, pcf_name, cascade, quiet, file_, timeout, state):

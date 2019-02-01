@@ -3,13 +3,13 @@
 import click
 from pcf.core import State
 from pcf.cli.utils import execute_applying_command, click_options
-from pcf.cli.commands import COMMON_OPTIONS
+from pcf.cli.commands import COMMON_APPLY_OPTIONS
 
 
 @click.command(
-    name="stop", short_help="Set desired state to 'stopped' and apply changes"
+    name="stop", short_help="Set desired state to 'stopped' and apply"
 )
-@click_options(COMMON_OPTIONS)
+@click_options(COMMON_APPLY_OPTIONS)
 @click.argument("pcf_name", required=False)
 @click.pass_context
 def stop(ctx, pcf_name, cascade, quiet, file_, timeout):
