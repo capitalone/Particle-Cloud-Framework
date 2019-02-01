@@ -1,6 +1,6 @@
 import click
 
-COMMON_OPTIONS = [
+COMMON_APPLY_OPTIONS = [
     click.option(
         "-f",
         "--file",
