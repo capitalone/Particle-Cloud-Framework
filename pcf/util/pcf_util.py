@@ -181,10 +181,14 @@ def replace_value_nested_dict(curr_dict, list_nested_keys, new_value):
         for item in curr_dict:
             replace_value_nested_dict(item, list_nested_keys, new_value)
         return curr_dict
+    if isinstance(curr_dict, str):
+        return curr_dict
+
     for k,v in curr_dict.items():
         if k == list_nested_keys[0]:
             if len(list_nested_keys) == 1:
                 curr_dict[k] = new_value
+                return curr_dict
             else:
                 list_nested_keys.pop(0)
                 curr_dict[k] = replace_value_nested_dict(curr_dict.get(k, {}), list_nested_keys, new_value)
