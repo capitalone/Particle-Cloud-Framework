@@ -9,6 +9,12 @@ base_particle = {
     "aws_resource": {}
 }
 
+base_quasiparticle = {
+    "pcf_name": "PCF_NAME",
+    "flavor": "quasiparticle",
+    "particles": []
+}
+
 
 class Conversion:
 
@@ -63,7 +69,8 @@ class DependsConversion(Conversion):
     cft_field="DependsOn"
     pcf_field="parents"
 
-    def convert_temp_pcf_id(self, name):
+    @staticmethod
+    def convert_temp_pcf_id(name):
         return "PARENT_FLAVOR:" + name
 
     def convert(self):
@@ -75,6 +82,22 @@ class DependsConversion(Conversion):
 
         self.particle_def["parents"]= renamed_parents
         return self.particle_def
+
+
+class ConvertCFT:
+    def __init__(self, cft):
+        self.quasiparticle = base_quasiparticle
+        self.cft = cft
+
+    def convert(self,  conversions="all"):
+        for resource in self.cft.keys():
+            resource_class = ConvertResource(self.cft[resource])
+            resource_class.convert_field(conversions=conversions)
+            self.quasiparticle["particles"].append(resource_class.particle)
+
+    def export_json(self, filename='pcf.json'):
+        with open(filename, 'w') as file:
+            json.dump(self.quasiparticle, file)
 
 
 class ConvertResource:
@@ -90,7 +113,7 @@ class ConvertResource:
         self.particle = base_particle
         self.cft = cft_resource
 
-    def convert_fields(self, conversions="all"):
+    def convert_field(self, conversions="all"):
         for conversion in self.CONVERSIONS:
             if conversion.cft_field in conversions or conversions == 'all':
                 self.particle = conversion(self.cft, self.particle).convert()
