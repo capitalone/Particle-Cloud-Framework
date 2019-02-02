@@ -2,19 +2,6 @@ from pcf.util import pcf_util
 from copy import deepcopy
 import json
 
-base_particle = {
-    "pcf_name": "PCF_NAME",
-    "flavor": "FLAVOR",
-    "parents": [],
-    "aws_resource": {}
-}
-
-base_quasiparticle = {
-    "pcf_name": "PCF_NAME",
-    "flavor": "quasiparticle",
-    "particles": []
-}
-
 
 class Conversion:
 
@@ -52,7 +39,7 @@ class RefConversion(Conversion):
 
 class MapConversion(Conversion):
 
-    cft_field="Fn::FindInMap"
+    cft_field="FindInMap"
     pcf_field="lookup"
 
     def convert(self):
@@ -74,7 +61,7 @@ class DependsConversion(Conversion):
         return "PARENT_FLAVOR:" + name
 
     def convert(self):
-        parents = self.cft_def["DependsOn"]
+        parents = self.cft_def.get("DependsOn",[])
         if isinstance(parents, str):
             renamed_parents = [self.convert_temp_pcf_id(parents)]
         else:
@@ -85,8 +72,15 @@ class DependsConversion(Conversion):
 
 
 class ConvertCFT:
+
+    base_quasiparticle = {
+        "pcf_name": "PCF_NAME",
+        "flavor": "quasiparticle",
+        "particles": []
+    }
+
     def __init__(self, cft):
-        self.quasiparticle = base_quasiparticle
+        self.quasiparticle = deepcopy(self.base_quasiparticle)
         self.cft = cft
 
     def convert(self,  conversions="all"):
@@ -102,6 +96,13 @@ class ConvertCFT:
 
 class ConvertResource:
 
+    base_particle = {
+        "pcf_name": "PCF_NAME",
+        "flavor": "FLAVOR",
+        "parents": [],
+        "aws_resource": {}
+    }
+
     CONVERSIONS = [
         PropertyConversion,
         RefConversion,
@@ -110,7 +111,7 @@ class ConvertResource:
     ]
 
     def __init__(self, cft_resource):
-        self.particle = base_particle
+        self.particle = deepcopy(self.base_particle)
         self.cft = cft_resource
 
     def convert_field(self, conversions="all"):
