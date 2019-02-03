@@ -251,7 +251,7 @@ class LambdaFunction(AWSResource):
         zfile = obj["Body"].read()
         hashed_zfile = hashlib.sha256(zfile).hexdigest()
         hashed_b64 = codecs.encode(codecs.decode(hashed_zfile, 'hex'), 'base64').decode().strip('\n')
-        s3client.put_object_tagging(Tagging={"TagSet": [{"Key": "CodeSha256", "Value": hashed_b64}]}, **s3_kwargs)
+        self.s3client.put_object_tagging(Tagging={"TagSet": [{"Key": "CodeSha256", "Value": hashed_b64}]}, **s3_kwargs)
         return hashed_b64
 
     def __zipfile_to_sha256(self):

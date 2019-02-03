@@ -15,7 +15,7 @@ storage_example_json = {
 }
 
 
-# create route53 record particle
+# create storage record particle
 storage = Storage(storage_example_json)
 
 # example start

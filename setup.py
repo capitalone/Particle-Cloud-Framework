@@ -36,8 +36,11 @@ setup(
         "boto3==1.8.5",
         "Jinja2==2.9.6",
         "google-cloud-storage==1.10.0",
+        "google-api-python-client==1.7.4",
         "commentjson==0.7.1",
-        "botocore==1.10.67"],
+        "botocore==1.10.67",
+        "deepdiff==3.3.0"
+    ],
     package_data={'pcf': glob('**/*.j2', recursive=True)},
     include_package_data=True,
 )

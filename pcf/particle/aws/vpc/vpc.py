@@ -67,7 +67,7 @@ class VPC(AWSResource):
         Returns:
              vpc_client
         """
-        return self.resource.Vpc(self._vpc_id)
+        return self.resource.Vpc(self.vpc_id)
 
     def _set_unique_keys(self):
         """
@@ -94,7 +94,7 @@ class VPC(AWSResource):
         Returns:
             boto3 delete_vpc() response
         """
-        resp = self.client.delete_vpc(VpcId=self._vpc_id)
+        resp = self.client.delete_vpc(VpcId=self.vpc_id)
         return resp
 
     def _start(self):
@@ -105,7 +105,7 @@ class VPC(AWSResource):
            boto3 create_vpc() response
         """
         resp = self.client.create_vpc(**pcf_util.param_filter(self.desired_state_definition,VPC.START_PARAMS))
-        self._vpc_id = resp['Vpc'].get("VpcId")
+        self.vpc_id = resp['Vpc'].get("VpcId")
         self.current_state_definition = resp
         tags = self.custom_config.get("Tags",[])
         tags.append({"Key":"PCFName","Value":self.vpc_name})
@@ -134,7 +134,7 @@ class VPC(AWSResource):
         else:
             self.state = VPC.state_lookup.get(full_status["State"])
             self.current_state_definition = full_status
-            self._vpc_id = full_status.get("VpcId")
+            self.vpc_id = full_status.get("VpcId")
 
     def is_state_equivalent(self, state1, state2):
             """
