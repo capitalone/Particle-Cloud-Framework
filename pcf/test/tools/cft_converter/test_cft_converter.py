@@ -1,5 +1,5 @@
 import pytest
-from tools.cft_converter.cft_converter import ConvertCFT
+from pcf.tools.cft_converter.cft_converter import ConvertCFT
 from copy import deepcopy
 
 test_cft =  {
