@@ -29,18 +29,17 @@ class AWSResource(Particle):
         self._arn = arn
         self.resource_name = resource_name
         self.desired_state_definition = self.particle_definition["aws_resource"]
-        # replace and lookup id values
-        self.id_replace()
         self.custom_config = self.desired_state_definition.get("custom_config", {})
 
         self._client = None
         self._resource = None
+        self._session = session
 
     @property
     def client(self):
         if not self._client:
             region_name = self.particle_definition["aws_resource"].get("region_name")
-            self._client = self._get_client(None, region_name=region_name)
+            self._client = self._get_client(self._session, region_name=region_name)
         return self._client
 
     @property
@@ -48,7 +47,7 @@ class AWSResource(Particle):
         """Returns the aws resource object"""
         if not self._resource:
             region_name = self.particle_definition["aws_resource"].get("region_name")
-            self._resource = self._get_resource(None, region_name=region_name)
+            self._resource = self._get_resource(self._session, region_name=region_name)
         return self._resource
 
     def _get_client(self, session, **kwargs):
@@ -62,6 +61,11 @@ class AWSResource(Particle):
             return boto3.resource(self.resource_name, **kwargs)
         except:
             pass
+
+    def apply(self, sync=True, cascade=False, validate_config=False, max_timeout=None, src_cascade=None, cache_ttl=15):
+        # replace and lookup id values
+        self.id_replace()
+        super().apply(sync=sync,cascade=cascade, validate_config=validate_config, max_timeout=max_timeout, src_cascade=src_cascade, cache_ttl=15)
 
     def get_region(self):
         return self.client.meta.region_name
