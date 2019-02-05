@@ -27,18 +27,18 @@ class SNSTopic(AWSResource):
 
     START_PARAM_FILTER = {
         "Name",  # Required
-        "Attributes"
+        #"Attributes"
     }
 
     DEFINITION_FILTER = {
         "Name",
-        "Attributes",
+        #"Attributes",
     }
 
     START_ATTR = {
-        "DeliveryPolicy",
+        #"DeliveryPolicy",
         "DisplayName",
-        "Policy"
+        #"Policy"
     }
 
     equivalent_states = {
@@ -68,10 +68,15 @@ class SNSTopic(AWSResource):
         Returns:
             response of boto3 create_topic
         """
+        print("im in starts")
         start_definition = pcf_util.param_filter(self.get_desired_state_definition(), SNSTopic.START_PARAM_FILTER)
-        if "Attributes" in start_definition.keys():
-            start_definition["Attributes"] = pcf_util.param_filter(start_definition["Attributes"], SNSTopic.START_ATTR)
+        print("start definition: ", start_definition)
+        # if "Attributes" in start_definition.keys():
+        #     start_definition["Attributes"] = pcf_util.param_filter(start_definition["Attributes"], SNSTopic.START_ATTR)
+        # print(start_definition)
         response = self.client.create_topic(**start_definition)
+        self._arn = response.get("TopicArn")
+        print("self._arn: ", self._arn)
         return response
 
     def _terminate(self):
@@ -81,7 +86,7 @@ class SNSTopic(AWSResource):
         Returns:
             response of boto3 delete_topic
         """
-        return self.client.delete_topic(TopicARN=self._arn)
+        return self.client.delete_topic(TopicArn=self.arn)
 
     def _stop(self):
         """
@@ -99,12 +104,20 @@ class SNSTopic(AWSResource):
         Returns:
             current definition if the topic exists, otherwise None
         """
-        current_definition = self.client.get_topic_attributes(
-            TopicARN=self._arn
-        )
-        current_definition["Name"] = self.topic_name
-        self.current_state_definition = current_definition
-        return current_definition
+        if self._arn:
+            try:
+                current_definition = self.client.get_topic_attributes(
+                    TopicArn=self._arn
+                )
+                print("im in get_current_definition()")
+                print("current definition = ", current_definition)
+                current_definition["Name"] = self.topic_name
+                self.current_state_definition = current_definition
+                return current_definition
+            except ClientError:
+                return None
+        else:
+            return None
 
     def sync_state(self):
         """
@@ -130,11 +143,11 @@ class SNSTopic(AWSResource):
         # use filters to remove any extra information
         self.current_state_definition = pcf_util.param_filter(self.current_state_definition, SNSTopic.DEFINITION_FILTER)
         self.desired_state_definition = pcf_util.param_filter(self.desired_state_definition, SNSTopic.DEFINITION_FILTER)
-        self.desired_state_definition["Attributes"] = pcf_util.param_filter(
-            self.desired_state_definition.get("Attributes"), SNSTopic.START_ATTR)
+        # self.desired_state_definition["Attributes"] = pcf_util.param_filter(
+        #     self.desired_state_definition.get("Attributes"), SNSTopic.START_ATTR)
         # only compare attributes specified in desired, ignore all else
-        self.current_state_definition["Attributes"] = pcf_util.param_filter(
-            self.current_state_definition.get("Attributes"), self.desired_state_definition.get("Attributes").keys())
+        # self.current_state_definition["Attributes"] = pcf_util.param_filter(
+        #     self.current_state_definition.get("Attributes"), self.desired_state_definition.get("Attributes").keys())
 
         diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
         return diff_dict == {}
@@ -146,14 +159,15 @@ class SNSTopic(AWSResource):
         Returns:
             void
         """
-        if not self.is_state_definition_equivalent():
-            # adding and updating for changed attributes. cannot remove attributes - just set
-            # add and update new/existing attr. cannot remove attributes - just set/reset
-            desired_attr = self.desired_state_definition.get("Attributes")
-            if desired_attr:
-                self.client.set_topic_attributes(
-                    TopicARN=self._arn,
-                    AttributeName='',
-                    AttributeValue= ''
-                )
+        # if not self.is_state_definition_equivalent():
+        #     # adding and updating for changed attributes. cannot remove attributes - just set
+        #     # add and update new/existing attr. cannot remove attributes - just set/reset
+        #     desired_attr = self.desired_state_definition.get("Attributes")
+        #     if desired_attr:
+        #         self.client.set_topic_attributes(
+        #             TopicArn=self._arn,
+        #             AttributeName='',
+        #             AttributeValue= ''
+        #         )
+        pass
 
