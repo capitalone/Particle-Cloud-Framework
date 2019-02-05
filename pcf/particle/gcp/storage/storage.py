@@ -1,6 +1,7 @@
 from pcf.core.gcp_resource import GCPResource
 from pcf.core import State
 import logging
+import io
 from google.cloud import storage
 from google.cloud import exceptions
 
@@ -63,13 +64,12 @@ class Storage(GCPResource):
         Returns:
              response of  create_bucket
         """
-        # create_definition = pcf_util.keep_and_replace_keys(self.get_desired_state_definition(),
-        #                                                      S3Bucket.START_PARAMS)
+
         return self.client.bucket(bucket_name=self.bucket_name).create()
 
     def _stop(self):
         """
-        S3 bucket does not have a stopped state so it calls terminate.
+        Storage bucket does not have a stopped state so it calls terminate.
         """
         return self.terminate()
 
@@ -89,12 +89,12 @@ class Storage(GCPResource):
 
     def download_object(self, blob_name, file_obj, **kwargs):
         """
-        Downloads a file from the S3 bucket.
+        Downloads a file from the Storage bucket.
 
         Args:
             blob_name (str): Object name (Required)
             file_obj (str): file name for the download (Required)
-            **kwargs: Options for boto3 get_object (optional)
+            **kwargs: Options for gcp get_object (optional)
         """
         bucket = self.client.get_bucket(self.bucket_name)
 
@@ -116,32 +116,33 @@ class Storage(GCPResource):
         Lists all objects in the storage bucket.
 
         Args:
-            **kwargs: Options for boto3 list_objects (optional)
+            **kwargs: Options for gcp list_objects (optional)
         """
         bucket = self.client.get_bucket(self.bucket_name)
         return list(bucket.list_blobs(**kwargs))
 
     def put_object(self, blob_name, file_obj, **kwargs):
         """
-        Puts an object in the S3 bucket.
+        Puts an object in the Storage bucket.
 
         Args:
             blob_name (str): Object Key name (Required)
             file_obj (object): the object to put into the bucket (Required)
-            **kwargs: Options for boto3 put_object (optional)
+            **kwargs: Options for gcp put_object (optional)
         """
         bucket = self.client.get_bucket(self.bucket_name)
+        stream = io.BytesIO(file_obj)
 
-        return self.resource.Blob(blob_name, bucket).upload_from_file(file_obj, **kwargs)
+        return self.resource.Blob(blob_name, bucket).upload_from_file(stream, file_obj, **kwargs)
 
     def put_file(self, blob_name, file, **kwargs):
         """
-        Puts a file in the S3 bucket.
+        Puts a file in the Storage bucket.
 
         Args:
             blob_name (str): Object Key name (Required)
             file (file): the file to put into the bucket (Required)
-            **kwargs: Options for boto3 upload_file (optional)
+            **kwargs: Options for gcp upload_file (optional)
         """
         bucket = self.client.get_bucket(self.bucket_name)
 
@@ -155,7 +156,7 @@ class Storage(GCPResource):
 
     def is_state_equivalent(self, state1, state2):
         """
-        Determines if states are equivalent. Uses equivalent_states defined in the S3Bucket class.
+        Determines if states are equivalent. Uses equivalent_states defined in the Storage class.
 
         Args:
             state1 (State):
