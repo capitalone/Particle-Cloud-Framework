@@ -20,6 +20,14 @@ pcf\.core\.gcp\_resource module
     :undoc-members:
     :show-inheritance:
 
+pcf\.core\.azure\_resource module
+-------------------------------
+
+.. automodule:: pcf.core.azure_resource
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 pcf\.core\.particle module
 --------------------------
 
