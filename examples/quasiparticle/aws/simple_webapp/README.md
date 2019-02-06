@@ -1,3 +1,2 @@
 # What does this example do?
-- This example uses a quasiparticle (Route53 + 2 EC2 instances) to deploy infrastructure needed for a simple web application. Then terminates the infrastructure.
-
+- The purpose of this example is to show one of multiple ways to use Particle Cloud Framework (PCF) to deploy cloud infrastructure which in this case is using a Flask api. In this particular example we deploy the ec2-route53 quasiparticle which creates a route53 record and adds the desired number on ec2 instances to the record set. To use in your environment, simply change some of the configurations parameters in the quasiparticle definition.
