@@ -27,12 +27,12 @@ class SNSTopic(AWSResource):
 
     START_PARAM_FILTER = {
         "Name",  # Required
-        #"Attributes"
+        "Attributes"
     }
 
     DEFINITION_FILTER = {
         "Name",
-        #"Attributes",
+        "Attributes",
     }
 
     START_ATTR = {
@@ -68,15 +68,11 @@ class SNSTopic(AWSResource):
         Returns:
             response of boto3 create_topic
         """
-        print("im in starts")
         start_definition = pcf_util.param_filter(self.get_desired_state_definition(), SNSTopic.START_PARAM_FILTER)
-        print("start definition: ", start_definition)
-        # if "Attributes" in start_definition.keys():
-        #     start_definition["Attributes"] = pcf_util.param_filter(start_definition["Attributes"], SNSTopic.START_ATTR)
-        # print(start_definition)
+        if "Attributes" in start_definition.keys():
+            start_definition["Attributes"] = pcf_util.param_filter(start_definition["Attributes"], SNSTopic.START_ATTR)
         response = self.client.create_topic(**start_definition)
         self._arn = response.get("TopicArn")
-        print("self._arn: ", self._arn)
         return response
 
     def _terminate(self):
@@ -109,8 +105,6 @@ class SNSTopic(AWSResource):
                 current_definition = self.client.get_topic_attributes(
                     TopicArn=self._arn
                 )
-                print("im in get_current_definition()")
-                print("current definition = ", current_definition)
                 current_definition["Name"] = self.topic_name
                 self.current_state_definition = current_definition
                 return current_definition
@@ -143,11 +137,11 @@ class SNSTopic(AWSResource):
         # use filters to remove any extra information
         self.current_state_definition = pcf_util.param_filter(self.current_state_definition, SNSTopic.DEFINITION_FILTER)
         self.desired_state_definition = pcf_util.param_filter(self.desired_state_definition, SNSTopic.DEFINITION_FILTER)
-        # self.desired_state_definition["Attributes"] = pcf_util.param_filter(
-        #     self.desired_state_definition.get("Attributes"), SNSTopic.START_ATTR)
+        self.desired_state_definition["Attributes"] = pcf_util.param_filter(
+            self.desired_state_definition.get("Attributes"), SNSTopic.START_ATTR)
         # only compare attributes specified in desired, ignore all else
-        # self.current_state_definition["Attributes"] = pcf_util.param_filter(
-        #     self.current_state_definition.get("Attributes"), self.desired_state_definition.get("Attributes").keys())
+        self.current_state_definition["Attributes"] = pcf_util.param_filter(
+            self.current_state_definition.get("Attributes"), self.desired_state_definition.get("Attributes").keys())
 
         diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
         return diff_dict == {}

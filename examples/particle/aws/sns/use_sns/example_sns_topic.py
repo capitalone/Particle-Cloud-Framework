@@ -11,11 +11,11 @@ sns_topic_example_json = {
     "aws_resource":{
         # Refer to https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sns.html#SNS.Client.create_topic for full list of parameters
         "Name":"pcf-sns-test", # Required
-        # "Attributes": {
-        #     #"DeliveryPolicy": '', #HTTP|HTTPS|Email|Email-JSON|SMS|Amazon SQS|Application|AWS Lambda
-        #     "DisplayName": "pcf-test"
-        #     #"Policy": ''
-        # },
+        "Attributes": {
+            #"DeliveryPolicy": '', #HTTP|HTTPS|Email|Email-JSON|SMS|Amazon SQS|Application|AWS Lambda
+            "DisplayName": "pcf-test"
+            #"Policy": ''
+        },
         #"custom_config": {
             # subscription parameters
             # add subscription to existing Topic ARN
