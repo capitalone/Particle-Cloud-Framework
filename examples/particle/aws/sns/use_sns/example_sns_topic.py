@@ -32,10 +32,15 @@ sns.apply()
 
 print(sns.get_state())
 
-# example update subscription attributes
+# example update topic attributes
+# updated_def = sns_topic_example_json
+# updated_def["aws_resource"]["Attributes"]["DisplayName"] = "new-pcf-test" # reset existing
+# sns = SNSTopic(updated_def)
+# sns.set_desired_state(State.running)
+# sns.apply()
 
 # example terminate
-sns.set_desired_state(State.terminated)
-sns.apply()
-
-print(sns.get_state())
+# sns.set_desired_state(State.terminated)
+# sns.apply()
+#
+# print(sns.get_state())

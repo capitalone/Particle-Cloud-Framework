@@ -154,14 +154,14 @@ class SNSTopic(AWSResource):
             void
         """
         # if not self.is_state_definition_equivalent():
-        #     # adding and updating for changed attributes. cannot remove attributes - just set
-        #     # add and update new/existing attr. cannot remove attributes - just set/reset
+        #     # add/update new/existing attributes, cannot remove attributes - just set/reset attr.
         #     desired_attr = self.desired_state_definition.get("Attributes")
         #     if desired_attr:
-        #         self.client.set_topic_attributes(
-        #             TopicArn=self._arn,
-        #             AttributeName='',
-        #             AttributeValue= ''
-        #         )
+        #         for key in desired_attr:
+        #             self.client.set_topic_attributes(
+        #                 TopicArn=self._arn,
+        #                 AttributeName=key,
+        #                 AttributeValue= desired_attr[key]
+        #             )
         pass
 
