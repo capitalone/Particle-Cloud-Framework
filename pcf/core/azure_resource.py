@@ -28,11 +28,7 @@ class AzureResource(Particle):
         super().__init__(particle_definition)
         self.desired_state_definition = self.particle_definition["azure_resource"]
         self.custom_config = self.desired_state_definition.get("custom_config", {})
-
-        self._compute_client = None
-        self._storage_client = None
-        self._network_client = None
-        self._resource_client = None
+        self.client = None
 
     @property
     def compute_client(self):
@@ -42,9 +38,9 @@ class AzureResource(Particle):
         Returns:
              Compute Client
         """
-        if not self._compute_client:
-            self._compute_client = get_client_from_cli_profile(ComputeManagementClient)
-        return self._compute_client
+        if not self.client:
+            self.client = get_client_from_cli_profile(ComputeManagementClient)
+        return self.client
 
     @property
     def storage_client(self):
@@ -54,7 +50,7 @@ class AzureResource(Particle):
         Returns:
              Storage Client
         """
-        if not self._storage_client:
+        if not self.client:
             resource_group = self.desired_state_definition.get("resource_group")
             storage_account = self.desired_state_definition.get("storage_account")
             if resource_group and storage_account:
@@ -62,10 +58,10 @@ class AzureResource(Particle):
                 storage_keys = client.storage_accounts.list_keys(resource_group, storage_account)
                 storage_keys = {v.key_name: v.value for v in storage_keys.keys}
 
-                self._storage_client = CloudStorageAccount(storage_account, storage_keys['key1'])
+                self.client = CloudStorageAccount(storage_account, storage_keys['key1'])
             else:
                 raise Exception("azure_resource.resource_group and azure_resource.storage_account must be defined")
-        return self._storage_client
+        return self.client
 
     @property
     def resource_client(self):
@@ -75,9 +71,9 @@ class AzureResource(Particle):
         Returns:
              Resource Client
         """
-        if not self._resource_client:
-            self._resource_client = get_client_from_cli_profile(ResourceManagementClient)
-        return self._resource_client
+        if not self.client:
+            self.client = get_client_from_cli_profile(ResourceManagementClient)
+        return self.client
 
     @property
     def network_client(self):
@@ -87,7 +83,7 @@ class AzureResource(Particle):
         Returns:
              Network Client
         """
-        if not self._network_client:
-            self._network_client = get_client_from_cli_profile(NetworkManagementClient)
-        return self._network_client
+        if not self.client:
+            self.client = get_client_from_cli_profile(NetworkManagementClient)
+        return self.client
 

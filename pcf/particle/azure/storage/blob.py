@@ -69,7 +69,7 @@ class Blob(AzureResource):
 
     def _stop(self):
         """
-        Containers do not have stopped states. Calls _terminate()
+        blob container does not have stopped states. Calls _terminate()
         """
         return self.terminate()
 
