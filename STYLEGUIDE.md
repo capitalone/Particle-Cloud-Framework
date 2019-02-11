@@ -12,13 +12,16 @@ This is a Python Style Guide for the PCF Framework. The intent of this guide is 
 4. [Spacing](#spacing)
 5. [Strings](#strings)  
     i. [Quotes](#quotes)  
-    ii. [Docstrings](#docstr)
-6. [Dictionary Key Value Retrieval](#dict)
+    ii. [String Formatting](#strformat)  
+    iii. [Docstrings](#docstr)
+6. [Dictionary Key-Value Retrieval](#dict)
 7. [PCF Utility Functions](#pcf_util)
 8. [PCF Exceptions](#pcf_excep)
+9. [Logging Standards](#logging)
 
 ## <a name="venv">Virtual Environments</a>
-------
+Conda is the preferred virtual environment setup for testing and development. However, Python v3.3+ include the native 
+Python library `venv` (virtual environment). The steps for setting up a virtual environment with `venv` can be found <a href="https://docs.python.org/3/library/venv.html">here</a>.
 ### Conda
 Conda is a package management system that can help you easily keep track of the package requirements 
 for projects and install them automatically for you. 
@@ -63,11 +66,15 @@ conda info --envs
 ```
 
 ## <a name="imports">Imports</a>
-------
-Refrain importing entire modules when only 1 object from the module is needed.
+Imports are always put at the top of the file, just after any module comments and docstrings, and before module globals and constants.
+
+Refrain from importing entire modules when only 1 object from the module is needed. For consistency, entire import modules should be imported first. (`import module`)
+Then, imported functions from modules should be imported. (`from module import function`)
 
 **Don't:**
 ```python
+from time import sleep
+
 import boto3, json, logging
 import pcf.core.PCF_exceptions 
 ```
@@ -79,10 +86,11 @@ import json
 import logging
 
 from pcf.core.pcf_exceptions import NoResourceException
+from time import sleep
+
 ```
 
 ## <a name="naming">Naming</a>
-------
 PCF typically follows the same naming conventions as <a href="https://visualgit.readthedocs.io/en/latest/pages/naming_convention.html">PEP8 standards</a>.
 
 ### <a name="variables">Variables</a>  
@@ -122,15 +130,12 @@ def _terminate(self):
 ```
 
 ## <a name="spacing">Spacing</a>
-------
 * 4 spaces = 1 indent
 * Leave a single blank line after function/method declarations to aid in visual clarity and organization
 
 ## <a name="strings">Strings</a>
-------
 ### <a name="quotes">Quotes</a>  
-
-    In Python single quotes and double quotes are used interchangablely. We will stick to double quotes for consistency.  
+In Python single quotes and double quotes are used interchangablely. We will stick to double quotes for consistency.  
 
 **Don't:**  
 ```python
@@ -144,10 +149,28 @@ nameOfSchool = "Marshall"
 nameOfOffice = "Clarendon"
 ```   
 
+### <a name="strformat">String Formatting</a> 
+As of Python 3.6, f-strings (formatted string literals) have optimized the former way of formatting strings: %-formatting and str.format().
+Learn more about the f-strings <a href="https://docs.python.org/3/reference/lexical_analysis.html#f-strings">here</a>.
+
+**Don't:**  
+```python
+def generate_pcf_id(flavor, pcf_name):
+    return "{}:{}".format(flavor, pcf_name)
+```  
+
+**Do:**  
+```python
+def generate_pcf_id(flavor, pcf_name):
+    return f"{flavor}:{pcf_name}"  # f and F are to be used interchangeably
+```   
+
 ### <a name="docstr">Docstrings</a>  
 Docstrings act as documentation for method definitions of a class within PCF. Always use """triple double quotes""" around docstrings. For multi-line docstrings, place the closing qoutes on a line by itself.
 
 The docstrings should give a brief description of what the method/class is doing, explain arguments and their type, if any, and list what the method/class returns.
+
+> If methods and classes are not documented this way they will not be merged in.
 
 For more info see the <a href="https://www.python.org/dev/peps/pep-0257/#what-is-a-docstring">docs</a>.
 
@@ -166,16 +189,24 @@ def is_state_equivalent(self, state1, state2):
     """
 ```
 
-## <a name="dict">Dictionary Key Value Retrieval</a>
-------
+## <a name="dict">Dictionary Key-Value Retrieval</a>
+When retrieving a value from a dictionary key, do not use square bracket notation. This method will return an error if the 
+indicated key does not exist in the dictionary. Instead, use the `get` method which returns `None` by default if the 
+indicated key does not exist in the dictionary.
+
 **Don't:**
 ```python
-self.bucket_name = self.desired_state_definition["Bucket"]
+bucket_name = desired_state_definition["Bucket"]
 ```
 **Do:**
 ```python
 # dict.get("Key", default=None)
 bucket_name = desired_state_definition.get("Bucket")
+```
+
+For testing if a dictionary returns empty, use the following notation:
+```python
+bucket_name = desired_state_definition.get("Bucket", {})
 ```
 
 ## <a name="pcf_util">PCF Utility Fucntions</a>
@@ -212,4 +243,18 @@ Example:
 class NoCodeException(Exception):
     def __init__(self):
         Exception.__init__(self, "Did not provide local zipfile or zipfile location in S3")
+```
+
+## <a name="logging">Logging Standards</a>
+Logging is a means of tracking events that happen when some software runs. More information on logging in Python can be found <a href="https://docs.python.org/3/howto/logging.html#logging-basic-tutorial">here</a>.
+
+To enable logging in PCF, add the following code to the top of your pcf python file.
+
+```python
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
+for handler in logging.root.handlers:
+    handler.addFilter(logging.Filter('pcf'))
 ```
