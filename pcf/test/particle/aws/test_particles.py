@@ -4,6 +4,7 @@ import pytest
 import boto3
 import os
 import placebo
+from pcf.util import pcf_util
 from pcf.core import State
 from pcf.core import particle_flavor_scanner
 from contextlib import ExitStack
@@ -43,8 +44,10 @@ def test_apply(definition, updated_definition, test_type):
         particle.apply()
 
         assert particle.get_state() == State.running
+        assert particle.is_state_definition_equivalent()
 
         if updated_definition:
+            updated_definition, diff = pcf_util.update_dict(updated_definition, definition)
             particle = particle_class(updated_definition)
             particle.set_desired_state(State.running)
             particle.apply()

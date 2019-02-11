@@ -28,34 +28,7 @@
         }
       }
     },
-    {
-      "pcf_name": "pcf_hosted_zone",
-      "flavor": "route53_hosted_zone",
-      "aws_resource": {
-        "Name": "www.hoooooos.com.",
-        "custom_config": {
-          "Tags": [
-            {
-              "Key": "Owner",
-              "Value": "Hoo"
-            },
-            {
-              "Key": "UID",
-              "Value": "abc123"
-            }
-          ]
-        },
-        "VPC": {
-          "VPCRegion": "us-east-1",
-          "VPCId": "vpc-12345"
-        },
-        "CallerReference": "sdfa6df5a4sdf5asd7f9asd6fa5s",
-        "HostedZoneConfig": {
-          "Comment": "hoo",
-          "PrivateZone": true
-        }
-      }
-    },
+    {},
     [
       "mock_route53"
     ]
@@ -86,22 +59,11 @@
       }
     },
     {
-      "pcf_name": "gg-pcf",
-      "flavor": "sqs",
       "aws_resource": {
-        "QueueName": "test_SQS_queue.fifo",
         "Attributes": {
-          "DelaySeconds": "0",
           "MaximumMessageSize": "262143",
-          "MessageRetentionPeriod": "345600",
-          "Policy": "AWS policy",
           "ReceiveMessageWaitTimeSeconds": "21",
-          "VisibilityTimeout": "43200",
-          "KmsMasterKeyId": "enc/sqs",
-          "KmsDataKeyReusePeriodSeconds": "300",
-          "FifoQueue": "true",
-          "ContentBasedDeduplication": "false",
-          "QueueArn": "arn:aws:sqs:us-east-1:123456789012:test_SQS_queue.fifo"
+          "ContentBasedDeduplication": "false"
         },
         "Tags": {
           "test_tag": "changed",
