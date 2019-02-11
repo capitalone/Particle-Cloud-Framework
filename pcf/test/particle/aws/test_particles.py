@@ -47,7 +47,8 @@ def test_apply(definition, updated_definition, test_type):
         assert particle.is_state_definition_equivalent()
 
         if updated_definition:
-            updated_definition, diff = pcf_util.update_dict(updated_definition, definition)
+            updated_definition, diff = pcf_util.update_dict(definition, updated_definition)
+            print(updated_definition)
             particle = particle_class(updated_definition)
             particle.set_desired_state(State.running)
             particle.apply()
