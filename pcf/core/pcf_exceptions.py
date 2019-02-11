@@ -77,6 +77,11 @@ class InvalidValueReplaceException(Exception):
     def __init__(self, message="Invalid inputs for definition variable replace ($)"):
         Exception.__init__(self, message)
 
+
 class MissingException(Exception):
     def __init__(self, message="Attempted to use missing value"):
+        Exception.__init__(self, message)
+
+class MaxTimeoutException(Exception):
+    def __init__(self, message="Max timeout reached while in apply()"):
         Exception.__init__(self, message)

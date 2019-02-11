@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from copy import deepcopy
+from pcf.core.pcf_exceptions import InvalidConfigException
 
 
 def generate_pcf_id(flavor, pcf_name):
@@ -181,9 +182,13 @@ def replace_value_nested_dict(curr_dict, list_nested_keys, new_value):
             replace_value_nested_dict(item, list_nested_keys, new_value)
         return curr_dict
     for k,v in curr_dict.items():
-        if k == list_nested_keys[0]:
+        if k == list_nested_keys[0].rstrip('0123456789'):
             if len(list_nested_keys) == 1:
-                curr_dict[k] = new_value
+                list_index = list_nested_keys[0][len(list_nested_keys[0].rstrip('0123456789')):]
+                if list_index:
+                    curr_dict[k][int(list_index)]= new_value
+                else:
+                    curr_dict[k] = new_value
             else:
                 list_nested_keys.pop(0)
                 curr_dict[k] = replace_value_nested_dict(curr_dict.get(k, {}), list_nested_keys, new_value)
@@ -227,9 +232,17 @@ def find_nested_vars(curr_dict, nested_key=None, var_list=[]):
         if isinstance(value, dict):
             find_nested_vars(value, nested_key=new_nested_key, var_list=var_list)
         elif isinstance(value, list):
-            for item in value:
+            for index,item in enumerate(value):
                 if isinstance(item, dict) or isinstance(item, list):
                     find_nested_vars(item, nested_key=new_nested_key, var_list=var_list)
+
+                if isinstance(item, str):
+                    try:
+                        if item[0] == "$":
+                            split_value = item[1:].split('$')
+                            var_list.append((new_nested_key + str(index), split_value))
+                    except Exception as e:
+                        print(item)
         else:
             if isinstance(value, str):
                 try:
@@ -307,3 +320,26 @@ def list_to_dict(key_name, dict_list):
     """
     dict_from_list = {d[key_name]: d for d in dict_list}
     return dict_from_list
+
+
+def get_value_from_particles(particles, particle_class, attr_name):
+    """
+    Searches a list for particles of a specified class and returns one of its attributes
+
+    Args:
+        particles (list): list of particles
+        particle_class (class): class that is being searched for
+        attr_name (string): name of the attribute being returned
+
+    Returns:
+        value (string): value of the attr
+
+    """
+    if len(particles) > 0:
+        particle_list = list(filter(lambda x: x.flavor == particle_class.flavor, particles))
+        if len(particle_list) == 1:
+            particle_list[0].sync_state()
+            value = getattr(particle_list[0], attr_name, None)
+            if value:
+                return value
+    raise InvalidConfigException("No parents to get value to from. Please provide the value for {}".format(attr_name))
