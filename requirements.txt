@@ -17,3 +17,4 @@ commentjson==0.7.1
 botocore==1.12.72
 deepdiff==3.3.0
 placebo==0.8.2
+python-json-logger==0.1.10

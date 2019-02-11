@@ -11,16 +11,36 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+import os
 import time
 import logging
 import json
 import commentjson
+import getpass
 
+from pythonjsonlogger import jsonlogger
 from pcf.core import State, STATE_STRING_TO_ENUM, pcf_exceptions
 from pcf.util import pcf_util
 
-logger = logging.getLogger(__name__)
+
+dirname = os.path.dirname(__file__)
+dirname, x = os.path.split(dirname)
+filename = os.path.join(dirname, 'logging/pcf.log')
+logger = logging.getLogger(getpass.getuser())
+logger.setLevel(logging.DEBUG)
+
+# create console handler and set level to debug
+ch = logging.FileHandler(filename)
+ch.setLevel(logging.DEBUG)
+
+# create formatter
+formatter = jsonlogger.JsonFormatter('%(asctime)s - %(name)s - %(funcName)s - %(levelname)s - %(message)s')
+
+# add formatter to ch
+ch.setFormatter(formatter)
+
+# add ch to logger
+logger.addHandler(ch)
 
 
 class MetaParticle(type):

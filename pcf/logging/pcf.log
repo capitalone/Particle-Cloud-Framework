@@ -1,0 +1,26 @@
+{"asctime": "2019-02-11 14:39:33,483", "name": "jfm548", "funcName": "set_desired_state", "levelname": "INFO", "message": "s3_bucket:pcf_s3_bucket: setting desired state to State.running"}
+{"asctime": "2019-02-11 14:39:33,483", "name": "jfm548", "funcName": "apply", "levelname": "DEBUG", "message": "s3_bucket:pcf_s3_bucket: start applying state transition with modes: sync=True cascade=False validate_config=False"}
+{"asctime": "2019-02-11 14:39:33,695", "name": "jfm548", "funcName": "get_state", "levelname": "INFO", "message": "Refreshed state for s3_bucket:pcf_s3_bucket: State.terminated"}
+{"asctime": "2019-02-11 14:39:33,695", "name": "jfm548", "funcName": "apply", "levelname": "DEBUG", "message": "s3_bucket:pcf_s3_bucket: current state (State.terminated) doesn't match the desired_state (State.running) retrieving state transition function"}
+{"asctime": "2019-02-11 14:39:33,696", "name": "jfm548", "funcName": "start", "levelname": "DEBUG", "message": "s3_bucket:pcf_s3_bucket: start starting particle with modes: sync=True cascade=False"}
+{"asctime": "2019-02-11 14:40:00,334", "name": "jfm548", "funcName": "set_desired_state", "levelname": "INFO", "message": "s3_bucket:pcf_s3_bucket: setting desired state to State.running"}
+{"asctime": "2019-02-11 14:40:00,334", "name": "jfm548", "funcName": "apply", "levelname": "DEBUG", "message": "s3_bucket:pcf_s3_bucket: start applying state transition with modes: sync=True cascade=False validate_config=False"}
+{"asctime": "2019-02-11 14:40:00,542", "name": "jfm548", "funcName": "get_state", "levelname": "INFO", "message": "Refreshed state for s3_bucket:pcf_s3_bucket: State.terminated"}
+{"asctime": "2019-02-11 14:40:00,542", "name": "jfm548", "funcName": "apply", "levelname": "DEBUG", "message": "s3_bucket:pcf_s3_bucket: current state (State.terminated) doesn't match the desired_state (State.running) retrieving state transition function"}
+{"asctime": "2019-02-11 14:40:00,542", "name": "jfm548", "funcName": "start", "levelname": "DEBUG", "message": "s3_bucket:pcf_s3_bucket: start starting particle with modes: sync=True cascade=False"}
+{"asctime": "2019-02-11 14:40:02,030", "name": "jfm548", "funcName": "get_state", "levelname": "INFO", "message": "Refreshed state for s3_bucket:pcf_s3_bucket: State.running"}
+{"asctime": "2019-02-11 14:40:02,030", "name": "jfm548", "funcName": "get_state", "levelname": "DEBUG", "message": "Using cached state for s3_bucket:pcf_s3_bucket: State.running"}
+{"asctime": "2019-02-11 14:40:02,030", "name": "jfm548", "funcName": "get_state", "levelname": "DEBUG", "message": "Using cached state for s3_bucket:pcf_s3_bucket: State.running"}
+{"asctime": "2019-02-11 14:40:02,030", "name": "jfm548", "funcName": "get_state", "levelname": "DEBUG", "message": "Using cached state for s3_bucket:pcf_s3_bucket: State.running"}
+{"asctime": "2019-02-11 14:40:02,370", "name": "jfm548", "funcName": "set_desired_state", "levelname": "INFO", "message": "s3_bucket:pcf_s3_bucket: setting desired state to State.terminated"}
+{"asctime": "2019-02-11 14:40:02,370", "name": "jfm548", "funcName": "apply", "levelname": "DEBUG", "message": "s3_bucket:pcf_s3_bucket: start applying state transition with modes: sync=True cascade=False validate_config=False"}
+{"asctime": "2019-02-11 14:40:02,370", "name": "jfm548", "funcName": "get_state", "levelname": "DEBUG", "message": "Using cached state for s3_bucket:pcf_s3_bucket: State.running"}
+{"asctime": "2019-02-11 14:40:02,370", "name": "jfm548", "funcName": "apply", "levelname": "DEBUG", "message": "s3_bucket:pcf_s3_bucket: current state (State.running) doesn't match the desired_state (State.terminated) retrieving state transition function"}
+{"asctime": "2019-02-11 14:40:02,370", "name": "jfm548", "funcName": "terminate", "levelname": "DEBUG", "message": "s3_bucket:pcf_s3_bucket: start terminating particle with modes: sync=True cascade=False"}
+{"asctime": "2019-02-11 14:40:03,560", "name": "jfm548", "funcName": "get_state", "levelname": "INFO", "message": "Refreshed state for s3_bucket:pcf_s3_bucket: State.terminated"}
+{"asctime": "2019-02-11 14:40:03,560", "name": "jfm548", "funcName": "get_state", "levelname": "DEBUG", "message": "Using cached state for s3_bucket:pcf_s3_bucket: State.terminated"}
+{"asctime": "2019-02-11 14:40:03,560", "name": "jfm548", "funcName": "apply", "levelname": "DEBUG", "message": "s3_bucket:pcf_s3_bucket: start applying state transition with modes: sync=True cascade=False validate_config=False"}
+{"asctime": "2019-02-11 14:40:03,561", "name": "jfm548", "funcName": "get_state", "levelname": "DEBUG", "message": "Using cached state for s3_bucket:pcf_s3_bucket: State.terminated"}
+{"asctime": "2019-02-11 14:40:03,561", "name": "jfm548", "funcName": "get_state", "levelname": "DEBUG", "message": "Using cached state for s3_bucket:pcf_s3_bucket: State.terminated"}
+{"asctime": "2019-02-11 14:40:03,561", "name": "jfm548", "funcName": "get_state", "levelname": "DEBUG", "message": "Using cached state for s3_bucket:pcf_s3_bucket: State.terminated"}
+{"asctime": "2019-02-11 14:40:03,561", "name": "jfm548", "funcName": "get_state", "levelname": "DEBUG", "message": "Using cached state for s3_bucket:pcf_s3_bucket: State.terminated"}
