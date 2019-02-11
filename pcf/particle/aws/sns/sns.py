@@ -137,11 +137,12 @@ class SNSTopic(AWSResource):
         # use filters to remove any extra information
         self.current_state_definition = pcf_util.param_filter(self.current_state_definition, SNSTopic.DEFINITION_FILTER)
         self.desired_state_definition = pcf_util.param_filter(self.desired_state_definition, SNSTopic.DEFINITION_FILTER)
-        self.desired_state_definition["Attributes"] = pcf_util.param_filter(
-            self.desired_state_definition.get("Attributes"), SNSTopic.START_ATTR)
-        # only compare attributes specified in desired, ignore all else
-        self.current_state_definition["Attributes"] = pcf_util.param_filter(
-            self.current_state_definition.get("Attributes"), self.desired_state_definition.get("Attributes").keys())
+        if "Attributes" in self.desired_state_definition.keys():
+            self.desired_state_definition["Attributes"] = pcf_util.param_filter(
+                self.desired_state_definition.get("Attributes"), SNSTopic.START_ATTR)
+            # only compare attributes specified in desired, ignore all else
+            self.current_state_definition["Attributes"] = pcf_util.param_filter(
+                self.current_state_definition.get("Attributes"), self.desired_state_definition.get("Attributes").keys())
 
         diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
         return diff_dict == {}
