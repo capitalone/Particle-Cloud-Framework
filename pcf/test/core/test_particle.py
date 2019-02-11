@@ -109,6 +109,7 @@ def test_passing_vars():
         "nested_parent_var":"$inherit$particle_flavor_passing_vars:parent$nested.nested_key",
         "no_parent_exists":"$inherit$particle_flavor_passing_vars:does_not_exist$key",
         "no_flavor_exists":"$inherit$does_not_exist:parent$key",
+        "parent_list_var":["$inherit$particle_flavor_passing_vars:parent$item", "$inherit$particle_flavor_passing_vars:parent$item2"],
         "no_key_exists":"$inherit$particle_flavor_passing_vars:parent$no_key",
         "aws_resource": {
             "resource_name": "some service"
@@ -133,6 +134,7 @@ def test_passing_vars():
     assert(quasiparticle.get_particle("particle_flavor_passing_vars","child").particle_definition["nested_parent_var"] == "nested_var")
     assert(quasiparticle.get_particle("particle_flavor_passing_vars","child").particle_definition["no_parent_exists"] == "$inherit$particle_flavor_passing_vars:does_not_exist$key")
     assert(quasiparticle.get_particle("particle_flavor_passing_vars","child").particle_definition["no_flavor_exists"] == "$inherit$does_not_exist:parent$key")
+    assert(quasiparticle.get_particle("particle_flavor_passing_vars","child").particle_definition["parent_list_var"] == ["$inherit$particle_flavor_passing_vars:parent$item", "$inherit$particle_flavor_passing_vars:parent$item2"])
     assert(quasiparticle.get_particle("particle_flavor_passing_vars","child").particle_definition["no_key_exists"] == "$inherit$particle_flavor_passing_vars:parent$no_key")
 
 
