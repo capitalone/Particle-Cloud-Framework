@@ -16,7 +16,7 @@ from pcf.core import State
 from azure.storage.blob import PublicAccess
 
 
-class Blob(AzureResource):
+class BlobContainer(AzureResource):
     """
     This is the implementation of Azure's blob container service.
     https://azure-storage.readthedocs.io/ref/azure.storage.blob.html
@@ -45,7 +45,7 @@ class Blob(AzureResource):
         Logic that sets keys from state definition that are used to uniquely identify the storage bucket
 
         """
-        self.unique_keys = Blob.UNIQUE_KEYS
+        self.unique_keys = BlobContainer.UNIQUE_KEYS
 
     def _start(self):
         """
@@ -108,7 +108,7 @@ class Blob(AzureResource):
         Returns:
             bool
         """
-        return Blob.equivalent_states.get(state1) == Blob.equivalent_states.get(state2)
+        return BlobContainer.equivalent_states.get(state1) == BlobContainer.equivalent_states.get(state2)
 
     def is_state_definition_equivalent(self):
         """

@@ -1,4 +1,4 @@
-from pcf.particle.azure.storage.blob import Blob
+from pcf.particle.azure.blob.blob_container import BlobContainer
 from pcf.core import State
 
 
@@ -13,7 +13,7 @@ particle_definition = {
     }
 }
 
-blob = Blob(particle_definition)
+blob = BlobContainer(particle_definition)
 
 blob.set_desired_state(State.running)
 blob.apply()

@@ -11,13 +11,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from pcf.particle.azure.storage.blob import Blob
+from pcf.particle.azure.blob.blob_container import BlobContainer
 from pcf.core import State
 import vcr
 from unittest.mock import MagicMock
 
 
-class TestCloudFront:
+class TestBlobContainer:
     particle_definition = {
         "pcf_name": "pcf_storage",  # Required
         "flavor": "blob",  # Required
@@ -35,7 +35,7 @@ class TestCloudFront:
         mock.exists.side_effect = [False, False, True, True, False, False]
         # define particle
 
-        particle = Blob(self.particle_definition, mock)
+        particle = BlobContainer(self.particle_definition, mock)
 
         # Test start
 
