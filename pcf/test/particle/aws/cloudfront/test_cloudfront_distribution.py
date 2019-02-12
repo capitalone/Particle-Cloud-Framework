@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from pcf.particle.aws.cloudfront.cloudfront import CloudFront
+from pcf.particle.aws.cloudfront.cloudfront_distribution import CloudFront
 from pcf.core import State
 import placebo
 import boto3

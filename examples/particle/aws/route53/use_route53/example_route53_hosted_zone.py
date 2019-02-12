@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pcf.particle.aws.route53.hosted_zone import HostedZone
+from pcf.particle.aws.route53.route53_hosted_zone import HostedZone
 from pcf.core import State
 import random
 import string
@@ -34,7 +34,7 @@ particle_definition = {
             "VPCRegion": "us-east-1",
             "VPCId": "vpc-12345"
         },
-        "CallerReference": ''.join(random.choices(string.ascii_uppercase + string.digits, k=N)), # Replace N with int
+        "CallerReference": ''.join(random.choices(string.ascii_uppercase + string.digits, k=20)),
         "HostedZoneConfig": {
             "Comment": "hoo",
             "PrivateZone": True
