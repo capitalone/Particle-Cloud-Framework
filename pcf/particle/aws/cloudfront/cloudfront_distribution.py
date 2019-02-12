@@ -19,7 +19,7 @@ import time
 from datetime import datetime, timedelta
 
 
-class CloudFront(AWSResource):
+class CloudFrontDistribution(AWSResource):
     """
     Particle that maps to AWS Cloud Front
     """
@@ -59,7 +59,7 @@ class CloudFront(AWSResource):
         Args:
             particle_definition (definition): desired configuration of the particle
         """
-        super(CloudFront, self).__init__(particle_definition, 'cloudfront', session=session)
+        super(CloudFrontDistribution, self).__init__(particle_definition, 'cloudfront', session=session)
         self._id = None
         self._ifMatch = None
 
@@ -67,7 +67,7 @@ class CloudFront(AWSResource):
         """
         Logic that sets keys from state definition that are used to uniquely identify the distribution
         """
-        self.unique_keys = CloudFront.UNIQUE_KEYS
+        self.unique_keys = CloudFrontDistribution.UNIQUE_KEYS
 
     def _start(self):
         """
@@ -76,7 +76,7 @@ class CloudFront(AWSResource):
         Returns:
             hosted_zone: boto3 response
         """
-        start_definition = pcf_util.param_filter(self.desired_state_definition, CloudFront.START_PARAM_FILER)
+        start_definition = pcf_util.param_filter(self.desired_state_definition, CloudFrontDistribution.START_PARAM_FILER)
         response = self.client.create_distribution_with_tags(
             DistributionConfigWithTags={
                 "DistributionConfig": start_definition,
@@ -180,7 +180,7 @@ class CloudFront(AWSResource):
         Returns:
             bool: whether the two states are equivalent
         """
-        return CloudFront.equivalent_states.get(state1) == CloudFront.equivalent_states.get(state2)
+        return CloudFrontDistribution.equivalent_states.get(state1) == CloudFrontDistribution.equivalent_states.get(state2)
 
     def is_state_definition_equivalent(self):
         """

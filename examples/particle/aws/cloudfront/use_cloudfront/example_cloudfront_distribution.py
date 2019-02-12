@@ -13,7 +13,7 @@
 # limitations under the License.
 import random
 import string
-from pcf.particle.aws.cloudfront.cloudfront_distribution import CloudFront
+from pcf.particle.aws.cloudfront.cloudfront_distribution import CloudFrontDistribution
 from pcf.core import State
 
 # Only included required fields. For all fields,
@@ -63,7 +63,7 @@ particle_definition = {
 }
 
 
-particle = CloudFront(particle_definition)
+particle = CloudFrontDistribution(particle_definition)
 
 particle.set_desired_state(State.running)
 particle.apply(sync=True)

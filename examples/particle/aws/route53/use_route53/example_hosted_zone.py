@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pcf.particle.aws.route53.route53_hosted_zone import HostedZone
+from pcf.particle.aws.route53.hosted_zone import HostedZone
 from pcf.core import State
 import random
 import string

@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from pcf.particle.aws.cloudfront.cloudfront_distribution import CloudFront
+from pcf.particle.aws.cloudfront.cloudfront_distribution import CloudFrontDistribution
 from pcf.core import State
 import placebo
 import boto3
@@ -71,7 +71,7 @@ class TestCloudFront:
         pill = placebo.attach(session, data_path=filename)
         pill.playback()
         # define particle
-        particle = CloudFront(self.particle_definition, session)
+        particle = CloudFrontDistribution(self.particle_definition, session)
 
         # Test start
 

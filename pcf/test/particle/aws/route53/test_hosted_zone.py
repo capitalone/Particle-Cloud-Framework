@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import moto
-from pcf.particle.aws.route53.route53_hosted_zone import HostedZone
+from pcf.particle.aws.route53.hosted_zone import HostedZone
 from pcf.core import State
 
 
