@@ -65,6 +65,13 @@ Features
 
    features/features
 
+CLI Usage
+--------------------------
+.. toctree::
+   :maxdepth: 2
+
+   sections/cli
+
 Core Classes
 --------------------------
 
