@@ -24,15 +24,14 @@ class TestSNS:
         "flavor":"sns", # Required
         "aws_resource":{
             "Name":"pcf-sns-test", # Required
-            "Attributes": {
-                #"DeliveryPolicy": '', #HTTP|HTTPS|Email|Email-JSON|SMS|Amazon SQS|Application|AWS Lambda
-                "DisplayName": "pcf-test"
-                #"Policy": ''
-            },
-            #"custom_config": {
+            "custom_config": {
+                "Attributes": {
+                    # "DeliveryPolicy": "", # HTTP|HTTPS|Email|Email-JSON|SMS|Amazon SQS|Application|AWS Lambda
+                    "DisplayName": "pcf-test"
+                    # "Policy": "" # dict
+                },
                 # subscription parameters
-                # add subscription to existing Topic ARN
-            #}
+            }
         }
     }
 
@@ -47,9 +46,15 @@ class TestSNS:
         assert particle.is_state_definition_equivalent()
         assert particle.get_state() == State.running
 
+        # example update topic attributes
+        updated_def = self.particle_definition
+        updated_def["aws_resource"]["Attributes"]["DisplayName"] = "new-pcf-test" # reset existing
+        sns = SNSTopic(updated_def)
+        sns.set_desired_state(State.running)
+        sns.apply()
+
         # Test terminate
         particle.set_desired_state(State.terminated)
         particle.apply()
 
         assert particle.get_state() == State.terminated
-

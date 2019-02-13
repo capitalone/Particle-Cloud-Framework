@@ -27,7 +27,6 @@ class SNSTopic(AWSResource):
 
     START_PARAM_FILTER = {
         "Name",  # Required
-        "Attributes"
     }
 
     DEFINITION_FILTER = {
@@ -36,9 +35,9 @@ class SNSTopic(AWSResource):
     }
 
     START_ATTR = {
-        #"DeliveryPolicy",
+        "DeliveryPolicy",
         "DisplayName",
-        #"Policy"
+        "Policy"
     }
 
     equivalent_states = {
@@ -63,16 +62,27 @@ class SNSTopic(AWSResource):
 
     def _start(self):
         """
-        Starts the SNS Topic according to the desired definition
+        Creates the SNS Topic according to the desired definition. The attribute parameter is not supported in the
+        create_topic() method in boto3 v1.9.5 and lower. Desired attributes are put in the custom_config dictionary
+        and added to the topic as a separate call, set_topic_attributes().
 
         Returns:
             response of boto3 create_topic
         """
         start_definition = pcf_util.param_filter(self.get_desired_state_definition(), SNSTopic.START_PARAM_FILTER)
-        if "Attributes" in start_definition.keys():
-            start_definition["Attributes"] = pcf_util.param_filter(start_definition["Attributes"], SNSTopic.START_ATTR)
         response = self.client.create_topic(**start_definition)
         self._arn = response.get("TopicArn")
+
+        if self.custom_config.get("Attributes"):
+            attrs = self.custom_config.get("Attributes")
+
+            for key in attrs:
+                self.client.set_topic_attributes(
+                    TopicArn=self._arn,
+                    AttributeName=key,
+                    AttributeValue=attrs[key]
+                )
+
         return response
 
     def _terminate(self):
@@ -135,6 +145,9 @@ class SNSTopic(AWSResource):
         """
         self.sync_state()
         # use filters to remove any extra information
+        if self.custom_config.get("Attributes"):
+            self.desired_state_definition["Attributes"] = self.custom_config.get("Attributes")
+
         self.current_state_definition = pcf_util.param_filter(self.current_state_definition, SNSTopic.DEFINITION_FILTER)
         self.desired_state_definition = pcf_util.param_filter(self.desired_state_definition, SNSTopic.DEFINITION_FILTER)
         if "Attributes" in self.desired_state_definition.keys():
@@ -154,15 +167,14 @@ class SNSTopic(AWSResource):
         Returns:
             void
         """
-        # if not self.is_state_definition_equivalent():
-        #     # add/update new/existing attributes, cannot remove attributes - just set/reset attr.
-        #     desired_attr = self.desired_state_definition.get("Attributes")
-        #     if desired_attr:
-        #         for key in desired_attr:
-        #             self.client.set_topic_attributes(
-        #                 TopicArn=self._arn,
-        #                 AttributeName=key,
-        #                 AttributeValue= desired_attr[key]
-        #             )
-        pass
+        if not self.is_state_definition_equivalent():
+            # add/update new/existing attributes, cannot remove attributes - just set/reset attr.
+            desired_attr = self.desired_state_definition.get("Attributes")
+            if desired_attr:
+                for key in desired_attr:
+                    self.client.set_topic_attributes(
+                        TopicArn=self._arn,
+                        AttributeName=key,
+                        AttributeValue= desired_attr[key]
+                    )
 

@@ -9,17 +9,16 @@ sns_topic_example_json = {
     "pcf_name": "pcf_sns_test", # Required
     "flavor":"sns", # Required
     "aws_resource":{
-        # Refer to https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sns.html#SNS.Client.create_topic for full list of parameters
+        # Refer to https://boto3.amazonaws.com/v1/documentation/api/1.9.5/reference/services/sns.html#SNS.Client.create_topic for more information
         "Name":"pcf-sns-test", # Required
-        "Attributes": {
-            #"DeliveryPolicy": '', #HTTP|HTTPS|Email|Email-JSON|SMS|Amazon SQS|Application|AWS Lambda
-            "DisplayName": "pcf-test"
-            #"Policy": ''
-        },
-        #"custom_config": {
+        "custom_config": {
+            "Attributes": {
+                # "DeliveryPolicy": "", # HTTP|HTTPS|Email|Email-JSON|SMS|Amazon SQS|Application|AWS Lambda
+                "DisplayName": "pcf-test"
+                # "Policy": "" # dict
+            },
             # subscription parameters
-            # add subscription to existing Topic ARN
-        #}
+        }
     }
 }
 
@@ -33,14 +32,14 @@ sns.apply()
 print(sns.get_state())
 
 # example update topic attributes
-# updated_def = sns_topic_example_json
-# updated_def["aws_resource"]["Attributes"]["DisplayName"] = "new-pcf-test" # reset existing
-# sns = SNSTopic(updated_def)
-# sns.set_desired_state(State.running)
-# sns.apply()
+updated_def = sns_topic_example_json
+updated_def["aws_resource"]["Attributes"]["DisplayName"] = "new-pcf-test" # reset existing
+sns = SNSTopic(updated_def)
+sns.set_desired_state(State.running)
+sns.apply()
 
 # example terminate
-# sns.set_desired_state(State.terminated)
-# sns.apply()
-#
-# print(sns.get_state())
+sns.set_desired_state(State.terminated)
+sns.apply()
+
+print(sns.get_state())
