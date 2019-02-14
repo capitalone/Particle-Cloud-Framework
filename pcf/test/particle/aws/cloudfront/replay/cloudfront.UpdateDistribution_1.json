@@ -1,0 +1,139 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "8d997571-1e8c-11e9-98dd-a95efe457f9f",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "8d997571-1e8c-11e9-98dd-a95efe457f9f",
+                "etag": "E187NQTCNLSP5Q",
+                "content-type": "text/xml",
+                "content-length": "2721",
+                "vary": "Accept-Encoding",
+                "date": "Tue, 22 Jan 2019 21:27:42 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "ETag": "E187NQTCNLSP5Q",
+        "Distribution": {
+            "Id": "E1RCMOE4N814Z3",
+            "ARN": "arn:aws:cloudfront::411062852979:distribution/E1RCMOE4N814Z3",
+            "Status": "InProgress",
+            "LastModifiedTime": {
+                "__class__": "datetime",
+                "year": 2019,
+                "month": 1,
+                "day": 22,
+                "hour": 21,
+                "minute": 27,
+                "second": 43,
+                "microsecond": 278000
+            },
+            "InProgressInvalidationBatches": 0,
+            "DomainName": "d2em5nfbl2zqn9.cloudfront.net",
+            "ActiveTrustedSigners": {
+                "Enabled": false,
+                "Quantity": 0
+            },
+            "DistributionConfig": {
+                "CallerReference": "sdfa6df5a4sdf5asd7f9asd6fa5sdcf7a8oilwkerdk0",
+                "Aliases": {
+                    "Quantity": 0
+                },
+                "DefaultRootObject": "",
+                "Origins": {
+                    "Quantity": 1,
+                    "Items": [
+                        {
+                            "Id": "S3-wah",
+                            "DomainName": "wah.s3.amazonaws.com",
+                            "OriginPath": "",
+                            "CustomHeaders": {
+                                "Quantity": 0
+                            },
+                            "S3OriginConfig": {
+                                "OriginAccessIdentity": ""
+                            }
+                        }
+                    ]
+                },
+                "OriginGroups": {
+                    "Quantity": 0,
+                    "Items": []
+                },
+                "DefaultCacheBehavior": {
+                    "TargetOriginId": "S3-wah",
+                    "ForwardedValues": {
+                        "QueryString": false,
+                        "Cookies": {
+                            "Forward": "none"
+                        },
+                        "Headers": {
+                            "Quantity": 0
+                        },
+                        "QueryStringCacheKeys": {
+                            "Quantity": 0
+                        }
+                    },
+                    "TrustedSigners": {
+                        "Enabled": false,
+                        "Quantity": 0
+                    },
+                    "ViewerProtocolPolicy": "allow-all",
+                    "MinTTL": 50,
+                    "AllowedMethods": {
+                        "Quantity": 2,
+                        "Items": [
+                            "HEAD",
+                            "GET"
+                        ],
+                        "CachedMethods": {
+                            "Quantity": 2,
+                            "Items": [
+                                "HEAD",
+                                "GET"
+                            ]
+                        }
+                    },
+                    "SmoothStreaming": false,
+                    "DefaultTTL": 86400,
+                    "MaxTTL": 31536000,
+                    "Compress": false,
+                    "LambdaFunctionAssociations": {
+                        "Quantity": 0
+                    },
+                    "FieldLevelEncryptionId": ""
+                },
+                "CacheBehaviors": {
+                    "Quantity": 0
+                },
+                "CustomErrorResponses": {
+                    "Quantity": 0
+                },
+                "Comment": "pcf-cloud-front2",
+                "Logging": {
+                    "Enabled": false,
+                    "IncludeCookies": false,
+                    "Bucket": "",
+                    "Prefix": ""
+                },
+                "PriceClass": "PriceClass_100",
+                "Enabled": false,
+                "ViewerCertificate": {
+                    "CloudFrontDefaultCertificate": true,
+                    "MinimumProtocolVersion": "TLSv1",
+                    "CertificateSource": "cloudfront"
+                },
+                "Restrictions": {
+                    "GeoRestriction": {
+                        "RestrictionType": "none",
+                        "Quantity": 0
+                    }
+                },
+                "WebACLId": "",
+                "HttpVersion": "http2",
+                "IsIPV6Enabled": true
+            }
+        }
+    }
+}

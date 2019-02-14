@@ -182,9 +182,13 @@ def replace_value_nested_dict(curr_dict, list_nested_keys, new_value):
             replace_value_nested_dict(item, list_nested_keys, new_value)
         return curr_dict
     for k,v in curr_dict.items():
-        if k == list_nested_keys[0]:
+        if k == list_nested_keys[0].rstrip('0123456789'):
             if len(list_nested_keys) == 1:
-                curr_dict[k] = new_value
+                list_index = list_nested_keys[0][len(list_nested_keys[0].rstrip('0123456789')):]
+                if list_index:
+                    curr_dict[k][int(list_index)]= new_value
+                else:
+                    curr_dict[k] = new_value
             else:
                 list_nested_keys.pop(0)
                 curr_dict[k] = replace_value_nested_dict(curr_dict.get(k, {}), list_nested_keys, new_value)
@@ -228,9 +232,17 @@ def find_nested_vars(curr_dict, nested_key=None, var_list=[]):
         if isinstance(value, dict):
             find_nested_vars(value, nested_key=new_nested_key, var_list=var_list)
         elif isinstance(value, list):
-            for item in value:
+            for index,item in enumerate(value):
                 if isinstance(item, dict) or isinstance(item, list):
                     find_nested_vars(item, nested_key=new_nested_key, var_list=var_list)
+
+                if isinstance(item, str):
+                    try:
+                        if item[0] == "$":
+                            split_value = item[1:].split('$')
+                            var_list.append((new_nested_key + str(index), split_value))
+                    except Exception as e:
+                        print(item)
         else:
             if isinstance(value, str):
                 try:
