@@ -1,0 +1,129 @@
+{
+  "hosted-zone-apply": [
+    {
+      "pcf_name": "pcf_hosted_zone",
+      "flavor": "route53_hosted_zone",
+      "aws_resource": {
+        "Name": "www.hoooooos.com.",
+        "custom_config": {
+          "Tags": [
+            {
+              "Key": "Owner",
+              "Value": "Hoo"
+            },
+            {
+              "Key": "UID",
+              "Value": "abc123"
+            }
+          ]
+        },
+        "VPC": {
+          "VPCRegion": "us-east-1",
+          "VPCId": "vpc-12345"
+        },
+        "CallerReference": "sdfa6df5a4sdf5asd7f9asd6fa5s",
+        "HostedZoneConfig": {
+          "Comment": "hoo",
+          "PrivateZone": true
+        }
+      }
+    },
+    {},
+    [
+      "mock_route53"
+    ]
+  ],
+  "sqs-apply": [
+    {
+      "pcf_name": "pcf-queue",
+      "flavor": "sqs",
+      "aws_resource": {
+        "QueueName": "test_SQS_queue.fifo",
+        "Attributes": {
+          "DelaySeconds": "0",
+          "MaximumMessageSize": "262144",
+          "MessageRetentionPeriod": "345600",
+          "Policy": "AWS policy",
+          "ReceiveMessageWaitTimeSeconds": "20",
+          "VisibilityTimeout": "43200",
+          "KmsMasterKeyId": "enc/sqs",
+          "KmsDataKeyReusePeriodSeconds": "300",
+          "FifoQueue": "true",
+          "ContentBasedDeduplication": "true",
+          "QueueArn": "arn:aws:sqs:us-east-1:123456789012:test_SQS_queue.fifo"
+        },
+        "Tags": {
+          "test_tag": "value",
+          "remove_tag": "bye"
+        }
+      }
+    },
+    {
+      "aws_resource": {
+        "Attributes": {
+          "MaximumMessageSize": "262143",
+          "ReceiveMessageWaitTimeSeconds": "21",
+          "ContentBasedDeduplication": "false"
+        },
+        "Tags": {
+          "test_tag": "changed",
+          "new_tag": "hi"
+        }
+      }
+    },
+    [
+      "mock_sqs"
+    ]
+  ],
+  "cloud-front-apply": [
+    {
+      "pcf_name": "pcf_cloudfront",
+      "flavor": "cloudfront",
+      "aws_resource": {
+        "Comment": "pcf-cloud-front2",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "cloud-front1"
+          }
+        ],
+        "CallerReference": "sdfa6df5a4sdf5asd7f9asd6fa5sdcf7a8oilwkerdk0",
+        "Origins": {
+          "Quantity": 1,
+          "Items": [
+            {
+              "Id": "S3-wah",
+              "DomainName": "wah.s3.amazonaws.com",
+              "S3OriginConfig": {
+                "OriginAccessIdentity": ""
+              }
+            }
+          ]
+        },
+        "DefaultCacheBehavior": {
+          "TargetOriginId": "S3-wah",
+          "ForwardedValues": {
+            "QueryString": false,
+            "Cookies": {
+              "Forward": "none"
+            }
+          },
+          "TrustedSigners": {
+            "Enabled": false,
+            "Quantity": 0
+          },
+          "ViewerProtocolPolicy": "allow-all",
+          "MinTTL": 50
+        },
+        "Enabled": true,
+        "PriceClass": "PriceClass_100"
+      }
+    },
+    {},
+    [
+      "placebo",
+      "cloudfront/replay"
+    ]
+  ]
+}
+
