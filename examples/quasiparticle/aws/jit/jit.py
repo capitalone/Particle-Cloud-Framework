@@ -4,7 +4,7 @@ import json
 from pcf.core import State
 from pcf.core.quasiparticle import Quasiparticle
 
-from pcf.particle.aws.vpc.vpc import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPC
 from pcf.particle.aws.vpc.subnet import Subnet
 from pcf.particle.aws.vpc.security_group import SecurityGroup
 from pcf.particle.aws.ec2.ec2_instance import EC2Instance

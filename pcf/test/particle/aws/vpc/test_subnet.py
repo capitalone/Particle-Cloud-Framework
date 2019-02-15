@@ -15,7 +15,7 @@
 import moto
 import boto3
 
-from pcf.particle.aws.vpc.vpc import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPC
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.particle.aws.vpc.subnet import Subnet
 from pcf.core import State
