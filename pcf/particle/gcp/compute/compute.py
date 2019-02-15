@@ -6,7 +6,6 @@ from google.cloud import exceptions
 import logging
 
 logger = logging.getLogger(__name__)
-compute = googleapiclient.discovery.build("compute", "v1")
 
 
 class ComputeEngine(GCPResource):
@@ -31,6 +30,7 @@ class ComputeEngine(GCPResource):
     UNIQUE_KEYS = ["gcp_resource.name"]
 
     def __init__(self, particle_definition):
+        compute = googleapiclient.discovery.build("compute", "v1")
         super(ComputeEngine, self).__init__(particle_definition=particle_definition, resource=compute)
         self.name = self.desired_state_definition["name"]
         self.zone = self.custom_config["zone"]
