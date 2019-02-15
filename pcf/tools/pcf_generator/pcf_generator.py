@@ -13,7 +13,7 @@ class GenerateParticle:
         self.particle.sync_state()
         # TODO generic for all resources
         # TODO desired definition is not always the same format as the current_definition
-        self.particle_json["aws_resource"]= update_dict(self.particle.desired_state_definition,self.particle.current_state_definition)
+        self.particle_json["aws_resource"], _ = update_dict(self.particle.desired_state_definition,self.particle.current_state_definition)
         return self.particle_json
 
     def generate_json_file(self, path=None, filename='pcf.json'):
