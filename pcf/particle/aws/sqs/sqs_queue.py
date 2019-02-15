@@ -64,8 +64,8 @@ class SQSQueue(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.QueueName"]
 
-    def __init__(self, particle_definition):
-        super(SQSQueue, self).__init__(particle_definition=particle_definition, resource_name="sqs")
+    def __init__(self, particle_definition, session=None):
+        super(SQSQueue, self).__init__(particle_definition=particle_definition, resource_name="sqs", session=session)
         self.queue_name = self.desired_state_definition.get("QueueName")
         self._set_unique_keys()
         self._set_url(self.desired_state_definition.get("OwnerAwsId"))
