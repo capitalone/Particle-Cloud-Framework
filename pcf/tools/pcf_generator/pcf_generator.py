@@ -23,3 +23,23 @@ class GenerateParticle:
         with open(f'{path}/{filename}', 'w') as file:
             json.dump(particle_definition, file)
 
+
+class GenerateQuasiparticle:
+    def __init__(self, quasiparticle_definition):
+        self.quasiparticle_json = quasiparticle_definition
+
+    def generate_definition(self):
+        generated_particle_list=[]
+        for particle in self.quasiparticle_json.get("particles"):
+            generated_particle = GenerateParticle(particle)
+            generated_particle_list.append(generated_particle.generate_definition())
+
+        self.quasiparticle_json["particles"] = generated_particle_list
+        return self.quasiparticle_json
+
+    def generate_json_file(self, path=None, filename='pcf.json'):
+        if not path:
+            path = os.path.dirname((os.path.abspath(__file__)))
+        particle_definition = self.generate_definition()
+        with open(f'{path}/{filename}', 'w') as file:
+            json.dump(particle_definition, file)
