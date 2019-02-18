@@ -31,6 +31,8 @@ class GenerateQuasiparticle:
     def generate_definition(self):
         generated_particle_list=[]
         for particle in self.quasiparticle_json.get("particles"):
+            if not particle.get("pcf_name"):
+                particle["pcf_name"] = self.quasiparticle_json.get("pcf_name")
             generated_particle = GenerateParticle(particle)
             generated_particle_list.append(generated_particle.generate_definition())
 

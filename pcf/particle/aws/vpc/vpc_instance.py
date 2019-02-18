@@ -22,7 +22,7 @@ class VPC(AWSResource):
     This is the implementation of Amazon's VPC resource.
     """
 
-    flavor = "vpc"
+    flavor = "vpc_instance"
     state_lookup = {
         "available": State.running,
         "pending": State.pending,
