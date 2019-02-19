@@ -104,7 +104,7 @@ class VPCInstance(AWSResource):
         Returns:
            boto3 create_vpc() response
         """
-        resp = self.client.create_vpc(**pcf_util.param_filter(self.desired_state_definition,VPC.START_PARAMS))
+        resp = self.client.create_vpc(**pcf_util.param_filter(self.desired_state_definition,VPCInstance.START_PARAMS))
         self.vpc_id = resp['Vpc'].get("VpcId")
         self.current_state_definition = resp
         tags = self.custom_config.get("Tags",[])
