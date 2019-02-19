@@ -6,7 +6,6 @@ from google.cloud import exceptions
 import logging
 
 logger = logging.getLogger(__name__)
-compute = googleapiclient.discovery.build("compute", "v1")
 
 
 class VMInstance(GCPResource):

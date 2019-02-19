@@ -1,0 +1,6 @@
+---
+- pcf_name: test_ec2
+  flavor: ec2_instance
+  aws_resource:
+    custom_config:
+      instance_name: my-instance
