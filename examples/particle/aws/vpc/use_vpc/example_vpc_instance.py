@@ -1,4 +1,4 @@
-from pcf.particle.aws.vpc.vpc_instance import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 from pcf.core import State
 
 particle_definition = {
@@ -14,7 +14,7 @@ particle_definition = {
     }
 }
 
-vpc_particle = VPC(particle_definition)
+vpc_particle = VPCInstance(particle_definition)
 
 # example start
 

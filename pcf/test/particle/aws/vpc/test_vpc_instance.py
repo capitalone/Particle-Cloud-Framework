@@ -14,7 +14,7 @@
 
 import moto
 
-from pcf.particle.aws.vpc.vpc_instance import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 from pcf.core import State
 
 
@@ -32,7 +32,7 @@ class TestVPC:
 
     @moto.mock_ec2
     def test_apply_states(self):
-        particle = VPC(self.particle_definition)
+        particle = VPCInstance(self.particle_definition)
 
         # Test start
 

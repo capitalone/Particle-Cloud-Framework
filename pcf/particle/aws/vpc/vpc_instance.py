@@ -17,12 +17,12 @@ from pcf.core import State
 from pcf.util import pcf_util
 
 
-class VPC(AWSResource):
+class VPCInstance(AWSResource):
     """
     This is the implementation of Amazon's VPC resource.
     """
 
-    flavor = "vpc"
+    flavor = "vpc_instance"
     state_lookup = {
         "available": State.running,
         "pending": State.pending,
@@ -43,7 +43,7 @@ class VPC(AWSResource):
     UNIQUE_KEYS = ["aws_resource.custom_config.vpc_name"]
 
     def __init__(self, particle_definition):
-        super(VPC, self).__init__(particle_definition, "ec2")
+        super(VPCInstance, self).__init__(particle_definition, "ec2")
         self._set_unique_keys()
         self.vpc_name = self.custom_config.get("vpc_name")
         self._vpc_client = None
@@ -74,7 +74,7 @@ class VPC(AWSResource):
         Logic that sets keys from state definition that are used to uniquely identify the VPC
 
         """
-        self.unique_keys = VPC.UNIQUE_KEYS
+        self.unique_keys = VPCInstance.UNIQUE_KEYS
 
     def get_status(self):
         """
@@ -132,7 +132,7 @@ class VPC(AWSResource):
         if full_status is None:
             self.state = State.terminated
         else:
-            self.state = VPC.state_lookup.get(full_status["State"])
+            self.state = VPCInstance.state_lookup.get(full_status["State"])
             self.current_state_definition = full_status
             self.vpc_id = full_status.get("VpcId")
 
@@ -145,7 +145,7 @@ class VPC(AWSResource):
             Returns:
                 bool
             """
-            return VPC.equivalent_states.get(state1) == VPC.equivalent_states.get(state2)
+            return VPCInstance.equivalent_states.get(state1) == VPCInstance.equivalent_states.get(state2)
 
     def is_state_definition_equivalent(self):
         """
