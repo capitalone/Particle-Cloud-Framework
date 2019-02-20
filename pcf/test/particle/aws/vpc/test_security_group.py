@@ -57,7 +57,7 @@ class TestSecurityGroup:
         "flavor": "quasiparticle",
         "particles": [
             {
-                "flavor": "vpc",
+                "flavor": "vpc_instance",
                 "pcf_name": "vpc_parent",
                 "aws_resource": {
                     "custom_config": {
@@ -68,7 +68,7 @@ class TestSecurityGroup:
             },
             {
                 "flavor": "security_group",
-                "parents": ["vpc:vpc_parent"],
+                "parents": ["vpc_instance:vpc_parent"],
                 "aws_resource": {
                     "Description": "pcf security group",
                     "GroupName": "Hoos",

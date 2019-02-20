@@ -21,7 +21,7 @@ from pcf.core import State
 class TestVPC:
     particle_definition = {
         "pcf_name": "pcf_vpc",
-        "flavor": "vpc",
+        "flavor": "vpc_instance",
         "aws_resource": {
             "custom_config":{
                 "vpc_name":"test"
