@@ -15,9 +15,10 @@ This is a Python Style Guide for the PCF Framework. The intent of this guide is 
     ii. [String Formatting](#strformat)  
     iii. [Docstrings](#docstr)
 6. [Dictionary Key-Value Retrieval](#dict)
-7. [PCF Utility Functions](#pcf_util)
-8. [PCF Exceptions](#pcf_excep)
-9. [Logging Standards](#logging)
+7. [Method Returns](#returns)
+8. [PCF Utility Functions](#pcf_util)
+9. [PCF Exceptions](#pcf_excep)
+10. [Logging Standards](#logging)
 
 ## <a name="venv">Virtual Environments</a>
 Conda is the preferred virtual environment setup for testing and development. However, Python v3.3+ include the native 
@@ -204,9 +205,29 @@ bucket_name = desired_state_definition["Bucket"]
 bucket_name = desired_state_definition.get("Bucket")
 ```
 
-For testing if a dictionary returns empty, use the following notation:
+## <a name="returns">Method Returns</a>
+Methods that returns dictionaries should always return an empty dictionary, `{}`, 
+rather than `None` in the case that there is nothing to return. The reason being is
+so that typing is consistent and so that we can utilize the built-in boolean valuation of dictionaries.
+
+Example:
 ```python
-bucket_name = desired_state_definition.get("Bucket", {})
+def _get_alias(self):
+    """
+    Returns the alias record for the provided key_name in custom configuration.
+
+    Returns:
+         {} (dict) Containing nothing, or the keys below:
+             - AliasName (str) -  The alias name (always starts with "alias/")
+             - AliasArn (str) - The ARN for the key alias
+             - TargetKeyId (str) - The unique identifier for the key the alias is\
+                associated with
+    """
+    alias_list = self.client.list_aliases()
+    for alias in alias_list.get('Aliases'):
+        if alias.get('AliasName') == 'alias/' + self.key_name:
+            return alias
+    return {}
 ```
 
 ## <a name="pcf_util">PCF Utility Fucntions</a>
@@ -246,15 +267,30 @@ class NoCodeException(Exception):
 ```
 
 ## <a name="logging">Logging Standards</a>
-Logging is a means of tracking events that happen when some software runs. More information on logging in Python can be found <a href="https://docs.python.org/3/howto/logging.html#logging-basic-tutorial">here</a>.
+Logging is a means of tracking events that happen when some software runs. More information on logging in Python can be 
+found <a href="https://docs.python.org/3/howto/logging.html#logging-basic-tutorial">here</a>.
 
 To enable logging in PCF, add the following code to the top of your pcf python file.
 
+Example:
 ```python
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
-for handler in logging.root.handlers:
-    handler.addFilter(logging.Filter('pcf'))
+def get_state(self):
+    """
+    Calls sync state and afterward returns the current state. Uses cached state if available.
+
+    Returns:
+        state
+    """
+    if not self.use_cached_state():
+        self.sync_state()
+        self.state_last_refresh_time = time.time()
+        logger.info(f"Refreshed state for {self.pcf_id}: {self.state}")
+    else:
+        logger.debug(f"Using cached state for {self.pcf_id}: {self.state}")
+    return self.state
+
 ```
