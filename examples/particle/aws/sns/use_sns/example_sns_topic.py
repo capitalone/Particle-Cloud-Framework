@@ -12,12 +12,18 @@ sns_topic_example_json = {
         # Refer to https://boto3.amazonaws.com/v1/documentation/api/1.9.5/reference/services/sns.html#SNS.Client.create_topic for more information
         "Name":"pcf-sns-test", # Required
         "custom_config": {
-            "Attributes": {
+            "Attributes": { # optional - attributes will be set to default values if not specified
                 # "DeliveryPolicy": "", # HTTP|HTTPS|Email|Email-JSON|SMS|Amazon SQS|Application|AWS Lambda
                 "DisplayName": "pcf-test"
                 # "Policy": "" # dict
             },
-            # subscription parameters
+            # Refer to https://boto3.amazonaws.com/v1/documentation/api/1.9.5/reference/services/sns.html#SNS.Client.subscribe for a full list of parameters
+            "Subscription": { # optional
+                "Protocol": "", # Required - http|https|email|email-json|sms|sqs|application|lambda
+                "Endpoint": "", # http|https|email|email-json|sms|sqs|application|lambda
+                "Attributes": "", # dict
+                "ReturnSubscriptionArn": "" # boolean - default=false
+            }
         }
     }
 }

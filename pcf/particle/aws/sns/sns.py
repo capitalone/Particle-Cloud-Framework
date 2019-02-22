@@ -40,6 +40,13 @@ class SNSTopic(AWSResource):
         "Policy"
     }
 
+    START_SUB = {
+        "Protocol",
+        "Endpoint",
+        "Attributes",
+        "ReturnSubscriptionArn"
+    }
+
     equivalent_states = {
         State.running: 1,
         State.stopped: 0,
@@ -67,12 +74,13 @@ class SNSTopic(AWSResource):
         and added to the topic as a separate call, set_topic_attributes().
 
         Returns:
-            response of boto3 create_topic
+            response of boto3(v1.9.5) create_topic
         """
         start_definition = pcf_util.param_filter(self.get_desired_state_definition(), SNSTopic.START_PARAM_FILTER)
         response = self.client.create_topic(**start_definition)
         self._arn = response.get("TopicArn")
 
+        # add attributes if applicable
         if self.custom_config.get("Attributes"):
             attrs = self.custom_config.get("Attributes")
 
@@ -82,6 +90,14 @@ class SNSTopic(AWSResource):
                     AttributeName=key,
                     AttributeValue=attrs[key]
                 )
+
+        # add subscription if applicable
+        if self.custom_config.get("Subscription"):
+            desired_sub = pcf_util.param_filter(self.custom_config.get("Subscription"), SNSTopic.START_SUB)
+            desired_sub["TopicArn"] = self._arn
+
+            resp = self.client.subscribe(**desired_sub)
+            self.subscription_arn = resp.get("SubscriptionArn")
 
         return response
 
@@ -118,6 +134,24 @@ class SNSTopic(AWSResource):
                 current_definition["Name"] = self.topic_name
                 self.current_state_definition = current_definition
                 return current_definition
+            except ClientError:
+                return None
+        else:
+            return None
+
+    def get_subscription(self):
+        """
+        Uses boto calls to get the Subscription Attributes for the Topic
+
+        Returns:
+            subscription definition if the topic exists, otherwise None
+        """
+        if self.subscription_arn:
+            try:
+                subscription_definition = self.client.get_subscription_attributes(
+                    SubscriptionArn=self.subscription_arn_arn
+                )
+                return subscription_definition
             except ClientError:
                 return None
         else:
@@ -177,4 +211,3 @@ class SNSTopic(AWSResource):
                         AttributeName=key,
                         AttributeValue= desired_attr[key]
                     )
-
