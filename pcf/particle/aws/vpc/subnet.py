@@ -15,7 +15,7 @@
 from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 from pcf.util import pcf_util
-from pcf.particle.aws.vpc.vpc import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPC
 
 
 class Subnet(AWSResource):

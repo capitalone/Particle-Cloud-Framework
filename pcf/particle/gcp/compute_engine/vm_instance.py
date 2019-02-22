@@ -6,10 +6,9 @@ from google.cloud import exceptions
 import logging
 
 logger = logging.getLogger(__name__)
-compute = googleapiclient.discovery.build("compute", "v1")
 
 
-class ComputeEngine(GCPResource):
+class VMInstance(GCPResource):
 
     """
     This is the implementation of Google's compute service.
@@ -31,7 +30,7 @@ class ComputeEngine(GCPResource):
     UNIQUE_KEYS = ["gcp_resource.name"]
 
     def __init__(self, particle_definition):
-        super(ComputeEngine, self).__init__(particle_definition=particle_definition, resource=compute)
+        super(VMInstance, self).__init__(particle_definition=particle_definition, resource=compute)
         self.name = self.desired_state_definition["name"]
         self.zone = self.custom_config["zone"]
         self.project = self.custom_config["project"]
@@ -43,7 +42,7 @@ class ComputeEngine(GCPResource):
         Logic that sets keys from state definition that are used to uniquely identify the storage bucket
 
         """
-        self.unique_keys = ComputeEngine.UNIQUE_KEYS
+        self.unique_keys = VMInstance.UNIQUE_KEYS
 
     def get_status(self):
         """
@@ -93,7 +92,7 @@ class ComputeEngine(GCPResource):
 
         if full_status:
             if full_status.get('status'):
-                self.state = ComputeEngine.state_lookup[full_status.get('status')]
+                self.state = VMInstance.state_lookup[full_status.get('status')]
             else:
                 self.state = State.terminated
 

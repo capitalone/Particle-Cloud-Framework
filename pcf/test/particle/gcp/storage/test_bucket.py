@@ -21,7 +21,7 @@ import requests
 from six.moves import http_client
 
 
-from pcf.particle.gcp.storage.storage import Storage
+from pcf.particle.gcp.storage.bucket import Bucket
 from pcf.core import State
 
 
