@@ -53,8 +53,8 @@ class EFS(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.custom_config.instance_name"]
 
-    def __init__(self, particle_definition):
-        super(EFS, self).__init__(particle_definition, "efs")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition, "efs", session=session)
         self.instance_name = self.desired_state_definition.get('custom_config').get('instance_name')
         self._set_unique_keys()
 

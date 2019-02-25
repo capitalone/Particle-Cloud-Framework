@@ -11,8 +11,19 @@ from contextlib import ExitStack
 
 from pcf.particle.aws.route53 import hosted_zone
 from pcf.particle.aws.sqs.sqs_queue import SQSQueue
-from pcf.particle.aws.cloudfront.cloudfront import CloudFront
-
+from pcf.particle.aws.cloudfront.cloudfront_distribution import CloudFrontDistribution
+from pcf.particle.aws.cloudwatch.cloudwatch_event import CloudWatchEvent
+from pcf.particle.aws.cloudwatch.cloudwatch_log import CloudWatchLog
+from pcf.particle.aws.dynamodb.dynamodb_table import DynamoDB
+from pcf.particle.aws.ec2.autoscaling.launch_configuration import LaunchConfiguration
+from pcf.particle.aws.ec2.elb.elb import ElasticLoadBalancing
+from pcf.particle.aws.ecs.ecs_cluster import ECSCluster
+from pcf.particle.aws.ecs.ecs_task_definition import ECSTaskDefinition
+from pcf.particle.aws.efs.efs_instance import EFS
+from pcf.particle.aws.emr.emr_cluster import EMRCluster
+from pcf.particle.aws.kms.kms_key import KMSKey
+from pcf.particle.aws.s3.s3_bucket import S3Bucket
+from pcf.particle.aws.vpc.vpc_instance import VPC
 
 directory = os.path.dirname(__file__)
 file = os.path.join(directory, 'testdata.json')
@@ -23,8 +34,8 @@ values = testdata.values()
 values = [tuple(v) for v in values]
 
 
-@pytest.mark.parametrize("definition,updated_definition,test_type", values, ids=list(testdata.keys()))
-def test_apply(definition, updated_definition, test_type):
+@pytest.mark.parametrize("definition,changes,test_type", values, ids=list(testdata.keys()))
+def test_apply(definition, changes, test_type):
     flavor = definition.get("flavor")
     particle_class = particle_flavor_scanner.get_particle_flavor(flavor)
     session = None
@@ -38,24 +49,27 @@ def test_apply(definition, updated_definition, test_type):
         else:
             for context in test_type:
                 stack.enter_context(getattr(moto, context)())
-
+        # create
         particle = particle_class(definition, session)
         particle.set_desired_state(State.running)
-        particle.apply()
+        particle.apply(sync=False)
 
         assert particle.get_state() == State.running
+        # print(particle.current_state_definition, particle.desired_state_definition)
         assert particle.is_state_definition_equivalent()
-
-        if updated_definition:
-            updated_definition, diff = pcf_util.update_dict(definition, updated_definition)
-            print(updated_definition)
-            particle = particle_class(updated_definition)
+        # update
+        if changes:
+            updated_definition, diff = pcf_util.update_dict(definition, changes)
+            if changes.get("aws_resource", {}).get("Tags"):
+                updated_definition["aws_resource"]["Tags"] = changes.get("aws_resource", {}).get("Tags")
+            elif changes.get("aws_resource", {}).get("tags"):
+                updated_definition["aws_resource"]["tags"] = changes.get("aws_resource", {}).get("tags")
+            particle = particle_class(updated_definition, session)
             particle.set_desired_state(State.running)
-            particle.apply()
-
+            particle.apply(sync=False)
             assert particle.is_state_definition_equivalent()
-
+        # terminate
         particle.set_desired_state(State.terminated)
-        particle.apply()
+        particle.apply(sync=False)
 
         assert particle.get_state() == State.terminated

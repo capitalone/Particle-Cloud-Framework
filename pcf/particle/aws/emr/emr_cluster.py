@@ -57,10 +57,8 @@ class EMRCluster(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.Name"]
 
-    def __init__(self, particle_definition):
-        super(EMRCluster, self).__init__(
-            particle_definition=particle_definition,
-            resource_name="emr")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="emr", session=session)
         self.name = self.desired_state_definition["Name"]
 
     def _set_unique_keys(self):
