@@ -8,7 +8,7 @@ from google.cloud import exceptions
 logger = logging.getLogger(__name__)
 
 
-class Storage(GCPResource):
+class Bucket(GCPResource):
 
     """
     This is the implementation of Google's storage service.
@@ -24,7 +24,7 @@ class Storage(GCPResource):
     UNIQUE_KEYS = ["gcp_resource.name"]
 
     def __init__(self, particle_definition):
-        super(Storage, self).__init__(particle_definition=particle_definition, resource=storage)
+        super(Bucket, self).__init__(particle_definition=particle_definition, resource=storage)
         self.bucket_name = self.desired_state_definition["name"]
         self._set_unique_keys()
 
@@ -33,7 +33,7 @@ class Storage(GCPResource):
         Logic that sets keys from state definition that are used to uniquely identify the storage bucket
 
         """
-        self.unique_keys = Storage.UNIQUE_KEYS
+        self.unique_keys = Bucket.UNIQUE_KEYS
 
     def get_status(self):
         """
@@ -165,5 +165,5 @@ class Storage(GCPResource):
         Returns:
             bool
         """
-        return Storage.equivalent_states.get(state1) == Storage.equivalent_states.get(state2)
+        return Bucket.equivalent_states.get(state1) == Bucket.equivalent_states.get(state2)
 

@@ -1,4 +1,4 @@
-from pcf.particle.gcp.storage.storage import Storage
+from pcf.particle.gcp.storage.bucket import Bucket
 from pcf.core import State
 
 import sys
@@ -16,7 +16,7 @@ storage_example_json = {
 
 
 # create storage record particle
-storage = Storage(storage_example_json)
+storage = Bucket(storage_example_json)
 
 # example start
 storage.set_desired_state(State.running)
