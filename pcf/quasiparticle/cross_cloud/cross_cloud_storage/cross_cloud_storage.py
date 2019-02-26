@@ -13,7 +13,7 @@
 # limitations under the License.
 
 from pcf.core.quasiparticle import Quasiparticle
-from pcf.particle.gcp.storage.storage import Storage
+from pcf.particle.gcp.storage.bucket import Bucket
 from pcf.particle.aws.s3.s3_bucket import S3Bucket
 
 

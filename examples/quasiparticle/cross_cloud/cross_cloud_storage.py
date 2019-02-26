@@ -1,6 +1,6 @@
 from pcf.particle.aws.s3.s3_bucket import S3Bucket
 from pcf.core import State
-from pcf.quasiparticle.cross_cloud.cross_cloud_storage import CrossCloudStorage
+from pcf.quasiparticle.cross_cloud.cross_cloud_storage.cross_cloud_storage import CrossCloudStorage
 import os
 import sys
 
@@ -42,8 +42,10 @@ print(cross_cloud_storage.get_state())
 # example put object
 some_binary_data = b'Here we have some data'
 
-print(cross_cloud_storage.put_object(Bucket="pcf-testing", Key="test-object", Body=some_binary_data))
-print(cross_cloud_storage.put_object(Bucket="pcf-testing", Key="test-object", Filename=os.path.join(sys.path[0],"test.txt")))
+cross_cloud_storage.put_object(Bucket="pcf-testing", Key="test-object", Body=some_binary_data)
+cross_cloud_storage.put_object(Bucket="pcf-testing", Key="test-object", Filename=os.path.join(sys.path[0],"test.txt"))
+
+print(cross_cloud_storage.get_state())
 
 # example put terminate
 cross_cloud_storage.delete_object(Bucket="pcf-testing", Key="test-object")
@@ -52,4 +54,4 @@ cross_cloud_storage.delete_object(Bucket="pcf-testing", Key="test-file")
 cross_cloud_storage.set_desired_state(State.terminated)
 cross_cloud_storage.apply()
 
-# print(cross_cloud_storage.get_state())
+print(cross_cloud_storage.get_state())
