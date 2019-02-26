@@ -71,11 +71,11 @@ class PCF(object):
         for particle in particles:
             self.add_particle(particle)
 
-    def apply(self, sync=True, cascade=False, validate_config=False, particles_dict=None):
+    def apply(self, sync=True, cascade=False, validate_config=False, max_timeout=None, particles_dict=None):
         if not particles_dict: particles_dict = self.particles
         for k, v in particles_dict.items():
             if isinstance(v, dict):
-                self.apply(particles_dict=v, sync=sync, cascade=cascade, validate_config=validate_config)
+                self.apply(particles_dict=v, sync=sync, cascade=cascade, validate_config=validate_config, max_timeout=max_timeout)
             else:
-                v.apply(sync=sync, cascade=cascade, validate_config=validate_config)
+                v.apply(sync=sync, cascade=cascade, validate_config=validate_config, max_timeout=max_timeout)
 
