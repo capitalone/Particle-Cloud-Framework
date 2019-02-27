@@ -75,6 +75,13 @@ Core Concepts
    :maxdepth: 2
 
    concepts/concepts
+   
+CLI Usage
+--------------------------
+.. toctree::
+   :maxdepth: 2
+
+   sections/cli
 
 Core Classes
 --------------------------

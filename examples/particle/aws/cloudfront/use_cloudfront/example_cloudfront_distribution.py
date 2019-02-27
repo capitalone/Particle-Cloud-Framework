@@ -11,11 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-from pcf.particle.aws.cloudfront.cloudfront import CloudFront
-from pcf.core import State
 import random
 import string
+from pcf.particle.aws.cloudfront.cloudfront_distribution import CloudFrontDistribution
+from pcf.core import State
 
 # Only included required fields. For all fields,
 # https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudfront.html#CloudFront.Client.create_distribution
@@ -30,7 +29,7 @@ particle_definition = {
                 "Value": "cloud-front1"
             }
         ],
-        "CallerReference": "sdfa6df5a4sdf5asd7f9asd6fa5sdcf7a8oilwkerdk0",
+        "CallerReference": ''.join(random.choices(string.ascii_uppercase + string.digits, k=20)),
         "Origins": {
             "Quantity": 1,
             "Items": [
@@ -64,7 +63,7 @@ particle_definition = {
 }
 
 
-particle = CloudFront(particle_definition)
+particle = CloudFrontDistribution(particle_definition)
 
 particle.set_desired_state(State.running)
 particle.apply(sync=True)
