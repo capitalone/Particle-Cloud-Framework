@@ -4,7 +4,7 @@ Core Concepts
 
 Particle Cloud Framework is a cloud resource provisioning framework whose key
 features include being fully customizable and extensible, callable by code,
-and does not require manually maintaining states of resources. This unique combination
+and automatically maintains the states of cloud resources. This unique combination
 leads to new ways of thinking about cloud infrastructure and its relation to not
 only applications, but software development in general.
 
@@ -20,9 +20,9 @@ Just-in-time infrastructure is a model in which the entire infrastructure stack
 required for an application is written as code and deployed with the same lifecycles
 alongside the application. The idea for JiTI came during the development of a data
 analytics platform for data scientists, many of whom wanted to use the platform with
-sensitive data. Working with sensitive date made it extremely difficult to gain the
+sensitive data. Working with sensitive data made it extremely difficult to gain the
 sufficient permission and access needed for the platform to be hosted in one centralized
-location. Therefore, the team decided early on to design the platform to be “dropshippable”
+location. Therefore, the team decided early on to design the platform to be “drop-shippable”
 (deployed in any cloud account with minimal to no code changes required), and simply
 deploy the platform directly into any account where the data and the data scientists
 were already working.
@@ -67,7 +67,7 @@ applications, so there is no risk when deleting rogue or unused infrastructure. 
 JiTI simplifies the deployment and tearing down your entire application, providing  cost savings
 while not utilizing the application (especially for development, test, and QA environments).
 
-* **Dropshipable**
+* **Drop-shippable**
 
 Deploying an application and its infrastructure together in another account or environment ensures
 the application works as promised.
