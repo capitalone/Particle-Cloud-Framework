@@ -11,7 +11,7 @@ from contextlib import ExitStack
 
 from pcf.particle.aws.route53 import hosted_zone
 from pcf.particle.aws.sqs.sqs_queue import SQSQueue
-from pcf.particle.aws.cloudfront.cloudfront import CloudFront
+from pcf.particle.aws.cloudfront.cloudfront_distribution import CloudFrontDistribution
 
 
 directory = os.path.dirname(__file__)
