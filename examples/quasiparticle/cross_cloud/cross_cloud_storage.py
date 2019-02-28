@@ -7,26 +7,7 @@ import sys
 # Edit example json to work in your account
 cross_cloud_storage_example = {
     "pcf_name": "cross_cloud_storage", # Required
-    "flavor": "cross_cloud_storage",
-    "particles": [{
-        "flavor":"s3_bucket", # Required
-            "aws_resource":{
-                # Refer to https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.create_bucket for full list of parameters
-                "Bucket":"pcf-testing", # Required
-                "custom_config": {
-                    "Tags":{
-                        "Name": "pcf-s3-example"
-                    }
-                }
-            }
-        },
-    {
-        "flavor":"storage", # Required
-            "gcp_resource":{
-                # Refer to https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.create_bucket for full list of parameters
-                "name":"pcf-testing", # Required
-            }
-    }]
+    "flavor": "cross_cloud_storage"
 }
 
 
