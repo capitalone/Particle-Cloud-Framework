@@ -23,26 +23,6 @@ from pcf.core import State, STATE_STRING_TO_ENUM, pcf_exceptions
 from pcf.util import pcf_util
 
 
-dirname = os.path.dirname(__file__)
-dirname, x = os.path.split(dirname)
-filename = os.path.join(dirname, 'logging/pcf.log')
-logger = logging.getLogger(getpass.getuser())
-logger.setLevel(logging.DEBUG)
-
-# create console handler and set level to debug
-ch = logging.FileHandler(filename)
-ch.setLevel(logging.DEBUG)
-
-# create formatter
-formatter = jsonlogger.JsonFormatter('%(asctime)s - %(name)s - %(funcName)s - %(levelname)s - %(message)s')
-
-# add formatter to ch
-ch.setFormatter(formatter)
-
-# add ch to logger
-logger.addHandler(ch)
-
-
 class MetaParticle(type):
     def __new__(cls, name, bases, namespace):
         new_class = type.__new__(cls, name, bases, dict(namespace))
@@ -63,6 +43,27 @@ class Particle(object, metaclass=MetaParticle):
     """
     Type of particle
     """
+
+    # create logger
+    dirname = os.path.dirname(__file__)
+    dirname, x = os.path.split(dirname)
+    filename = os.path.join(dirname, 'logging/pcf.log')
+    logger = logging.getLogger(getpass.getuser())
+    logger.setLevel(logging.DEBUG)
+
+    # create console handler and set level to debug
+    ch = logging.FileHandler(filename)
+    ch.setLevel(logging.DEBUG)
+
+    # create formatter
+    formatter = jsonlogger.JsonFormatter(
+        '%(asctime)s - %(name)s - %(module)s - %(funcName)s - %(levelname)s - %(message)s')
+
+    # add formatter to ch
+    ch.setFormatter(formatter)
+
+    # add ch to logger
+    logger.addHandler(ch)
 
     def __init__(self, particle_definition):
         """
@@ -149,9 +150,9 @@ class Particle(object, metaclass=MetaParticle):
         if not self.use_cached_state():
             self.sync_state()
             self.state_last_refresh_time = time.time()
-            logger.info("Refreshed state for {0}: {1}".format(self.pcf_id, self.state))
+            self.logger.info("Refreshed state for {0}: {1}".format(self.pcf_id, self.state))
         else:
-            logger.debug("Using cached state for {0}: {1}".format(self.pcf_id, self.state))
+            self.logger.debug("Using cached state for {0}: {1}".format(self.pcf_id, self.state))
         return self.state
 
     def sync_state(self):
@@ -186,7 +187,7 @@ class Particle(object, metaclass=MetaParticle):
             desired_state (State):
         """
         self.desired_state = desired_state
-        logger.info("{0}: setting desired state to {1}".format(self.pcf_id, self.desired_state))
+        self.logger.info("{0}: setting desired state to {1}".format(self.pcf_id, self.desired_state))
 
     def measure(self):
         return self.__dict__
@@ -214,8 +215,10 @@ class Particle(object, metaclass=MetaParticle):
         if max_timeout:
             start_timeout = time.time()
 
-        logger.debug("{0}: start applying state transition with modes: sync={1} cascade={2} validate_config={3}".format(self.pcf_id, sync,
-                                                                                                    cascade, validate_config))
+        self.logger.debug(
+            "{0}: start applying state transition with modes: sync={1} cascade={2} validate_config={3}".format(
+                self.pcf_id, sync,
+                cascade, validate_config))
 
         if validate_config:
             self._validate_config()
@@ -231,7 +234,7 @@ class Particle(object, metaclass=MetaParticle):
 
             # persist particle on terminate
             if self.persist_on_termination is True and self.desired_state == State.terminated:
-                logger.debug("{0}: termination protection is set to True".format(self.pcf_id))
+                self.logger.debug("{0}: termination protection is set to True".format(self.pcf_id))
                 return True
 
             # pass in parent variables to desired state definition
@@ -247,7 +250,7 @@ class Particle(object, metaclass=MetaParticle):
 
                     if not sync: break
                 else:
-                    logger.debug(
+                    self.logger.debug(
                         "{0}: current state ({1}) doesn't match the desired_state ({2}) retrieving state transition function".format(
                             self.pcf_id, self.state, self.desired_state))
                     state_transition_func = self.get_state_transition_function(self.state, self.desired_state)
@@ -284,18 +287,18 @@ class Particle(object, metaclass=MetaParticle):
                     raise pcf_exceptions.MaxTimeoutException
 
                 try:
-                    logger.debug(
+                    self.logger.debug(
                         "{0}: current_state_definition ({1}) doesn't match the desired_state_definition ({2})".format(
                             self.pcf_id, json.dumps(self.current_state_definition),
                             json.dumps(self.get_desired_state_definition())))
                 except Exception:
-                    logger.debug(
+                    self.logger.debug(
                         "{0}: current_state_definition ({1}) doesn't match the desired_state_definition ({2})".format(
                             self.pcf_id, self.current_state_definition, self.get_desired_state_definition()))
 
                 # persist particle on update
                 if self.persist_on_update:
-                    logger.debug("{0}: update protection is set to True".format(self.pcf_id))
+                    self.logger.debug("{0}: update protection is set to True".format(self.pcf_id))
                     break
 
                 if self.state == State.pending:
@@ -343,7 +346,7 @@ class Particle(object, metaclass=MetaParticle):
                         child.set_desired_state(self.desired_state)
                     # skip child apply if child has persist_on_termination set to True
                     if child.persist_on_termination is True and self.desired_state == State.terminated:
-                        logger.debug("{0}: termination protection is set to True".format(child.pcf_id))
+                        self.logger.debug("{0}: termination protection is set to True".format(child.pcf_id))
                     else:
                         child.apply(sync=sync, cascade=True, src_cascade=direction)
 
@@ -372,11 +375,12 @@ class Particle(object, metaclass=MetaParticle):
                     raise pcf_exceptions.InvalidValueReplaceException("{} parent was not found".format(pcf_id))
                 else:
                     var = pcf_util.find_nested_dict_value(curr_dict=parent.current_state_definition,
-                                                            list_nested_keys=parent_var.split('.'))
+                                                          list_nested_keys=parent_var.split('.'))
                     if not var:
-                        raise pcf_exceptions.InvalidValueReplaceException("{} var was not found in {}".format(parent_var, pcf_id))
+                        raise pcf_exceptions.InvalidValueReplaceException(
+                            "{} var was not found in {}".format(parent_var, pcf_id))
                 pcf_util.replace_value_nested_dict(curr_dict=self.desired_state_definition,
-                                                     list_nested_keys=nested_key.split('.'), new_value=var)
+                                                   list_nested_keys=nested_key.split('.'), new_value=var)
 
     def register_state_transition(self, start_state, end_state, transition_function):
         """
@@ -408,7 +412,7 @@ class Particle(object, metaclass=MetaParticle):
             cascade (bool): apply state transitions to all family members
 
         """
-        logger.debug(
+        self.logger.debug(
             "{0}: start starting particle with modes: sync={1} cascade={2}".format(self.pcf_id, sync, cascade))
 
         if cascade:
@@ -432,7 +436,7 @@ class Particle(object, metaclass=MetaParticle):
             sync (bool): apply state transitions synchronously
             cascade (bool): apply state transitions to all family members
         """
-        logger.debug(
+        self.logger.debug(
             "{0}: start stopping particle with modes: sync={1} cascade={2}".format(self.pcf_id, sync, cascade))
 
         if cascade:
@@ -456,7 +460,7 @@ class Particle(object, metaclass=MetaParticle):
             sync (bool): apply state transitions synchronously
             cascade (bool): apply state transitions to all family members
         """
-        logger.debug(
+        self.logger.debug(
             "{0}: start terminating particle with modes: sync={1} cascade={2}".format(self.pcf_id, sync, cascade))
 
         if cascade:
@@ -480,7 +484,7 @@ class Particle(object, metaclass=MetaParticle):
             sync (bool): apply state transitions synchronously
             cascade (bool): apply state transitions to all family members
         """
-        logger.debug(
+        self.logger.debug(
             "{0}: start updating particle with modes: sync={1} cascade={2}".format(self.pcf_id, sync, cascade))
         resp = self._update()
 
@@ -567,8 +571,9 @@ class Particle(object, metaclass=MetaParticle):
         else:
             # can't json dump function
             if diff.get('callbacks'):
-                diff['callbacks'] = {'new':'<function>'}
-            logger.debug("State is not equivalent for {0} with diff: {1}".format(self.get_pcf_id(), json.dumps(diff)))
+                diff['callbacks'] = {'new': '<function>'}
+            self.logger.debug(
+                "State is not equivalent for {0} with diff: {1}".format(self.get_pcf_id(), json.dumps(diff)))
             return False
 
     def get_desired_state_definition(self):
