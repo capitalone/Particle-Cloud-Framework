@@ -21,7 +21,7 @@ allowing the user to do complex and unique actions if they would like.
 
 Standardize Cloud resources
 ---------------------------
-PCF was built with the idea that all cloud resources follow the same basic lifecycles. This makes is much easier to manage
+PCF was built with the idea that all cloud resources follow the same basic lifecycles. This makes it much easier to manage
 complex deployments with resources that may have many different dependencies. We treat dependencies as a graph ensuring resources
 are both deployed and terminated in the correct sequence.
 
