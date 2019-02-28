@@ -17,6 +17,9 @@ commentjson==0.7.1
 botocore==1.12.72
 deepdiff==3.3.0
 placebo==0.8.2
+azure==4.0.0
+azure-cli-core==2.0.57
+vcrpy==2.0.1
 click==7.0
 python-Levenshtein==0.12.0
 pyyaml==3.13
