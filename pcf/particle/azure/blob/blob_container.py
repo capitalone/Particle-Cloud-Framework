@@ -35,10 +35,9 @@ class BlobContainer(AzureResource):
         super().__init__(particle_definition)
         self._name = self.desired_state_definition["name"]
         self._set_unique_keys()
-        if blob_service:
-            self._blob_service = blob_service
-        else:
-            self._blob_service = self.storage_client.create_block_blob_service()
+        if not blob_service:
+            blob_service = self.storage_client.create_block_blob_service()
+        self._blob_service = blob_service
 
     def _set_unique_keys(self):
         """
@@ -99,7 +98,7 @@ class BlobContainer(AzureResource):
 
     def is_state_equivalent(self, state1, state2):
         """
-        Determines if states are equivalent. Uses equivalent_states defined in the S3Bucket class.
+        Determines if states are equivalent. Uses equivalent_states defined in the class.
 
         Args:
             state1 (State):
