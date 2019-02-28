@@ -17,7 +17,7 @@ import moto
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
 from pcf.particle.aws.vpc.security_group import SecurityGroup
-from pcf.particle.aws.vpc.vpc import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPC
 
 
 class TestSecurityGroup:
