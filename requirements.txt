@@ -1,4 +1,4 @@
-awscli==1.16.82
+awscli==1.16.84
 pytest==3.2.3
 pytest-bdd==2.18.2
 pytest-cov==2.5.1
@@ -18,3 +18,6 @@ botocore==1.12.72
 deepdiff==3.3.0
 placebo==0.8.2
 python-json-logger==0.1.10
+click==7.0
+python-Levenshtein==0.12.0
+pyyaml==3.13

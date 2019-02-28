@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import importlib
+import inspect
+import pkgutil
 from copy import deepcopy
 from pcf.core.pcf_exceptions import InvalidConfigException
 
@@ -57,7 +60,6 @@ def _update_dict(curr_dict, updated_dict, eval=False, diff_dict={}, root=True):
                     if not eval:
                         curr_dict[k] = v
 
-
             elif isinstance(v, dict):
                 diff_dict[k] = {}
                 _update_dict(cv, v, eval=eval, diff_dict=diff_dict[k], root=root)
@@ -67,8 +69,7 @@ def _update_dict(curr_dict, updated_dict, eval=False, diff_dict={}, root=True):
 
             elif isinstance(v, list):
                 if not is_list_equal(v, cv):
-                    diff_dict[k] = {"original": list(cv),
-                                    "updated": v}
+                    diff_dict[k] = {"original": list(cv), "updated": v}
 
                     # v_str = json.dumps(v, sort_keys=True)
                     # cv_str = json.dumps(cv, sort_keys=True)
@@ -89,8 +90,7 @@ def _update_dict(curr_dict, updated_dict, eval=False, diff_dict={}, root=True):
                         # if not diff_dict[k]:
                         #     diff_dict.pop(k)
             elif v != cv:
-                diff_dict[k] = {"original": cv,
-                                "updated": v}
+                diff_dict[k] = {"original": cv, "updated": v}
                 if not eval:
                     curr_dict[k] = v
         except Exception as e:
@@ -127,7 +127,12 @@ def keep_and_remove_keys(curr_dict, remove_dict):
 
 
 def is_list_equal(list_a, list_b):
-    if not isinstance(list_a, list) or not isinstance(list_b, list) or len(list_a) != len(list_b): return False
+    if (
+        not isinstance(list_a, list)
+        or not isinstance(list_b, list)
+        or len(list_a) != len(list_b)
+    ):
+        return False
 
     try:
         diff = set(list_a) - set(list_b)
@@ -143,31 +148,39 @@ def is_list_equal(list_a, list_b):
                         x_exists = True
                         break
 
-            if not x_exists: return False
+            if not x_exists:
+                return False
 
     return True
 
 
 def is_dict_equal(dict_a, dict_b):
-    if not isinstance(dict_a, dict) or not isinstance(dict_b, dict): return False
+    if not isinstance(dict_a, dict) or not isinstance(dict_b, dict):
+        return False
 
     dict_equal = True
 
     for k, v_a in dict_a.items():
-        if k not in dict_b: dict_equal = False
+        if k not in dict_b:
+            dict_equal = False
         else:
             v_b = dict_b[k]
-            if isinstance(v_a, list): dict_equal = is_list_equal(v_a, v_b)
-            elif isinstance(v_a, dict): dict_equal = is_dict_equal(v_a, v_b)
-            else: dict_equal = v_a == v_b
+            if isinstance(v_a, list):
+                dict_equal = is_list_equal(v_a, v_b)
+            elif isinstance(v_a, dict):
+                dict_equal = is_dict_equal(v_a, v_b)
+            else:
+                dict_equal = v_a == v_b
 
-        if not dict_equal: break
+        if not dict_equal:
+            break
 
     return dict_equal
 
 
 def get_item_from_dicts(key, *dicts):
-    if not dicts or len(dicts) == 0: return None
+    if not dicts or len(dicts) == 0:
+        return None
 
     for d in dicts:
         if key in d:
@@ -191,7 +204,9 @@ def replace_value_nested_dict(curr_dict, list_nested_keys, new_value):
                     curr_dict[k] = new_value
             else:
                 list_nested_keys.pop(0)
-                curr_dict[k] = replace_value_nested_dict(curr_dict.get(k, {}), list_nested_keys, new_value)
+                curr_dict[k] = replace_value_nested_dict(
+                    curr_dict.get(k, {}), list_nested_keys, new_value
+                )
 
     return curr_dict
 
@@ -206,7 +221,9 @@ def find_nested_dict_value(curr_dict, list_nested_keys):
                 nested_value = curr_dict[k]
             else:
                 list_nested_keys.pop(0)
-                nested_value = find_nested_dict_value(curr_dict.get(k, {}), list_nested_keys)
+                nested_value = find_nested_dict_value(
+                    curr_dict.get(k, {}), list_nested_keys
+                )
 
     return nested_value
 
@@ -225,7 +242,7 @@ def find_nested_vars(curr_dict, nested_key=None, var_list=[]):
     """
     for key, value in curr_dict.items():
         if nested_key:
-            new_nested_key = nested_key + '.' + key
+            new_nested_key = nested_key + "." + key
         else:
             new_nested_key = key
 
@@ -247,7 +264,7 @@ def find_nested_vars(curr_dict, nested_key=None, var_list=[]):
             if isinstance(value, str):
                 try:
                     if value[0] == "$":
-                        split_value = value[1:].split('$')
+                        split_value = value[1:].split("$")
                         var_list.append((new_nested_key, split_value))
                 except Exception as e:
                     print(value)
@@ -283,9 +300,11 @@ def get_particle_unique_identifiers(flavor_name):
         unique identifiers (list)
     """
     from pcf.core import particle_flavor_scanner
+
     particle_flavor = particle_flavor_scanner.get_particle_flavor(flavor_name)
 
     return particle_flavor.UNIQUE_KEYS
+
 
 def transform_list_of_dicts_to_desired_list(curr_list, nested_key_name, new_list=[]):
     """
@@ -336,10 +355,60 @@ def get_value_from_particles(particles, particle_class, attr_name):
 
     """
     if len(particles) > 0:
-        particle_list = list(filter(lambda x: x.flavor == particle_class.flavor, particles))
+        particle_list = list(
+            filter(lambda x: x.flavor == particle_class.flavor, particles)
+        )
         if len(particle_list) == 1:
             particle_list[0].sync_state()
             value = getattr(particle_list[0], attr_name, None)
             if value:
                 return value
-    raise InvalidConfigException("No parents to get value to from. Please provide the value for {}".format(attr_name))
+    raise InvalidConfigException(
+        "No parents to get value to from. Please provide the value for {}".format(
+            attr_name
+        )
+    )
+
+
+def pkg_submodules(package, recursive=True):
+    """ Return a list of all submodules in a given package, recursively by default """
+
+    if isinstance(package, str):
+        try:
+            package = importlib.import_module(package)
+        except ImportError:
+            return []
+
+    submodules = []
+    for _loader, name, is_pkg in pkgutil.walk_packages(package.__path__):
+        full_name = package.__name__ + "." + name
+
+        try:
+            submodules.append(importlib.import_module(full_name))
+        except ImportError:
+            continue
+
+        if recursive and is_pkg:
+            submodules += pkg_submodules(full_name)
+
+    return submodules
+
+
+def particle_class_from_flavor(flavor):
+    """ Return the class object of the given flavor (or None) by searching
+        through all particle and quasiparticle submodules in the pcf module
+    """
+
+    particle_submodules = pkg_submodules("pcf.particle")
+    quasiparticle_submodules = pkg_submodules("pcf.quasiparticle")
+    modules = particle_submodules + quasiparticle_submodules
+
+    for module in modules:
+        classes = inspect.getmembers(module, inspect.isclass)
+
+        if classes:
+            for _name, class_obj in classes:
+                if getattr(class_obj, "flavor", None) == flavor:
+                    return class_obj
+
+    return None

@@ -41,12 +41,12 @@ class HostedZone(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.Name"]
 
-    def __init__(self, particle_definition):
+    def __init__(self, particle_definition, session=None):
         """
         Args:
             particle_definition (definition): desired definition of the hosted zone
         """
-        super(HostedZone, self).__init__(particle_definition, 'route53')
+        super(HostedZone, self).__init__(particle_definition, 'route53', session=session)
         self._name = self.desired_state_definition.get("Name")
         self._id = ""
         self._set_unique_keys()

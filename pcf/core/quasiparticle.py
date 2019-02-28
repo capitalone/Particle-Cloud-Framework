@@ -121,9 +121,9 @@ class Quasiparticle(Particle):
             self.pcf_field.apply(sync=sync, cascade=cascade, validate_config=validate_config, max_timeout=max_timeout)
         # if exception then terminate all particles if rollback set to True
         except Exception as error:
-            logger.info("Error detected in {0}. {1}".format(self.pcf_id, error))
+            logger.debug("Error detected in {0}. {1}".format(self.pcf_id, error))
             if rollback:
-                logger.info("Rollback set to true. Performing rollback.")
+                logger.info("Error occured while running apply() with the rollback flag is set to true. Performing rollback.")
                 self.set_desired_state(State.terminated)
                 self.pcf_field.apply(sync=sync, cascade=cascade, validate_config=False, max_timeout=max_timeout)
             else:

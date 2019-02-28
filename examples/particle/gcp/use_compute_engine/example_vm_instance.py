@@ -1,4 +1,4 @@
-from pcf.particle.gcp.compute.compute import ComputeEngine
+from pcf.particle.gcp.compute_engine.vm_instance import VMInstance
 from pcf.core import State
 
 
@@ -22,7 +22,7 @@ compute_example_json = {
 
 
 # create compute particle
-compute = ComputeEngine(compute_example_json)
+compute = VMInstance(compute_example_json)
 
 # example start
 compute.set_desired_state(State.running)
