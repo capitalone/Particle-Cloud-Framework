@@ -21,7 +21,7 @@ pcf\.core\.gcp\_resource module
     :show-inheritance:
 
 pcf\.core\.azure\_resource module
--------------------------------
+----------------------------------
 
 .. automodule:: pcf.core.azure_resource
     :members:

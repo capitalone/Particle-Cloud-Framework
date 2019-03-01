@@ -8,6 +8,10 @@ Subpackages
 
     pcf.particle.gcp.storage
 
+.. toctree::
+
+    pcf.particle.gcp.compute_engine
+
 Module contents
 ---------------
 
