@@ -1,0 +1,14 @@
+---
+- pcf_name: test_ec2
+  flavor: ec2_instance
+  aws_resource:
+    custom_config:
+      instance_name: my-ec2
+
+- pcf_name: unsupported_flavor_particle
+  flavor: unsupported_flavor
+  aws_resource:
+      custom_config:
+        foo: bar
+
+- Ensure non-dict entries are skipped during particle loading

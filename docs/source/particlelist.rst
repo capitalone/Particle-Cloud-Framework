@@ -140,7 +140,6 @@ VPC
 GCP Particles
 --------------------------
 
-
 Storage
 --------------------------
 .. toctree::
@@ -148,5 +147,22 @@ Storage
 
    pcf.particle.gcp.storage
 
+Compute
+--------------------------
+.. toctree::
+   :maxdepth: 2
+
+   pcf.particle.gcp.compute
+
+
+Azure Particles
+---------------------------
+
+Blob
+---------------------------
+.. toctree::
+   :maxdepth: 2
+
+   pcf.particle.azure.blob
 
 
