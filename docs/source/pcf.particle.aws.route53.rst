@@ -7,7 +7,7 @@ Submodules
 pcf.particle.aws.route53.route53_hosted_zone module
 ----------------------------------------------------
 
-.. automodule:: pcf.particle.aws.route53.route53_hosted_zone
+.. automodule:: pcf.particle.aws.route53.hosted_zone
     :members:
     :undoc-members:
     :show-inheritance:

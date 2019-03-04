@@ -8,21 +8,21 @@ AWS Particles
 --------------------------
 
 ALB
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
    pcf.particle.aws.ec2.alb
 
 CloudFront
-----------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
    pcf.particle.aws.cloudfront
 
 Cloudwatch
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -30,7 +30,7 @@ Cloudwatch
 
 
 DynamoDB
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -38,7 +38,7 @@ DynamoDB
 
 
 EC2
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -46,7 +46,7 @@ EC2
 
 
 ECS
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -54,7 +54,7 @@ ECS
 
 
 EFS
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -62,35 +62,35 @@ EFS
 
 
 ELB
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
    pcf.particle.aws.ec2.elb
 
 EMR
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
    pcf.particle.aws.emr
 
 IAM
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
    pcf.particle.aws.iam
 
 KMS
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
    pcf.particle.aws.kms
 
 LambdaFunction
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -98,7 +98,7 @@ LambdaFunction
 
 
 RDS
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -106,7 +106,7 @@ RDS
 
 
 Route53
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -114,7 +114,7 @@ Route53
 
 
 S3
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -122,7 +122,7 @@ S3
 
 
 SQS
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
   :maxdepth: 2
 
@@ -130,7 +130,7 @@ SQS
 
 
 VPC
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
   :maxdepth: 2
 
@@ -141,25 +141,25 @@ GCP Particles
 --------------------------
 
 Storage
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
    pcf.particle.gcp.storage
 
 Compute
---------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
-   pcf.particle.gcp.compute
+   pcf.particle.gcp.compute_engine
 
 
 Azure Particles
 ---------------------------
 
 Blob
----------------------------
+^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
