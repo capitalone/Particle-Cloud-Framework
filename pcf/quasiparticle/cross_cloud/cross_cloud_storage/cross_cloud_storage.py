@@ -25,15 +25,15 @@ class CrossCloudStorage(Quasiparticle):
 
     def __init__(self, particle_definition):
 
-        particle_definition['particles'] = {
+        particle_definition['particles'] = [{
             "flavor":"s3_bucket",
             "aws_resource":{
-                "Bucket":"pcf-testing"}
+                "Bucket": particle_definition.get('storage_name')},
         },{
             "flavor":"storage", 
             "gcp_resource":{
-                "name":"pcf-testing", 
-        }}
+                "name": particle_definition.get('storage_name')}
+        }]
 
         super(CrossCloudStorage, self).__init__(particle_definition)
         s3_particle = self.pcf_field.get_particles(flavor="s3_bucket")
