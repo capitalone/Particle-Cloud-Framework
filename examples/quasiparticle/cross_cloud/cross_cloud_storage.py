@@ -24,7 +24,7 @@ print(cross_cloud_storage.get_state())
 some_binary_data = b'Here we have some data'
 
 cross_cloud_storage.put_object(Bucket="pcf-testing", Key="test-object", Body=some_binary_data)
-cross_cloud_storage.put_object(Bucket="pcf-testing", Key="test-object", Filename=os.path.join(sys.path[0],"test.txt"))
+cross_cloud_storage.put_object(Bucket="pcf-testing", Key="test-file", Filename=os.path.join(sys.path[0],"test.txt"))
 
 # example put terminate
 cross_cloud_storage.delete_object(Bucket="pcf-testing", Key="test-object")
