@@ -10,7 +10,7 @@ storage_example_json = {
     "flavor":"storage", # Required
     "gcp_resource":{
         # Refer to https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.create_bucket for full list of parameters
-        "Bucket":"example_bucket", # Required
+        "name":"example_bucket", # Required
     }
 }
 
@@ -29,12 +29,6 @@ some_binary_data = b'Here we have some data'
 
 print(storage.put_object(blob_name="test-object",file_obj=some_binary_data))
 print(storage.put_file(blob_name="test-file", file=os.path.join(sys.path[0],"test.txt")))
-
-# example get object
-
-file_body = storage.get_object(key_name="test-file")['Body']
-for line in file_body._raw_stream:
-    print(line)
 
 # example terminate
 
