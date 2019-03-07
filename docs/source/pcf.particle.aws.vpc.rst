@@ -23,7 +23,7 @@ pcf.particle.aws.vpc.security_group module
 pcf.particle.aws.vpc.vpc module
 -------------------------------
 
-.. automodule:: pcf.particle.aws.vpc.vpc
+.. automodule:: pcf.particle.aws.vpc.vpc_instance
     :members:
     :undoc-members:
     :show-inheritance:

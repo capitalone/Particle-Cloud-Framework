@@ -15,7 +15,7 @@
 from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 from pcf.util import pcf_util
-from pcf.particle.aws.vpc.vpc import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 
 
 class Subnet(AWSResource):
@@ -107,7 +107,7 @@ class Subnet(AWSResource):
            boto3 create_subnet() response
         """
         if not self.desired_state_definition.get("VpcId"):
-            self.desired_state_definition["VpcId"] = pcf_util.get_value_from_particles(self.parents, VPC, "vpc_id")
+            self.desired_state_definition["VpcId"] = pcf_util.get_value_from_particles(self.parents, VPCInstance, "vpc_id")
         resp = self.client.create_subnet(**pcf_util.param_filter(self.desired_state_definition, Subnet.START_PARAMS))
         self._subnet_id = resp['Subnet'].get("SubnetId")
         self.current_state_definition = resp
