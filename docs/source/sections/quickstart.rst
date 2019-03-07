@@ -27,7 +27,6 @@ First import the particles you will use. These can be core particles or custom p
 .. code::
 
     from pcf.core.ec2.ec2_instance import EC2Instance
-    from pcf.core import State
 
 Next we need to pass the desired state definition to the particle.
 
@@ -35,7 +34,7 @@ Next we need to pass the desired state definition to the particle.
 
     ec2_example_definition = {
         "pcf_name": "ec2_example",
-        "flavor":"ec2",
+        "flavor":"ec2_instance",
         "aws_resource": {
             "ImageId": "ami-xxxxx",
             "InstanceType": "t2.micro",
@@ -72,14 +71,14 @@ Now to start the ec2 instance using pcf simply initialize the particle and set t
 
     particle = EC2Instance(ec2_example_definition)
 
-    particle.set_desired_state(State.running)
+    particle.set_desired_state("running")
     particle.apply()
 
 To terminate simply change the desired state to terminated and apply.
 
 .. code::
 
-    particle.set_desired_state(State.terminated)
+    particle.set_desired_state("terminated")
     particle.apply()
 
 Logging

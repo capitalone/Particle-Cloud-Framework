@@ -163,9 +163,12 @@ class Particle(object, metaclass=MetaParticle):
         Sets the particle's desired state
 
         Arg:
-            desired_state (State):
+            desired_state (str): one of running,stopped,terminated. Can also pass in the state directly. ex. State.running
         """
-        self.desired_state = desired_state
+        if isinstance(desired_state, str):
+            self.desired_state = STATE_STRING_TO_ENUM.get(desired_state)
+        else:
+            self.desired_state = desired_state
         logger.info("{0}: setting desired state to {1}".format(self.pcf_id, self.desired_state))
 
     def measure(self):
