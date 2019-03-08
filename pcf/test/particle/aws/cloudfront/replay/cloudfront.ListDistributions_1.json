@@ -1,0 +1,22 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "8c42e6e4-1e8c-11e9-98dd-a95efe457f9f",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "8c42e6e4-1e8c-11e9-98dd-a95efe457f9f",
+                "content-type": "text/xml",
+                "content-length": "210",
+                "date": "Tue, 22 Jan 2019 21:27:40 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "DistributionList": {
+            "Marker": "",
+            "MaxItems": 100,
+            "IsTruncated": false,
+            "Quantity": 0
+        }
+    }
+}

@@ -1,5 +1,5 @@
 from pcf.particle.aws.vpc.subnet import Subnet
-from pcf.particle.aws.vpc.vpc import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
 
@@ -8,7 +8,7 @@ quasiparticle_definition = {
     "flavor": "quasiparticle",
     "particles":[
         {
-            "flavor": "vpc",
+            "flavor": "vpc_instance",
             "pcf_name":"vpc_parent",
             "aws_resource": {
                 "custom_config":{
@@ -19,7 +19,7 @@ quasiparticle_definition = {
         },
         {
             "flavor": "subnet",
-            "parents":["vpc:vpc_parent"],
+            "parents":["vpc_instance:vpc_parent"],
             "aws_resource": {
                 "custom_config":{
                     "subnet_name":"test",

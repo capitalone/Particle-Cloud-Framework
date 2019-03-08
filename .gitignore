@@ -10,3 +10,5 @@ src
 .DS_Store
 dist
 pcf.egg-info
+venv
+!.coveragerc

@@ -74,6 +74,9 @@ quasiparticle_definition = {
             "flavor": "iam_role",
             "parents":["iam_policy:iam_policy_parent", "iam_policy:iam_policy_parent2"],
             "aws_resource": {
+                "custom_config": {
+                    "IsInstanceProfile": True
+                },
                 "RoleName":"pcf-test", # Required
                 "AssumeRolePolicyDocument": assume_role_policy_document,
             }
@@ -111,6 +114,9 @@ updated_quasiparticle_definition = {
             "flavor": "iam_role",
             "parents":["iam_policy:iam_policy_parent"],
             "aws_resource": {
+               "custom_config": {
+                    "IsInstanceProfile": True
+                },
                 "RoleName":"pcf-test", # Required
                 "AssumeRolePolicyDocument": assume_role_policy_document,
             }
