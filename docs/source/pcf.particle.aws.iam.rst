@@ -5,7 +5,7 @@ Submodules
 ----------
 
 pcf.particle.aws.iam.iam_role module
-----------------------------------
+----------------------------------------
 
 .. automodule:: pcf.particle.aws.iam.iam_role
     :members:
@@ -13,7 +13,7 @@ pcf.particle.aws.iam.iam_role module
     :show-inheritance:
 
 pcf.particle.aws.iam.iam_policy module
--------------------------------
+-------------------------------------------
 
 .. automodule:: pcf.particle.aws.iam.iam_policy
     :members:
@@ -24,7 +24,7 @@ pcf.particle.aws.iam.iam_policy module
 Module contents
 ---------------
 
-.. automodule:: pcf.particle.iam.iam
+.. automodule:: pcf.particle.aws.iam
     :members:
     :undoc-members:
     :show-inheritance:
