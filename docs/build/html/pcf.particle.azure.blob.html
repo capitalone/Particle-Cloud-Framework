@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pcf.particle.azure.blob package &mdash; Particle Cloud Framework 0.4.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="QuasiParticles" href="quasiparticlelist.html" />
+    <link rel="prev" title="pcf.particle.gcp.compute_engine package" href="pcf.particle.gcp.compute_engine.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="particlelist.html">Particles</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="particlelist.html#aws-particles">AWS Particles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="particlelist.html#gcp-particles">GCP Particles</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="particlelist.html#azure-particles">Azure Particles</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="particlelist.html#blob">Blob</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pcf.particle.azure.blob package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/core.html">Base Classes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="particlelist.html">Particles</a> &raquo;</li>
+        
+      <li>pcf.particle.azure.blob package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pcf.particle.azure.blob.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pcf-particle-azure-blob-package">
+<h1>pcf.particle.azure.blob package<a class="headerlink" href="#pcf-particle-azure-blob-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="pcf-particle-azure-blob-blob-container-module">
+<h2>pcf.particle.azure.blob.blob_container module<a class="headerlink" href="#pcf-particle-azure-blob-blob-container-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pcf.particle.azure.blob">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pcf.particle.azure.blob" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="quasiparticlelist.html" class="btn btn-neutral float-right" title="QuasiParticles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pcf.particle.gcp.compute_engine.html" class="btn btn-neutral" title="pcf.particle.gcp.compute_engine package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

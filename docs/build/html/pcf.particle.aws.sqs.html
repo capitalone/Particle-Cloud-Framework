@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.particle.aws.sqs package &mdash; Particle Cloud Framework 0.2.0 documentation</title>
+  <title>pcf.particle.aws.sqs package &mdash; Particle Cloud Framework 0.4.0 documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.2.0
+                0.4.0
               </div>
             
           
@@ -98,7 +98,13 @@
 <li class="toctree-l1"><a class="reference internal" href="features/features.html">Advanced Configuration Features</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sections/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/core.html">Base Classes</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples.html">PCF Examples</a></li>
@@ -186,7 +192,7 @@
 <span id="pcf-particle-aws-sqs-sqs-queue-module"></span><h2>pcf.particle.aws.sqs.sqs_queue module<a class="headerlink" href="#module-pcf.particle.aws.sqs.sqs_queue" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.sqs.sqs_queue.SQSQueue">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.sqs.sqs_queue.</code><code class="descname">SQSQueue</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.sqs.sqs_queue.SQSQueue" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.sqs.sqs_queue.</code><code class="descname">SQSQueue</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.sqs.sqs_queue.SQSQueue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s SQS.</p>
 <dl class="attribute">

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.core package &mdash; Particle Cloud Framework 0.2.0 documentation</title>
+  <title>pcf.core package &mdash; Particle Cloud Framework 0.4.0 documentation</title>
   
 
   
@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="PCF Examples" href="examples/examples.html" />
-    <link rel="prev" title="Core" href="sections/core.html" /> 
+    <link rel="prev" title="Base Classes" href="sections/core.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.2.0
+                0.4.0
               </div>
             
           
@@ -97,14 +97,21 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="features/features.html">Advanced Configuration Features</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cli.html">Using the PCF CLI</a></li>
+</ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="sections/core.html">Core</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sections/core.html">Base Classes</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">pcf.core package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.aws_resource">pcf.core.aws_resource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.gcp_resource">pcf.core.gcp_resource module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pcf-core-azure-resource-module">pcf.core.azure_resource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.particle">pcf.core.particle module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.particle_flavor_scanner">pcf.core.particle_flavor_scanner module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pcf-core-particle-flavor-scanner-module">pcf.core.particle_flavor_scanner module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.pcf">pcf.core.pcf module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.pcf_exceptions">pcf.core.pcf_exceptions module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.quasiparticle">pcf.core.quasiparticle module</a></li>
@@ -170,7 +177,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-          <li><a href="sections/core.html">Core</a> &raquo;</li>
+          <li><a href="sections/core.html">Base Classes</a> &raquo;</li>
         
       <li>pcf.core package</li>
     
@@ -219,6 +226,31 @@ and the arn (if known)</p>
 <dt id="pcf.core.aws_resource.AWSResource._get_resource">
 <code class="descname">_get_resource</code><span class="sig-paren">(</span><em>session</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.aws_resource.AWSResource._get_resource" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.core.aws_resource.AWSResource.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>sync=True</em>, <em>cascade=False</em>, <em>validate_config=False</em>, <em>max_timeout=None</em>, <em>src_cascade=None</em>, <em>cache_ttl=15</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.aws_resource.AWSResource.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggers the state transition functions based on the state transition table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sync</strong> (<em>bool</em>) – apply state transitions synchronously</li>
+<li><strong>cascade</strong> (<em>bool</em>) – apply state transitions to all family members</li>
+<li><strong>validate_config</strong> (<em>bool</em>) – specify whether or not to call particle config validation function</li>
+<li><strong>max_timeout</strong> (<em>int</em>) – raise the max timeout exception after x(int) seconds reached, defaults to None</li>
+<li><strong>src_cascade</strong> (<em>&quot;parent&quot;</em><em>,</em><em>&quot;child&quot;</em><em>, or </em><em>&quot;none&quot;</em>) – direction of cascade logic</li>
+<li><strong>cache_ttl</strong> (<em>int</em>) – allows self.state_cache_ttl to be configured to any time interval</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">State transition response</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="pcf.core.aws_resource.AWSResource.arn">
@@ -314,6 +346,9 @@ It takes as an input the resource library (ie datastore)</p>
 </dd></dl>
 
 </div>
+<div class="section" id="pcf-core-azure-resource-module">
+<h2>pcf.core.azure_resource module<a class="headerlink" href="#pcf-core-azure-resource-module" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="module-pcf.core.particle">
 <span id="pcf-core-particle-module"></span><h2>pcf.core.particle module<a class="headerlink" href="#module-pcf.core.particle" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -374,7 +409,7 @@ particle</p>
 
 <dl class="method">
 <dt id="pcf.core.particle.Particle.apply">
-<code class="descname">apply</code><span class="sig-paren">(</span><em>sync=True</em>, <em>cascade=False</em>, <em>validate_config=False</em>, <em>src_cascade=None</em>, <em>cache_ttl=15</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle.Particle.apply" title="Permalink to this definition">¶</a></dt>
+<code class="descname">apply</code><span class="sig-paren">(</span><em>sync=True</em>, <em>cascade=False</em>, <em>validate_config=False</em>, <em>max_timeout=None</em>, <em>src_cascade=None</em>, <em>cache_ttl=15</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle.Particle.apply" title="Permalink to this definition">¶</a></dt>
 <dd><p>Triggers the state transition functions based on the state transition table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -384,6 +419,7 @@ particle</p>
 <li><strong>sync</strong> (<em>bool</em>) – apply state transitions synchronously</li>
 <li><strong>cascade</strong> (<em>bool</em>) – apply state transitions to all family members</li>
 <li><strong>validate_config</strong> (<em>bool</em>) – specify whether or not to call particle config validation function</li>
+<li><strong>max_timeout</strong> (<em>int</em>) – raise the max timeout exception after x(int) seconds reached, defaults to None</li>
 <li><strong>src_cascade</strong> (<em>&quot;parent&quot;</em><em>,</em><em>&quot;child&quot;</em><em>, or </em><em>&quot;none&quot;</em>) – direction of cascade logic</li>
 <li><strong>cache_ttl</strong> (<em>int</em>) – allows self.state_cache_ttl to be configured to any time interval</li>
 </ul>
@@ -623,7 +659,7 @@ values to this particles desired_state_definition.</p>
 <dd><p>Sets the particle’s desired state</p>
 <dl class="docutils">
 <dt>Arg:</dt>
-<dd>desired_state (State):</dd>
+<dd>desired_state (str): one of running,stopped,terminated.</dd>
 </dl>
 </dd></dl>
 
@@ -734,30 +770,8 @@ particle</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-pcf.core.particle_flavor_scanner">
-<span id="pcf-core-particle-flavor-scanner-module"></span><h2>pcf.core.particle_flavor_scanner module<a class="headerlink" href="#module-pcf.core.particle_flavor_scanner" title="Permalink to this headline">¶</a></h2>
-<dl class="exception">
-<dt id="pcf.core.particle_flavor_scanner.InvalidInputException">
-<em class="property">exception </em><code class="descclassname">pcf.core.particle_flavor_scanner.</code><code class="descname">InvalidInputException</code><span class="sig-paren">(</span><em>flavor</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle_flavor_scanner.InvalidInputException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="pcf.core.particle_flavor_scanner.ParticleFlavorNotFoundError">
-<em class="property">exception </em><code class="descclassname">pcf.core.particle_flavor_scanner.</code><code class="descname">ParticleFlavorNotFoundError</code><span class="sig-paren">(</span><em>flavor</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle_flavor_scanner.ParticleFlavorNotFoundError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-</dd></dl>
-
-<dl class="function">
-<dt id="pcf.core.particle_flavor_scanner.get_particle_flavor">
-<code class="descclassname">pcf.core.particle_flavor_scanner.</code><code class="descname">get_particle_flavor</code><span class="sig-paren">(</span><em>flavor: str</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle_flavor_scanner.get_particle_flavor" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pcf.core.particle_flavor_scanner.get_particle_flavor_registry">
-<code class="descclassname">pcf.core.particle_flavor_scanner.</code><code class="descname">get_particle_flavor_registry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle_flavor_scanner.get_particle_flavor_registry" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="pcf-core-particle-flavor-scanner-module">
+<h2>pcf.core.particle_flavor_scanner module<a class="headerlink" href="#pcf-core-particle-flavor-scanner-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-pcf.core.pcf">
 <span id="pcf-core-pcf-module"></span><h2>pcf.core.pcf module<a class="headerlink" href="#module-pcf.core.pcf" title="Permalink to this headline">¶</a></h2>
@@ -777,7 +791,7 @@ particle</p>
 
 <dl class="method">
 <dt id="pcf.core.pcf.PCF.apply">
-<code class="descname">apply</code><span class="sig-paren">(</span><em>sync=True</em>, <em>cascade=False</em>, <em>validate_config=False</em>, <em>particles_dict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf.PCF.apply" title="Permalink to this definition">¶</a></dt>
+<code class="descname">apply</code><span class="sig-paren">(</span><em>sync=True</em>, <em>cascade=False</em>, <em>validate_config=False</em>, <em>max_timeout=None</em>, <em>particles_dict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf.PCF.apply" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -834,6 +848,12 @@ particle</p>
 </dd></dl>
 
 <dl class="exception">
+<dt id="pcf.core.pcf_exceptions.InvalidState">
+<em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">InvalidState</code><span class="sig-paren">(</span><em>message='Attempted to set a state that is not valid'</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf_exceptions.InvalidState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="exception">
 <dt id="pcf.core.pcf_exceptions.InvalidTagsException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">InvalidTagsException</code><span class="sig-paren">(</span><em>message='Tag validation failed'</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf_exceptions.InvalidTagsException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
@@ -854,6 +874,12 @@ particle</p>
 <dl class="exception">
 <dt id="pcf.core.pcf_exceptions.InvalidValueReplaceException">
 <em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">InvalidValueReplaceException</code><span class="sig-paren">(</span><em>message='Invalid inputs for definition variable replace ($)'</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf_exceptions.InvalidValueReplaceException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pcf.core.pcf_exceptions.MaxTimeoutException">
+<em class="property">exception </em><code class="descclassname">pcf.core.pcf_exceptions.</code><code class="descname">MaxTimeoutException</code><span class="sig-paren">(</span><em>message='Max timeout reached while in apply()'</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.pcf_exceptions.MaxTimeoutException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
@@ -934,7 +960,7 @@ particles in the quasiparticle. Finally link_particles is called on the pcf_fiel
 
 <dl class="method">
 <dt id="pcf.core.quasiparticle.Quasiparticle.apply">
-<code class="descname">apply</code><span class="sig-paren">(</span><em>sync=True</em>, <em>cascade=True</em>, <em>validate_config=False</em>, <em>rollback=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.quasiparticle.Quasiparticle.apply" title="Permalink to this definition">¶</a></dt>
+<code class="descname">apply</code><span class="sig-paren">(</span><em>sync=True</em>, <em>cascade=True</em>, <em>validate_config=False</em>, <em>rollback=False</em>, <em>max_timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.quasiparticle.Quasiparticle.apply" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls apply all particles via pcf_field.apply()</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -945,6 +971,7 @@ particles in the quasiparticle. Finally link_particles is called on the pcf_fiel
 <li><strong>cascade</strong> (<em>bool</em>) – Defaults to True</li>
 <li><strong>validate_config</strong> (<em>bool</em>) – specify whether or not to call particle config validation function</li>
 <li><strong>rollback</strong> (<em>bool</em>) – If true then all particles will be terminated if there is an error during start. Defaults to False</li>
+<li><strong>max_timeout</strong> (<em>int</em>) – raise the max timeout exception after x(int) seconds reached, defaults to None</li>
 </ul>
 </td>
 </tr>
@@ -1014,7 +1041,7 @@ pcf_name (str):</dd>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>desired_state</strong> (<a class="reference internal" href="#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>desired_state</strong> (<em>str</em>) – one of running,stopped,terminated.</td>
 </tr>
 </tbody>
 </table>
@@ -1113,7 +1140,7 @@ particle</p>
         <a href="examples/examples.html" class="btn btn-neutral float-right" title="PCF Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="sections/core.html" class="btn btn-neutral" title="Core" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sections/core.html" class="btn btn-neutral" title="Base Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

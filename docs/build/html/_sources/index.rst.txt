@@ -24,6 +24,10 @@ To install particle cloud framework, open an interactive shell and run:
 
     pip install pcf
 
+.. note::
+
+    Particle Cloud Framework requires python version 3.6 or higher.
+
 
 User Quickstart
 --------------------------
@@ -64,6 +68,20 @@ Features
    :maxdepth: 2
 
    features/features
+
+Core Concepts
+--------------------------
+.. toctree::
+   :maxdepth: 2
+
+   concepts/concepts
+   
+CLI Usage
+--------------------------
+.. toctree::
+   :maxdepth: 2
+
+   sections/cli
 
 Core Classes
 --------------------------

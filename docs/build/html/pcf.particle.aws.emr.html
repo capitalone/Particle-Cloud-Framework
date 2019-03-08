@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pcf.particle.aws.emr package &mdash; Particle Cloud Framework 0.2.0 documentation</title>
+  <title>pcf.particle.aws.emr package &mdash; Particle Cloud Framework 0.4.0 documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pcf.particle.aws.lambda_function package" href="pcf.particle.aws.lambda_function.html" />
+    <link rel="next" title="pcf.particle.aws.iam package" href="pcf.particle.aws.iam.html" />
     <link rel="prev" title="pcf.particle.aws.efs package" href="pcf.particle.aws.efs.html" /> 
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.2.0
+                0.4.0
               </div>
             
           
@@ -90,31 +90,31 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="particlelist.html">Particles</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#aws-particles">AWS Particles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#alb">ALB</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#cloudwatch">Cloudwatch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#dynamodb">DynamoDB</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#ec2">EC2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#ecs">ECS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#efs">EFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#elb">ELB</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="particlelist.html#emr">EMR</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">pcf.particle.aws.emr package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-pcf.particle.aws.emr.emr_cluster">pcf.particle.aws.emr.emr_cluster module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-pcf.particle.aws.emr">Module contents</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="particlelist.html#aws-particles">AWS Particles</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#alb">ALB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#cloudfront">CloudFront</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#cloudwatch">Cloudwatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#dynamodb">DynamoDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#ec2">EC2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#ecs">ECS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#efs">EFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#elb">ELB</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="particlelist.html#emr">EMR</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pcf.particle.aws.emr package</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#iam">IAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#kms">KMS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#lambdafunction">LambdaFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#rds">RDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#route53">Route53</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#s3">S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#sqs">SQS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#vpc">VPC</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#lambdafunction">LambdaFunction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#rds">RDS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#route53">Route53</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#s3">S3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#sqs">SQS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#vpc">VPC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="particlelist.html#gcp-particles">GCP Particles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="particlelist.html#storage">Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="particlelist.html#azure-particles">Azure Particles</a></li>
 </ul>
 </li>
 </ul>
@@ -125,7 +125,13 @@
 <li class="toctree-l1"><a class="reference internal" href="features/features.html">Advanced Configuration Features</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sections/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/core.html">Base Classes</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples.html">PCF Examples</a></li>
@@ -379,7 +385,7 @@ particle</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pcf.particle.aws.lambda_function.html" class="btn btn-neutral float-right" title="pcf.particle.aws.lambda_function package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pcf.particle.aws.iam.html" class="btn btn-neutral float-right" title="pcf.particle.aws.iam package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="pcf.particle.aws.efs.html" class="btn btn-neutral" title="pcf.particle.aws.efs package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

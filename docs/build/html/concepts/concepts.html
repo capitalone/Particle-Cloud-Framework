@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Core Concepts &mdash; Particle Cloud Framework 0.4.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using the PCF CLI" href="../sections/cli.html" />
+    <link rel="prev" title="Advanced Configuration Features" href="../features/features.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/quickstart.html">User Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Core Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#just-in-time-infrastructure">Just in Time Infrastructure</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/core.html">Base Classes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Core Concepts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/concepts/concepts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="core-concepts">
+<h1>Core Concepts<a class="headerlink" href="#core-concepts" title="Permalink to this headline">¶</a></h1>
+<p>Particle Cloud Framework is a cloud resource provisioning framework whose key
+features include being fully customizable and extensible, callable by code,
+and automatically maintains the states of cloud resources. This unique combination
+leads to new ways of thinking about cloud infrastructure and its relation to not
+only applications, but software development in general.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#jiti"><span class="std std-ref">Just in Time Infrastructure</span></a></li>
+</ul>
+<div class="section" id="just-in-time-infrastructure">
+<span id="jiti"></span><h2>Just in Time Infrastructure<a class="headerlink" href="#just-in-time-infrastructure" title="Permalink to this headline">¶</a></h2>
+<p>Just-in-time infrastructure is a model in which the entire infrastructure stack
+required for an application is written as code and deployed with the same lifecycles
+alongside the application. The idea for JiTI came during the development of a data
+analytics platform for data scientists, many of whom wanted to use the platform with
+sensitive data. Working with sensitive data made it extremely difficult to gain the
+sufficient permission and access needed for the platform to be hosted in one centralized
+location. Therefore, the team decided early on to design the platform to be “drop-shippable”
+(deployed in any cloud account with minimal to no code changes required), and simply
+deploy the platform directly into any account where the data and the data scientists
+were already working.</p>
+<p>There was just one catch - the team building the platform did
+not have the resources to manually configure and stand up the platform in dozens of
+accounts. So, in addition to the data analytics platform, we also built a Python-based
+cloud resource management framework which has recently been open-sourced by Capital One
+as Particle Cloud Framework. This framework was built intentionally with JiTI in mind,
+but the principles of JiTI can be applied with any programming language and framework.
+Using Particle Cloud Framework, we were easily able to combine the platform codebase with
+the infrastructure required to run it, making it extremely simple to scale out (in this
+case on AWS, but the same can be done on any cloud provider). The infrastructure codebase
+contained not only the compute and storage resources required, but all components including
+the VPC, subnets, IAM roles (access permissions), and networking resources. In cases where
+some of the resources had to be shared with other applications, or we did not have the
+required permissions to dynamically create a resource, the resource was passed in to the
+configuration programmatically. Otherwise, all resources were generated during run time.</p>
+<p>Combining the platform with its infrastructure code is an extremely powerful concept and
+ensures the required infrastructure is provisioned not only correctly, but consistently,
+between development and production environments as well as across accounts. Now, when
+additional features that require additional infrastructure components are ready to be deployed,
+users simply update the application, which as part of the update, would also deploy the new required infrastructure.</p>
+<p><strong>Benefits</strong></p>
+<ul class="simple">
+<li><strong>Application Isolation</strong></li>
+</ul>
+<p>Tying your application and infrastructure code reduces the risk of negatively affecting other
+applications and vice versa. JiTI ensures you have exactly the same infrastructure in all your
+development, QA, and production environments. Furthermore, JiTI allows the infrastructure code
+to be versioned directly alongside your application, enabling the deployment of various versions
+at the same time with different infrastructure requirements.</p>
+<ul class="simple">
+<li><strong>Cost Management</strong></li>
+</ul>
+<p>JiTI makes resource management much simpler since resources can simply be attributed to unique
+applications, so there is no risk when deleting rogue or unused infrastructure. Additionally,
+JiTI simplifies the deployment and tearing down your entire application, providing  cost savings
+while not utilizing the application (especially for development, test, and QA environments).</p>
+<ul class="simple">
+<li><strong>Drop-shippable</strong></li>
+</ul>
+<p>Deploying an application and its infrastructure together in another account or environment ensures
+the application works as promised.</p>
+<ul class="simple">
+<li><strong>Auditability</strong></li>
+</ul>
+<p>Since the entire infrastructure is written as code alongside the application, auditing is much easier
+because JiTI assumes all dependencies are in the same code base.</p>
+<ul class="simple">
+<li><strong>Security</strong></li>
+</ul>
+<p>JiTI ensures that resources related to security such as networking, access control, and identity
+management are deployed only when they’re needed by an application. When the application gets
+terminated, those vulnerable resources also get terminated reducing the security risk from leftover and outdated resources.</p>
+<ul class="simple">
+<li><strong>Resiliency</strong></li>
+</ul>
+<p>JiTI makes it easy to merely recreate the entirety of the infrastructure if things go wrong, instead
+of having to manually inspect what might have caused a failure and testing a fix and its potential
+effects on the rest of the ecosystem.</p>
+<ul class="simple">
+<li><strong>Self Management</strong></li>
+</ul>
+<p>JiTI can enable applications to manage their own infrastructure once deployed. This is useful if an
+application has a variable or unpredictable workload and can automatically scale the underlying infrastructure itself.</p>
+<p><strong>Considerations When Using JiTI</strong></p>
+<ul class="simple">
+<li><strong>Governance</strong></li>
+</ul>
+<p>Since applications are now tightly coupled with the infrastructure, centralized governance teams will need to incorporate
+new standards and procedures to ensure security, cost, and regulatory compliance. This can be done passively through
+tools that actively scan and delete resources that are non compliant, or fine-grained access management that limits the scope of each application.</p>
+<ul class="simple">
+<li><strong>Permissions</strong></li>
+</ul>
+<p>Adopting JiTI may require a new way to manage access management since application teams are deploying the entire
+infrastructure stack from security rules and subnets, to compute and networking resources. One way to manage
+this is to create a centralized tool that has the actual permissions to deploy, and before any deployment it could
+programmatically scan the application code to enforce customized rules (for example prohibit public endpoints).</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sections/cli.html" class="btn btn-neutral float-right" title="Using the PCF CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../features/features.html" class="btn btn-neutral" title="Advanced Configuration Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using the PCF CLI &mdash; Particle Cloud Framework 0.4.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Base Classes" href="core.html" />
+    <link rel="prev" title="Core Concepts" href="../concepts/concepts.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">User Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using the PCF CLI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-a-custom-config-file-name">Using a Custom Config File Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cascading-changes-from-the-cli">Cascading Changes from the CLI</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Base Classes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Using the PCF CLI</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sections/cli.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-the-pcf-cli">
+<h1>Using the PCF CLI<a class="headerlink" href="#using-the-pcf-cli" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The CLI is packaged in the PCF Python package, so after running</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pcf</span>
+</pre></div>
+</div>
+<p>you should be able to execute the CLI from your command line provided your
+Pip packages are available in your $PATH:</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ pcf -h
+Usage: pcf [--version] [--help] &lt;command&gt; [&lt;args&gt;...]
+
+Particle Cloud Framework
+
+Options:
+-v, --version  Show PCF version.
+-h, --help     Show this message and exit.
+
+Commands:
+apply      Set a desired state and apply changes
+run        Set desired state to &#39;run&#39; and apply changes
+stop       Set desired state to &#39;stopped&#39; and apply changes
+terminate  Set desired state to &#39;terminated&#39; and apply changes
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>By default, the CLI reads Particle and Quasiparticle definitions from a JSON file named
+<cite>pcf.json</cite> or a YAML file named <cite>pcf.yml</cite> located in the current working directory.</p>
+<p>The following <cite>pcf.json</cite> file defines a new AWS KMS key Particle and accepts the same top-level
+fields that Particle and Quasiparticle definitions use in the PCF Python library:</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;kms_example&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flavor&quot;</span><span class="p">:</span> <span class="s2">&quot;kms_key&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aws_resource&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;an example key&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;TagKey&quot;</span><span class="p">:</span> <span class="s2">&quot;InUse&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;TagValue&quot;</span><span class="p">:</span> <span class="n">false</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;custom_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;key_name&quot;</span><span class="p">:</span> <span class="s2">&quot;pcf_kms_example&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>An equivalent <cite>pcf.yml</cite> file would look like the following:</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="n">pcf_name</span><span class="p">:</span> <span class="n">kms_example</span>
+<span class="n">flavor</span><span class="p">:</span> <span class="n">kms_key</span>
+<span class="n">aws_resource</span><span class="p">:</span>
+  <span class="n">Description</span><span class="p">:</span> <span class="n">an</span> <span class="n">example</span> <span class="n">key</span>
+  <span class="n">Tags</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">TagKey</span><span class="p">:</span> <span class="n">InUse</span>
+      <span class="n">TagValue</span><span class="p">:</span> <span class="n">false</span>
+  <span class="n">custom_config</span><span class="p">:</span>
+    <span class="n">key_name</span><span class="p">:</span> <span class="n">pcf_kms_example</span>
+</pre></div>
+</div>
+<p>With this pcf.json file, you can run</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ pcf run kms_example
+</pre></div>
+</div>
+<p>and PCF will run the <cite>kms_key</cite> Particle flavor’s <cite>apply</cite> method and set the desired state
+of your Particle to <cite>running</cite>.</p>
+<p>You can then perform subsequent actions on the Particle’s state:</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ pcf stop kms_example
+  ...
+
+$ pcf terminate kms_example
+  ...
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-a-custom-config-file-name">
+<h2>Using a Custom Config File Name<a class="headerlink" href="#using-a-custom-config-file-name" title="Permalink to this headline">¶</a></h2>
+<p>If you would like to name your config files something besides <cite>pcf.json</cite> or <cite>pcf.yml</cite>,
+specify the relative path to your file using the <cite>–file</cite> or <cite>-f</cite> option to any command
+that sets a desired state. The file must have a valid <cite>.json</cite> or <cite>.yml</cite> file extension.</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ pcf run --file dev_infra.yml
+</pre></div>
+</div>
+</div>
+<div class="section" id="cascading-changes-from-the-cli">
+<h2>Cascading Changes from the CLI<a class="headerlink" href="#cascading-changes-from-the-cli" title="Permalink to this headline">¶</a></h2>
+<p>To instruct PCF to cascade changes when <cite>apply</cite> is called on your Particles or Quasiparticles,
+provide the <cite>–cascade</cite> or <cite>-c</cite> flag to the CLI when invoking a command that sets a desired state:</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ pcf stop --cascade my_quasiparticle
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="core.html" class="btn btn-neutral float-right" title="Base Classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../concepts/concepts.html" class="btn btn-neutral" title="Core Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

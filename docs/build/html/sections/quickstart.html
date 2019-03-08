@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Quickstart &mdash; Particle Cloud Framework 0.2.0 documentation</title>
+  <title>User Quickstart &mdash; Particle Cloud Framework 0.4.0 documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.2.0
+                0.4.0
               </div>
             
           
@@ -104,7 +104,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../features/features.html">Advanced Configuration Features</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Base Classes</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">PCF Examples</a></li>
@@ -195,18 +201,21 @@ hierarchical cloud infrastructure, automating deployments, and managing lifecycl
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pcf</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Particle Cloud Framework requires python version 3.6 or higher.</p>
+</div>
 </div>
 <div class="section" id="import-and-use-a-pcf-particle">
 <h2>Import and use a pcf Particle<a class="headerlink" href="#import-and-use-a-pcf-particle" title="Permalink to this headline">¶</a></h2>
 <p>First import the particles you will use. These can be core particles or custom particles that you created.</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.ec2.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
-<span class="kn">from</span> <span class="nn">pcf.core</span> <span class="k">import</span> <span class="n">State</span>
 </pre></div>
 </div>
 <p>Next we need to pass the desired state definition to the particle.</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ec2_example_definition</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;ec2_example&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;flavor&quot;</span><span class="p">:</span><span class="s2">&quot;ec2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flavor&quot;</span><span class="p">:</span><span class="s2">&quot;ec2_instance&quot;</span><span class="p">,</span>
     <span class="s2">&quot;aws_resource&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;ImageId&quot;</span><span class="p">:</span> <span class="s2">&quot;ami-xxxxx&quot;</span><span class="p">,</span>
         <span class="s2">&quot;InstanceType&quot;</span><span class="p">:</span> <span class="s2">&quot;t2.micro&quot;</span><span class="p">,</span>
@@ -241,12 +250,12 @@ hierarchical cloud infrastructure, automating deployments, and managing lifecycl
 <p>Now to start the ec2 instance using pcf simply initialize the particle and set the desired state to running and apply.</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particle</span> <span class="o">=</span> <span class="n">EC2Instance</span><span class="p">(</span><span class="n">ec2_example_definition</span><span class="p">)</span>
 
-<span class="n">particle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">running</span><span class="p">)</span>
+<span class="n">particle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="s2">&quot;running&quot;</span><span class="p">)</span>
 <span class="n">particle</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>To terminate simply change the desired state to terminated and apply.</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">terminated</span><span class="p">)</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="s2">&quot;terminated&quot;</span><span class="p">)</span>
 <span class="n">particle</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
 </pre></div>
 </div>

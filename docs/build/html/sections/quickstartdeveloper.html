@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developer Quickstart &mdash; Particle Cloud Framework 0.2.0 documentation</title>
+  <title>Developer Quickstart &mdash; Particle Cloud Framework 0.4.0 documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.2.0
+                0.4.0
               </div>
             
           
@@ -98,7 +98,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../features/features.html">Advanced Configuration Features</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Base Classes</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">PCF Examples</a></li>
@@ -193,7 +199,6 @@ out our repository of premade particles and after you create your own feel free 
 particle, docstrings, and tests.</p>
 <p>This is an example of how to create a new aws particle.</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.aws_resource</span> <span class="k">import</span> <span class="n">AWSResource</span>
-<span class="kn">from</span> <span class="nn">pcf.core</span> <span class="k">import</span> <span class="n">State</span>
 <span class="kn">from</span> <span class="nn">pcf.util</span> <span class="k">import</span> <span class="n">pcf_util</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -270,7 +275,7 @@ so can be imported and extended the same way and simplify the provisioning and m
 For example, we can create a basic quasiparticle that has a cluster of master and worker nodes. We want all of the cluster nodes to be running
 before any of the worker nodes would spin up. We would handle this by created a custom config var that we can use in our custom
 quasiparticle definition and create a function that sets the parents of each worker particle.</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.rds.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pcf.core.ec2.ec2_instance</span> <span class="k">import</span> <span class="n">EC2Instance</span>
 <span class="kn">from</span> <span class="nn">pcf.core.quasiparticle</span> <span class="k">import</span> <span class="n">Quasiparticle</span>
 
 <span class="k">class</span> <span class="nc">DistributedMasterWorker</span><span class="p">(</span><span class="n">Quasiparticle</span><span class="p">):</span>
@@ -296,7 +301,6 @@ quasiparticle definition and create a function that sets the parents of each wor
 </div>
 <p>To use this quasiparticle we simple import, initialize the desired state definitions, set the desired start, and apply.</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">DistributedMasterWorker</span>
-<span class="kn">from</span> <span class="nn">pcf.core</span> <span class="k">import</span> <span class="n">State</span>
 
 <span class="n">kafka_zookeeper_example_definition</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;pcf_name&quot;</span><span class="p">:</span> <span class="s2">&quot;example&quot;</span><span class="p">,</span>
@@ -334,7 +338,7 @@ quasiparticle definition and create a function that sets the parents of each wor
 
 <span class="n">quasiparticle</span> <span class="o">=</span> <span class="n">DistributedMasterWorker</span><span class="p">(</span><span class="n">kafka_zookeeper_example_definition</span><span class="p">)</span>
 
-<span class="n">quasiparticle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">running</span><span class="p">)</span>
+<span class="n">quasiparticle</span><span class="o">.</span><span class="n">set_desired_state</span><span class="p">(</span><span class="s2">&quot;running&quot;</span><span class="p">)</span>
 <span class="n">quasiparticle</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
 </pre></div>
 </div>
