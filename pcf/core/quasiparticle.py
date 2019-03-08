@@ -18,9 +18,9 @@ import logging
 
 from pcf.core.particle import Particle
 from pcf.core.pcf import PCF
-from pcf.core import State
+from pcf.core import State, STATE_STRING_TO_ENUM
 from pcf.util import pcf_util
-from pcf.core.pcf_exceptions import MaxTimeoutException
+from pcf.core.pcf_exceptions import InvalidState
 
 logger = logging.getLogger(__name__)
 
@@ -164,9 +164,15 @@ class Quasiparticle(Particle):
 
         Args:
 
-            desired_state (State):
+            desired_state (str): one of running,stopped,terminated.
         """
-        self.desired_state = desired_state
+        if isinstance(desired_state, str):
+            self.desired_state = STATE_STRING_TO_ENUM.get(desired_state.lower())
+            if not self.desired_state:
+                raise InvalidState
+        else:
+            self.desired_state = desired_state
+
         particles = self.pcf_field.get_particles()
         for flavor in particles:
             for particle in particles[flavor]:
