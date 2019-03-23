@@ -6,7 +6,7 @@ from pcf.particle.aws.lambda_function.lambda_function import LambdaFunction
 # example lambda with function in local zip file
 lambda_function_example_zip_json = {
     "pcf_name": "lambda_test", # Required
-    "flavor": "lambda", # Required
+    "flavor": "lambda_function", # Required
     "aws_resource": {
         # Refer to https://boto3.readthedocs.io/en/latest/reference/services/lambda.html#Lambda.Client.create_function for a full list of parameters
         "FunctionName": "PCFTest", # Required
