@@ -13,7 +13,7 @@
 # limitations under the License.
 
 from pcf.particle.aws.vpc.security_group import SecurityGroup
-from pcf.particle.aws.vpc.vpc import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.core import State
 
@@ -22,7 +22,7 @@ vpc_parent_quasiparticle = {
     "flavor": "quasiparticle",
     "particles": [
         {
-            "flavor": "vpc",
+            "flavor": "vpc_instance",
             "pcf_name": "vpc_parent",
             "aws_resource": {
                 "custom_config": {
@@ -33,7 +33,7 @@ vpc_parent_quasiparticle = {
         },
         {
             "flavor": "security_group",
-            "parents": ["vpc:vpc_parent"],
+            "parents": ["vpc_instance:vpc_parent"],
             "aws_resource": {
                 "Description": "pcf security group",
                 "GroupName": "Hoos",
