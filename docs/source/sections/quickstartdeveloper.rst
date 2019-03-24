@@ -20,7 +20,6 @@ This is an example of how to create a new aws particle.
 .. code::
 
     from pcf.core.aws_resource import AWSResource
-    from pcf.core import State
     from pcf.util import pcf_util
     import logging
     import json
@@ -112,7 +111,7 @@ quasiparticle definition and create a function that sets the parents of each wor
 
 .. code::
 
-    from pcf.core.rds.ec2_instance import EC2Instance
+    from pcf.core.ec2.ec2_instance import EC2Instance
     from pcf.core.quasiparticle import Quasiparticle
 
     class DistributedMasterWorker(Quasiparticle):
@@ -141,7 +140,6 @@ To use this quasiparticle we simple import, initialize the desired state definit
 .. code::
 
     import DistributedMasterWorker
-    from pcf.core import State
 
     kafka_zookeeper_example_definition = {
         "pcf_name": "example",
@@ -179,6 +177,6 @@ To use this quasiparticle we simple import, initialize the desired state definit
 
     quasiparticle = DistributedMasterWorker(kafka_zookeeper_example_definition)
 
-    quasiparticle.set_desired_state(State.running)
+    quasiparticle.set_desired_state("running")
     quasiparticle.apply()
 

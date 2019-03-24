@@ -18,8 +18,9 @@ import logging
 
 from pcf.core.particle import Particle
 from pcf.core.pcf import PCF
-from pcf.core import State
+from pcf.core import State, STATE_STRING_TO_ENUM
 from pcf.util import pcf_util
+from pcf.core.pcf_exceptions import InvalidState
 
 logger = logging.getLogger(__name__)
 
@@ -104,7 +105,7 @@ class Quasiparticle(Particle):
         return particle_definition
 
 
-    def apply(self, sync=True, cascade=True, validate_config=False, rollback=False):
+    def apply(self, sync=True, cascade=True, validate_config=False, rollback=False, max_timeout=None):
         """
         Calls apply all particles via pcf_field.apply()
 
@@ -113,17 +114,20 @@ class Quasiparticle(Particle):
             cascade (bool): Defaults to True
             validate_config (bool): specify whether or not to call particle config validation function
             rollback (bool): If true then all particles will be terminated if there is an error during start. Defaults to False
+            max_timeout (int): raise the max timeout exception after x(int) seconds reached, defaults to None
         """
 
         try:
-            self.pcf_field.apply(sync=sync, cascade=cascade, validate_config=validate_config)
+            self.pcf_field.apply(sync=sync, cascade=cascade, validate_config=validate_config, max_timeout=max_timeout)
         # if exception then terminate all particles if rollback set to True
         except Exception as error:
-            logger.info("Error detected in {0}. {1}".format(self.pcf_id, error))
+            logger.debug("Error detected in {0}. {1}".format(self.pcf_id, error))
             if rollback:
-                logger.info("Rollback set to true. Performing rollback.")
+                logger.info("Error occured while running apply() with the rollback flag is set to true. Performing rollback.")
                 self.set_desired_state(State.terminated)
-                self.pcf_field.apply(sync=sync, cascade=cascade, validate_config=False)
+                self.pcf_field.apply(sync=sync, cascade=cascade, validate_config=False, max_timeout=max_timeout)
+            else:
+                raise error
 
     def sync_state(self):
         pass
@@ -160,9 +164,15 @@ class Quasiparticle(Particle):
 
         Args:
 
-            desired_state (State):
+            desired_state (str): one of running,stopped,terminated.
         """
-        self.desired_state = desired_state
+        if isinstance(desired_state, str):
+            self.desired_state = STATE_STRING_TO_ENUM.get(desired_state.lower())
+            if not self.desired_state:
+                raise InvalidState
+        else:
+            self.desired_state = desired_state
+
         particles = self.pcf_field.get_particles()
         for flavor in particles:
             for particle in particles[flavor]:
