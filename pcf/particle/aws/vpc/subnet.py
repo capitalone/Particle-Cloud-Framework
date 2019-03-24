@@ -140,7 +140,7 @@ class Subnet(AWSResource):
             self.state = Subnet.state_lookup.get(full_status["State"])
             self.current_state_definition = full_status
             self._subnet_id = full_status.get("SubnetId")
-            if self.is_public:
+            if self.is_public and not self.current_state_definition.get("MapPublicIpOnLaunch"):
                 self.client.modify_subnet_attribute(
                     MapPublicIpOnLaunch={
                         'Value': True
