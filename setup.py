@@ -16,6 +16,7 @@ import os
 from glob import glob
 from pathlib import Path
 from setuptools import setup, find_packages
+from pcf import VERSION
 
 
 def read(fname):
@@ -24,22 +25,29 @@ def read(fname):
 
 setup(
     name='pcf',
-    version=os.environ.get('PCF_TAG', '0.1.1'),
+    version=VERSION,
     description='pcf',
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
     author='anovis',
     packages=find_packages(),
     url='https://github.com/capitalone/Particle-Cloud-Framework',
+    entry_points='''
+        [console_scripts]
+        pcf=pcf.cli.cli:cli
+    ''',
     install_requires=[
+        "azure==4.0.0",
         "boto==2.48.0",
-        "boto3==1.8.5",
+        "boto3==1.9.76",
         "Jinja2==2.9.6",
         "google-cloud-storage==1.10.0",
         "google-api-python-client==1.7.4",
         "commentjson==0.7.1",
-        "botocore==1.10.67",
-        "deepdiff==3.3.0"
+        "deepdiff==3.3.0",
+        "click==7.0",
+        "python-Levenshtein==0.12.0",
+        "pyyaml==4.2b1"
     ],
     package_data={'pcf': glob('**/*.j2', recursive=True)},
     include_package_data=True,

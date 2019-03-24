@@ -163,9 +163,14 @@ class Particle(object, metaclass=MetaParticle):
         Sets the particle's desired state
 
         Arg:
-            desired_state (State):
+            desired_state (str): one of running,stopped,terminated.
         """
-        self.desired_state = desired_state
+        if isinstance(desired_state, str):
+            self.desired_state = STATE_STRING_TO_ENUM.get(desired_state.lower())
+            if not self.desired_state:
+                raise pcf_exceptions.InvalidState
+        else:
+            self.desired_state = desired_state
         logger.info("{0}: setting desired state to {1}".format(self.pcf_id, self.desired_state))
 
     def measure(self):
@@ -177,7 +182,7 @@ class Particle(object, metaclass=MetaParticle):
         """
         raise NotImplementedError
 
-    def apply(self, sync=True, cascade=False, validate_config=False, src_cascade=None, cache_ttl=15):
+    def apply(self, sync=True, cascade=False, validate_config=False, max_timeout=None, src_cascade=None, cache_ttl=15):
         """
         Triggers the state transition functions based on the state transition table.
 
@@ -185,11 +190,15 @@ class Particle(object, metaclass=MetaParticle):
             sync (bool): apply state transitions synchronously
             cascade (bool): apply state transitions to all family members
             validate_config (bool): specify whether or not to call particle config validation function
+            max_timeout (int): raise the max timeout exception after x(int) seconds reached, defaults to None
             src_cascade ("parent","child", or "none"): direction of cascade logic
             cache_ttl (int): allows self.state_cache_ttl to be configured to any time interval
         Returns:
             State transition response
         """
+        if max_timeout:
+            start_timeout = time.time()
+
         logger.debug("{0}: start applying state transition with modes: sync={1} cascade={2} validate_config={3}".format(self.pcf_id, sync,
                                                                                                     cascade, validate_config))
 
@@ -215,6 +224,9 @@ class Particle(object, metaclass=MetaParticle):
                 self.get_and_replace_parent_variables()
 
             while not self.is_state_equivalent(self.get_state(), self.desired_state):
+                if max_timeout and (time.time() - start_timeout) >= max_timeout:
+                    raise pcf_exceptions.MaxTimeoutException
+
                 if self.state == State.pending:
                     self.wait()
 
@@ -253,6 +265,9 @@ class Particle(object, metaclass=MetaParticle):
                     self.wait()
 
             while self.get_state() == self.desired_state == State.running and not self.is_state_definition_equivalent():
+                if max_timeout and (time.time() - start_timeout) >= max_timeout:
+                    raise pcf_exceptions.MaxTimeoutException
+
                 try:
                     logger.debug(
                         "{0}: current_state_definition ({1}) doesn't match the desired_state_definition ({2})".format(
@@ -277,7 +292,6 @@ class Particle(object, metaclass=MetaParticle):
                     self.update(sync=sync, cascade=cascade)
 
                 if not sync: break
-
                 self.wait()
 
         self.current_state_transiton = None
