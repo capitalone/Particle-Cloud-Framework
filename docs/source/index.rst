@@ -37,6 +37,13 @@ User Quickstart
 
    sections/quickstart
 
+Philosophy
+--------------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   sections/philosophy
 
 Framework Overview
 --------------------------
