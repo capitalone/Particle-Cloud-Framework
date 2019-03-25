@@ -1,5 +1,4 @@
 from pcf.particle.aws.glacier.glacier_vault import GlacierVault
-from higgs.core import State
 
 # Edit example json to work in your account
 glacier_example_json = {
@@ -19,7 +18,7 @@ glacier_example_json = {
 glacier_particle = GlacierVault(glacier_example_json)
 
 # example start
-glacier_particle.set_desired_state(State.running)
+glacier_particle.set_desired_state("running")
 glacier_particle.apply()
 
 print(glacier_particle.get_state())
@@ -32,7 +31,7 @@ if glacier_example_json.get("aws_resource").get("custom_config").get("Tags"):
     print("Tags: ", tags.get("Tags"))
 
 # example terminate
-glacier_particle.set_desired_state(State.terminated)
+glacier_particle.set_desired_state("terminated")
 glacier_particle.apply()
 
 print(glacier_particle.get_state())
