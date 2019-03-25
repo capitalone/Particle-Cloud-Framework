@@ -18,7 +18,6 @@ import boto3
 
 from botocore.exceptions import ClientError
 from pcf.particle.aws.glacier.glacier_vault import GlacierVault
-from pcf.core import State
 from unittest.mock import Mock
 
 particle_definition = {
@@ -96,10 +95,10 @@ def test_create_vault(monkeypatch):
 
     particle = GlacierVault(particle_definition)
 
-    particle.set_desired_state(State.running)
+    particle.set_desired_state("running")
     particle.apply()
 
-    assert particle.get_state() == State.running
+    assert particle.get_state() == "running"
 
     # test tags
     tags = particle.client.list_tags_for_vault(vaultName=particle.vault_name, accountId="-")
@@ -131,7 +130,7 @@ def test_terminate(monkeypatch):
 
     particle = GlacierVault(particle_definition)
 
-    particle.set_desired_state(State.terminated)
+    particle.set_desired_state("terminated")
     particle.apply()
 
-    assert particle.get_state() == State.terminated
+    assert particle.get_state() == "terminated"

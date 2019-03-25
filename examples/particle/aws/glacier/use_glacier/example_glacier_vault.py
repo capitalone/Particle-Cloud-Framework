@@ -6,6 +6,7 @@ glacier_example_json = {
     "flavor": "glacier",
     "aws_resource": {
         "vaultName": "pcf_test_glacier", # Required
+        #"accountId": "" # Optional - defaults to "-"
         "custom_config": {
             "Tags": {
                 "Name":"pcf-glacier-example"
