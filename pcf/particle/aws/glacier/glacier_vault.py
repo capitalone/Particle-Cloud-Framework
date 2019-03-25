@@ -40,16 +40,13 @@ class GlacierVault(AWSResource):
         State.terminated: 0
     }
 
-    START_PARAMS_FILTER = {
-        "vaultName" # Required
-    }
-
     def __init__(self, particle_definition):
         super(GlacierVault, self).__init__(
             particle_definition=particle_definition,
             resource_name="glacier",
         )
-        self.vault_name = self.desired_state_definition["vaultName"]
+        self.vault_name = self.desired_state_definition.get("vaultName")
+        self.account_id = self.desired_state_definition.get("accountId", "-")
 
     def _terminate(self):
         """
@@ -67,8 +64,10 @@ class GlacierVault(AWSResource):
         Returns:
              response of boto3 create_vault
         """
-        create_definition = pcf_util.param_filter(self.get_desired_state_definition(), self.START_PARAMS_FILTER)
-        response = self.client.create_vault(**create_definition)
+        response = self.client.create_vault(
+            vaultName=self.vault_name,
+            accountId=self.account_id
+        )
 
         if self.custom_config.get("Tags"):
             tags = self.custom_config.get("Tags")
@@ -97,7 +96,7 @@ class GlacierVault(AWSResource):
         try:
             vault_object = self.client.describe_vault(
                 vaultName=self.vault_name,
-                accountId="-"
+                accountId=self.account_id
             )
         except ClientError as e:
             logger.info("{}. State is missing".format(e))
