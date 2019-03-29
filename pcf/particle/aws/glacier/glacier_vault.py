@@ -17,7 +17,6 @@ import logging
 from botocore.exceptions import ClientError
 from pcf.core.aws_resource import AWSResource
 from pcf.core import State
-from pcf.util import pcf_util
 
 logger = logging.getLogger(__name__)
 
@@ -40,10 +39,11 @@ class GlacierVault(AWSResource):
         State.terminated: 0
     }
 
-    def __init__(self, particle_definition):
+    def __init__(self, particle_definition, session=None):
         super(GlacierVault, self).__init__(
             particle_definition=particle_definition,
             resource_name="glacier",
+            session=session
         )
         self.vault_name = self.desired_state_definition.get("vaultName")
         self.account_id = self.desired_state_definition.get("accountId", "-")
@@ -55,7 +55,9 @@ class GlacierVault(AWSResource):
         Returns:
              response of boto3 delete_vault
         """
-        return self.client.delete_vault(vaultName=self.vault_name)
+        response = self.client.delete_vault(vaultName=self.vault_name)
+        message = "hey"
+        return response
 
     def _start(self):
         """
@@ -99,9 +101,9 @@ class GlacierVault(AWSResource):
                 accountId=self.account_id
             )
         except ClientError as e:
-            logger.info("{}. State is missing".format(e))
-            return {"status":"missing"}
-        return {"status":"active"}
+            logger.info(f"{e}. State is missing")
+            return {}
+        return vault_object
 
     def sync_state(self):
         """
@@ -114,11 +116,14 @@ class GlacierVault(AWSResource):
         full_status = self.get_status()
 
         if full_status:
-            status = full_status.get("status", "missing").lower()
-            self.state = self.state_lookup.get(status)
+            self.state = self.state_lookup.get("active")
+            self.current_state_definition = full_status
+            self.current_state_definition["vaultName"] = full_status.get("VaultName")
 
-            # set current state definition
-            self.current_state_definition = self.desired_state_definition
+            if self.custom_config.get("Tags"):
+                self.current_state_definition["custom_config"] = self.custom_config
+        else:
+            self.state = self.state_lookup.get("missing")
 
     def _update(self):
         """

@@ -1,0 +1,24 @@
+{
+    "status_code": 404,
+    "data": {
+        "Error":
+            {
+                "Message": "Vault not found for ARN: arn:aws:glacier:us-east-1:-:vaults/pcf_test_glacier",
+                "Code": "ResourceNotFoundException"
+            },
+        "ResponseMetadata": {
+            "RequestId": "",
+            "HTTPStatusCode": 404,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "",
+                "content-type": "application/json",
+                "content-length": "154",
+                "date": "string",
+                "cache-control": "proxy-revalidate",
+                "proxy-connection": "Keep-Alive",
+                "connection": "Keep-Alive"
+            },
+            "RetryAttempts": 0
+    }
+    }
+}
