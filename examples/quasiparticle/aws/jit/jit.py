@@ -4,7 +4,7 @@ import json
 from pcf.core import State
 from pcf.core.quasiparticle import Quasiparticle
 
-from pcf.particle.aws.vpc.vpc_instance import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 from pcf.particle.aws.vpc.subnet import Subnet
 from pcf.particle.aws.vpc.security_group import SecurityGroup
 from pcf.particle.aws.ec2.ec2_instance import EC2Instance
@@ -17,7 +17,7 @@ for handler in logging.root.handlers:
 
 
 vpc_definition = {
-    "flavor": "vpc",
+    "flavor": "vpc_instance",
     "aws_resource": {
         "custom_config": {
             "vpc_name": "jit-vpc",
@@ -28,7 +28,7 @@ vpc_definition = {
 
 subnet_definition = {
     "flavor": "subnet",
-    "parents":["vpc:pcf-jit-example"],
+    "parents":["vpc_instance:pcf-jit-example"],
     "aws_resource": {
         "custom_config": {
             "subnet_name": "jit-subnet",
@@ -39,7 +39,7 @@ subnet_definition = {
 
 security_group_definition = {
     "flavor": "security_group",
-    "parents":["vpc:pcf-jit-example"],
+    "parents":["vpc_instance:pcf-jit-example"],
     "aws_resource": {
         "custom_config":{
             "IpPermissions":[
@@ -87,7 +87,7 @@ iam_role_definition = {
 
 ec2_definition = {
     "flavor": "ec2_instance",  # Required
-    "parents":["security_group:pcf-jit-example","subnet:pcf-jit-example","vpc:pcf-jit-example", "iam_role:pcf-jit-example"],
+    "parents":["security_group:pcf-jit-example","subnet:pcf-jit-example","vpc_instance:pcf-jit-example", "iam_role:pcf-jit-example"],
     "aws_resource": {
         "custom_config": {
             "instance_name": "jit-ec2",  # Required

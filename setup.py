@@ -37,6 +37,7 @@ setup(
         pcf=pcf.cli.cli:cli
     ''',
     install_requires=[
+        "azure==4.0.0",
         "boto==2.48.0",
         "boto3==1.9.76",
         "Jinja2==2.9.6",
