@@ -56,7 +56,6 @@ class GlacierVault(AWSResource):
              response of boto3 delete_vault
         """
         response = self.client.delete_vault(vaultName=self.vault_name)
-        message = "hey"
         return response
 
     def _start(self):
@@ -108,9 +107,6 @@ class GlacierVault(AWSResource):
     def sync_state(self):
         """
         Uses get_status() to determine whether the vault exists or not and sets the current state definition
-
-        Returns:
-            void
         """
 
         full_status = self.get_status()
