@@ -8,7 +8,7 @@ pytest-env==0.6.2
 coverage==4.4.1
 boto==2.48.0
 boto3==1.9.76
-Jinja2==2.9.6
+Jinja2==2.10.1
 moto==1.3.7
 mock==2.0.0
 google-cloud-storage==1.10.0
