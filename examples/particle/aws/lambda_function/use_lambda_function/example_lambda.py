@@ -21,7 +21,7 @@ lambda_function_example_zip_json = {
 # example lambda with function in a zip file in s3
 lambda_function_example_s3_json = {
     "pcf_name": "lambda_test", # Required
-    "flavor": "lambda", # Required
+    "flavor": "lambda_function", # Required
     "aws_resource": {
         # Refer to https://boto3.readthedocs.io/en/latest/reference/services/lambda.html#Lambda.Client.create_function for a full list of parameters
         "FunctionName": "PCFTest", # Required
