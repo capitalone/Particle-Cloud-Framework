@@ -1,0 +1,42 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "89d0d307-3623-11e9-9889-59391a7d6c8d",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "89d0d307-3623-11e9-9889-59391a7d6c8d",
+                "content-type": "application/json",
+                "content-length": "505",
+                "date": "Thu, 21 Feb 2019 21:56:27 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "FileSystems": [
+            {
+                "OwnerId": "411062852979",
+                "CreationToken": "pcfFileSystem",
+                "FileSystemId": "fs-da97133a",
+                "CreationTime": {
+                    "__class__": "datetime",
+                    "year": 2019,
+                    "month": 2,
+                    "day": 21,
+                    "hour": 16,
+                    "minute": 56,
+                    "second": 11,
+                    "microsecond": 0
+                },
+                "LifeCycleState": "available",
+                "Name": "efs-instance",
+                "NumberOfMountTargets": 0,
+                "SizeInBytes": {
+                    "Value": 6144
+                },
+                "PerformanceMode": "generalPurpose",
+                "Encrypted": false,
+                "ThroughputMode": "bursting"
+            }
+        ]
+    }
+}

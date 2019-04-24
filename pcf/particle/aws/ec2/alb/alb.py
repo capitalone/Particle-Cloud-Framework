@@ -60,11 +60,8 @@ class ApplicationLoadBalancing(AWSResource):
         "IpAddressType"
     }
 
-    def __init__(self, particle_definition):
-        super(ApplicationLoadBalancing, self).__init__(
-            particle_definition=particle_definition, 
-            resource_name="elbv2"
-        )
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="elbv2", session=session)
         self.alb_name = self.desired_state_definition["Name"]
 
     def create(self):

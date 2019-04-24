@@ -91,11 +91,11 @@ class RDS(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.DBInstanceIdentifier"]
 
-    def __init__(self, particle_definition):
+    def __init__(self, particle_definition, session=None):
         """
         :param particle_definition:
         """
-        super(RDS, self).__init__(particle_definition, 'rds')
+        super().__init__(particle_definition, 'rds', session=session)
         self.db_instance_identifier = self.desired_state_definition['DBInstanceIdentifier']
 
         self._set_unique_keys()

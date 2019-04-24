@@ -37,11 +37,12 @@ class ECSCluster(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.clusterName"]
 
-    def __init__(self, particle_definition):
-        super(ECSCluster, self).__init__(
+    def __init__(self, particle_definition, session=None):
+        super().__init__(
             particle_definition=particle_definition,
             resource_name="ecs",
-            arn=particle_definition.get('arn')
+            arn=particle_definition.get('arn'),
+            session=session
         )
         self.cluster_name = self.desired_state_definition["clusterName"]
 
