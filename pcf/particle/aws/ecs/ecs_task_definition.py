@@ -35,15 +35,6 @@ class ECSTaskDefinition(AWSResource):
         State.terminated: 0
     }
 
-    START_PARAM_FILTER = {
-        "family",
-        "taskRoleArn",
-        "networkMode",
-        "containerDefinitions",
-        "volumes",
-        "placementConstraints"
-    }
-
     UNIQUE_KEYS = ["aws_resource.containerDefinitions.name"]
 
     def __init__(self, particle_definition, session=None):
@@ -117,9 +108,7 @@ class ECSTaskDefinition(AWSResource):
         Returns:
            boto3 register_task_definition() response
         """
-        new_desired_state_def, diff_dict = pcf_util.update_dict(self.current_state_definition, self.get_desired_state_definition())
-        new_desired_state_def = pcf_util.param_filter(new_desired_state_def, ECSTaskDefinition.START_PARAM_FILTER)
-        resp = self.client.register_task_definition(**new_desired_state_def)
+        resp = self.client.register_task_definition(**self.get_desired_state_definition())
         self.current_state_definition = resp
         return resp
 

@@ -15,7 +15,7 @@
 from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 from pcf.util import pcf_util
-from pcf.particle.aws.vpc.vpc_instance import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 
 
 class Subnet(AWSResource):
@@ -48,6 +48,7 @@ class Subnet(AWSResource):
         super(Subnet, self).__init__(particle_definition, "ec2")
         self._set_unique_keys()
         self.subnet_name = self.custom_config.get("subnet_name")
+        self.is_public = self.custom_config.get("public", False)
         self._subnet_client = None
 
     @property
@@ -107,7 +108,7 @@ class Subnet(AWSResource):
            boto3 create_subnet() response
         """
         if not self.desired_state_definition.get("VpcId"):
-            self.desired_state_definition["VpcId"] = pcf_util.get_value_from_particles(self.parents, VPC, "vpc_id")
+            self.desired_state_definition["VpcId"] = pcf_util.get_value_from_particles(self.parents, VPCInstance, "vpc_id")
         resp = self.client.create_subnet(**pcf_util.param_filter(self.desired_state_definition, Subnet.START_PARAMS))
         self._subnet_id = resp['Subnet'].get("SubnetId")
         self.current_state_definition = resp
@@ -139,6 +140,13 @@ class Subnet(AWSResource):
             self.state = Subnet.state_lookup.get(full_status["State"])
             self.current_state_definition = full_status
             self._subnet_id = full_status.get("SubnetId")
+            if self.is_public != self.current_state_definition.get("MapPublicIpOnLaunch"):
+                self.client.modify_subnet_attribute(
+                    MapPublicIpOnLaunch={
+                        'Value': self.is_public
+                    },
+                    SubnetId=self._subnet_id
+                )
 
     def is_state_equivalent(self, state1, state2):
         """

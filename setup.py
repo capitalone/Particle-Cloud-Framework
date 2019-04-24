@@ -37,16 +37,17 @@ setup(
         pcf=pcf.cli.cli:cli
     ''',
     install_requires=[
+        "azure==4.0.0",
         "boto==2.48.0",
         "boto3==1.9.76",
-        "Jinja2==2.9.6",
+        "Jinja2==2.10.1",
         "google-cloud-storage==1.10.0",
         "google-api-python-client==1.7.4",
         "commentjson==0.7.1",
         "deepdiff==3.3.0",
         "click==7.0",
         "python-Levenshtein==0.12.0",
-        "pyyaml==3.13"
+        "pyyaml==4.2b1"
     ],
     package_data={'pcf': glob('**/*.j2', recursive=True)},
     include_package_data=True,

@@ -29,3 +29,11 @@ ECS Instance Quasiparticle
    :maxdepth: 2
 
    pcf.quasiparticle.aws.ecs_instance_quasi
+
+Cross Cloud Storage Quasiparticle
+----------------------------------------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   pcf.quasiparticle.cross_cloud.cross_cloud_storage

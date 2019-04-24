@@ -15,7 +15,7 @@
 import moto
 import boto3
 
-from pcf.particle.aws.vpc.vpc_instance import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 from pcf.core.quasiparticle import Quasiparticle
 from pcf.particle.aws.vpc.subnet import Subnet
 from pcf.core import State
@@ -39,7 +39,7 @@ class TestSubnet:
         "flavor": "quasiparticle",
         "particles":[
             {
-                "flavor": "vpc",
+                "flavor": "vpc_instance",
                 "pcf_name":"vpc_parent",
                 "aws_resource": {
                 "custom_config":{
@@ -50,7 +50,7 @@ class TestSubnet:
             },
             {
                 "flavor": "subnet",
-                "parents":["vpc:vpc_parent"],
+                "parents":["vpc_instance:vpc_parent"],
                 "aws_resource": {
                     "custom_config":{
                         "subnet_name":"test",
