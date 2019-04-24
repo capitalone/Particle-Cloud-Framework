@@ -25,12 +25,10 @@ class BatchComputeEnvironment(AWSResource):
 
     flavor = "batch_compute_environment"
 
-    START_PARAM_FILTER = {
-        "attributes",
-    }
-
     UPDATE_PARAM_FILTER = {
-        "attributes",
+        "state",
+        "computeResources",
+        "serviceRole",
     }
 
     state_lookup = {
@@ -42,7 +40,7 @@ class BatchComputeEnvironment(AWSResource):
         "INVALID": State.terminated,
     }
 
-    UNIQUE_KEYS = ['computeEnvironmentName']
+    UNIQUE_KEYS = ['aws_resource.computeEnvironmentName']
 
     def __init__(self, particle_definition):
         super(BatchComputeEnvironment, self).__init__(particle_definition, "batch")
@@ -64,7 +62,6 @@ class BatchComputeEnvironment(AWSResource):
         """
         res = self.client.describe_compute_environments(
             computeEnvironments=[self.name],
-            maxResults=1
         )
 
         if len(res["computeEnvironments"]) != 1:
@@ -129,10 +126,10 @@ class BatchComputeEnvironment(AWSResource):
         full_status = self.get_status()
         self.current_state_definition = full_status
         if full_status:
-            status = BatchComputeEnvironment.state_lookup(full_status['status'])
+            status = self.state_lookup[full_status.get('status')]
             state_type = full_status['state']
 
-            if status == State.running and state_type =="DISABLED"
+            if status == State.running and state_type =="DISABLED":
                 self.state = State.stopped
             else:
                 self.state = status
@@ -141,31 +138,18 @@ class BatchComputeEnvironment(AWSResource):
 
     def _update(self):
         """
-        Calls boto3 put_attributes() to update ECS Instance attributes. Does not allow for attributes that start
-        with com.amazonaws.ecs. or instance-id to be updated.
+        Calls boto3 update_compute_environment(). Can only update fields in UPDATE_PARAM_FILTER.
 
         Returns:
             boto3 put_attributes() response
         """
-        new_desired_state_def, diff_dict = pcf_util.update_dict(self.current_state_definition,
-                                                                self.get_desired_state_definition())
-        update_definition = pcf_util.param_filter(new_desired_state_def, ECSInstance.UPDATE_PARAM_FILTER)
-        attributes = []
-        for a in update_definition['attributes']:
-            if (not a['name'].startswith('ecs.')
-                and not a['name'].startswith('com.amazonaws.ecs.')
-                and a['name'] not in ECSInstance.PROTECTED_ATTRIBUTES):
-                attributes.append({
-                    'name': a['name'],
-                    'value': a['value'],
-                    'targetType': 'container-instance',
-                    'targetId': self.get_ecs_instance_id(),
-                })
+        filtered_desired_state_definition = pcf_util.param_filter(self.desired_state_definition,
+                                                                  BatchComputeEnvironment.UPDATE_PARAM_FILTER)
 
-        return self.client.put_attributes(
-            cluster=self.get_cluster_name(),
-            attributes=attributes,
-        )
+        return self.client.update_compute_environment(
+                            computeEnvironment=self.name,
+                            **filtered_desired_state_definition
+                            )
 
     def is_state_definition_equivalent(self):
         """
@@ -175,40 +159,15 @@ class BatchComputeEnvironment(AWSResource):
         Returns:
             bool
         """
-        existing_attributes = self.current_state_definition.get('attributes', [])
-        desired_attributes = self.get_desired_state_definition().get('attributes', [])
+        filtered_current_state_definition = pcf_util.param_filter(self.current_state_definition,
+                                                       BatchComputeEnvironment.UPDATE_PARAM_FILTER)
+        filtered_desired_state_definition = pcf_util.param_filter(self.desired_state_definition,
+                                                       BatchComputeEnvironment.UPDATE_PARAM_FILTER)
 
-        d = dict()
-        for a in existing_attributes:
-            d[a['name']] = a.get('value')
+        diff = pcf_util.diff_dict(filtered_current_state_definition, filtered_desired_state_definition)
 
-        if isinstance(desired_attributes, list):
-            for a in desired_attributes:
-                # print('checking id %s in %s' % (a['name'], d))
-                if (not a['name'].startswith('ecs.')
-                    and not a['name'].startswith('com.amazonaws.ecs.')
-                    and a['name'] not in ECSInstance.PROTECTED_ATTRIBUTES):
-                    if a['name'] not in d or d.get(a['name']) != a.get('value'):
-                        return False
+        if not diff or len(diff) == 0:
+            return True
 
-        elif isinstance(desired_attributes, dict):
-            for a in desired_attributes:
-                # print('checking id %s in %s' % (a['name'], d))
-                if (not a.startswith('ecs.')
-                    and not a.startswith('com.amazonaws.ecs.')
-                    and a not in ECSInstance.PROTECTED_ATTRIBUTES):
-                    if a not in d or d.get(a) != desired_attributes.get(a):
-                        return False
+        return False
 
-        return True
-
-    def is_state_equivalent(self, state1, state2):
-        """
-        Args:
-          state1 (State):
-          state2 (State):
-
-        Returns:
-          bool
-        """
-        return ECSInstance.equivalent_states.get(state1) == ECSInstance.equivalent_states.get(state2)
