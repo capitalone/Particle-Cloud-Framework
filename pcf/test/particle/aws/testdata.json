@@ -124,6 +124,26 @@
       "placebo",
       "cloudfront/replay"
     ]
+  ],
+  "batch_compute_environment-apply": [
+    {
+      "pcf_name": "pcf_batch_compute_environment",
+      "flavor": "batch_compute_environment",
+      "aws_resource": {
+        "computeEnvironmentName": "test",
+        "type": "UNMANAGED",
+        "serviceRole": "AWSBatchServiceRole"
+      }
+    },
+    {
+      "aws_resource": {
+        "state": "DISABLED"
+      }
+    },
+    [
+      "placebo",
+      "cloudfront/replay"
+    ]
   ]
 }
 

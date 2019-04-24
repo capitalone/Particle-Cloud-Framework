@@ -167,8 +167,8 @@ class BatchComputeEnvironment(AWSResource):
                                                        BatchComputeEnvironment.UPDATE_PARAM_FILTER)
 
         diff = pcf_util.diff_dict(filtered_desired_state_definition,filtered_current_state_definition)
-        print(diff)
-        print(not self.desired_state_definition["serviceRole"] in self.current_state_definition["serviceRole"])
+
+        # TODO might need more comp logic here
         if not self.desired_state_definition["serviceRole"] in self.current_state_definition["serviceRole"]:
             return False
 
