@@ -28,7 +28,6 @@ class BatchComputeEnvironment(AWSResource):
     UPDATE_PARAM_FILTER = {
         "state",
         "computeResources",
-        "serviceRole",
     }
 
     state_lookup = {
@@ -71,11 +70,13 @@ class BatchComputeEnvironment(AWSResource):
 
     def _terminate(self):
         """
-        Calls boto3 delete_compute_environment()
+        Sets state DISABLED then calls boto3 delete_compute_environment() to terminate
 
         Returns:
             boto3 delete_compute_environment() response
         """
+        # need to disable before terminating
+        self._stop()
         return self.client.delete_compute_environment(
             computeEnvironment=self.name
         )
@@ -90,9 +91,6 @@ class BatchComputeEnvironment(AWSResource):
         # calls enable if transitioning from stopped state
         if self.current_state_definition:
             return self.enable()
-        # set the default state to ENABLED
-        if not self.desired_state_definition.get("state"):
-            self.desired_state_definition["state"] = "ENABLED"
         return self.client.create_compute_environment(**self.desired_state_definition)
 
     def enable(self):
@@ -123,6 +121,10 @@ class BatchComputeEnvironment(AWSResource):
         """
         Calls get_status() and updates the current_state_definition and the state.
         """
+        # set the default desired state to ENABLED
+        if not self.desired_state_definition.get("state"):
+            self.desired_state_definition["state"] = "ENABLED"
+
         full_status = self.get_status()
         self.current_state_definition = full_status
         if full_status:
@@ -164,10 +166,14 @@ class BatchComputeEnvironment(AWSResource):
         filtered_desired_state_definition = pcf_util.param_filter(self.desired_state_definition,
                                                        BatchComputeEnvironment.UPDATE_PARAM_FILTER)
 
-        diff = pcf_util.diff_dict(filtered_current_state_definition, filtered_desired_state_definition)
+        diff = pcf_util.diff_dict(filtered_desired_state_definition,filtered_current_state_definition)
+        print(diff)
+        print(not self.desired_state_definition["serviceRole"] in self.current_state_definition["serviceRole"])
+        if not self.desired_state_definition["serviceRole"] in self.current_state_definition["serviceRole"]:
+            return False
 
-        if not diff or len(diff) == 0:
-            return True
+        if diff or len(diff) != 0:
+            return False
 
-        return False
+        return True
 
