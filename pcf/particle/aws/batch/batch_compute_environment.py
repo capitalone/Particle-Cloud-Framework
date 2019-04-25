@@ -76,7 +76,9 @@ class BatchComputeEnvironment(AWSResource):
             boto3 delete_compute_environment() response
         """
         # need to disable before terminating
-        self._stop()
+        if self.state != State.stopped:
+            return self._stop()
+
         return self.client.delete_compute_environment(
             computeEnvironment=self.name
         )
