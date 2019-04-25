@@ -25,11 +25,6 @@ class BatchJobQueue(AWSResource):
 
     flavor = "batch_job_queue"
 
-    UPDATE_PARAM_FILTER = {
-        "state",
-        "computeResources",
-    }
-
     state_lookup = {
         "CREATING": State.pending,
         "UPDATING": State.pending,
@@ -41,8 +36,8 @@ class BatchJobQueue(AWSResource):
 
     UNIQUE_KEYS = ['aws_resource.jobQueueName']
 
-    def __init__(self, particle_definition):
-        super(BatchJobQueue, self).__init__(particle_definition, "batch")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition, "batch", session)
         self._set_unique_keys()
         self.name = self.desired_state_definition['jobQueueName']
 
@@ -59,8 +54,8 @@ class BatchJobQueue(AWSResource):
         Returns:
              status or {}
         """
-        res = self.client.describe_compute_environments(
-            computeEnvironments=[self.name],
+        res = self.client.jobQueues(
+            jobQueues=[self.name],
         )
 
         if len(res["computeEnvironments"]) != 1:
@@ -77,8 +72,8 @@ class BatchJobQueue(AWSResource):
         """
         # need to disable before terminating
         self._stop()
-        return self.client.delete_compute_environment(
-            computeEnvironment=self.name
+        return self.client.delete_job_queue(
+            jobQueue=self.name
         )
 
     def _start(self):
@@ -100,8 +95,8 @@ class BatchJobQueue(AWSResource):
         Returns:
             boto3 update_compute_environment() response
         """
-        return self.client.update_compute_environment(
-            computeEnvironment=self.name,
+        return self.client.update_job_queue(
+            jobQueue=self.name,
             state='ENABLED'
         )
 
@@ -112,8 +107,8 @@ class BatchJobQueue(AWSResource):
         Returns:
             boto3 update_compute_environment() response
         """
-        return self.client.update_compute_environment(
-            computeEnvironment=self.name,
+        return self.client.update_job_queue(
+            jobQueue=self.name,
             state='DISABLED'
         )
 
@@ -145,12 +140,9 @@ class BatchJobQueue(AWSResource):
         Returns:
             boto3 put_attributes() response
         """
-        filtered_desired_state_definition = pcf_util.param_filter(self.desired_state_definition,
-                                                                  BatchComputeEnvironment.UPDATE_PARAM_FILTER)
-
-        return self.client.update_compute_environment(
-            computeEnvironment=self.name,
-            **filtered_desired_state_definition
+        return self.client.update_job_queue(
+            jobQueue=self.name,
+            **self.desired_state_definition
         )
 
     def is_state_definition_equivalent(self):
@@ -161,18 +153,8 @@ class BatchJobQueue(AWSResource):
         Returns:
             bool
         """
-        filtered_current_state_definition = pcf_util.param_filter(
-            self.current_state_definition,
-            BatchComputeEnvironment.UPDATE_PARAM_FILTER)
-        filtered_desired_state_definition = pcf_util.param_filter(
-            self.desired_state_definition,
-            BatchComputeEnvironment.UPDATE_PARAM_FILTER)
 
-        diff = pcf_util.diff_dict(filtered_desired_state_definition, filtered_current_state_definition)
-
-        # TODO might need more comp logic here
-        if not self.desired_state_definition["serviceRole"] in self.current_state_definition["serviceRole"]:
-            return False
+        diff = pcf_util.diff_dict(self.desired_state_definition, self.current_state_definition)
 
         if diff or len(diff) != 0:
             return False
