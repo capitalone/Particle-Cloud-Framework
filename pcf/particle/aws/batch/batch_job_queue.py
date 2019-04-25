@@ -17,13 +17,13 @@ from pcf.core.aws_resource import AWSResource
 from pcf.util import pcf_util
 
 
-class BatchComputeEnvironment(AWSResource):
+class BatchJobQueue(AWSResource):
     """
-    This is the implementation of Amazon's Batch Compute Environment.
-    https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html#Batch.Client.create_compute_environment
+    This is the implementation of Amazon's Batch Job Queue.
+    https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html#Batch.Client.create_job_queue
     """
 
-    flavor = "batch_compute_environment"
+    flavor = "batch_job_queue"
 
     UPDATE_PARAM_FILTER = {
         "state",
@@ -39,18 +39,18 @@ class BatchComputeEnvironment(AWSResource):
         "INVALID": State.terminated,
     }
 
-    UNIQUE_KEYS = ['aws_resource.computeEnvironmentName']
+    UNIQUE_KEYS = ['aws_resource.jobQueueName']
 
     def __init__(self, particle_definition):
-        super(BatchComputeEnvironment, self).__init__(particle_definition, "batch")
+        super(BatchJobQueue, self).__init__(particle_definition, "batch")
         self._set_unique_keys()
-        self.name = self.desired_state_definition['computeEnvironmentName']
+        self.name = self.desired_state_definition['jobQueueName']
 
     def _set_unique_keys(self):
         """
         Logic that sets keys from state definition that are used to uniquely identify the BatchComputeEnvironment
         """
-        self.unique_keys = BatchComputeEnvironment.UNIQUE_KEYS
+        self.unique_keys = BatchJobQueue.UNIQUE_KEYS
 
     def get_status(self):
         """
@@ -91,7 +91,7 @@ class BatchComputeEnvironment(AWSResource):
         # calls enable if transitioning from stopped state
         if self.current_state_definition:
             return self.enable()
-        return self.client.create_compute_environment(**self.desired_state_definition)
+        return self.client.create_job_queue(**self.desired_state_definition)
 
     def enable(self):
         """
@@ -131,7 +131,7 @@ class BatchComputeEnvironment(AWSResource):
             status = self.state_lookup[full_status.get('status')]
             state_type = full_status['state']
 
-            if status == State.running and state_type =="DISABLED":
+            if status == State.running and state_type == "DISABLED":
                 self.state = State.stopped
             else:
                 self.state = status
@@ -149,9 +149,9 @@ class BatchComputeEnvironment(AWSResource):
                                                                   BatchComputeEnvironment.UPDATE_PARAM_FILTER)
 
         return self.client.update_compute_environment(
-                            computeEnvironment=self.name,
-                            **filtered_desired_state_definition
-                            )
+            computeEnvironment=self.name,
+            **filtered_desired_state_definition
+        )
 
     def is_state_definition_equivalent(self):
         """
@@ -168,7 +168,7 @@ class BatchComputeEnvironment(AWSResource):
             self.desired_state_definition,
             BatchComputeEnvironment.UPDATE_PARAM_FILTER)
 
-        diff = pcf_util.diff_dict(filtered_desired_state_definition,filtered_current_state_definition)
+        diff = pcf_util.diff_dict(filtered_desired_state_definition, filtered_current_state_definition)
 
         # TODO might need more comp logic here
         if not self.desired_state_definition["serviceRole"] in self.current_state_definition["serviceRole"]:
