@@ -44,7 +44,7 @@ class TestIAMRole:
         iam_role_example_json = {
             "pcf_name": "pcf_iam_role", # Required
             "flavor":"iam_role", # Required
-            "aws_resource":{
+            "aws_resource": {
                 "custom_config": {
                     "policy_arns": [],
                     "IsInstanceProfile": True

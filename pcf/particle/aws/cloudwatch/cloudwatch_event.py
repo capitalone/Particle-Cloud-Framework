@@ -45,8 +45,8 @@ class CloudWatchEvent(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.Name"]
 
-    def __init__(self, particle_definition):
-        super(CloudWatchEvent, self).__init__(particle_definition=particle_definition, resource_name="events")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="events", session=session)
         self.rule_name = self.desired_state_definition["Name"]
         self._set_unique_keys()
 

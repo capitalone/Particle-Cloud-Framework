@@ -145,8 +145,9 @@ class BatchComputeEnvironment(AWSResource):
         Returns:
             boto3 put_attributes() response
         """
-        filtered_desired_state_definition = pcf_util.param_filter(self.desired_state_definition,
-                                                                  BatchComputeEnvironment.UPDATE_PARAM_FILTER)
+        filtered_desired_state_definition = pcf_util.param_filter(
+            self.desired_state_definition,
+            BatchComputeEnvironment.UPDATE_PARAM_FILTER)
 
         return self.client.update_compute_environment(
                             computeEnvironment=self.name,

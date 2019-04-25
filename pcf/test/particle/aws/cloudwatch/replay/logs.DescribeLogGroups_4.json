@@ -1,0 +1,25 @@
+{
+    "status_code": 200,
+    "data": {
+        "logGroups": [
+            {
+                "logGroupName": "pcfLog",
+                "creationTime": 1551111026483,
+                "metricFilterCount": 0,
+                "arn": "arn:aws:logs:us-east-1:411062852979:log-group:pcfLog:*",
+                "storedBytes": 0
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "dd02ccc3-3917-11e9-b569-293deac88f74",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "dd02ccc3-3917-11e9-b569-293deac88f74",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "171",
+                "date": "Mon, 25 Feb 2019 16:10:25 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}
