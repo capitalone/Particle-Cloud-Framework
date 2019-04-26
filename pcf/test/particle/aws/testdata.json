@@ -470,7 +470,7 @@
   "vpc-apply": [
     {
         "pcf_name": "pcf_vpc",
-        "flavor": "vpc",
+        "flavor": "vpc_instance",
         "aws_resource": {
             "custom_config":{
                 "vpc_name":"test"
@@ -495,12 +495,39 @@
     },
     {
       "aws_resource": {
-        "State": "DISABLED"
+        "state": "DISABLED"
       }
     },
     [
       "placebo",
-      "cloudfront/replay"
+      "batch/replay"
+    ]
+  ],
+  "batch_job_queue-apply": [
+    {
+      "pcf_name": "pcf_batch_job_queue",
+      "flavor": "batch_job_queue",
+        "aws_resource": {
+        "jobQueueName": "test",
+        "state": "ENABLED",
+        "priority": 1,
+        "computeEnvironmentOrder": [
+          {
+            "order": 1,
+            "computeEnvironment": "arn:aws:batch:us-east-1:337932058722:compute-environment/test"
+
+          }
+        ]
+      }
+    },
+      {
+      "aws_resource": {
+        "state": "DISABLED"
+      }
+    },
+    [
+    "placebo",
+    "batch/replay"
     ]
   ]
 }

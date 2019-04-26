@@ -42,7 +42,7 @@ class BatchComputeEnvironment(AWSResource):
     UNIQUE_KEYS = ['aws_resource.computeEnvironmentName']
 
     def __init__(self, particle_definition, session=None):
-        super().__init__(particle_definition, "batch", session)
+        super().__init__(particle_definition, "batch", session=session)
         self._set_unique_keys()
         self.name = self.desired_state_definition['computeEnvironmentName']
 

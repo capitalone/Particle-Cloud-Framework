@@ -23,7 +23,7 @@ from pcf.particle.aws.efs.efs_instance import EFS
 from pcf.particle.aws.emr.emr_cluster import EMRCluster
 from pcf.particle.aws.kms.kms_key import KMSKey
 from pcf.particle.aws.s3.s3_bucket import S3Bucket
-from pcf.particle.aws.vpc.vpc_instance import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 
 directory = os.path.dirname(__file__)
 file = os.path.join(directory, 'testdata.json')
@@ -52,7 +52,7 @@ def test_apply(definition, changes, test_type):
         # create
         particle = particle_class(definition, session)
         particle.set_desired_state(State.running)
-        particle.apply(sync=False)
+        particle.apply(sync=True)
 
         assert particle.get_state() == State.running
         # print(particle.current_state_definition, particle.desired_state_definition)
@@ -66,10 +66,10 @@ def test_apply(definition, changes, test_type):
                 updated_definition["aws_resource"]["tags"] = changes.get("aws_resource", {}).get("tags")
             particle = particle_class(updated_definition, session)
             particle.set_desired_state(State.running)
-            particle.apply(sync=False)
+            particle.apply(sync=True)
             assert particle.is_state_definition_equivalent()
         # terminate
         particle.set_desired_state(State.terminated)
-        particle.apply(sync=False)
+        particle.apply(sync=True)
 
         assert particle.get_state() == State.terminated
