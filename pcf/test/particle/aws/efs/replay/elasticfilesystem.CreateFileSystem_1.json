@@ -1,0 +1,37 @@
+{
+    "status_code": 201,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "8016bde6-3623-11e9-a290-7bd372ec8e80",
+            "HTTPStatusCode": 201,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "8016bde6-3623-11e9-a290-7bd372ec8e80",
+                "content-type": "application/json",
+                "content-length": "401",
+                "date": "Thu, 21 Feb 2019 21:56:10 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "OwnerId": "411062852979",
+        "CreationToken": "pcfFileSystem",
+        "FileSystemId": "fs-da97133a",
+        "CreationTime": {
+            "__class__": "datetime",
+            "year": 2019,
+            "month": 2,
+            "day": 21,
+            "hour": 16,
+            "minute": 56,
+            "second": 11,
+            "microsecond": 0
+        },
+        "LifeCycleState": "creating",
+        "NumberOfMountTargets": 0,
+        "SizeInBytes": {
+            "Value": 0
+        },
+        "PerformanceMode": "generalPurpose",
+        "Encrypted": false,
+        "ThroughputMode": "bursting"
+    }
+}

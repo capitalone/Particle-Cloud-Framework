@@ -53,11 +53,11 @@ class Route53Record(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.Name"]
 
-    def __init__(self,particle_definition):
+    def __init__(self,particle_definition, session=None):
         """
         :param particle_definition:
         """
-        super(Route53Record, self).__init__(particle_definition, 'route53')
+        super().__init__(particle_definition, 'route53', session=session)
         self.record_name = self.desired_state_definition['Name']
         self.hosted_zone = self.desired_state_definition['HostedZoneId']
 
@@ -82,7 +82,7 @@ class Route53Record(AWSResource):
             if e.response["Error"]["Code"] == 'NoSuchHostedZone':
                 return []
         else:
-            return service_status_resp.get('ResourceRecordSets',[])
+            return service_status_resp.get('ResourceRecordSets', [])
 
     def sync_state(self):
         """
