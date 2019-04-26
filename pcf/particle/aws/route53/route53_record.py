@@ -58,6 +58,8 @@ class Route53Record(AWSResource):
         :param particle_definition:
         """
         super().__init__(particle_definition, 'route53', session=session)
+        if not self.desired_state_definition.get('Name').endswith('.'):
+            self.desired_state_definition['Name'] = self.desired_state_definition['Name'] + '.'
         self.record_name = self.desired_state_definition['Name']
         self.hosted_zone = self.desired_state_definition['HostedZoneId']
 
