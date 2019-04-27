@@ -34,11 +34,8 @@ class LaunchConfiguration(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.LaunchConfigurationName"]
 
-    def __init__(self, particle_definition):
-        super(LaunchConfiguration, self).__init__(
-            particle_definition=particle_definition,
-            resource_name="autoscaling",
-        )
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="autoscaling", session=session)
         self.lc_name = self.desired_state_definition["LaunchConfigurationName"]
 
         self._set_unique_keys()

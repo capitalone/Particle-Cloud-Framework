@@ -30,30 +30,30 @@ class TestIAMPolicy:
         user = iam.create_user(UserName='test-user')
 
         iam_policy_example_json = {
-            "pcf_name": "pcf-policy-test", # Required
-            "flavor":"iam_policy", # Required
-            "aws_resource":{
-                "PolicyName":"pcf-policy-test", # Required
+            "pcf_name": "pcf-policy-test",  # Required
+            "flavor": "iam_policy",  # Required
+            "aws_resource": {
+                "PolicyName": "pcf-policy-test",  # Required
                 "PolicyDocument": json.dumps(
                     {
-                'Version': '2012-10-17',
-                'Statement': [
-                    {
-                        'Effect': 'Allow',
-                        'Action': 'logs:CreateLogGroup',
-                        'Resource': '*'
-                    },
-                    {
-                        'Effect': 'Allow',
-                        'Action': [
-                            'dynamodb:DeleteItem',
-                            'dynamodb:GetItem',
-                            'dynamodb:PutItem',
-                        ],
-                        'Resource': '*'
-                    }
-                ]
-                })
+                        'Version': '2012-10-17',
+                        'Statement': [
+                            {
+                                'Effect': 'Allow',
+                                'Action': 'logs:CreateLogGroup',
+                                'Resource': '*'
+                            },
+                            {
+                                'Effect': 'Allow',
+                                'Action': [
+                                    'dynamodb:DeleteItem',
+                                    'dynamodb:GetItem',
+                                    'dynamodb:PutItem',
+                                ],
+                                'Resource': '*'
+                            }
+                        ]
+                    })
             }
         }
 

@@ -57,11 +57,8 @@ class ElasticLoadBalancing(AWSResource):
         "Scheme",
     }
 
-    def __init__(self, particle_definition):
-        super(ElasticLoadBalancing, self).__init__(
-            particle_definition=particle_definition,
-            resource_name="elb",
-        )
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="elb", session=session)
         self.elb_name = self.desired_state_definition["LoadBalancerName"]
 
     def create(self):
@@ -214,8 +211,8 @@ class ElasticLoadBalancing(AWSResource):
             ]
         )
 
-        curr_tags = curr_tags.get('TagDescriptions')[0].get('Tags')
-        des_tags = filtered_des_def.get('Tags')
+        curr_tags = curr_tags.get('TagDescriptions')[0].get('Tags', [])
+        des_tags = filtered_des_def.get('Tags', [])
 
         curr_listeners = [x['Listener'] for x in filtered_curr_def.get('ListenerDescriptions')]
         des_listeners = filtered_des_def['Listeners']
@@ -226,7 +223,7 @@ class ElasticLoadBalancing(AWSResource):
 
         def_diff.pop('Listeners', None)
         def_diff.pop('Tags', None)
-
+        print(curr_listeners,des_listeners,curr_tags,des_tags)
         if def_diff or _need_update(curr_listeners, des_listeners) or _need_update(curr_tags, des_tags):
             return False
         return True

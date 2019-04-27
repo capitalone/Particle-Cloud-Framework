@@ -56,8 +56,8 @@ class ECSTask(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.taskName"]
 
-    def __init__(self, particle_definition):
-        super(ECSTask, self).__init__(particle_definition, "ecs")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition, "ecs", session=session)
         self.failure_reason = None
 
         self._set_unique_keys()
