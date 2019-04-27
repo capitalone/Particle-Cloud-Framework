@@ -55,8 +55,8 @@ class SNSTopic(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.Name"]
 
-    def __init__(self, particle_definition):
-        super(SNSTopic, self).__init__(particle_definition=particle_definition, resource_name="sns")
+    def __init__(self, particle_definition, session=None):
+        super(SNSTopic, self).__init__(particle_definition=particle_definition, resource_name="sns", session=session)
         self.topic_name = self.desired_state_definition.get("Name")
         self._set_unique_keys()
 

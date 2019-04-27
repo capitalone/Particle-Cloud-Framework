@@ -471,6 +471,32 @@
       "mock_s3"
     ]
   ],
+  "sns-apply": [
+    {
+      "pcf_name": "pcf_sns_test",
+      "flavor":"sns",
+      "aws_resource":{
+        "Name":"pcf-sns-test",
+          "custom_config": {
+            "Attributes": {
+              "DisplayName": "pcf-test"
+              }
+          }
+      }
+    },
+    {
+      "aws_resource":{
+        "custom_config": {
+          "Attributes": {
+            "DisplayName": "pcf-test1"
+          }
+        }
+      }
+    },
+    [
+      "mock_sns"
+    ]
+  ],
   "vpc-apply": [
     {
         "pcf_name": "pcf_vpc",
