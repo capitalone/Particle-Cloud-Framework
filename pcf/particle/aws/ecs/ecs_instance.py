@@ -44,8 +44,8 @@ class ECSInstance(AWSResource):
 
     UNIQUE_KEYS = []
 
-    def __init__(self, particle_definition):
-        super(ECSInstance, self).__init__(particle_definition, "ecs")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition, "ecs", session=session)
 
         self._set_unique_keys()
 

@@ -37,8 +37,8 @@ class ECSTaskDefinition(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.containerDefinitions.name"]
 
-    def __init__(self, particle_definition):
-        super(ECSTaskDefinition, self).__init__(particle_definition, "ecs")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition, "ecs", session=session)
 
         self._set_unique_keys()
 
@@ -130,7 +130,7 @@ class ECSTaskDefinition(AWSResource):
         """
         full_status = self.get_status()
         if full_status:
-            status = full_status.get("status", "missing").lower()
+            status = full_status.get("status", "active").lower()
             self.state = ECSTaskDefinition.state_lookup.get(status)
 
             self.current_state_definition = full_status
