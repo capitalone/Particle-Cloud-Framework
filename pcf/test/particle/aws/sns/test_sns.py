@@ -34,8 +34,8 @@ class TestSNS:
                 "Subscription": {  # optional
                     "Protocol": "",  # Required - http|https|email|email-json|sms|sqs|application|lambda
                     "Endpoint": "",  # http|https|email|email-json|sms|sqs|application|lambda
-                    "Attributes": "",  # dict
-                    "ReturnSubscriptionArn": ""  # boolean - default=false
+                    "Attributes": {},  # dict
+                    # "ReturnSubscriptionArn": false  # boolean - default=false
                 }
             }
         }
