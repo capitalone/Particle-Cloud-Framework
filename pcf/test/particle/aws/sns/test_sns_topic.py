@@ -15,7 +15,7 @@
 import moto
 import boto3
 
-from pcf.particle.aws.sns.sns import SNSTopic
+from pcf.particle.aws.sns.sns_topic import SNSTopic
 from pcf.core import State
 
 class TestSNS:
