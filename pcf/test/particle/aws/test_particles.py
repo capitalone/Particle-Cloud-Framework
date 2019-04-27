@@ -23,7 +23,7 @@ from pcf.particle.aws.efs.efs_instance import EFS
 from pcf.particle.aws.emr.emr_cluster import EMRCluster
 from pcf.particle.aws.kms.kms_key import KMSKey
 from pcf.particle.aws.s3.s3_bucket import S3Bucket
-from pcf.particle.aws.vpc.vpc_instance import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 
 directory = os.path.dirname(__file__)
 file = os.path.join(directory, 'testdata.json')
