@@ -21,6 +21,15 @@ class DockerResource(Particle):
     """Base Docker Resource
     """
 
+    LOGIN_PARAMS ={
+        "username",
+        "password",
+        "email",
+        "registry",
+        "reauth",
+        "dockercfg_path",
+    }
+
     def __init__(self, particle_definition, regristry):
         super(DockerResource, self).__init__(particle_definition)
         self.desired_state_definition = self.particle_definition["docker_resource"]
@@ -31,10 +40,13 @@ class DockerResource(Particle):
         @property
         def client(self):
             if not self._client:
-                docker_client = self.particle_definition["docker_resoucre"].get("client")
+                docker_client = self.particle_definition["docker_resource"].get("client")
                 self._client = self._get_client(docker_client, **self.desired_state_definition)
             return self._client
 
         def _get_client(self, docker_client, **kwargs):
+            if docker_client:
+                return docker.login(pcf_util.param_filter(kwargs, DockerResource.LOGIN_PARAMS))
+
             return docker.from_env()
 
