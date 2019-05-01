@@ -17,6 +17,8 @@ from pcf.util import pcf_util
 from pcf.core.aws_resource import AWSResource
 from botocore.errorfactory import ClientError
 import json
+from deepdiff import DeepDiff
+from pprint import pprint
 
 class IAMPolicy(AWSResource):
     """
@@ -43,11 +45,8 @@ class IAMPolicy(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.PolicyName"]
 
-    def __init__(self, particle_definition):
-        super(IAMPolicy, self).__init__(
-            particle_definition=particle_definition,
-            resource_name="iam",
-        )
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="iam", session=session)
         self.policy_name = self.desired_state_definition.get('PolicyName')
         self._set_unique_keys()
 

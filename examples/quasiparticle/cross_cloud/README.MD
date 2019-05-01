@@ -1,0 +1,2 @@
+# What does this example do?
+- This example uses a quasiparticle (AWS S3 + GCP Storage) to show how to replicate and manage data across multiple cloud providers. This example creates S3 and GCP storage buckets, uploads an object in the buckets, deletes both objects in the buckets, then terminates the buckets

@@ -8,7 +8,7 @@ pytest-env==0.6.2
 coverage==4.4.1
 boto==2.48.0
 boto3==1.9.76
-Jinja2==2.9.6
+Jinja2==2.10.1
 moto==1.3.7
 mock==2.0.0
 google-cloud-storage==1.10.0
@@ -17,6 +17,11 @@ commentjson==0.7.1
 botocore==1.12.72
 deepdiff==3.3.0
 placebo==0.8.2
+azure==4.0.0
+azure-cli-core==2.0.57
+vcrpy==2.0.1
 click==7.0
 python-Levenshtein==0.12.0
-pyyaml==3.13
+deepdiff==3.3.0
+placebo==0.8.2
+pyyaml==4.2b1

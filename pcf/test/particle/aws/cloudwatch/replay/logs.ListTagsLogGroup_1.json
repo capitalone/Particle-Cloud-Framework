@@ -1,0 +1,20 @@
+{
+    "status_code": 200,
+    "data": {
+        "tags": {
+            "removed": "bye",
+            "tagA": "string"
+        },
+        "ResponseMetadata": {
+            "RequestId": "dd0c1bbb-3917-11e9-b569-293deac88f74",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "dd0c1bbb-3917-11e9-b569-293deac88f74",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "42",
+                "date": "Mon, 25 Feb 2019 16:10:25 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

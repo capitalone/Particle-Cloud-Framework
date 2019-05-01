@@ -1,9 +1,9 @@
-from pcf.particle.aws.vpc.vpc_instance import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 from pcf.core import State
 
 particle_definition = {
     "pcf_name": "pcf_vpc",
-    "flavor": "vpc",
+    "flavor": "vpc_instance",
     "aws_resource": {
         "custom_config":{
             "vpc_name":"test",
@@ -14,7 +14,7 @@ particle_definition = {
     }
 }
 
-vpc_particle = VPC(particle_definition)
+vpc_particle = VPCInstance(particle_definition)
 
 # example start
 

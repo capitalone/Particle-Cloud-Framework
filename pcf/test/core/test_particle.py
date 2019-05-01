@@ -58,6 +58,24 @@ def test_max_timeout():
     with raises(MaxTimeoutException):
         particle.apply(max_timeout=5)
 
+
+def test_set_desired_state():
+    test_particle_def = {
+        "pcf_name": "good_particle",
+        "flavor": "plain_particle",
+        "aws_resource": {
+            "resource_name": "some service"
+        }
+    }
+    particle = PlainParticle(test_particle_def)
+    particle.set_desired_state("running")
+    assert particle.desired_state == State.running
+    particle.set_desired_state("terminated")
+    assert particle.desired_state == State.terminated
+    particle.set_desired_state("stopped")
+    assert particle.desired_state == State.stopped
+
+
 class ParticlePassingVars(Particle):
     flavor = "particle_flavor_passing_vars"
 

@@ -15,7 +15,7 @@
 from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 from pcf.util import pcf_util
-from pcf.particle.aws.vpc.vpc_instance import VPC
+from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 from deepdiff import DeepDiff
 
 
@@ -82,7 +82,7 @@ class SecurityGroup(AWSResource):
         """
         if not self.desired_state_definition.get("VpcId"):
             # need it defined in the definition for _start()
-            self.desired_state_definition["VpcId"] = pcf_util.get_value_from_particles(self.parents, VPC, "vpc_id")
+            self.desired_state_definition["VpcId"] = pcf_util.get_value_from_particles(self.parents, VPCInstance, "vpc_id")
         self._vpc_id = self.desired_state_definition.get("VpcId")
 
     def _start(self):
