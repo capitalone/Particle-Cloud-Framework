@@ -1,4 +1,4 @@
-from pcf.particle.aws.efs.efs_instance import EFS
+from pcf.particle.aws.efs.efs_instance import EFSInstance
 from pcf.core import State
 
 # example efs instance json
@@ -14,7 +14,7 @@ efs_instance_example_json = {
     }
 }
 
-efs_instance_particle = EFS(efs_instance_example_json)
+efs_instance_particle = EFSInstance(efs_instance_example_json)
 
 #example start
 efs_instance_particle.set_desired_state(State.running)
