@@ -19,7 +19,7 @@ from pcf.particle.aws.ec2.autoscaling.launch_configuration import LaunchConfigur
 from pcf.particle.aws.ec2.elb.elb import ElasticLoadBalancing
 from pcf.particle.aws.ecs.ecs_cluster import ECSCluster
 from pcf.particle.aws.ecs.ecs_task_definition import ECSTaskDefinition
-from pcf.particle.aws.efs.efs_instance import EFS
+from pcf.particle.aws.efs.efs_instance import EFSInstance
 from pcf.particle.aws.emr.emr_cluster import EMRCluster
 from pcf.particle.aws.kms.kms_key import KMSKey
 from pcf.particle.aws.s3.s3_bucket import S3Bucket
