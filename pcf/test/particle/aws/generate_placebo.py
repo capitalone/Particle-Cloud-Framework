@@ -55,7 +55,7 @@ particle = PARTICLE(DEF, session)
 # Test start
 
 particle.set_desired_state(State.running)
-particle.apply(sync=False)
+particle.apply(sync=True)
 
 print(particle.get_state() == State.running)
 print(particle.is_state_definition_equivalent())
@@ -64,14 +64,14 @@ print(particle.is_state_definition_equivalent())
 if UPDATED_DEF:
     particle = PARTICLE(UPDATED_DEF, session)
     particle.set_desired_state(State.running)
-    particle.apply(sync=False)
+    particle.apply(sync=True)
 
     print(particle.is_state_definition_equivalent())
 
 # Test Terminate
 
 particle.set_desired_state(State.terminated)
-particle.apply(sync=False)
+particle.apply(sync=True)
 
 print(particle.get_state() == State.terminated)
 pill.stop()

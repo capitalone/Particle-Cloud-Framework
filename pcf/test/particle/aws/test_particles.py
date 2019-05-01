@@ -52,7 +52,7 @@ def test_apply(definition, changes, test_type):
         # create
         particle = particle_class(definition, session)
         particle.set_desired_state(State.running)
-        particle.apply(sync=False)
+        particle.apply(sync=True)
 
         assert particle.get_state() == State.running
         # print(particle.current_state_definition, particle.desired_state_definition)
@@ -66,10 +66,10 @@ def test_apply(definition, changes, test_type):
                 updated_definition["aws_resource"]["tags"] = changes.get("aws_resource", {}).get("tags")
             particle = particle_class(updated_definition, session)
             particle.set_desired_state(State.running)
-            particle.apply(sync=False)
+            particle.apply(sync=True)
             assert particle.is_state_definition_equivalent()
         # terminate
         particle.set_desired_state(State.terminated)
-        particle.apply(sync=False)
+        particle.apply(sync=True)
 
         assert particle.get_state() == State.terminated
