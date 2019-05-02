@@ -24,4 +24,4 @@ click==7.0
 python-Levenshtein==0.12.0
 deepdiff==3.3.0
 placebo==0.8.2
-pyyaml==4.2b1
+pyyaml==5.1
