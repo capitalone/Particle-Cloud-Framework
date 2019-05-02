@@ -25,7 +25,7 @@ class GlacierVault(AWSResource):
     This is the implementation of Amazon's Glacier service. Additional functions that are callable on this particle
     are upload_archive, initiate_job, list_jobs, delete_archive, delete_job, add_tags_to_vault, list_tags_for_vault
     """
-    flavor = "glacier"
+    flavor = "glacier_vault"
 
     state_lookup = {
         "missing": State.terminated,

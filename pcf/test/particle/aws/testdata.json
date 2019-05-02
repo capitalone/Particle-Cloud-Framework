@@ -36,7 +36,7 @@
   "sqs-apply": [
     {
       "pcf_name": "pcf-queue",
-      "flavor": "sqs",
+      "flavor": "sqs_queue",
       "aws_resource": {
         "QueueName": "test_SQS_queue.fifo",
         "Attributes": {
@@ -323,7 +323,7 @@
     "efs-apply": [
     {
       "pcf_name": "pcf_efs",
-      "flavor": "efs",
+      "flavor": "efs_instance",
       "aws_resource": {
         "custom_config": {
           "instance_name": "efs-instance"

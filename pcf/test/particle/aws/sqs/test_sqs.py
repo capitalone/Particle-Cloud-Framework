@@ -22,7 +22,7 @@ from pcf.core import State
 class TestSQS:
     particle_definition = {
         "pcf_name": "gg-pcf",
-        "flavor": "sqs",
+        "flavor": "sqs_queue",
         "aws_resource": {
             "QueueName": "test_SQS_queue.fifo",  # Required
             # "OwnerAwsId": "owner", # only if the queue belongs to a different user

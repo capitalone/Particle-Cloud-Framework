@@ -4,7 +4,7 @@ from pcf.core import State
 # example efs instance json
 efs_instance_example_json = {
     "pcf_name": "pcf_efs", # Required
-    "flavor": "efs", # Required
+    "flavor": "efs_instance", # Required
     "aws_resource": {
         "custom_config": {
             "instance_name": "efs-instance", # Required
