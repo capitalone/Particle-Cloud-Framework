@@ -20,6 +20,8 @@ from pcf.core.particle import Particle
 from pcf.core.pcf import PCF
 from pcf.core import State, STATE_STRING_TO_ENUM
 from pcf.util import pcf_util
+from pcf.core.pcf_exceptions import MaxTimeoutException
+from pcf.util.pcf_util import particle_class_from_flavor
 from pcf.core.pcf_exceptions import InvalidState
 
 logger = logging.getLogger(__name__)
@@ -54,6 +56,7 @@ class Quasiparticle(Particle):
         particles in the quasiparticle. Finally link_particles is called on the pcf_field.
         """
         for particle in self.member_particles:
+            particle_class_from_flavor(particle.get("flavor"))
             if not particle.get("pcf_name"):
                 particle["pcf_name"] = self.name
             multiplier = particle.get("multiplier", False)
