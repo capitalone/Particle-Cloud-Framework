@@ -25,7 +25,7 @@ class EFSInstance(AWSResource):
     This is the implementation of Amazon's Elastic File System.
     """
 
-    flavor = "efs"
+    flavor = "efs_instance"
 
     state_lookup = {
         "creating": State.pending,

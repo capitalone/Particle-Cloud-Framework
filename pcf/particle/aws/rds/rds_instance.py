@@ -40,7 +40,7 @@ class RDS(AWSResource):
     :type Engine: string
 
     """
-    flavor = "rds"
+    flavor = "rds_instance"
     state_lookup = {
         "available": State.running,
         "starting": State.pending,

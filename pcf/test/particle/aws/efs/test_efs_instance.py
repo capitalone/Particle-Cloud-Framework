@@ -24,7 +24,7 @@ import datetime
 
 particle_definition = {
     "pcf_name": "pcf_efs",
-    "flavor": "efs",
+    "flavor": "efs_instance",
     "aws_resource": {
         "custom_config": {
             "instance_name": "efs-instance",
