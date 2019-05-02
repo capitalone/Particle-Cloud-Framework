@@ -13,7 +13,7 @@
 # limitations under the License.
 
 from pcf.core.docker_resource import DockerResource
-from pcf.core import State
+from pcf.core import State, pcf_exceptions
 import docker
 from pcf.util import pcf_util
 
@@ -29,6 +29,11 @@ class DockerImage(DockerResource):
         State.running: 1,
         State.stopped: 0,
         State.terminated: 0,
+    }
+
+    TERMINATE_PARAMS = {
+        "force",
+        "noprune"
     }
 
     UNIQUE_KEYS = ["docker_resource.image"]
@@ -49,39 +54,65 @@ class DockerImage(DockerResource):
 
     def _start(self):
         """
+        Pulls docker image from registry
 
+        Returns:
+            Image Object
         """
-
+        return self.client.pull(self.image)
 
     def _terminate(self):
         """
+        Calls docker image remove. Optional parameters noprune and force can be passed
+        in via particle definition
 
+        Returns:
+            remove() response
         """
+        filtered_definition = pcf_util.param_filter(self.desired_state_definition, DockerImage.TERMINATE_PARAMS)
 
+        return self.client.remove(image=self.image, **filtered_definition)
 
     def _stop(self):
         """
-
+         Calls _terminate()
         """
 
+        return self._terminate()
 
     def _update(self):
         """
-        Not implemented
+        Pulls docker image from registry
+
+        Returns:
+            Image Object
         """
-        raise NotImplemented
+        return self.client.pull(self.image)
 
     def get_status(self):
         """
+        Gets the attrs of the image locally
 
         Returns:
-            current definition of the distribution
+            dict: Attrs dict from the image
         """
         try:
-            return self.client.get_registry_data(self.image)
+            return self.client.get(self.image).attrs
         except docker.errors.APIError:
             return {}
 
+    def get_latest_hash(self):
+        """
+        Gets the latest hash from registry
+
+        Returns:
+            dict: Attrs dict from the image
+
+        """
+        try:
+            return self.client.get_registry_data(self.image).attrs
+        except docker.errors.APIError:
+            raise pcf_exceptions.ImageMissing
 
     def sync_state(self):
         """
@@ -89,27 +120,32 @@ class DockerImage(DockerResource):
         """
         full_status = self.get_status()
         self.current_state_definition = full_status
-
         if full_status:
             self.state = State.running
         else:
             self.state = State.terminated
 
-
     def is_state_equivalent(self, state1, state2):
         """
         Determines if states are equivalent
+
         Args:
             state1 (state): first state
             state2 (state): second state
+
         Returns:
             bool: whether the two states are equivalent
         """
+        return DockerImage.equivalent_states.get(state1) == DockerImage.equivalent_states.get(state2)
 
     def is_state_definition_equivalent(self):
         """
-        Since there is no update available, always return True
+        Checks if the current image matches the latest hash available in the registry
+
         Returns:
-             bool: True
+             bool
         """
-        return True
+        current_hash = self.current_state_definition.get("RepoDigests")
+        latest_hash = self.get_latest_hash().get("Descriptor").get('digest')
+
+        return any(latest_hash in local_digest for local_digest in current_hash)

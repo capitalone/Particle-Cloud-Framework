@@ -13,7 +13,6 @@
 # limitations under the License.
 from pcf.particle.azure.blob.blob_container import BlobContainer
 from pcf.core import State
-import vcr
 from unittest.mock import MagicMock
 
 

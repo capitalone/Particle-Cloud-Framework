@@ -40,6 +40,7 @@ setup(
         "azure==4.0.0",
         "boto==2.48.0",
         "boto3==1.9.76",
+        "docker == 3.6.0",
         "Jinja2==2.10.1",
         "google-cloud-storage==1.10.0",
         "google-api-python-client==1.7.4",
