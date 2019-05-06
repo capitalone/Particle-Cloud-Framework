@@ -34,7 +34,7 @@ particle_definition = {
             "VPCRegion": "us-east-1",
             "VPCId": "vpc-12345"
         },
-        "CallerReference": ''.join(random.choices(string.ascii_uppercase + string.digits, k=N)), # Replace N with int
+        "CallerReference": ''.join(random.choices(string.ascii_uppercase + string.digits, k=20)),
         "HostedZoneConfig": {
             "Comment": "hoo",
             "PrivateZone": True

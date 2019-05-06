@@ -1,0 +1,11 @@
+{
+    "status_code": 200,
+    "data": {
+        "VaultARN": "string",
+        "VaultName": "pcf_test_glacier",
+        "CreationDate": 123,
+        "LastInventoryDate": "string",
+        "NumberOfArchives": 123,
+        "SizeInBytes": "string"
+    }
+}

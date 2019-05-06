@@ -7,7 +7,7 @@ Submodules
 pcf\.particle\.gcp\.storage\.storage module
 -------------------------------------------
 
-.. automodule:: pcf.particle.gcp.storage.storage
+.. automodule:: pcf.particle.gcp.storage.bucket
     :members:
     :undoc-members:
     :show-inheritance:
