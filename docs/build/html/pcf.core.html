@@ -86,6 +86,9 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul>
@@ -109,9 +112,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.aws_resource">pcf.core.aws_resource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.gcp_resource">pcf.core.gcp_resource module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pcf-core-azure-resource-module">pcf.core.azure_resource module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.azure_resource">pcf.core.azure_resource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.particle">pcf.core.particle module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pcf-core-particle-flavor-scanner-module">pcf.core.particle_flavor_scanner module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.particle_flavor_scanner">pcf.core.particle_flavor_scanner module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.pcf">pcf.core.pcf module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.pcf_exceptions">pcf.core.pcf_exceptions module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pcf.core.quasiparticle">pcf.core.quasiparticle module</a></li>
@@ -346,8 +349,71 @@ It takes as an input the resource library (ie datastore)</p>
 </dd></dl>
 
 </div>
-<div class="section" id="pcf-core-azure-resource-module">
-<h2>pcf.core.azure_resource module<a class="headerlink" href="#pcf-core-azure-resource-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pcf.core.azure_resource">
+<span id="pcf-core-azure-resource-module"></span><h2>pcf.core.azure_resource module<a class="headerlink" href="#module-pcf.core.azure_resource" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.core.azure_resource.AzureResource">
+<em class="property">class </em><code class="descclassname">pcf.core.azure_resource.</code><code class="descname">AzureResource</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.azure_resource.AzureResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pcf.core.particle.Particle" title="pcf.core.particle.Particle"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.particle.Particle</span></code></a></p>
+<p>The azure resource class inherits the particle class and handles the clients for azure resources</p>
+<dl class="attribute">
+<dt id="pcf.core.azure_resource.AzureResource.compute_client">
+<code class="descname">compute_client</code><a class="headerlink" href="#pcf.core.azure_resource.AzureResource.compute_client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses client from cli so that users can use az login to get their credentials</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Compute Client</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.core.azure_resource.AzureResource.network_client">
+<code class="descname">network_client</code><a class="headerlink" href="#pcf.core.azure_resource.AzureResource.network_client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses client from cli so that users can use az login to get their credentials</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Network Client</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.core.azure_resource.AzureResource.resource_client">
+<code class="descname">resource_client</code><a class="headerlink" href="#pcf.core.azure_resource.AzureResource.resource_client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses client from cli so that users can use az login to get their credentials</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Resource Client</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.core.azure_resource.AzureResource.storage_client">
+<code class="descname">storage_client</code><a class="headerlink" href="#pcf.core.azure_resource.AzureResource.storage_client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses client from cli so that users can use az login to get their credentials</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Storage Client</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-pcf.core.particle">
 <span id="pcf-core-particle-module"></span><h2>pcf.core.particle module<a class="headerlink" href="#module-pcf.core.particle" title="Permalink to this headline">¶</a></h2>
@@ -770,8 +836,30 @@ particle</p>
 </dd></dl>
 
 </div>
-<div class="section" id="pcf-core-particle-flavor-scanner-module">
-<h2>pcf.core.particle_flavor_scanner module<a class="headerlink" href="#pcf-core-particle-flavor-scanner-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pcf.core.particle_flavor_scanner">
+<span id="pcf-core-particle-flavor-scanner-module"></span><h2>pcf.core.particle_flavor_scanner module<a class="headerlink" href="#module-pcf.core.particle_flavor_scanner" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="pcf.core.particle_flavor_scanner.InvalidInputException">
+<em class="property">exception </em><code class="descclassname">pcf.core.particle_flavor_scanner.</code><code class="descname">InvalidInputException</code><span class="sig-paren">(</span><em>flavor</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle_flavor_scanner.InvalidInputException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pcf.core.particle_flavor_scanner.ParticleFlavorNotFoundError">
+<em class="property">exception </em><code class="descclassname">pcf.core.particle_flavor_scanner.</code><code class="descname">ParticleFlavorNotFoundError</code><span class="sig-paren">(</span><em>flavor</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle_flavor_scanner.ParticleFlavorNotFoundError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.core.particle_flavor_scanner.get_particle_flavor">
+<code class="descclassname">pcf.core.particle_flavor_scanner.</code><code class="descname">get_particle_flavor</code><span class="sig-paren">(</span><em>flavor: str</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle_flavor_scanner.get_particle_flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pcf.core.particle_flavor_scanner.get_particle_flavor_registry">
+<code class="descclassname">pcf.core.particle_flavor_scanner.</code><code class="descname">get_particle_flavor_registry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.core.particle_flavor_scanner.get_particle_flavor_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="module-pcf.core.pcf">
 <span id="pcf-core-pcf-module"></span><h2>pcf.core.pcf module<a class="headerlink" href="#module-pcf.core.pcf" title="Permalink to this headline">¶</a></h2>
@@ -1174,7 +1262,7 @@ particle</p>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   

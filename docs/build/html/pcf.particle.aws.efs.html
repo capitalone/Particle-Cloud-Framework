@@ -86,6 +86,9 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul>
@@ -191,28 +194,28 @@
 <div class="section" id="module-pcf.particle.aws.efs.efs_instance">
 <span id="pcf-particle-aws-efs-efs-instance-module"></span><h2>pcf.particle.aws.efs.efs_instance module<a class="headerlink" href="#module-pcf.particle.aws.efs.efs_instance" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.efs.efs_instance.</code><code class="descname">EFS</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.efs.efs_instance.</code><code class="descname">EFSInstance</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s Elastic File System.</p>
 <dl class="attribute">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.RETURN_PARAM_FILTER">
-<code class="descname">RETURN_PARAM_FILTER</code><em class="property"> = {'CreationToken', 'Encrypted', 'FileSystemId', 'KmsKeyId', 'Name', 'OwnerId', 'PerformanceMode'}</em><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.RETURN_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.RETURN_PARAM_FILTER">
+<code class="descname">RETURN_PARAM_FILTER</code><em class="property"> = {'CreationToken', 'Encrypted', 'FileSystemId', 'KmsKeyId', 'Name', 'OwnerId', 'PerformanceMode'}</em><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.RETURN_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.START_PARAM_FILTER">
-<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'CreationToken', 'Encrypted', 'KmsKeyId', 'PerformanceMode'}</em><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.START_PARAM_FILTER">
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'CreationToken', 'Encrypted', 'KmsKeyId', 'PerformanceMode'}</em><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.UNIQUE_KEYS">
-<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.custom_config.instance_name']</em><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.custom_config.instance_name']</em><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS._describe_file_systems">
-<code class="descname">_describe_file_systems</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS._describe_file_systems" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance._describe_file_systems">
+<code class="descname">_describe_file_systems</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance._describe_file_systems" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uses instance_name as a filter for boto3 describe_file_systems()</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -225,27 +228,27 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS._set_unique_keys">
-<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance._set_unique_keys" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logic that sets keys from state definition that are used to uniquely identify the S3 Bucket</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS._start">
-<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS._start" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance._start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls boto3 create_file_system <a class="reference external" href="https://boto3.readthedocs.io/en/latest/reference/services/efs.html#EFS.Client.create_file_system">https://boto3.readthedocs.io/en/latest/reference/services/efs.html#EFS.Client.create_file_system</a>
 :returns: boto3 create_file_system() response</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS._stop">
-<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS._stop" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance._stop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Elastic File System does not have a stopped state so calls terminate</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS._terminate">
-<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS._terminate" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance._terminate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls boto3 delete_file_system</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -258,15 +261,15 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS._update">
-<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS._update" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance._update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logic that updates the particle. This is implemented for each individual
 particle</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.create_mount_target">
-<code class="descname">create_mount_target</code><span class="sig-paren">(</span><em>subnet_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.create_mount_target" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.create_mount_target">
+<code class="descname">create_mount_target</code><span class="sig-paren">(</span><em>subnet_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.create_mount_target" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a mount target for a file system</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -286,16 +289,16 @@ particle</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.create_tags">
-<code class="descname">create_tags</code><span class="sig-paren">(</span><em>fs_tags</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.create_tags" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.create_tags">
+<code class="descname">create_tags</code><span class="sig-paren">(</span><em>fs_tags</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.create_tags" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates or overwrites tags associated with file system
 :param fs_tags: Array of Tag objects to add, each object is a key-value pair
 :type fs_tags: list</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.delete_mount_target">
-<code class="descname">delete_mount_target</code><span class="sig-paren">(</span><em>mount_target_id</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.delete_mount_target" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.delete_mount_target">
+<code class="descname">delete_mount_target</code><span class="sig-paren">(</span><em>mount_target_id</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.delete_mount_target" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deletes the specified mount target</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -310,8 +313,8 @@ particle</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.delete_tags">
-<code class="descname">delete_tags</code><span class="sig-paren">(</span><em>tag_keys</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.delete_tags" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.delete_tags">
+<code class="descname">delete_tags</code><span class="sig-paren">(</span><em>tag_keys</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.delete_tags" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deletes the specified tags from a file system</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -324,8 +327,8 @@ particle</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.describe_mount_targets">
-<code class="descname">describe_mount_targets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.describe_mount_targets" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.describe_mount_targets">
+<code class="descname">describe_mount_targets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.describe_mount_targets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the descriptions of all the current mount targets, or a specific mount target, for the file system</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -345,8 +348,8 @@ particle</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.describe_tags">
-<code class="descname">describe_tags</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.describe_tags" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.describe_tags">
+<code class="descname">describe_tags</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.describe_tags" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the tags associated with the file system</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -359,20 +362,20 @@ particle</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.flavor">
-<code class="descname">flavor</code><em class="property"> = 'efs'</em><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.flavor" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.flavor">
+<code class="descname">flavor</code><em class="property"> = 'efs_instance'</em><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.flavor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.get_status">
-<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.get_status" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.get_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets current status of the EFS instance
 :returns: status (dict)</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.is_state_definition_equivalent">
-<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.is_state_definition_equivalent">
+<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compares the desired state and current state definitions.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -385,8 +388,8 @@ particle</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.modify_mount_target_security_groups">
-<code class="descname">modify_mount_target_security_groups</code><span class="sig-paren">(</span><em>mount_target_id</em>, <em>security_groups</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.modify_mount_target_security_groups" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.modify_mount_target_security_groups">
+<code class="descname">modify_mount_target_security_groups</code><span class="sig-paren">(</span><em>mount_target_id</em>, <em>security_groups</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.modify_mount_target_security_groups" title="Permalink to this definition">¶</a></dt>
 <dd><p>Modifies the set of security groups in effect for a mount target</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -406,13 +409,13 @@ particle</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.state_lookup">
-<code class="descname">state_lookup</code><em class="property"> = {'available': &lt;State.running: 1&gt;, 'creating': &lt;State.pending: 4&gt;, 'deleted': &lt;State.terminated: 3&gt;, 'deleting': &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.state_lookup" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.state_lookup">
+<code class="descname">state_lookup</code><em class="property"> = {'available': &lt;State.running: 1&gt;, 'creating': &lt;State.pending: 4&gt;, 'deleted': &lt;State.terminated: 3&gt;, 'deleting': &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.state_lookup" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pcf.particle.aws.efs.efs_instance.EFS.sync_state">
-<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFS.sync_state" title="Permalink to this definition">¶</a></dt>
+<dt id="pcf.particle.aws.efs.efs_instance.EFSInstance.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.efs.efs_instance.EFSInstance.sync_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Elastic File System implementation of sync state. Calls get status and sets the current state</p>
 </dd></dl>
 
@@ -469,7 +472,7 @@ particle</p>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   

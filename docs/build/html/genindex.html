@@ -85,6 +85,9 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul>
@@ -190,6 +193,7 @@
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
@@ -210,11 +214,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pcf.particle.aws.ec2.html#pcf.particle.aws.ec2.ec2_instance._construct_arn">_construct_arn() (in module pcf.particle.aws.ec2.ec2_instance)</a>
 </li>
-      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS._describe_file_systems">_describe_file_systems() (pcf.particle.aws.efs.efs_instance.EFS method)</a>
+      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance._describe_file_systems">_describe_file_systems() (pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
       <li><a href="pcf.core.html#pcf.core.quasiparticle.Quasiparticle._fuse_particles">_fuse_particles() (pcf.core.quasiparticle.Quasiparticle method)</a>
 </li>
       <li><a href="pcf.extended_particles.aws.lambda_function.html#pcf.extended_particles.aws.lambda_function.lambda_python.LambdaPython._generate_zip">_generate_zip() (pcf.extended_particles.aws.lambda_function.lambda_python.LambdaPython method)</a>
+</li>
+      <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey._get_alias">_get_alias() (pcf.particle.aws.kms.kms_key.KMSKey method)</a>
 </li>
       <li><a href="pcf.core.html#pcf.core.aws_resource.AWSResource._get_arn">_get_arn() (pcf.core.aws_resource.AWSResource method)</a>
 
@@ -226,6 +232,8 @@
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_cluster.ECSCluster._get_arn">(pcf.particle.aws.ecs.ecs_cluster.ECSCluster method)</a>
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_instance.ECSInstance._get_arn">(pcf.particle.aws.ecs.ecs_instance.ECSInstance method)</a>
+</li>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey._get_arn">(pcf.particle.aws.kms.kms_key.KMSKey method)</a>
 </li>
       </ul></li>
       <li><a href="pcf.core.html#pcf.core.aws_resource.AWSResource._get_client">_get_client() (pcf.core.aws_resource.AWSResource method)</a>
@@ -241,6 +249,8 @@
       <li><a href="pcf.particle.aws.ec2.html#pcf.particle.aws.ec2.ec2_instance.EC2Instance._get_instance_reservations">_get_instance_reservations() (pcf.particle.aws.ec2.ec2_instance.EC2Instance method)</a>
 </li>
       <li><a href="pcf.core.html#pcf.core.aws_resource.AWSResource._get_resource">_get_resource() (pcf.core.aws_resource.AWSResource method)</a>
+</li>
+      <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey._get_status">_get_status() (pcf.particle.aws.kms.kms_key.KMSKey method)</a>
 </li>
       <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet._get_subnet_client">_get_subnet_client() (pcf.particle.aws.vpc.subnet.Subnet method)</a>
 </li>
@@ -261,7 +271,9 @@
       <li><a href="pcf.core.html#pcf.core.particle.Particle._set_unique_keys">_set_unique_keys() (pcf.core.particle.Particle method)</a>
 
       <ul>
-        <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront._set_unique_keys">(pcf.particle.aws.cloudfront.cloudfront.CloudFront method)</a>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment._set_unique_keys">(pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment method)</a>
+</li>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue._set_unique_keys">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue method)</a>
 </li>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent._set_unique_keys">(pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent method)</a>
 </li>
@@ -285,7 +297,7 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._set_unique_keys">(pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition method)</a>
 </li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS._set_unique_keys">(pcf.particle.aws.efs.efs_instance.EFS method)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance._set_unique_keys">(pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster._set_unique_keys">(pcf.particle.aws.emr.emr_cluster.EMRCluster method)</a>
 </li>
@@ -293,9 +305,13 @@
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole._set_unique_keys">(pcf.particle.aws.iam.iam_role.IAMRole method)</a>
 </li>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey._set_unique_keys">(pcf.particle.aws.kms.kms_key.KMSKey method)</a>
+</li>
         <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._set_unique_keys">(pcf.particle.aws.lambda_function.lambda_function.LambdaFunction method)</a>
 </li>
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS._set_unique_keys">(pcf.particle.aws.rds.rds_instance.RDS method)</a>
+</li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone._set_unique_keys">(pcf.particle.aws.route53.hosted_zone.HostedZone method)</a>
 </li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record._set_unique_keys">(pcf.particle.aws.route53.route53_record.Route53Record method)</a>
 </li>
@@ -303,19 +319,29 @@
 </li>
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue._set_unique_keys">(pcf.particle.aws.sqs.sqs_queue.SQSQueue method)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup._set_unique_keys">(pcf.particle.aws.vpc.security_group.SecurityGroup method)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet._set_unique_keys">(pcf.particle.aws.vpc.subnet.Subnet method)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance._set_unique_keys">(pcf.particle.aws.vpc.vpc_instance.VPCInstance method)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer._set_unique_keys">(pcf.particle.azure.blob.blob_container.BlobContainer method)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance._set_unique_keys">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance method)</a>
 </li>
         <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket._set_unique_keys">(pcf.particle.gcp.storage.bucket.Bucket method)</a>
 </li>
       </ul></li>
       <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue._set_url">_set_url() (pcf.particle.aws.sqs.sqs_queue.SQSQueue method)</a>
 </li>
+      <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup._set_vpc_id">_set_vpc_id() (pcf.particle.aws.vpc.security_group.SecurityGroup method)</a>
+</li>
       <li><a href="pcf.core.html#pcf.core.particle.Particle._start">_start() (pcf.core.particle.Particle method)</a>
 
       <ul>
-        <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront._start">(pcf.particle.aws.cloudfront.cloudfront.CloudFront method)</a>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment._start">(pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment method)</a>
+</li>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue._start">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue method)</a>
 </li>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent._start">(pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent method)</a>
 </li>
@@ -345,17 +371,23 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._start">(pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition method)</a>
 </li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS._start">(pcf.particle.aws.efs.efs_instance.EFS method)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance._start">(pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster._start">(pcf.particle.aws.emr.emr_cluster.EMRCluster method)</a>
+</li>
+        <li><a href="pcf.particle.aws.glacier.html#pcf.particle.aws.glacier.glacier_vault.GlacierVault._start">(pcf.particle.aws.glacier.glacier_vault.GlacierVault method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_policy.IAMPolicy._start">(pcf.particle.aws.iam.iam_policy.IAMPolicy method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole._start">(pcf.particle.aws.iam.iam_role.IAMRole method)</a>
 </li>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey._start">(pcf.particle.aws.kms.kms_key.KMSKey method)</a>
+</li>
         <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._start">(pcf.particle.aws.lambda_function.lambda_function.LambdaFunction method)</a>
 </li>
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS._start">(pcf.particle.aws.rds.rds_instance.RDS method)</a>
+</li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone._start">(pcf.particle.aws.route53.hosted_zone.HostedZone method)</a>
 </li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record._start">(pcf.particle.aws.route53.route53_record.Route53Record method)</a>
 </li>
@@ -363,9 +395,15 @@
 </li>
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue._start">(pcf.particle.aws.sqs.sqs_queue.SQSQueue method)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup._start">(pcf.particle.aws.vpc.security_group.SecurityGroup method)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet._start">(pcf.particle.aws.vpc.subnet.Subnet method)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance._start">(pcf.particle.aws.vpc.vpc_instance.VPCInstance method)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer._start">(pcf.particle.azure.blob.blob_container.BlobContainer method)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance._start">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance method)</a>
 </li>
         <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket._start">(pcf.particle.gcp.storage.bucket.Bucket method)</a>
 </li>
@@ -373,7 +411,9 @@
       <li><a href="pcf.core.html#pcf.core.particle.Particle._stop">_stop() (pcf.core.particle.Particle method)</a>
 
       <ul>
-        <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront._stop">(pcf.particle.aws.cloudfront.cloudfront.CloudFront method)</a>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment._stop">(pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment method)</a>
+</li>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue._stop">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue method)</a>
 </li>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent._stop">(pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent method)</a>
 </li>
@@ -399,17 +439,23 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._stop">(pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition method)</a>
 </li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS._stop">(pcf.particle.aws.efs.efs_instance.EFS method)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance._stop">(pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster._stop">(pcf.particle.aws.emr.emr_cluster.EMRCluster method)</a>
+</li>
+        <li><a href="pcf.particle.aws.glacier.html#pcf.particle.aws.glacier.glacier_vault.GlacierVault._stop">(pcf.particle.aws.glacier.glacier_vault.GlacierVault method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_policy.IAMPolicy._stop">(pcf.particle.aws.iam.iam_policy.IAMPolicy method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole._stop">(pcf.particle.aws.iam.iam_role.IAMRole method)</a>
 </li>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey._stop">(pcf.particle.aws.kms.kms_key.KMSKey method)</a>
+</li>
         <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._stop">(pcf.particle.aws.lambda_function.lambda_function.LambdaFunction method)</a>
 </li>
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS._stop">(pcf.particle.aws.rds.rds_instance.RDS method)</a>
+</li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone._stop">(pcf.particle.aws.route53.hosted_zone.HostedZone method)</a>
 </li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record._stop">(pcf.particle.aws.route53.route53_record.Route53Record method)</a>
 </li>
@@ -417,9 +463,15 @@
 </li>
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue._stop">(pcf.particle.aws.sqs.sqs_queue.SQSQueue method)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup._stop">(pcf.particle.aws.vpc.security_group.SecurityGroup method)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet._stop">(pcf.particle.aws.vpc.subnet.Subnet method)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance._stop">(pcf.particle.aws.vpc.vpc_instance.VPCInstance method)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer._stop">(pcf.particle.azure.blob.blob_container.BlobContainer method)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance._stop">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance method)</a>
 </li>
         <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket._stop">(pcf.particle.gcp.storage.bucket.Bucket method)</a>
 </li>
@@ -429,7 +481,9 @@
       <li><a href="pcf.core.html#pcf.core.particle.Particle._terminate">_terminate() (pcf.core.particle.Particle method)</a>
 
       <ul>
-        <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront._terminate">(pcf.particle.aws.cloudfront.cloudfront.CloudFront method)</a>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment._terminate">(pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment method)</a>
+</li>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue._terminate">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue method)</a>
 </li>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent._terminate">(pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent method)</a>
 </li>
@@ -459,17 +513,23 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._terminate">(pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition method)</a>
 </li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS._terminate">(pcf.particle.aws.efs.efs_instance.EFS method)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance._terminate">(pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster._terminate">(pcf.particle.aws.emr.emr_cluster.EMRCluster method)</a>
+</li>
+        <li><a href="pcf.particle.aws.glacier.html#pcf.particle.aws.glacier.glacier_vault.GlacierVault._terminate">(pcf.particle.aws.glacier.glacier_vault.GlacierVault method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_policy.IAMPolicy._terminate">(pcf.particle.aws.iam.iam_policy.IAMPolicy method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole._terminate">(pcf.particle.aws.iam.iam_role.IAMRole method)</a>
 </li>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey._terminate">(pcf.particle.aws.kms.kms_key.KMSKey method)</a>
+</li>
         <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._terminate">(pcf.particle.aws.lambda_function.lambda_function.LambdaFunction method)</a>
 </li>
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS._terminate">(pcf.particle.aws.rds.rds_instance.RDS method)</a>
+</li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone._terminate">(pcf.particle.aws.route53.hosted_zone.HostedZone method)</a>
 </li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record._terminate">(pcf.particle.aws.route53.route53_record.Route53Record method)</a>
 </li>
@@ -477,9 +537,15 @@
 </li>
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue._terminate">(pcf.particle.aws.sqs.sqs_queue.SQSQueue method)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup._terminate">(pcf.particle.aws.vpc.security_group.SecurityGroup method)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet._terminate">(pcf.particle.aws.vpc.subnet.Subnet method)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance._terminate">(pcf.particle.aws.vpc.vpc_instance.VPCInstance method)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer._terminate">(pcf.particle.azure.blob.blob_container.BlobContainer method)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance._terminate">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance method)</a>
 </li>
         <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket._terminate">(pcf.particle.gcp.storage.bucket.Bucket method)</a>
 </li>
@@ -487,7 +553,9 @@
       <li><a href="pcf.core.html#pcf.core.particle.Particle._update">_update() (pcf.core.particle.Particle method)</a>
 
       <ul>
-        <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront._update">(pcf.particle.aws.cloudfront.cloudfront.CloudFront method)</a>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment._update">(pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment method)</a>
+</li>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue._update">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue method)</a>
 </li>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent._update">(pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent method)</a>
 </li>
@@ -517,17 +585,23 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._update">(pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition method)</a>
 </li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS._update">(pcf.particle.aws.efs.efs_instance.EFS method)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance._update">(pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster._update">(pcf.particle.aws.emr.emr_cluster.EMRCluster method)</a>
+</li>
+        <li><a href="pcf.particle.aws.glacier.html#pcf.particle.aws.glacier.glacier_vault.GlacierVault._update">(pcf.particle.aws.glacier.glacier_vault.GlacierVault method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_policy.IAMPolicy._update">(pcf.particle.aws.iam.iam_policy.IAMPolicy method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole._update">(pcf.particle.aws.iam.iam_role.IAMRole method)</a>
 </li>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey._update">(pcf.particle.aws.kms.kms_key.KMSKey method)</a>
+</li>
         <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._update">(pcf.particle.aws.lambda_function.lambda_function.LambdaFunction method)</a>
 </li>
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS._update">(pcf.particle.aws.rds.rds_instance.RDS method)</a>
+</li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone._update">(pcf.particle.aws.route53.hosted_zone.HostedZone method)</a>
 </li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record._update">(pcf.particle.aws.route53.route53_record.Route53Record method)</a>
 </li>
@@ -535,9 +609,15 @@
 </li>
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue._update">(pcf.particle.aws.sqs.sqs_queue.SQSQueue method)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup._update">(pcf.particle.aws.vpc.security_group.SecurityGroup method)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet._update">(pcf.particle.aws.vpc.subnet.Subnet method)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance._update">(pcf.particle.aws.vpc.vpc_instance.VPCInstance method)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer._update">(pcf.particle.azure.blob.blob_container.BlobContainer method)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance._update">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance method)</a>
 </li>
         <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket._update">(pcf.particle.gcp.storage.bucket.Bucket method)</a>
 </li>
@@ -545,7 +625,11 @@
       <li><a href="pcf.util.html#pcf.util.pcf_util._update_dict">_update_dict() (in module pcf.util.pcf_util)</a>
 </li>
       <li><a href="pcf.core.html#pcf.core.particle.Particle._validate_config">_validate_config() (pcf.core.particle.Particle method)</a>
+
+      <ul>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey._validate_config">(pcf.particle.aws.kms.kms_key.KMSKey method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -590,12 +674,22 @@
 </li>
       <li><a href="pcf.core.html#pcf.core.aws_resource.AWSResource">AWSResource (class in pcf.core.aws_resource)</a>
 </li>
+      <li><a href="pcf.core.html#pcf.core.azure_resource.AzureResource">AzureResource (class in pcf.core.azure_resource)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment">BatchComputeEnvironment (class in pcf.particle.aws.batch.batch_compute_environment)</a>
+</li>
+      <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue">BatchJobQueue (class in pcf.particle.aws.batch.batch_job_queue)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer">BlobContainer (class in pcf.particle.azure.blob.blob_container)</a>
+</li>
       <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket">Bucket (class in pcf.particle.gcp.storage.bucket)</a>
 </li>
   </ul></td>
@@ -604,18 +698,26 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pcf.cli.html#pcf.cli.utils.click_options">click_options() (in module pcf.cli.utils)</a>
+</li>
       <li><a href="pcf.core.html#pcf.core.aws_resource.AWSResource.client">client (pcf.core.aws_resource.AWSResource attribute)</a>
 
       <ul>
         <li><a href="pcf.core.html#pcf.core.gcp_resource.GCPResource.client">(pcf.core.gcp_resource.GCPResource attribute)</a>
 </li>
       </ul></li>
-      <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront">CloudFront (class in pcf.particle.aws.cloudfront.cloudfront)</a>
-</li>
       <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent">CloudWatchEvent (class in pcf.particle.aws.cloudwatch.cloudwatch_event)</a>
 </li>
       <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog">CloudWatchLog (class in pcf.particle.aws.cloudwatch.cloudwatch_log)</a>
 </li>
+      <li><a href="pcf.cli.html#pcf.cli.utils.color">color() (in module pcf.cli.utils)</a>
+</li>
+      <li><a href="pcf.cli.html#pcf.cli.cli.PCFCLI.command_dir">command_dir (pcf.cli.cli.PCFCLI attribute)</a>
+</li>
+      <li><a href="pcf.core.html#pcf.core.azure_resource.AzureResource.compute_client">compute_client (pcf.core.azure_resource.AzureResource attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pcf.particle.aws.ec2.alb.html#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.create">create() (pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing method)</a>
 
       <ul>
@@ -626,15 +728,13 @@
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS.create">(pcf.particle.aws.rds.rds_instance.RDS method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pcf.util.aws.html#pcf.util.aws.tag_specifications.TagSpecifications.create_from_aws_response">create_from_aws_response() (pcf.util.aws.tag_specifications.TagSpecifications class method)</a>
 </li>
       <li><a href="pcf.particle.aws.ec2.alb.html#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.create_listener">create_listener() (pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing method)</a>
 </li>
-      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.create_mount_target">create_mount_target() (pcf.particle.aws.efs.efs_instance.EFS method)</a>
+      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.create_mount_target">create_mount_target() (pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
-      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.create_tags">create_tags() (pcf.particle.aws.efs.efs_instance.EFS method)</a>
+      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.create_tags">create_tags() (pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
       <li><a href="pcf.quasiparticle.cross_cloud.cross_cloud_storage.html#pcf.quasiparticle.cross_cloud.cross_cloud_storage.cross_cloud_storage.CrossCloudStorage">CrossCloudStorage (class in pcf.quasiparticle.cross_cloud.cross_cloud_storage.cross_cloud_storage)</a>
 </li>
@@ -647,10 +747,14 @@
       <li><a href="pcf.util.aws.html#pcf.util.aws.tag_specifications.TagSpecifications.DEFAULT_RESOURCE_TYPE">DEFAULT_RESOURCE_TYPE (pcf.util.aws.tag_specifications.TagSpecifications attribute)</a>
 </li>
       <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue.DEFINITION_FILTER">DEFINITION_FILTER (pcf.particle.aws.sqs.sqs_queue.SQSQueue attribute)</a>
+
+      <ul>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup.DEFINITION_FILTER">(pcf.particle.aws.vpc.security_group.SecurityGroup attribute)</a>
 </li>
+      </ul></li>
       <li><a href="pcf.particle.aws.dynamodb.html#pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB.delete_item">delete_item() (pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB method)</a>
 </li>
-      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.delete_mount_target">delete_mount_target() (pcf.particle.aws.efs.efs_instance.EFS method)</a>
+      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.delete_mount_target">delete_mount_target() (pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
       <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket.delete_object">delete_object() (pcf.particle.gcp.storage.bucket.Bucket method)</a>
 
@@ -660,7 +764,7 @@
       </ul></li>
       <li><a href="pcf.util.aws.html#pcf.util.aws.tag_specifications.TagSpecifications.delete_tag">delete_tag() (pcf.util.aws.tag_specifications.TagSpecifications method)</a>
 </li>
-      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.delete_tags">delete_tags() (pcf.particle.aws.efs.efs_instance.EFS method)</a>
+      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.delete_tags">delete_tags() (pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 
       <ul>
         <li><a href="pcf.util.aws.html#pcf.util.aws.tag_specifications.TagSpecifications.delete_tags">(pcf.util.aws.tag_specifications.TagSpecifications method)</a>
@@ -668,11 +772,13 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.describe_mount_targets">describe_mount_targets() (pcf.particle.aws.efs.efs_instance.EFS method)</a>
+      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.describe_mount_targets">describe_mount_targets() (pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
-      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.describe_tags">describe_tags() (pcf.particle.aws.efs.efs_instance.EFS method)</a>
+      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.describe_tags">describe_tags() (pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
       <li><a href="pcf.particle.aws.ec2.html#pcf.particle.aws.ec2.ebs_volume.EBSVolume.detach_volume">detach_volume() (pcf.particle.aws.ec2.ebs_volume.EBSVolume method)</a>
+</li>
+      <li><a href="pcf.cli.html#pcf.cli.utils.did_you_mean">did_you_mean() (in module pcf.cli.utils)</a>
 </li>
       <li><a href="pcf.util.html#pcf.util.pcf_util.diff_dict">diff_dict() (in module pcf.util.pcf_util)</a>
 </li>
@@ -716,17 +822,21 @@
 </li>
       <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition">ECSTaskDefinition (class in pcf.particle.aws.ecs.ecs_task_definition)</a>
 </li>
-      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS">EFS (class in pcf.particle.aws.efs.efs_instance)</a>
+      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance">EFSInstance (class in pcf.particle.aws.efs.efs_instance)</a>
 </li>
       <li><a href="pcf.particle.aws.ec2.elb.html#pcf.particle.aws.ec2.elb.elb.ElasticLoadBalancing">ElasticLoadBalancing (class in pcf.particle.aws.ec2.elb.elb)</a>
 </li>
       <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster">EMRCluster (class in pcf.particle.aws.emr.emr_cluster)</a>
 </li>
-      <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront.equivalent_states">equivalent_states (pcf.particle.aws.cloudfront.cloudfront.CloudFront attribute)</a>
+      <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment.enable">enable() (pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment method)</a>
 
       <ul>
-        <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.equivalent_states">(pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent attribute)</a>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue.enable">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue method)</a>
 </li>
+      </ul></li>
+      <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.equivalent_states">equivalent_states (pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent attribute)</a>
+
+      <ul>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog.equivalent_states">(pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.ec2.autoscaling.html#pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup.equivalent_states">(pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup attribute)</a>
@@ -749,9 +859,13 @@
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster.equivalent_states">(pcf.particle.aws.emr.emr_cluster.EMRCluster attribute)</a>
 </li>
+        <li><a href="pcf.particle.aws.glacier.html#pcf.particle.aws.glacier.glacier_vault.GlacierVault.equivalent_states">(pcf.particle.aws.glacier.glacier_vault.GlacierVault attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_policy.IAMPolicy.equivalent_states">(pcf.particle.aws.iam.iam_policy.IAMPolicy attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole.equivalent_states">(pcf.particle.aws.iam.iam_role.IAMRole attribute)</a>
+</li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone.equivalent_states">(pcf.particle.aws.route53.hosted_zone.HostedZone attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record.equivalent_states">(pcf.particle.aws.route53.route53_record.Route53Record attribute)</a>
 </li>
@@ -759,15 +873,23 @@
 </li>
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue.equivalent_states">(pcf.particle.aws.sqs.sqs_queue.SQSQueue attribute)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup.equivalent_states">(pcf.particle.aws.vpc.security_group.SecurityGroup attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet.equivalent_states">(pcf.particle.aws.vpc.subnet.Subnet attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance.equivalent_states">(pcf.particle.aws.vpc.vpc_instance.VPCInstance attribute)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer.equivalent_states">(pcf.particle.azure.blob.blob_container.BlobContainer attribute)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.equivalent_states">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance attribute)</a>
 </li>
         <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket.equivalent_states">(pcf.particle.gcp.storage.bucket.Bucket attribute)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pcf.cli.html#pcf.cli.utils.execute_applying_command">execute_applying_command() (in module pcf.cli.utils)</a>
+</li>
       <li><a href="pcf.util.html#pcf.util.pcf_util.extract_components_from_pcf_id">extract_components_from_pcf_id() (in module pcf.util.pcf_util)</a>
 </li>
   </ul></td>
@@ -776,6 +898,8 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pcf.cli.html#pcf.cli.utils.fail">fail() (in module pcf.cli.utils)</a>
+</li>
       <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.file_get_contents">file_get_contents() (pcf.particle.aws.lambda_function.lambda_function.LambdaFunction method)</a>
 </li>
       <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster.FILTERED_UPDATE_PARAMS">FILTERED_UPDATE_PARAMS (pcf.particle.aws.emr.emr_cluster.EMRCluster attribute)</a>
@@ -791,7 +915,9 @@
 </li>
         <li><a href="pcf.extended_particles.aws.lambda_function.html#pcf.extended_particles.aws.lambda_function.lambda_python.LambdaPython.flavor">(pcf.extended_particles.aws.lambda_function.lambda_python.LambdaPython attribute)</a>
 </li>
-        <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront.flavor">(pcf.particle.aws.cloudfront.cloudfront.CloudFront attribute)</a>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment.flavor">(pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment attribute)</a>
+</li>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue.flavor">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.flavor">(pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent attribute)</a>
 </li>
@@ -821,17 +947,23 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.flavor">(pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition attribute)</a>
 </li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.flavor">(pcf.particle.aws.efs.efs_instance.EFS attribute)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.flavor">(pcf.particle.aws.efs.efs_instance.EFSInstance attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster.flavor">(pcf.particle.aws.emr.emr_cluster.EMRCluster attribute)</a>
+</li>
+        <li><a href="pcf.particle.aws.glacier.html#pcf.particle.aws.glacier.glacier_vault.GlacierVault.flavor">(pcf.particle.aws.glacier.glacier_vault.GlacierVault attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_policy.IAMPolicy.flavor">(pcf.particle.aws.iam.iam_policy.IAMPolicy attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole.flavor">(pcf.particle.aws.iam.iam_role.IAMRole attribute)</a>
 </li>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey.flavor">(pcf.particle.aws.kms.kms_key.KMSKey attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.flavor">(pcf.particle.aws.lambda_function.lambda_function.LambdaFunction attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS.flavor">(pcf.particle.aws.rds.rds_instance.RDS attribute)</a>
+</li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone.flavor">(pcf.particle.aws.route53.hosted_zone.HostedZone attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record.flavor">(pcf.particle.aws.route53.route53_record.Route53Record attribute)</a>
 </li>
@@ -839,9 +971,15 @@
 </li>
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue.flavor">(pcf.particle.aws.sqs.sqs_queue.SQSQueue attribute)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup.flavor">(pcf.particle.aws.vpc.security_group.SecurityGroup attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet.flavor">(pcf.particle.aws.vpc.subnet.Subnet attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance.flavor">(pcf.particle.aws.vpc.vpc_instance.VPCInstance attribute)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer.flavor">(pcf.particle.azure.blob.blob_container.BlobContainer attribute)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.flavor">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance attribute)</a>
 </li>
         <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket.flavor">(pcf.particle.gcp.storage.bucket.Bucket attribute)</a>
 </li>
@@ -868,7 +1006,23 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pcf.core.html#pcf.core.gcp_resource.GCPResource">GCPResource (class in pcf.core.gcp_resource)</a>
 </li>
+      <li><a href="pcf.tools.pcf_generator.html#pcf.tools.pcf_generator.pcf_generator.GenerateParticle.generate_definition">generate_definition() (pcf.tools.pcf_generator.pcf_generator.GenerateParticle method)</a>
+
+      <ul>
+        <li><a href="pcf.tools.pcf_generator.html#pcf.tools.pcf_generator.pcf_generator.GenerateQuasiparticle.generate_definition">(pcf.tools.pcf_generator.pcf_generator.GenerateQuasiparticle method)</a>
+</li>
+      </ul></li>
+      <li><a href="pcf.tools.pcf_generator.html#pcf.tools.pcf_generator.pcf_generator.GenerateParticle.generate_json_file">generate_json_file() (pcf.tools.pcf_generator.pcf_generator.GenerateParticle method)</a>
+
+      <ul>
+        <li><a href="pcf.tools.pcf_generator.html#pcf.tools.pcf_generator.pcf_generator.GenerateQuasiparticle.generate_json_file">(pcf.tools.pcf_generator.pcf_generator.GenerateQuasiparticle method)</a>
+</li>
+      </ul></li>
       <li><a href="pcf.util.html#pcf.util.pcf_util.generate_pcf_id">generate_pcf_id() (in module pcf.util.pcf_util)</a>
+</li>
+      <li><a href="pcf.tools.pcf_generator.html#pcf.tools.pcf_generator.pcf_generator.GenerateParticle">GenerateParticle (class in pcf.tools.pcf_generator.pcf_generator)</a>
+</li>
+      <li><a href="pcf.tools.pcf_generator.html#pcf.tools.pcf_generator.pcf_generator.GenerateQuasiparticle">GenerateQuasiparticle (class in pcf.tools.pcf_generator.pcf_generator)</a>
 </li>
       <li><a href="pcf.core.html#pcf.core.particle.Particle.get_and_replace_parent_variables">get_and_replace_parent_variables() (pcf.core.particle.Particle method)</a>
 </li>
@@ -880,12 +1034,16 @@
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_service.ECSService.get_cluster_name">(pcf.particle.aws.ecs.ecs_service.ECSService method)</a>
 </li>
       </ul></li>
+      <li><a href="pcf.cli.html#pcf.cli.cli.PCFCLI.get_command">get_command() (pcf.cli.cli.PCFCLI method)</a>
+</li>
       <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog.get_current_definition">get_current_definition() (pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog method)</a>
 
       <ul>
         <li><a href="pcf.particle.aws.ec2.html#pcf.particle.aws.ec2.ec2_instance.EC2Instance.get_current_definition">(pcf.particle.aws.ec2.ec2_instance.EC2Instance method)</a>
 </li>
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue.get_current_definition">(pcf.particle.aws.sqs.sqs_queue.SQSQueue method)</a>
+</li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup.get_current_definition">(pcf.particle.aws.vpc.security_group.SecurityGroup method)</a>
 </li>
       </ul></li>
       <li><a href="pcf.core.html#pcf.core.particle.Particle.get_current_state_definition">get_current_state_definition() (pcf.core.particle.Particle method)</a>
@@ -940,16 +1098,20 @@
         <li><a href="pcf.core.html#pcf.core.quasiparticle.Quasiparticle.get_particle">(pcf.core.quasiparticle.Quasiparticle method)</a>
 </li>
       </ul></li>
+      <li><a href="pcf.core.html#pcf.core.particle_flavor_scanner.get_particle_flavor">get_particle_flavor() (in module pcf.core.particle_flavor_scanner)</a>
+</li>
+      <li><a href="pcf.core.html#pcf.core.particle_flavor_scanner.get_particle_flavor_registry">get_particle_flavor_registry() (in module pcf.core.particle_flavor_scanner)</a>
+</li>
       <li><a href="pcf.core.html#pcf.core.pcf.PCF.get_particle_from_pcf_id">get_particle_from_pcf_id() (pcf.core.pcf.PCF method)</a>
 </li>
       <li><a href="pcf.util.html#pcf.util.pcf_util.get_particle_unique_identifiers">get_particle_unique_identifiers() (in module pcf.util.pcf_util)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pcf.core.html#pcf.core.pcf.PCF.get_particles">get_particles() (pcf.core.pcf.PCF method)</a>
 </li>
       <li><a href="pcf.core.html#pcf.core.particle.Particle.get_pcf_id">get_pcf_id() (pcf.core.particle.Particle method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pcf.core.html#pcf.core.aws_resource.AWSResource.get_region">get_region() (pcf.core.aws_resource.AWSResource method)</a>
 </li>
       <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_service.ECSService.get_service_name">get_service_name() (pcf.particle.aws.ecs.ecs_service.ECSService method)</a>
@@ -962,9 +1124,11 @@
       </ul></li>
       <li><a href="pcf.core.html#pcf.core.particle.Particle.get_state_transition_function">get_state_transition_function() (pcf.core.particle.Particle method)</a>
 </li>
-      <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront.get_status">get_status() (pcf.particle.aws.cloudfront.cloudfront.CloudFront method)</a>
+      <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment.get_status">get_status() (pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment method)</a>
 
       <ul>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue.get_status">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue method)</a>
+</li>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.get_status">(pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent method)</a>
 </li>
         <li><a href="pcf.particle.aws.dynamodb.html#pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB.get_status">(pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB method)</a>
@@ -989,9 +1153,11 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.get_status">(pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition method)</a>
 </li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.get_status">(pcf.particle.aws.efs.efs_instance.EFS method)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.get_status">(pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster.get_status">(pcf.particle.aws.emr.emr_cluster.EMRCluster method)</a>
+</li>
+        <li><a href="pcf.particle.aws.glacier.html#pcf.particle.aws.glacier.glacier_vault.GlacierVault.get_status">(pcf.particle.aws.glacier.glacier_vault.GlacierVault method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_policy.IAMPolicy.get_status">(pcf.particle.aws.iam.iam_policy.IAMPolicy method)</a>
 </li>
@@ -1001,6 +1167,8 @@
 </li>
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS.get_status">(pcf.particle.aws.rds.rds_instance.RDS method)</a>
 </li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone.get_status">(pcf.particle.aws.route53.hosted_zone.HostedZone method)</a>
+</li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record.get_status">(pcf.particle.aws.route53.route53_record.Route53Record method)</a>
 </li>
         <li><a href="pcf.particle.aws.s3.html#pcf.particle.aws.s3.s3_bucket.S3Bucket.get_status">(pcf.particle.aws.s3.s3_bucket.S3Bucket method)</a>
@@ -1008,6 +1176,10 @@
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet.get_status">(pcf.particle.aws.vpc.subnet.Subnet method)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance.get_status">(pcf.particle.aws.vpc.vpc_instance.VPCInstance method)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer.get_status">(pcf.particle.azure.blob.blob_container.BlobContainer method)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.get_status">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance method)</a>
 </li>
         <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket.get_status">(pcf.particle.gcp.storage.bucket.Bucket method)</a>
 </li>
@@ -1025,6 +1197,16 @@
       <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.get_task_definition_id">get_task_definition_id() (pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition method)</a>
 </li>
       <li><a href="pcf.util.html#pcf.util.pcf_util.get_value_from_particles">get_value_from_particles() (in module pcf.util.pcf_util)</a>
+</li>
+      <li><a href="pcf.particle.aws.glacier.html#pcf.particle.aws.glacier.glacier_vault.GlacierVault">GlacierVault (class in pcf.particle.aws.glacier.glacier_vault)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone">HostedZone (class in pcf.particle.aws.route53.hosted_zone)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1046,6 +1228,8 @@
 </li>
       <li><a href="pcf.core.html#pcf.core.pcf_exceptions.InvalidConfigException">InvalidConfigException</a>
 </li>
+      <li><a href="pcf.core.html#pcf.core.particle_flavor_scanner.InvalidInputException">InvalidInputException</a>
+</li>
       <li><a href="pcf.core.html#pcf.core.pcf_exceptions.InvalidState">InvalidState</a>
 </li>
       <li><a href="pcf.core.html#pcf.core.pcf_exceptions.InvalidTagsException">InvalidTagsException</a>
@@ -1065,7 +1249,9 @@
       <li><a href="pcf.core.html#pcf.core.particle.Particle.is_state_definition_equivalent">is_state_definition_equivalent() (pcf.core.particle.Particle method)</a>
 
       <ul>
-        <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront.is_state_definition_equivalent">(pcf.particle.aws.cloudfront.cloudfront.CloudFront method)</a>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment.is_state_definition_equivalent">(pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment method)</a>
+</li>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue.is_state_definition_equivalent">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue method)</a>
 </li>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.is_state_definition_equivalent">(pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent method)</a>
 </li>
@@ -1087,23 +1273,33 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task.ECSTask.is_state_definition_equivalent">(pcf.particle.aws.ecs.ecs_task.ECSTask method)</a>
 </li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.is_state_definition_equivalent">(pcf.particle.aws.efs.efs_instance.EFS method)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.is_state_definition_equivalent">(pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster.is_state_definition_equivalent">(pcf.particle.aws.emr.emr_cluster.EMRCluster method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole.is_state_definition_equivalent">(pcf.particle.aws.iam.iam_role.IAMRole method)</a>
 </li>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey.is_state_definition_equivalent">(pcf.particle.aws.kms.kms_key.KMSKey method)</a>
+</li>
         <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.is_state_definition_equivalent">(pcf.particle.aws.lambda_function.lambda_function.LambdaFunction method)</a>
 </li>
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS.is_state_definition_equivalent">(pcf.particle.aws.rds.rds_instance.RDS method)</a>
+</li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone.is_state_definition_equivalent">(pcf.particle.aws.route53.hosted_zone.HostedZone method)</a>
 </li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record.is_state_definition_equivalent">(pcf.particle.aws.route53.route53_record.Route53Record method)</a>
 </li>
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue.is_state_definition_equivalent">(pcf.particle.aws.sqs.sqs_queue.SQSQueue method)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup.is_state_definition_equivalent">(pcf.particle.aws.vpc.security_group.SecurityGroup method)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet.is_state_definition_equivalent">(pcf.particle.aws.vpc.subnet.Subnet method)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance.is_state_definition_equivalent">(pcf.particle.aws.vpc.vpc_instance.VPCInstance method)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer.is_state_definition_equivalent">(pcf.particle.azure.blob.blob_container.BlobContainer method)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.is_state_definition_equivalent">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1111,8 +1307,6 @@
       <li><a href="pcf.core.html#pcf.core.particle.Particle.is_state_equivalent">is_state_equivalent() (pcf.core.particle.Particle method)</a>
 
       <ul>
-        <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront.is_state_equivalent">(pcf.particle.aws.cloudfront.cloudfront.CloudFront method)</a>
-</li>
         <li><a href="pcf.particle.aws.ec2.html#pcf.particle.aws.ec2.ebs_volume.EBSVolume.is_state_equivalent">(pcf.particle.aws.ec2.ebs_volume.EBSVolume method)</a>
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.is_state_equivalent">(pcf.particle.aws.ecs.ecs_cluster.ECSCluster method)</a>
@@ -1127,17 +1321,25 @@
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster.is_state_equivalent">(pcf.particle.aws.emr.emr_cluster.EMRCluster method)</a>
 </li>
+        <li><a href="pcf.particle.aws.glacier.html#pcf.particle.aws.glacier.glacier_vault.GlacierVault.is_state_equivalent">(pcf.particle.aws.glacier.glacier_vault.GlacierVault method)</a>
+</li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_policy.IAMPolicy.is_state_equivalent">(pcf.particle.aws.iam.iam_policy.IAMPolicy method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole.is_state_equivalent">(pcf.particle.aws.iam.iam_role.IAMRole method)</a>
+</li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone.is_state_equivalent">(pcf.particle.aws.route53.hosted_zone.HostedZone method)</a>
 </li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record.is_state_equivalent">(pcf.particle.aws.route53.route53_record.Route53Record method)</a>
 </li>
         <li><a href="pcf.particle.aws.s3.html#pcf.particle.aws.s3.s3_bucket.S3Bucket.is_state_equivalent">(pcf.particle.aws.s3.s3_bucket.S3Bucket method)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup.is_state_equivalent">(pcf.particle.aws.vpc.security_group.SecurityGroup method)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet.is_state_equivalent">(pcf.particle.aws.vpc.subnet.Subnet method)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance.is_state_equivalent">(pcf.particle.aws.vpc.vpc_instance.VPCInstance method)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer.is_state_equivalent">(pcf.particle.azure.blob.blob_container.BlobContainer method)</a>
 </li>
         <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket.is_state_equivalent">(pcf.particle.gcp.storage.bucket.Bucket method)</a>
 </li>
@@ -1150,11 +1352,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pcf.util.html#pcf.util.pcf_util.keep_and_remove_keys">keep_and_remove_keys() (in module pcf.util.pcf_util)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pcf.util.html#pcf.util.pcf_util.keep_and_replace_keys">keep_and_replace_keys() (in module pcf.util.pcf_util)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pcf.util.aws.html#pcf.util.aws.tag_specifications.TagSpecifications.KEY">KEY (pcf.util.aws.tag_specifications.TagSpecifications attribute)</a>
+</li>
+      <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey">KMSKey (class in pcf.particle.aws.kms.kms_key)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1174,15 +1378,19 @@
 </li>
       <li><a href="pcf.core.html#pcf.core.particle.Particle.link_to_child">link_to_child() (pcf.core.particle.Particle method)</a>
 </li>
+      <li><a href="pcf.core.html#pcf.core.particle.Particle.link_to_parent">link_to_parent() (pcf.core.particle.Particle method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="pcf.core.html#pcf.core.particle.Particle.link_to_parent">link_to_parent() (pcf.core.particle.Particle method)</a>
+      <li><a href="pcf.cli.html#pcf.cli.cli.PCFCLI.list_commands">list_commands() (pcf.cli.cli.PCFCLI method)</a>
 </li>
       <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket.list_objects">list_objects() (pcf.particle.gcp.storage.bucket.Bucket method)</a>
 </li>
       <li><a href="pcf.util.html#pcf.util.pcf_util.list_to_dict">list_to_dict() (in module pcf.util.pcf_util)</a>
 </li>
       <li><a href="pcf.core.html#pcf.core.pcf.PCF.load_particle_definition">load_particle_definition() (pcf.core.pcf.PCF method)</a>
+</li>
+      <li><a href="pcf.cli.html#pcf.cli.utils.load_pcf_config_from_file">load_pcf_config_from_file() (in module pcf.cli.utils)</a>
 </li>
       <li><a href="pcf.core.html#pcf.core.pcf.PCF.load_pcf_definition">load_pcf_definition() (pcf.core.pcf.PCF method)</a>
 </li>
@@ -1206,7 +1414,7 @@
 </li>
       <li><a href="pcf.core.html#pcf.core.pcf_exceptions.MissingException">MissingException</a>
 </li>
-      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.modify_mount_target_security_groups">modify_mount_target_security_groups() (pcf.particle.aws.efs.efs_instance.EFS method)</a>
+      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.modify_mount_target_security_groups">modify_mount_target_security_groups() (pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1214,6 +1422,8 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pcf.core.html#pcf.core.azure_resource.AzureResource.network_client">network_client (pcf.core.azure_resource.AzureResource attribute)</a>
+</li>
       <li><a href="pcf.core.html#pcf.core.pcf_exceptions.NoCallbackFunctionException">NoCallbackFunctionException</a>
 </li>
   </ul></td>
@@ -1236,19 +1446,43 @@
 </li>
       <li><a href="pcf.util.html#pcf.util.pcf_util.particle_class_from_flavor">particle_class_from_flavor() (in module pcf.util.pcf_util)</a>
 </li>
+      <li><a href="pcf.cli.html#pcf.cli.utils.particle_class_instance">particle_class_instance() (in module pcf.cli.utils)</a>
+</li>
+      <li><a href="pcf.core.html#pcf.core.particle_flavor_scanner.ParticleFlavorNotFoundError">ParticleFlavorNotFoundError</a>
+</li>
+      <li><a href="pcf.cli.html#pcf.cli.utils.particles_from_file">particles_from_file() (in module pcf.cli.utils)</a>
+</li>
       <li><a href="pcf.core.html#pcf.core.pcf.PCF">PCF (class in pcf.core.pcf)</a>
 </li>
       <li><a href="pcf.html#module-pcf">pcf (module)</a>
 </li>
       <li><a href="pcf.cli.html#module-pcf.cli">pcf.cli (module)</a>
 </li>
+      <li><a href="pcf.cli.html#module-pcf.cli.cli">pcf.cli.cli (module)</a>
+</li>
+      <li><a href="pcf.cli.commands.html#module-pcf.cli.commands">pcf.cli.commands (module)</a>
+</li>
+      <li><a href="pcf.cli.commands.html#module-pcf.cli.commands.apply">pcf.cli.commands.apply (module)</a>
+</li>
+      <li><a href="pcf.cli.commands.html#module-pcf.cli.commands.run">pcf.cli.commands.run (module)</a>
+</li>
+      <li><a href="pcf.cli.commands.html#module-pcf.cli.commands.stop">pcf.cli.commands.stop (module)</a>
+</li>
+      <li><a href="pcf.cli.commands.html#module-pcf.cli.commands.terminate">pcf.cli.commands.terminate (module)</a>
+</li>
+      <li><a href="pcf.cli.html#module-pcf.cli.utils">pcf.cli.utils (module)</a>
+</li>
       <li><a href="pcf.core.html#module-pcf.core">pcf.core (module)</a>
 </li>
       <li><a href="pcf.core.html#module-pcf.core.aws_resource">pcf.core.aws_resource (module)</a>
 </li>
+      <li><a href="pcf.core.html#module-pcf.core.azure_resource">pcf.core.azure_resource (module)</a>
+</li>
       <li><a href="pcf.core.html#module-pcf.core.gcp_resource">pcf.core.gcp_resource (module)</a>
 </li>
       <li><a href="pcf.core.html#module-pcf.core.particle">pcf.core.particle (module)</a>
+</li>
+      <li><a href="pcf.core.html#module-pcf.core.particle_flavor_scanner">pcf.core.particle_flavor_scanner (module)</a>
 </li>
       <li><a href="pcf.core.html#module-pcf.core.pcf">pcf.core.pcf (module)</a>
 </li>
@@ -1268,9 +1502,13 @@
 </li>
       <li><a href="pcf.particle.aws.html#module-pcf.particle.aws">pcf.particle.aws (module)</a>
 </li>
-      <li><a href="pcf.particle.aws.cloudfront.html#module-pcf.particle.aws.cloudfront">pcf.particle.aws.cloudfront (module)</a>
+      <li><a href="pcf.particle.aws.batch.html#module-pcf.particle.aws.batch">pcf.particle.aws.batch (module)</a>
 </li>
-      <li><a href="pcf.particle.aws.cloudfront.html#module-pcf.particle.aws.cloudfront.cloudfront">pcf.particle.aws.cloudfront.cloudfront (module)</a>
+      <li><a href="pcf.particle.aws.batch.html#module-pcf.particle.aws.batch.batch_compute_environment">pcf.particle.aws.batch.batch_compute_environment (module)</a>
+</li>
+      <li><a href="pcf.particle.aws.batch.html#module-pcf.particle.aws.batch.batch_job_queue">pcf.particle.aws.batch.batch_job_queue (module)</a>
+</li>
+      <li><a href="pcf.particle.aws.cloudfront.html#module-pcf.particle.aws.cloudfront">pcf.particle.aws.cloudfront (module)</a>
 </li>
       <li><a href="pcf.particle.aws.cloudwatch.html#module-pcf.particle.aws.cloudwatch">pcf.particle.aws.cloudwatch (module)</a>
 </li>
@@ -1322,15 +1560,21 @@
 </li>
       <li><a href="pcf.particle.aws.emr.html#module-pcf.particle.aws.emr.emr_cluster">pcf.particle.aws.emr.emr_cluster (module)</a>
 </li>
-      <li><a href="pcf.particle.aws.iam.html#module-pcf.particle.aws.iam">pcf.particle.aws.iam (module)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pcf.particle.aws.glacier.html#module-pcf.particle.aws.glacier">pcf.particle.aws.glacier (module)</a>
+</li>
+      <li><a href="pcf.particle.aws.glacier.html#module-pcf.particle.aws.glacier.glacier_vault">pcf.particle.aws.glacier.glacier_vault (module)</a>
+</li>
+      <li><a href="pcf.particle.aws.iam.html#module-pcf.particle.aws.iam">pcf.particle.aws.iam (module)</a>
+</li>
       <li><a href="pcf.particle.aws.iam.html#module-pcf.particle.aws.iam.iam_policy">pcf.particle.aws.iam.iam_policy (module)</a>
 </li>
       <li><a href="pcf.particle.aws.iam.html#module-pcf.particle.aws.iam.iam_role">pcf.particle.aws.iam.iam_role (module)</a>
 </li>
       <li><a href="pcf.particle.aws.kms.html#module-pcf.particle.aws.kms">pcf.particle.aws.kms (module)</a>
+</li>
+      <li><a href="pcf.particle.aws.kms.html#module-pcf.particle.aws.kms.kms_key">pcf.particle.aws.kms.kms_key (module)</a>
 </li>
       <li><a href="pcf.particle.aws.lambda_function.html#module-pcf.particle.aws.lambda_function">pcf.particle.aws.lambda_function (module)</a>
 </li>
@@ -1341,6 +1585,8 @@
       <li><a href="pcf.particle.aws.rds.html#module-pcf.particle.aws.rds.rds_instance">pcf.particle.aws.rds.rds_instance (module)</a>
 </li>
       <li><a href="pcf.particle.aws.route53.html#module-pcf.particle.aws.route53">pcf.particle.aws.route53 (module)</a>
+</li>
+      <li><a href="pcf.particle.aws.route53.html#module-pcf.particle.aws.route53.hosted_zone">pcf.particle.aws.route53.hosted_zone (module)</a>
 </li>
       <li><a href="pcf.particle.aws.route53.html#module-pcf.particle.aws.route53.route53_record">pcf.particle.aws.route53.route53_record (module)</a>
 </li>
@@ -1354,6 +1600,8 @@
 </li>
       <li><a href="pcf.particle.aws.vpc.html#module-pcf.particle.aws.vpc">pcf.particle.aws.vpc (module)</a>
 </li>
+      <li><a href="pcf.particle.aws.vpc.html#module-pcf.particle.aws.vpc.security_group">pcf.particle.aws.vpc.security_group (module)</a>
+</li>
       <li><a href="pcf.particle.aws.vpc.html#module-pcf.particle.aws.vpc.subnet">pcf.particle.aws.vpc.subnet (module)</a>
 </li>
       <li><a href="pcf.particle.aws.vpc.html#module-pcf.particle.aws.vpc.vpc_instance">pcf.particle.aws.vpc.vpc_instance (module)</a>
@@ -1362,11 +1610,15 @@
 </li>
       <li><a href="pcf.particle.azure.blob.html#module-pcf.particle.azure.blob">pcf.particle.azure.blob (module)</a>
 </li>
+      <li><a href="pcf.particle.azure.blob.html#module-pcf.particle.azure.blob.blob_container">pcf.particle.azure.blob.blob_container (module)</a>
+</li>
       <li><a href="pcf.particle.gcp.html#module-pcf.particle.gcp">pcf.particle.gcp (module)</a>
 </li>
       <li><a href="pcf.particle.gcp.compute.html#module-pcf.particle.gcp.compute">pcf.particle.gcp.compute (module)</a>
 </li>
       <li><a href="pcf.particle.gcp.compute_engine.html#module-pcf.particle.gcp.compute_engine">pcf.particle.gcp.compute_engine (module)</a>
+</li>
+      <li><a href="pcf.particle.gcp.compute_engine.html#module-pcf.particle.gcp.compute_engine.vm_instance">pcf.particle.gcp.compute_engine.vm_instance (module)</a>
 </li>
       <li><a href="pcf.particle.gcp.storage.html#module-pcf.particle.gcp.storage">pcf.particle.gcp.storage (module)</a>
 </li>
@@ -1398,6 +1650,12 @@
 </li>
       <li><a href="pcf.quasiparticle.gcp.html#module-pcf.quasiparticle.gcp">pcf.quasiparticle.gcp (module)</a>
 </li>
+      <li><a href="pcf.tools.html#module-pcf.tools">pcf.tools (module)</a>
+</li>
+      <li><a href="pcf.tools.pcf_generator.html#module-pcf.tools.pcf_generator">pcf.tools.pcf_generator (module)</a>
+</li>
+      <li><a href="pcf.tools.pcf_generator.html#module-pcf.tools.pcf_generator.pcf_generator">pcf.tools.pcf_generator.pcf_generator (module)</a>
+</li>
       <li><a href="pcf.util.html#module-pcf.util">pcf.util (module)</a>
 </li>
       <li><a href="pcf.util.aws.html#module-pcf.util.aws">pcf.util.aws (module)</a>
@@ -1408,9 +1666,13 @@
 </li>
       <li><a href="pcf.util.html#module-pcf.util.pcf_util">pcf.util.pcf_util (module)</a>
 </li>
+      <li><a href="pcf.cli.html#pcf.cli.cli.PCFCLI">PCFCLI (class in pcf.cli.cli)</a>
+</li>
       <li><a href="pcf.core.html#pcf.core.State.pending">pending (pcf.core.State attribute)</a>
 </li>
       <li><a href="pcf.util.html#pcf.util.pcf_util.pkg_submodules">pkg_submodules() (in module pcf.util.pcf_util)</a>
+</li>
+      <li><a href="pcf.cli.html#pcf.cli.cli.PCFCLI.print_version">print_version() (pcf.cli.cli.PCFCLI static method)</a>
 </li>
       <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_instance.ECSInstance.PROTECTED_ATTRIBUTES">PROTECTED_ATTRIBUTES (pcf.particle.aws.ecs.ecs_instance.ECSInstance attribute)</a>
 </li>
@@ -1440,6 +1702,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS">RDS (class in pcf.particle.aws.rds.rds_instance)</a>
 </li>
+      <li><a href="pcf.cli.html#pcf.cli.utils.read_config_file">read_config_file() (in module pcf.cli.utils)</a>
+</li>
       <li><a href="pcf.util.aws.html#pcf.util.aws.aws_lookup.AWSLookup.region_name">region_name (pcf.util.aws.aws_lookup.AWSLookup attribute)</a>
 </li>
       <li><a href="pcf.core.html#pcf.core.particle.Particle.register_state_transition">register_state_transition() (pcf.core.particle.Particle method)</a>
@@ -1468,9 +1732,11 @@
 </li>
       <li><a href="pcf.core.html#pcf.core.aws_resource.AWSResource.resource">resource (pcf.core.aws_resource.AWSResource attribute)</a>
 </li>
+      <li><a href="pcf.core.html#pcf.core.azure_resource.AzureResource.resource_client">resource_client (pcf.core.azure_resource.AzureResource attribute)</a>
+</li>
       <li><a href="pcf.core.html#pcf.core.pcf_exceptions.ResourceLookupNotDefinedException">ResourceLookupNotDefinedException</a>
 </li>
-      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.RETURN_PARAM_FILTER">RETURN_PARAM_FILTER (pcf.particle.aws.efs.efs_instance.EFS attribute)</a>
+      <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.RETURN_PARAM_FILTER">RETURN_PARAM_FILTER (pcf.particle.aws.efs.efs_instance.EFSInstance attribute)</a>
 
       <ul>
         <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.RETURN_PARAM_FILTER">(pcf.particle.aws.lambda_function.lambda_function.LambdaFunction attribute)</a>
@@ -1492,6 +1758,10 @@
 </li>
       <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.s3client">s3client (pcf.particle.aws.lambda_function.lambda_function.LambdaFunction attribute)</a>
 </li>
+      <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup.security_group_resource">security_group_resource (pcf.particle.aws.vpc.security_group.SecurityGroup attribute)</a>
+</li>
+      <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup">SecurityGroup (class in pcf.particle.aws.vpc.security_group)</a>
+</li>
       <li><a href="pcf.core.html#pcf.core.particle.Particle.set_desired_state">set_desired_state() (pcf.core.particle.Particle method)</a>
 
       <ul>
@@ -1510,6 +1780,8 @@
 </li>
       <li><a href="pcf.core.html#pcf.core.aws_resource.AWSResource.set_region">set_region() (pcf.core.aws_resource.AWSResource method)</a>
 </li>
+      <li><a href="pcf.cli.html#pcf.cli.utils.similar_strings">similar_strings() (in module pcf.cli.utils)</a>
+</li>
       <li><a href="pcf.util.aws.html#pcf.util.aws.aws_lookup.AWSLookup.snapshot">snapshot() (pcf.util.aws.aws_lookup.AWSLookup method)</a>
 </li>
       <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue">SQSQueue (class in pcf.particle.aws.sqs.sqs_queue)</a>
@@ -1524,7 +1796,7 @@
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task.ECSTask.START_PARAM_CONVERSIONS">(pcf.particle.aws.ecs.ecs_task.ECSTask attribute)</a>
 </li>
       </ul></li>
-      <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront.START_PARAM_FILER">START_PARAM_FILER (pcf.particle.aws.cloudfront.cloudfront.CloudFront attribute)</a>
+      <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone.START_PARAM_FILER">START_PARAM_FILER (pcf.particle.aws.route53.hosted_zone.HostedZone attribute)</a>
 </li>
       <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.START_PARAM_FILTER">START_PARAM_FILTER (pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent attribute)</a>
 
@@ -1545,9 +1817,7 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_instance.ECSInstance.START_PARAM_FILTER">(pcf.particle.aws.ecs.ecs_instance.ECSInstance attribute)</a>
 </li>
-        <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.START_PARAM_FILTER">(pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition attribute)</a>
-</li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.START_PARAM_FILTER">(pcf.particle.aws.efs.efs_instance.EFS attribute)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.START_PARAM_FILTER">(pcf.particle.aws.efs.efs_instance.EFSInstance attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.START_PARAM_FILTER">(pcf.particle.aws.lambda_function.lambda_function.LambdaFunction attribute)</a>
 </li>
@@ -1556,9 +1826,13 @@
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue.START_PARAM_FILTER">(pcf.particle.aws.sqs.sqs_queue.SQSQueue attribute)</a>
 </li>
       </ul></li>
-      <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet.START_PARAMS">START_PARAMS (pcf.particle.aws.vpc.subnet.Subnet attribute)</a>
+      <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey.START_PARAMS">START_PARAMS (pcf.particle.aws.kms.kms_key.KMSKey attribute)</a>
 
       <ul>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup.START_PARAMS">(pcf.particle.aws.vpc.security_group.SecurityGroup attribute)</a>
+</li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet.START_PARAMS">(pcf.particle.aws.vpc.subnet.Subnet attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance.START_PARAMS">(pcf.particle.aws.vpc.vpc_instance.VPCInstance attribute)</a>
 </li>
       </ul></li>
@@ -1572,9 +1846,13 @@
       </ul></li>
       <li><a href="pcf.core.html#pcf.core.State">State (class in pcf.core)</a>
 </li>
-      <li><a href="pcf.particle.aws.dynamodb.html#pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB.state_lookup">state_lookup (pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB attribute)</a>
+      <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment.state_lookup">state_lookup (pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment attribute)</a>
 
       <ul>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue.state_lookup">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue attribute)</a>
+</li>
+        <li><a href="pcf.particle.aws.dynamodb.html#pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB.state_lookup">(pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.ec2.alb.html#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.state_lookup">(pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.ec2.html#pcf.particle.aws.ec2.ebs_volume.EBSVolume.state_lookup">(pcf.particle.aws.ec2.ebs_volume.EBSVolume attribute)</a>
@@ -1591,21 +1869,29 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.state_lookup">(pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition attribute)</a>
 </li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.state_lookup">(pcf.particle.aws.efs.efs_instance.EFS attribute)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.state_lookup">(pcf.particle.aws.efs.efs_instance.EFSInstance attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster.state_lookup">(pcf.particle.aws.emr.emr_cluster.EMRCluster attribute)</a>
+</li>
+        <li><a href="pcf.particle.aws.glacier.html#pcf.particle.aws.glacier.glacier_vault.GlacierVault.state_lookup">(pcf.particle.aws.glacier.glacier_vault.GlacierVault attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_policy.IAMPolicy.state_lookup">(pcf.particle.aws.iam.iam_policy.IAMPolicy attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole.state_lookup">(pcf.particle.aws.iam.iam_role.IAMRole attribute)</a>
 </li>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey.state_lookup">(pcf.particle.aws.kms.kms_key.KMSKey attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS.state_lookup">(pcf.particle.aws.rds.rds_instance.RDS attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.s3.html#pcf.particle.aws.s3.s3_bucket.S3Bucket.state_lookup">(pcf.particle.aws.s3.s3_bucket.S3Bucket attribute)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup.state_lookup">(pcf.particle.aws.vpc.security_group.SecurityGroup attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet.state_lookup">(pcf.particle.aws.vpc.subnet.Subnet attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance.state_lookup">(pcf.particle.aws.vpc.vpc_instance.VPCInstance attribute)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.state_lookup">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1615,6 +1901,8 @@
       <li><a href="pcf.core.html#pcf.core.particle.Particle.stop">stop() (pcf.core.particle.Particle method)</a>
 </li>
       <li><a href="pcf.core.html#pcf.core.State.stopped">stopped (pcf.core.State attribute)</a>
+</li>
+      <li><a href="pcf.core.html#pcf.core.azure_resource.AzureResource.storage_client">storage_client (pcf.core.azure_resource.AzureResource attribute)</a>
 </li>
       <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet">Subnet (class in pcf.particle.aws.vpc.subnet)</a>
 </li>
@@ -1627,7 +1915,9 @@
       <ul>
         <li><a href="pcf.core.html#pcf.core.quasiparticle.Quasiparticle.sync_state">(pcf.core.quasiparticle.Quasiparticle method)</a>
 </li>
-        <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront.sync_state">(pcf.particle.aws.cloudfront.cloudfront.CloudFront method)</a>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment.sync_state">(pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment method)</a>
+</li>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue.sync_state">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue method)</a>
 </li>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.sync_state">(pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent method)</a>
 </li>
@@ -1657,17 +1947,23 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.sync_state">(pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition method)</a>
 </li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.sync_state">(pcf.particle.aws.efs.efs_instance.EFS method)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.sync_state">(pcf.particle.aws.efs.efs_instance.EFSInstance method)</a>
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster.sync_state">(pcf.particle.aws.emr.emr_cluster.EMRCluster method)</a>
+</li>
+        <li><a href="pcf.particle.aws.glacier.html#pcf.particle.aws.glacier.glacier_vault.GlacierVault.sync_state">(pcf.particle.aws.glacier.glacier_vault.GlacierVault method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_policy.IAMPolicy.sync_state">(pcf.particle.aws.iam.iam_policy.IAMPolicy method)</a>
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole.sync_state">(pcf.particle.aws.iam.iam_role.IAMRole method)</a>
 </li>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey.sync_state">(pcf.particle.aws.kms.kms_key.KMSKey method)</a>
+</li>
         <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.sync_state">(pcf.particle.aws.lambda_function.lambda_function.LambdaFunction method)</a>
 </li>
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS.sync_state">(pcf.particle.aws.rds.rds_instance.RDS method)</a>
+</li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone.sync_state">(pcf.particle.aws.route53.hosted_zone.HostedZone method)</a>
 </li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record.sync_state">(pcf.particle.aws.route53.route53_record.Route53Record method)</a>
 </li>
@@ -1675,9 +1971,15 @@
 </li>
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue.sync_state">(pcf.particle.aws.sqs.sqs_queue.SQSQueue method)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup.sync_state">(pcf.particle.aws.vpc.security_group.SecurityGroup method)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet.sync_state">(pcf.particle.aws.vpc.subnet.Subnet method)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance.sync_state">(pcf.particle.aws.vpc.vpc_instance.VPCInstance method)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer.sync_state">(pcf.particle.azure.blob.blob_container.BlobContainer method)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.sync_state">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance method)</a>
 </li>
         <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket.sync_state">(pcf.particle.gcp.storage.bucket.Bucket method)</a>
 </li>
@@ -1708,9 +2010,11 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="pcf.particle.aws.cloudfront.html#pcf.particle.aws.cloudfront.cloudfront.CloudFront.UNIQUE_KEYS">UNIQUE_KEYS (pcf.particle.aws.cloudfront.cloudfront.CloudFront attribute)</a>
+      <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment.UNIQUE_KEYS">UNIQUE_KEYS (pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment attribute)</a>
 
       <ul>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue.UNIQUE_KEYS">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent.UNIQUE_KEYS">(pcf.particle.aws.cloudwatch.cloudwatch_event.CloudWatchEvent attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.cloudwatch.html#pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog.UNIQUE_KEYS">(pcf.particle.aws.cloudwatch.cloudwatch_log.CloudWatchLog attribute)</a>
@@ -1733,7 +2037,7 @@
 </li>
         <li><a href="pcf.particle.aws.ecs.html#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.UNIQUE_KEYS">(pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition attribute)</a>
 </li>
-        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFS.UNIQUE_KEYS">(pcf.particle.aws.efs.efs_instance.EFS attribute)</a>
+        <li><a href="pcf.particle.aws.efs.html#pcf.particle.aws.efs.efs_instance.EFSInstance.UNIQUE_KEYS">(pcf.particle.aws.efs.efs_instance.EFSInstance attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster.UNIQUE_KEYS">(pcf.particle.aws.emr.emr_cluster.EMRCluster attribute)</a>
 </li>
@@ -1741,9 +2045,13 @@
 </li>
         <li><a href="pcf.particle.aws.iam.html#pcf.particle.aws.iam.iam_role.IAMRole.UNIQUE_KEYS">(pcf.particle.aws.iam.iam_role.IAMRole attribute)</a>
 </li>
+        <li><a href="pcf.particle.aws.kms.html#pcf.particle.aws.kms.kms_key.KMSKey.UNIQUE_KEYS">(pcf.particle.aws.kms.kms_key.KMSKey attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.lambda_function.html#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.UNIQUE_KEYS">(pcf.particle.aws.lambda_function.lambda_function.LambdaFunction attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.rds.html#pcf.particle.aws.rds.rds_instance.RDS.UNIQUE_KEYS">(pcf.particle.aws.rds.rds_instance.RDS attribute)</a>
+</li>
+        <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.hosted_zone.HostedZone.UNIQUE_KEYS">(pcf.particle.aws.route53.hosted_zone.HostedZone attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.route53.html#pcf.particle.aws.route53.route53_record.Route53Record.UNIQUE_KEYS">(pcf.particle.aws.route53.route53_record.Route53Record attribute)</a>
 </li>
@@ -1751,9 +2059,15 @@
 </li>
         <li><a href="pcf.particle.aws.sqs.html#pcf.particle.aws.sqs.sqs_queue.SQSQueue.UNIQUE_KEYS">(pcf.particle.aws.sqs.sqs_queue.SQSQueue attribute)</a>
 </li>
+        <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.security_group.SecurityGroup.UNIQUE_KEYS">(pcf.particle.aws.vpc.security_group.SecurityGroup attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.subnet.Subnet.UNIQUE_KEYS">(pcf.particle.aws.vpc.subnet.Subnet attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance.UNIQUE_KEYS">(pcf.particle.aws.vpc.vpc_instance.VPCInstance attribute)</a>
+</li>
+        <li><a href="pcf.particle.azure.blob.html#pcf.particle.azure.blob.blob_container.BlobContainer.UNIQUE_KEYS">(pcf.particle.azure.blob.blob_container.BlobContainer attribute)</a>
+</li>
+        <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.UNIQUE_KEYS">(pcf.particle.gcp.compute_engine.vm_instance.VMInstance attribute)</a>
 </li>
         <li><a href="pcf.particle.gcp.storage.html#pcf.particle.gcp.storage.bucket.Bucket.UNIQUE_KEYS">(pcf.particle.gcp.storage.bucket.Bucket attribute)</a>
 </li>
@@ -1770,9 +2084,13 @@
         <li><a href="pcf.particle.aws.emr.html#pcf.particle.aws.emr.emr_cluster.EMRCluster.UPDATE_PARAM_CONVERSIONS">(pcf.particle.aws.emr.emr_cluster.EMRCluster attribute)</a>
 </li>
       </ul></li>
-      <li><a href="pcf.particle.aws.dynamodb.html#pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB.UPDATE_PARAM_FILTER">UPDATE_PARAM_FILTER (pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB attribute)</a>
+      <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment.UPDATE_PARAM_FILTER">UPDATE_PARAM_FILTER (pcf.particle.aws.batch.batch_compute_environment.BatchComputeEnvironment attribute)</a>
 
       <ul>
+        <li><a href="pcf.particle.aws.batch.html#pcf.particle.aws.batch.batch_job_queue.BatchJobQueue.UPDATE_PARAM_FILTER">(pcf.particle.aws.batch.batch_job_queue.BatchJobQueue attribute)</a>
+</li>
+        <li><a href="pcf.particle.aws.dynamodb.html#pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB.UPDATE_PARAM_FILTER">(pcf.particle.aws.dynamodb.dynamodb_table.DynamoDB attribute)</a>
+</li>
         <li><a href="pcf.particle.aws.ec2.alb.html#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.UPDATE_PARAM_FILTER">(pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing attribute)</a>
 </li>
         <li><a href="pcf.particle.aws.ec2.html#pcf.particle.aws.ec2.ebs_volume.EBSVolume.UPDATE_PARAM_FILTER">(pcf.particle.aws.ec2.ebs_volume.EBSVolume attribute)</a>
@@ -1802,6 +2120,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pcf.particle.gcp.compute_engine.html#pcf.particle.gcp.compute_engine.vm_instance.VMInstance">VMInstance (class in pcf.particle.gcp.compute_engine.vm_instance)</a>
+</li>
       <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance.vpc_client">vpc_client (pcf.particle.aws.vpc.vpc_instance.VPCInstance attribute)</a>
 </li>
       <li><a href="pcf.particle.aws.vpc.html#pcf.particle.aws.vpc.vpc_instance.VPCInstance">VPCInstance (class in pcf.particle.aws.vpc.vpc_instance)</a>
@@ -1858,7 +2178,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   

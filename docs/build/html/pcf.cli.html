@@ -84,6 +84,9 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul>
@@ -187,11 +190,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pcf.cli.commands.html">pcf.cli.commands package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pcf.cli.commands.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pcf.cli.commands.html#pcf-cli-commands-apply-module">pcf.cli.commands.apply module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pcf.cli.commands.html#pcf-cli-commands-run-module">pcf.cli.commands.run module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pcf.cli.commands.html#pcf-cli-commands-stop-module">pcf.cli.commands.stop module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pcf.cli.commands.html#pcf-cli-commands-terminate-module">pcf.cli.commands.terminate module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pcf.cli.commands.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.cli.commands.html#module-pcf.cli.commands.apply">pcf.cli.commands.apply module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.cli.commands.html#module-pcf.cli.commands.run">pcf.cli.commands.run module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.cli.commands.html#module-pcf.cli.commands.stop">pcf.cli.commands.stop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.cli.commands.html#module-pcf.cli.commands.terminate">pcf.cli.commands.terminate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.cli.commands.html#module-pcf.cli.commands">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -200,11 +203,112 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="pcf-cli-cli-module">
-<h2>pcf.cli.cli module<a class="headerlink" href="#pcf-cli-cli-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pcf.cli.cli">
+<span id="pcf-cli-cli-module"></span><h2>pcf.cli.cli module<a class="headerlink" href="#module-pcf.cli.cli" title="Permalink to this headline">¶</a></h2>
+<p>Top-level&nbsp;CLI module for interacting with PCF Particles and Quasiparticles</p>
+<dl class="class">
+<dt id="pcf.cli.cli.PCFCLI">
+<em class="property">class </em><code class="descclassname">pcf.cli.cli.</code><code class="descname">PCFCLI</code><span class="sig-paren">(</span><em>name=None</em>, <em>invoke_without_command=False</em>, <em>no_args_is_help=None</em>, <em>subcommand_metavar=None</em>, <em>chain=False</em>, <em>result_callback=None</em>, <em>**attrs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.cli.PCFCLI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">click.core.MultiCommand</span></code></p>
+<dl class="attribute">
+<dt id="pcf.cli.cli.PCFCLI.command_dir">
+<code class="descname">command_dir</code><em class="property"> = '/Users/zal639/repos/Particle-Cloud-Framework/pcf/cli/commands'</em><a class="headerlink" href="#pcf.cli.cli.PCFCLI.command_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.cli.cli.PCFCLI.get_command">
+<code class="descname">get_command</code><span class="sig-paren">(</span><em>ctx</em>, <em>cmd_name</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.cli.PCFCLI.get_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempt to load and return the command provided by the user</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.cli.cli.PCFCLI.list_commands">
+<code class="descname">list_commands</code><span class="sig-paren">(</span><em>ctx=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.cli.PCFCLI.list_commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>List command names and their descriptions</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="pcf.cli.cli.PCFCLI.print_version">
+<em class="property">static </em><code class="descname">print_version</code><span class="sig-paren">(</span><em>ctx</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.cli.PCFCLI.print_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the pcf version</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="pcf-cli-utils-module">
-<h2>pcf.cli.utils module<a class="headerlink" href="#pcf-cli-utils-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pcf.cli.utils">
+<span id="pcf-cli-utils-module"></span><h2>pcf.cli.utils module<a class="headerlink" href="#module-pcf.cli.utils" title="Permalink to this headline">¶</a></h2>
+<p>Utility functions for the PCF CLI</p>
+<dl class="function">
+<dt id="pcf.cli.utils.click_options">
+<code class="descclassname">pcf.cli.utils.</code><code class="descname">click_options</code><span class="sig-paren">(</span><em>options</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.utils.click_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator used to add a list of click.options to click command functions</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.cli.utils.color">
+<code class="descclassname">pcf.cli.utils.</code><code class="descname">color</code><span class="sig-paren">(</span><em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.utils.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the desired color name or None if the NO_COLOR env var is set
+<a class="reference external" href="https://no-color.org">https://no-color.org</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.cli.utils.did_you_mean">
+<code class="descclassname">pcf.cli.utils.</code><code class="descname">did_you_mean</code><span class="sig-paren">(</span><em>suggestions=[]</em>, <em>fg=None</em>, <em>exit_after=True</em>, <em>exit_code=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.utils.did_you_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the ‘Did you mean’ message for the given suggestion string(s) in the
+optional color.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.cli.utils.execute_applying_command">
+<code class="descclassname">pcf.cli.utils.</code><code class="descname">execute_applying_command</code><span class="sig-paren">(</span><em>pcf_name</em>, <em>config_file</em>, <em>desired_state</em>, <em>cascade=False</em>, <em>quiet=False</em>, <em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.utils.execute_applying_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the apply command for the desired particle(s) and state as specified in
+the config_file. Used for apply, run, stop, and terminate commands. Contains
+CLI output for info.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.cli.utils.fail">
+<code class="descclassname">pcf.cli.utils.</code><code class="descname">fail</code><span class="sig-paren">(</span><em>error_msg</em>, <em>fg='red'</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.utils.fail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the error message and fail the CLI</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.cli.utils.load_pcf_config_from_file">
+<code class="descclassname">pcf.cli.utils.</code><code class="descname">load_pcf_config_from_file</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.utils.load_pcf_config_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempts to load and return the config dict as specified in the given file with
+the following default config file precedence:
+1. pcf.json
+2. pcf.yml
+3. pcf.yaml</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.cli.utils.particle_class_instance">
+<code class="descclassname">pcf.cli.utils.</code><code class="descname">particle_class_instance</code><span class="sig-paren">(</span><em>flavor</em>, <em>particle_config</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.utils.particle_class_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a particle class from a flavor or handle CLI error message</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.cli.utils.particles_from_file">
+<code class="descclassname">pcf.cli.utils.</code><code class="descname">particles_from_file</code><span class="sig-paren">(</span><em>pcf_name</em>, <em>filename</em>, <em>quiet=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.utils.particles_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of Particles from a PCF config file, returning only one Particle
+if pcf_name is not None</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.cli.utils.read_config_file">
+<code class="descclassname">pcf.cli.utils.</code><code class="descname">read_config_file</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.utils.read_config_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the JSON/YAML filename and returns it as a dict.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.cli.utils.similar_strings">
+<code class="descclassname">pcf.cli.utils.</code><code class="descname">similar_strings</code><span class="sig-paren">(</span><em>given_str</em>, <em>search_list=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.cli.utils.similar_strings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of similar strings to given_str from an iterable of potentially
+similar strings, search_list.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="module-pcf.cli">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pcf.cli" title="Permalink to this headline">¶</a></h2>
@@ -247,7 +351,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   

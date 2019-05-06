@@ -86,12 +86,16 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="particlelist.html">Particles</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="particlelist.html#aws-particles">AWS Particles</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#alb">ALB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#batch">Batch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#cloudfront">CloudFront</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#cloudwatch">Cloudwatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#dynamodb">DynamoDB</a></li>
@@ -100,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#efs">EFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#elb">ELB</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#emr">EMR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#glacier">Glacier</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#iam">IAM</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="particlelist.html#kms">KMS</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">pcf.particle.aws.kms package</a></li>
@@ -215,8 +220,284 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="pcf-particle-aws-kms-kms-key-module">
-<h2>pcf.particle.aws.kms.kms_key module<a class="headerlink" href="#pcf-particle-aws-kms-kms-key-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pcf.particle.aws.kms.kms_key">
+<span id="pcf-particle-aws-kms-kms-key-module"></span><h2>pcf.particle.aws.kms.kms_key module<a class="headerlink" href="#module-pcf.particle.aws.kms.kms_key" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.kms.kms_key.</code><code class="descname">KMSKey</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is an instantiation of an AWS KMS key. For now, only CMKs stored in KMS are supported.
+Keys in External or CloudHSM stores will be added later. The creation of a KMS key does not
+require any inputs with the exception of a <code class="code docutils literal notranslate"><span class="pre">key_name</span></code>, which is used to create an “alias”
+for the key. Aliases are unique per region. Upon particle termination, the alias will be
+deleted and the key will be marked for termination (since KMS keys cannot be deleted
+immediately). If the key name/alias given already exists, the particle will be mapped to that
+key, rather than create one from scratch.</p>
+<p><strong>aws_resource Definition</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>custom_config</strong> (<em>dict</em>) – <p><strong>[REQUIRED]</strong> A dictionary containing configuration values:</p>
+<ul>
+<li><code class="code docutils literal notranslate"><span class="pre">key_name</span></code> (str) - <strong>[REQUIRED]</strong> A string used to uniquely identify the key.            Transformed into an alias for the key. No spaces.</li>
+</ul>
+</li>
+<li><strong>Policy</strong> (<em>str</em>) – A JSON-formatted policy string for the key</li>
+<li><strong>Description</strong> (<em>str</em>) – A description of the key, visible in the AWS console and CLI calls</li>
+<li><strong>BypassPolicyLockoutSafetyCheck</strong> (<em>boolean</em>) – A flag used in conjunction with the policy
+parameter to indicate if the . Default value is <code class="code docutils literal notranslate"><span class="pre">False</span></code> For more info, see
+<a class="reference external" href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">AWS docs</a>.</li>
+<li><strong>Tags</strong> (<em>list</em>) – <p>A list of key-value dictionaries with tag information:</p>
+<ul>
+<li><code class="code docutils literal notranslate"><span class="pre">{}</span></code> (dict) Containing the following keys:<blockquote>
+<div><ul>
+<li><code class="code docutils literal notranslate"><span class="pre">TagKey</span></code> (str) - <strong>[REQUIRED]</strong> The tag name</li>
+<li><code class="code docutils literal notranslate"><span class="pre">TagValue</span></code> (str) - <strong>[REQUIRED]</strong> The tag value</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example minimal particle definition:
+code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particle_definition</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;pcf_name&#39;</span><span class="p">:</span> <span class="s1">&#39;kms_example&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;flavor&#39;</span><span class="p">:</span> <span class="s1">&#39;kms_key&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;aws_resource&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;custom_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;key_name&quot;</span><span class="p">:</span> <span class="s2">&quot;kms_alias_name&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The following states can be handled by the particle:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="20%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Particle State</th>
+<th class="head">KMS Key State</th>
+<th class="head">Notes</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Running</td>
+<td>Enabled</td>
+<td>Will create key if DNE, will adopt key if alias given</td>
+</tr>
+<tr class="row-odd"><td>Stopped</td>
+<td>Disabled</td>
+<td>No need to disable prior to deletion</td>
+</tr>
+<tr class="row-even"><td>Terminated</td>
+<td>Pending Deletion</td>
+<td>Schedules key for deletion in 30 days, removes alias</td>
+</tr>
+<tr class="row-odd"><td>Pending</td>
+<td>Pending Import</td>
+<td>Not used by KMS-generated keys, not supported</td>
+</tr>
+<tr class="row-even"><td>Pending</td>
+<td>Unavailable</td>
+<td>Not used by KMS-generated keys, not supported</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey.START_PARAMS">
+<code class="descname">START_PARAMS</code><em class="property"> = {'BypassPolicyLockoutSafetyCheck', 'CustomKeyStoreId', 'Description', 'Policy', 'Tags'}</em><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey.START_PARAMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>A set of the params used by the AWS API in the create_key operation. Used as a filter for
+the return of describe_key, in order to check if the state is equivalent to the definition.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.custom_config.key_name']</em><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd><p>The key used to uniquely identify the particle. User supplied.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey._get_alias">
+<code class="descname">_get_alias</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey._get_alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the alias record for the provided key_name in custom configuration.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><code class="code docutils literal notranslate"><span class="pre">AliasName</span></code> (str) -  The alias name (always starts with “alias/”)</li>
+<li><code class="code docutils literal notranslate"><span class="pre">AliasArn</span></code> (str) - The ARN for the key alias</li>
+<li><code class="code docutils literal notranslate"><span class="pre">TargetKeyId</span></code> (str) - The unique identifier for the key the alias is                    associated with</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><code class="code docutils literal notranslate"><span class="pre">{}</span></code> (dict) Containing nothing, or the keys above</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey._get_arn">
+<code class="descname">_get_arn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey._get_arn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ARN of the key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey._get_status">
+<code class="descname">_get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey._get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using the <code class="code docutils literal notranslate"><span class="pre">_get_alias()</span></code> method, this method will query for the a key that has the
+name specified, and return the result of the describe_key API call for that key. If DNE,
+returns empty dictionary.</p>
+<p>Note: The setting of the instance attribute <code class="code docutils literal notranslate"><span class="pre">_arn</span></code> is done in this method. It cannot
+be done in the start method, since the method may not be called if the key already exists.
+This method is called by sync_state, so it is always run.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict (‘KeyMetadata’ from describe_key API call, or empty if DNE)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required method: Used in methods in the base class(es).</p>
+<p>Sets the instance variable for unique_keys to the value of the class variable. Bad things
+happen if this method or both instantiations of the unique_keys variable do not exist.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required method: Used in methods in the base class(es).</p>
+<p>Creates a customer-managed key (CMK), or if the alias specified already exists, re-enables
+an existing one. The functionality needs to be mixed, since this function is called in both
+the Terminated –&gt; Running and the Stopped –&gt; Running state transitions. Return object is
+supplied for convenience, and is not used in any operations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict (response of boto3 kms create_key or enable_key, depending on transition type)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required method: Used in methods in the base class(es).</p>
+<p>This method will disable the key. Return object is supplied for convenience, and is not
+used in any operations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict (response of disable_key function)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required method: Used in methods in the base class(es).</p>
+<p>Schedules the deletion of the key. CMKs cannot be deleted immediately. Defaults to 30 days.
+Also deletes alias associated with key, so the particle can be re-used immediately, even if
+the key isn’t technically deleted yet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict (response of boto3 kms schedule_key_deletion)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required method: Used in methods in the base class(es).</p>
+<p>Currently does nothing. Needs to be implemented for updates that do not change state, such
+as modifying tags or description.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey._validate_config">
+<code class="descname">_validate_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey._validate_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom logic that that validates particle’s configurations</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey.flavor">
+<code class="descname">flavor</code><em class="property"> = 'kms_key'</em><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey.flavor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the particle type, used in the particle definition</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey.is_state_definition_equivalent">
+<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overridden method from base class (particle.py), responsible for testing if the particle
+has reached its desired state.</p>
+<p>Original method ran a diff_dict on the current_state_definition and the
+desired_state_definition (A.K.A. the resource from the particle configuration). Since the
+return of the describe_key operation is used to set the current_state_definition, and it
+would never contain the custom_config key, it was necessary to force a filtering before the
+comparison operation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey.state_lookup">
+<code class="descname">state_lookup</code><em class="property"> = {'Disabled': &lt;State.stopped: 2&gt;, 'Enabled': &lt;State.running: 1&gt;, 'PendingDeletion': &lt;State.terminated: 3&gt;, 'PendingImport': &lt;State.pending: 4&gt;, 'Unavailable': &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey.state_lookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapping of PCF states to the KMS states used by AWS. Used after describe calls to determine
+latest state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.kms.kms_key.KMSKey.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.kms.kms_key.KMSKey.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required method: Logic that updates the current state of the particle. Used in methods in
+the base class(es).</p>
+<p>Works by fetching the latest key information, then setting the current_state_definition
+equal to the result. Also updates particle state before exiting.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-pcf.particle.aws.kms">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pcf.particle.aws.kms" title="Permalink to this headline">¶</a></h2>
@@ -268,7 +549,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   

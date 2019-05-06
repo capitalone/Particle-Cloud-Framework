@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="pcf.particle.aws.cloudwatch package" href="pcf.particle.aws.cloudwatch.html" />
-    <link rel="prev" title="pcf.particle.aws.ec2.alb package" href="pcf.particle.aws.ec2.alb.html" /> 
+    <link rel="prev" title="pcf.particle.aws.batch package" href="pcf.particle.aws.batch.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,12 +86,16 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="particlelist.html">Particles</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="particlelist.html#aws-particles">AWS Particles</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#alb">ALB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#batch">Batch</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="particlelist.html#cloudfront">CloudFront</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">pcf.particle.aws.cloudfront package</a></li>
 </ul>
@@ -103,6 +107,7 @@
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#efs">EFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#elb">ELB</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#emr">EMR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#glacier">Glacier</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#iam">IAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#kms">KMS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#lambdafunction">LambdaFunction</a></li>
@@ -215,133 +220,8 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-pcf.particle.aws.cloudfront.cloudfront">
-<span id="pcf-particle-aws-cloudfront-cloudfront-module"></span><h2>pcf.particle.aws.cloudfront.cloudfront module<a class="headerlink" href="#module-pcf.particle.aws.cloudfront.cloudfront" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.cloudfront.cloudfront.</code><code class="descname">CloudFront</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
-<p>Particle that maps to AWS Cloud Front</p>
-<dl class="attribute">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront.START_PARAM_FILER">
-<code class="descname">START_PARAM_FILER</code><em class="property"> = {'Aliases', 'CacheBehaviors', 'CallerReference', 'Comment', 'CustomErrorResponses', 'DefaultCacheBehavior', 'DefaultRootObject', 'Enabled', 'HttpVersion', 'IsIPV6Enabled', 'Logging', 'OriginGroups', 'Origins', 'PriceClass', 'Restrictions', 'ViewerCertificate', 'WebACLId'}</em><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront.START_PARAM_FILER" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront.UNIQUE_KEYS">
-<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.Comment']</em><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront._set_unique_keys">
-<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront._set_unique_keys" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logic that sets keys from state definition that are used to uniquely identify the distribution</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront._start">
-<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront._start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates the distribution according to the particle definition and adds tags if necessary</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 response</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">hosted_zone</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront._stop">
-<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront._stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the distribution to disabled and waits until it is finished</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront._terminate">
-<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront._terminate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deletes the distribution using its id</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 response</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront._update">
-<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront._update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Not implemented</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront.equivalent_states">
-<code class="descname">equivalent_states</code><em class="property"> = {&lt;State.running: 1&gt;: 1, &lt;State.stopped: 2&gt;: 0, &lt;State.terminated: 3&gt;: 0}</em><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront.equivalent_states" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront.flavor">
-<code class="descname">flavor</code><em class="property"> = 'cloudfront'</em><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront.flavor" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront.get_status">
-<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront.get_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the current definition of the cloudfront distribution
-Must list all distributions and search for matching comment field, bc
-no filtering by name and getting tags require another api call</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">current definition of the distribution</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront.is_state_definition_equivalent">
-<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Since there is no update available, always return True
-:returns: True
-:rtype: bool</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront.is_state_equivalent">
-<code class="descname">is_state_equivalent</code><span class="sig-paren">(</span><em>state1</em>, <em>state2</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront.is_state_equivalent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determines if states are equivalent
-:param state1: first state
-:type state1: state
-:param state2: second state
-:type state2: state</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">whether the two states are equivalent</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pcf.particle.aws.cloudfront.cloudfront.CloudFront.sync_state">
-<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.cloudfront.cloudfront.CloudFront.sync_state" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sync state calls get_status to determines and set the state of the distribution</p>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="pcf-particle-aws-cloudfront-cloudfront-module">
+<h2>pcf.particle.aws.cloudfront.cloudfront module<a class="headerlink" href="#pcf-particle-aws-cloudfront-cloudfront-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-pcf.particle.aws.cloudfront">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pcf.particle.aws.cloudfront" title="Permalink to this headline">¶</a></h2>
@@ -359,7 +239,7 @@ no filtering by name and getting tags require another api call</p>
         <a href="pcf.particle.aws.cloudwatch.html" class="btn btn-neutral float-right" title="pcf.particle.aws.cloudwatch package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pcf.particle.aws.ec2.alb.html" class="btn btn-neutral" title="pcf.particle.aws.ec2.alb package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pcf.particle.aws.batch.html" class="btn btn-neutral" title="pcf.particle.aws.batch package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -393,7 +273,7 @@ no filtering by name and getting tags require another api call</p>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   

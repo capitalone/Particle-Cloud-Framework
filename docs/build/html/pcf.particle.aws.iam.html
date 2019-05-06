@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="pcf.particle.aws.kms package" href="pcf.particle.aws.kms.html" />
-    <link rel="prev" title="pcf.particle.aws.emr package" href="pcf.particle.aws.emr.html" /> 
+    <link rel="prev" title="pcf.particle.aws.glacier package" href="pcf.particle.aws.glacier.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,12 +86,16 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="particlelist.html">Particles</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="particlelist.html#aws-particles">AWS Particles</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#alb">ALB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#batch">Batch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#cloudfront">CloudFront</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#cloudwatch">Cloudwatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#dynamodb">DynamoDB</a></li>
@@ -100,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#efs">EFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#elb">ELB</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#emr">EMR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#glacier">Glacier</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="particlelist.html#iam">IAM</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">pcf.particle.aws.iam package</a></li>
 </ul>
@@ -219,7 +224,7 @@
 <span id="pcf-particle-aws-iam-iam-role-module"></span><h2>pcf.particle.aws.iam.iam_role module<a class="headerlink" href="#module-pcf.particle.aws.iam.iam_role" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.iam.iam_role.IAMRole">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.iam.iam_role.</code><code class="descname">IAMRole</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.iam.iam_role.IAMRole" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.iam.iam_role.</code><code class="descname">IAMRole</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.iam.iam_role.IAMRole" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s IAM Role.</p>
 <dl class="attribute">
@@ -369,7 +374,7 @@
 <span id="pcf-particle-aws-iam-iam-policy-module"></span><h2>pcf.particle.aws.iam.iam_policy module<a class="headerlink" href="#module-pcf.particle.aws.iam.iam_policy" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.iam.iam_policy.IAMPolicy">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.iam.iam_policy.</code><code class="descname">IAMPolicy</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.iam.iam_policy.IAMPolicy" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.iam.iam_policy.</code><code class="descname">IAMPolicy</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.iam.iam_policy.IAMPolicy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s IAM Policy.</p>
 <dl class="attribute">
@@ -479,7 +484,7 @@
         <a href="pcf.particle.aws.kms.html" class="btn btn-neutral float-right" title="pcf.particle.aws.kms package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pcf.particle.aws.emr.html" class="btn btn-neutral" title="pcf.particle.aws.emr package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pcf.particle.aws.glacier.html" class="btn btn-neutral" title="pcf.particle.aws.glacier package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -513,7 +518,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   

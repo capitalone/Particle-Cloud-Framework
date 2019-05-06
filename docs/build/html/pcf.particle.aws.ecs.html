@@ -86,6 +86,9 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul>
@@ -192,7 +195,7 @@
 <span id="pcf-particle-aws-ecs-ecs-cluster-module"></span><h2>pcf.particle.aws.ecs.ecs_cluster module<a class="headerlink" href="#module-pcf.particle.aws.ecs.ecs_cluster" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_cluster.</code><code class="descname">ECSCluster</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_cluster.</code><code class="descname">ECSCluster</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s ECS Cluster.</p>
 <dl class="attribute">
@@ -338,7 +341,7 @@ particle</p>
 <span id="pcf-particle-aws-ecs-ecs-instance-module"></span><h2>pcf.particle.aws.ecs.ecs_instance module<a class="headerlink" href="#module-pcf.particle.aws.ecs.ecs_instance" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_instance.</code><code class="descname">ECSInstance</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_instance.</code><code class="descname">ECSInstance</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s ECS Service. This particle requires task definition and ecs cluster
 particles as parents.</p>
@@ -532,7 +535,7 @@ attributes.</p>
 <span id="pcf-particle-aws-ecs-ecs-service-module"></span><h2>pcf.particle.aws.ecs.ecs_service module<a class="headerlink" href="#module-pcf.particle.aws.ecs.ecs_service" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.ecs.ecs_service.ECSService">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_service.</code><code class="descname">ECSService</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_service.</code><code class="descname">ECSService</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s ECS Service. This particle requires task definition and ecs cluster either
 to be included in the initial state definition or have those particles as parents.</p>
@@ -717,7 +720,7 @@ is terminated this also sets the desiredCount to 0 in desired_state_definition.<
 <span id="pcf-particle-aws-ecs-ecs-task-module"></span><h2>pcf.particle.aws.ecs.ecs_task module<a class="headerlink" href="#module-pcf.particle.aws.ecs.ecs_task" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.ecs.ecs_task.ECSTask">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_task.</code><code class="descname">ECSTask</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_task.</code><code class="descname">ECSTask</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s ECS Task. This particle requires task definition and ecs cluster either
 to be included in the initial state definition or have those particles as parents.</p>
@@ -935,14 +938,9 @@ there is more than one ecs_task_definition particle as a parent.</p>
 <span id="pcf-particle-aws-ecs-ecs-task-definition-module"></span><h2>pcf.particle.aws.ecs.ecs_task_definition module<a class="headerlink" href="#module-pcf.particle.aws.ecs.ecs_task_definition" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_task_definition.</code><code class="descname">ECSTaskDefinition</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_task_definition.</code><code class="descname">ECSTaskDefinition</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s ECS Task Definition.</p>
-<dl class="attribute">
-<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.START_PARAM_FILTER">
-<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'containerDefinitions', 'family', 'networkMode', 'placementConstraints', 'taskRoleArn', 'volumes'}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="attribute">
 <dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.UNIQUE_KEYS">
 <code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.containerDefinitions.name']</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
@@ -1119,7 +1117,7 @@ it to the family.</p>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   

@@ -86,6 +86,9 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul>
@@ -194,7 +197,7 @@
 <span id="pcf-particle-aws-ec2-autoscaling-auto-scaling-group-module"></span><h2>pcf.particle.aws.ec2.autoscaling.auto_scaling_group module<a class="headerlink" href="#module-pcf.particle.aws.ec2.autoscaling.auto_scaling_group" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.ec2.autoscaling.auto_scaling_group.</code><code class="descname">AutoScalingGroup</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ec2.autoscaling.auto_scaling_group.</code><code class="descname">AutoScalingGroup</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.auto_scaling_group.AutoScalingGroup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s Auto Scaling group. This particle requires one of the following: a launch configuration,
 a launch template, or an EC2 instance to be included in the initial state definition or have those particles as a parent.</p>
@@ -320,7 +323,7 @@ in the current state.</p>
 <span id="pcf-particle-aws-ec2-autoscaling-launch-configuration-module"></span><h2>pcf.particle.aws.ec2.autoscaling.launch_configuration module<a class="headerlink" href="#module-pcf.particle.aws.ec2.autoscaling.launch_configuration" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.ec2.autoscaling.launch_configuration.LaunchConfiguration">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.ec2.autoscaling.launch_configuration.</code><code class="descname">LaunchConfiguration</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.launch_configuration.LaunchConfiguration" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ec2.autoscaling.launch_configuration.</code><code class="descname">LaunchConfiguration</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.autoscaling.launch_configuration.LaunchConfiguration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s Launch Configuration.</p>
 <dl class="attribute">
@@ -457,7 +460,7 @@ in the current state.</p>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   

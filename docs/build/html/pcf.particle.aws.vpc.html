@@ -86,12 +86,16 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="particlelist.html">Particles</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="particlelist.html#aws-particles">AWS Particles</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#alb">ALB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#batch">Batch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#cloudfront">CloudFront</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#cloudwatch">Cloudwatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#dynamodb">DynamoDB</a></li>
@@ -100,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#efs">EFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#elb">ELB</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#emr">EMR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#glacier">Glacier</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#iam">IAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#kms">KMS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#lambdafunction">LambdaFunction</a></li>
@@ -380,14 +385,150 @@
 </dd></dl>
 
 </div>
-<div class="section" id="pcf-particle-aws-vpc-security-group-module">
-<h2>pcf.particle.aws.vpc.security_group module<a class="headerlink" href="#pcf-particle-aws-vpc-security-group-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pcf.particle.aws.vpc.security_group">
+<span id="pcf-particle-aws-vpc-security-group-module"></span><h2>pcf.particle.aws.vpc.security_group module<a class="headerlink" href="#module-pcf.particle.aws.vpc.security_group" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.vpc.security_group.</code><code class="descname">SecurityGroup</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s Security Groups</p>
+<dl class="attribute">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup.DEFINITION_FILTER">
+<code class="descname">DEFINITION_FILTER</code><em class="property"> = {'IpPermissions', 'IpPermissionsEgress'}</em><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup.DEFINITION_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup.START_PARAMS">
+<code class="descname">START_PARAMS</code><em class="property"> = {'Description', 'DryRun', 'GroupName', 'VpcId'}</em><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup.START_PARAMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.GroupName']</em><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that sets keys from state definition that are used to uniquely identify the security group</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup._set_vpc_id">
+<code class="descname">_set_vpc_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup._set_vpc_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks to see if user specified a vpc_id in the particle definition.
+If not the vpc_id is retrieved from it’s parent using the get_vpc_id util</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates security group and adds the tags and rules
+:returns: boto3 create_security_group response (groud id)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls _terminate()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 delete_security_group()
+:returns: boto3 delete_security_group() response</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>removes and adds security group rules based on the new desired definition using boto3 revoke and authorize</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup.equivalent_states">
+<code class="descname">equivalent_states</code><em class="property"> = {&lt;State.running: 1&gt;: 1, &lt;State.stopped: 2&gt;: 0, &lt;State.terminated: 3&gt;: 0}</em><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup.equivalent_states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup.flavor">
+<code class="descname">flavor</code><em class="property"> = 'security_group'</em><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup.get_current_definition">
+<code class="descname">get_current_definition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup.get_current_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 describe_security_groups to return current definition.
+Returns missing if the security group doesn’t exist
+:returns: status or None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup.is_state_definition_equivalent">
+<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares the desired state and current state definition and returns whether they are equivalent
+Only considers fields defined in the desired definition
+All fields not specified are left alone in the current state (excluding rules)
+Both rules lists must be defined even when empty</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup.is_state_equivalent">
+<code class="descname">is_state_equivalent</code><span class="sig-paren">(</span><em>state1</em>, <em>state2</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup.is_state_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Looks up state equivalents and checks if the two inputs map to the same state</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup.security_group_resource">
+<code class="descname">security_group_resource</code><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup.security_group_resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>The security group resource. Creates Boto Security Group resource for the given group id
+:returns: boto security group resource</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup.state_lookup">
+<code class="descname">state_lookup</code><em class="property"> = {'available': &lt;State.running: 1&gt;, 'missing': &lt;State.terminated: 3&gt;, 'pending': &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup.state_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.vpc.security_group.SecurityGroup.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.security_group.SecurityGroup.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses get_current_definition to determine whether the group exists or not and sets the state</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">void</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-pcf.particle.aws.vpc.vpc_instance">
 <span id="pcf-particle-aws-vpc-vpc-module"></span><h2>pcf.particle.aws.vpc.vpc module<a class="headerlink" href="#module-pcf.particle.aws.vpc.vpc_instance" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.vpc.vpc_instance.VPCInstance">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.vpc.vpc_instance.</code><code class="descname">VPCInstance</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.vpc_instance.VPCInstance" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.vpc.vpc_instance.</code><code class="descname">VPCInstance</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.vpc.vpc_instance.VPCInstance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s VPC resource.</p>
 <dl class="attribute">
@@ -598,7 +739,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   

@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PCF Philosophy &mdash; Particle Cloud Framework 0.4.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Framework Overview" href="framework.html" />
+    <link rel="prev" title="User Quickstart" href="quickstart.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">User Quickstart</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PCF Philosophy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reduced-infrastructure-operations-burden">Reduced Infrastructure Operations Burden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#customizable">Customizable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#standardize-cloud-resources">Standardize Cloud resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sharable">Sharable</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Base Classes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>PCF Philosophy</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sections/philosophy.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pcf-philosophy">
+<h1>PCF Philosophy<a class="headerlink" href="#pcf-philosophy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="reduced-infrastructure-operations-burden">
+<h2>Reduced Infrastructure Operations Burden<a class="headerlink" href="#reduced-infrastructure-operations-burden" title="Permalink to this headline">¶</a></h2>
+<p>A core principle of PCF is to automate as much of the operations burden as possible. This is done by writing out
+the entire infrastructure as code and tying this code the application. Therefore changes can easily be tested before deploying
+or moving to another environment. Furthermore, if the application unexpectedly dies it is easy to revert back to a working version
+of not only the application but the infrastructure as well. See the section on Just in Time Infrastructure for more in depth
+explication.</p>
+</div>
+<div class="section" id="customizable">
+<h2>Customizable<a class="headerlink" href="#customizable" title="Permalink to this headline">¶</a></h2>
+<p>There are other IAC options out there, but many times users are limited by what they can do and any customization requires
+digging and editing deep in the source code. We built PCF in python with the idea of easily customizing and overriding any functions
+allowing the user to do complex and unique actions if they would like.</p>
+</div>
+<div class="section" id="standardize-cloud-resources">
+<h2>Standardize Cloud resources<a class="headerlink" href="#standardize-cloud-resources" title="Permalink to this headline">¶</a></h2>
+<p>PCF was built with the idea that all cloud resources follow the same basic lifecycles. This makes it much easier to manage
+complex deployments with resources that may have many different dependencies. We treat dependencies as a graph ensuring resources
+are both deployed and terminated in the correct sequence.</p>
+</div>
+<div class="section" id="sharable">
+<h2>Sharable<a class="headerlink" href="#sharable" title="Permalink to this headline">¶</a></h2>
+<p>There are many examples written in other IAC options, but often times duplicating the examples can be difficult and requires
+time to find all the modules and dependencies. We build PCF in a way to make it very easy to share and even expand on what other
+users have built.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="framework.html" class="btn btn-neutral float-right" title="Framework Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="quickstart.html" class="btn btn-neutral" title="User Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

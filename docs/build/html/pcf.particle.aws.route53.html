@@ -86,6 +86,9 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul>
@@ -188,14 +191,115 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="pcf-particle-aws-route53-route53-hosted-zone-module">
-<h2>pcf.particle.aws.route53.route53_hosted_zone module<a class="headerlink" href="#pcf-particle-aws-route53-route53-hosted-zone-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pcf.particle.aws.route53.hosted_zone">
+<span id="pcf-particle-aws-route53-route53-hosted-zone-module"></span><h2>pcf.particle.aws.route53.route53_hosted_zone module<a class="headerlink" href="#module-pcf.particle.aws.route53.hosted_zone" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.route53.hosted_zone.</code><code class="descname">HostedZone</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>Particle that maps to AWS hosted zone</p>
+<dl class="attribute">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone.START_PARAM_FILER">
+<code class="descname">START_PARAM_FILER</code><em class="property"> = {'CallerReference', 'DelegationSetId', 'HostedZoneConfig', 'Name', 'VPC'}</em><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone.START_PARAM_FILER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.Name']</em><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that sets keys from state definition that are used to uniquely identify the Route53 Hosted Zone</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Route53 Hosted Zone using boto3 create_hosted_zone
+:returns: boto3 response
+:rtype: hosted_zone</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls _terminate</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes a Route53 Hosted Zone using boto3 delete_hosted_zone
+:returns: boto3 response</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes existing tags and adds new tags using boto3 change_tags_for_resource and list_tags_for_resource</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone.equivalent_states">
+<code class="descname">equivalent_states</code><em class="property"> = {&lt;State.running: 1&gt;: 1, &lt;State.stopped: 2&gt;: 0, &lt;State.terminated: 3&gt;: 0}</em><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone.equivalent_states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone.flavor">
+<code class="descname">flavor</code><em class="property"> = 'route53_hosted_zone'</em><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current definition of the route 53 hosted zone
+:returns: current definition of the hosted zone</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone.is_state_definition_equivalent">
+<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is only concerned with changes to tags since there is a separate particle for record sets
+:returns: True
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone.is_state_equivalent">
+<code class="descname">is_state_equivalent</code><span class="sig-paren">(</span><em>state1</em>, <em>state2</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone.is_state_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if states are equivalent
+:param state1: first state
+:type state1: state
+:param state2: second state
+:type state2: state</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">whether the two states are equivalent</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.route53.hosted_zone.HostedZone.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.hosted_zone.HostedZone.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sync state calls get_status to determines and set the state of the hosted zone</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-pcf.particle.aws.route53.route53_record">
 <span id="pcf-particle-aws-route53-route53-record-module"></span><h2>pcf.particle.aws.route53.route53_record module<a class="headerlink" href="#module-pcf.particle.aws.route53.route53_record" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.route53.route53_record.Route53Record">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.route53.route53_record.</code><code class="descname">Route53Record</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.route53_record.Route53Record" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.route53.route53_record.</code><code class="descname">Route53Record</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.route53.route53_record.Route53Record" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>Particle that maps to AWS route53 record set. Before using this particle make sure that you have created a hosted zone in AWS.</p>
 <p>Required Parameters:</p>
@@ -409,7 +513,7 @@ in the current state.</p>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   

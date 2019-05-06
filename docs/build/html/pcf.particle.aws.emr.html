@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pcf.particle.aws.iam package" href="pcf.particle.aws.iam.html" />
+    <link rel="next" title="pcf.particle.aws.glacier package" href="pcf.particle.aws.glacier.html" />
     <link rel="prev" title="pcf.particle.aws.efs package" href="pcf.particle.aws.efs.html" /> 
 
   
@@ -86,12 +86,16 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="particlelist.html">Particles</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="particlelist.html#aws-particles">AWS Particles</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#alb">ALB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#batch">Batch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#cloudfront">CloudFront</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#cloudwatch">Cloudwatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#dynamodb">DynamoDB</a></li>
@@ -103,6 +107,7 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">pcf.particle.aws.emr package</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="particlelist.html#glacier">Glacier</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#iam">IAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#kms">KMS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particlelist.html#lambdafunction">LambdaFunction</a></li>
@@ -219,7 +224,7 @@
 <span id="pcf-particle-aws-emr-emr-cluster-module"></span><h2>pcf.particle.aws.emr.emr_cluster module<a class="headerlink" href="#module-pcf.particle.aws.emr.emr_cluster" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pcf.particle.aws.emr.emr_cluster.EMRCluster">
-<em class="property">class </em><code class="descclassname">pcf.particle.aws.emr.emr_cluster.</code><code class="descname">EMRCluster</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.emr.emr_cluster.EMRCluster" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.emr.emr_cluster.</code><code class="descname">EMRCluster</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.emr.emr_cluster.EMRCluster" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
 <p>This is the implementation of Amazon’s ECS Cluster.</p>
 <dl class="attribute">
@@ -385,7 +390,7 @@ particle</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pcf.particle.aws.iam.html" class="btn btn-neutral float-right" title="pcf.particle.aws.iam package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pcf.particle.aws.glacier.html" class="btn btn-neutral float-right" title="pcf.particle.aws.glacier package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="pcf.particle.aws.efs.html" class="btn btn-neutral" title="pcf.particle.aws.efs package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -422,7 +427,7 @@ particle</p>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   
