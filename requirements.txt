@@ -3,6 +3,7 @@ boto==2.48.0
 boto3==1.9.76
 Jinja2==2.10.1
 google-cloud-storage==1.10.0
+google-compute-engine==2.8.13
 google-api-python-client==1.7.4
 commentjson==0.7.1
 botocore==1.12.72
