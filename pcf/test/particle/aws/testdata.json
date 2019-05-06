@@ -36,7 +36,7 @@
   "sqs-apply": [
     {
       "pcf_name": "pcf-queue",
-      "flavor": "sqs",
+      "flavor": "sqs_queue",
       "aws_resource": {
         "QueueName": "test_SQS_queue.fifo",
         "Attributes": {
@@ -134,11 +134,7 @@
         "Description": "pcf cloudwatch events"
       }
     },
-    {
-      "aws_resource": {
-        "State": "DISABLED"
-      }
-    },
+    {},
     [
       "mock_events"
     ]
@@ -327,7 +323,7 @@
     "efs-apply": [
     {
       "pcf_name": "pcf_efs",
-      "flavor": "efs",
+      "flavor": "efs_instance",
       "aws_resource": {
         "custom_config": {
           "instance_name": "efs-instance"
@@ -486,6 +482,52 @@
     [
       "mock_ec2"
     ]
+  ],
+  "batch_compute_environment-apply": [
+    {
+      "pcf_name": "pcf_batch_compute_environment",
+      "flavor": "batch_compute_environment",
+      "aws_resource": {
+        "computeEnvironmentName": "test",
+        "type": "UNMANAGED",
+        "serviceRole": "AWSBatchServiceRole"
+      }
+    },
+    {
+      "aws_resource": {
+        "state": "DISABLED"
+      }
+    },
+    [
+      "placebo",
+      "batch/replay"
+    ]
+  ],
+  "batch_job_queue-apply": [
+    {
+      "pcf_name": "pcf_batch_job_queue",
+      "flavor": "batch_job_queue",
+        "aws_resource": {
+        "jobQueueName": "test",
+        "state": "ENABLED",
+        "priority": 1,
+        "computeEnvironmentOrder": [
+          {
+            "order": 1,
+            "computeEnvironment": "arn:aws:batch:us-east-1:337932058722:compute-environment/test"
+
+          }
+        ]
+      }
+    },
+      {
+      "aws_resource": {
+        "state": "DISABLED"
+      }
+    },
+    [
+    "placebo",
+    "batch/replay"
+    ]
   ]
 }
-

@@ -3,7 +3,7 @@ from pcf.particle.aws.glacier.glacier_vault import GlacierVault
 # Edit example json to work in your account
 glacier_example_json = {
     "pcf_name": "pcf_glacier",
-    "flavor": "glacier",
+    "flavor": "glacier_vault",
     "aws_resource": {
         "vaultName": "pcf_test_glacier", # Required
         #"accountId": "" # Optional - defaults to "-"

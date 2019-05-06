@@ -21,7 +21,7 @@ import os
 class TestGlacierVault:
     particle_definition = {
         "pcf_name": "pcf_glacier",
-        "flavor": "glacier",
+        "flavor": "glacier_vault",
         "aws_resource": {
             "vaultName": "pcf_test_glacier",  # Required
             "custom_config": {
