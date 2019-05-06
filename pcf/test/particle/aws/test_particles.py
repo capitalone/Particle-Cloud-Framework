@@ -19,7 +19,7 @@ from pcf.particle.aws.ec2.autoscaling.launch_configuration import LaunchConfigur
 from pcf.particle.aws.ec2.elb.elb import ElasticLoadBalancing
 from pcf.particle.aws.ecs.ecs_cluster import ECSCluster
 from pcf.particle.aws.ecs.ecs_task_definition import ECSTaskDefinition
-from pcf.particle.aws.efs.efs_instance import EFS
+from pcf.particle.aws.efs.efs_instance import EFSInstance
 from pcf.particle.aws.emr.emr_cluster import EMRCluster
 from pcf.particle.aws.kms.kms_key import KMSKey
 from pcf.particle.aws.s3.s3_bucket import S3Bucket
@@ -53,7 +53,7 @@ def test_apply(definition, changes, test_type):
         # create
         particle = particle_class(definition, session)
         particle.set_desired_state(State.running)
-        particle.apply(sync=False)
+        particle.apply(sync=True)
 
         assert particle.get_state() == State.running
         # print(particle.current_state_definition, particle.desired_state_definition)
@@ -67,10 +67,10 @@ def test_apply(definition, changes, test_type):
                 updated_definition["aws_resource"]["tags"] = changes.get("aws_resource", {}).get("tags")
             particle = particle_class(updated_definition, session)
             particle.set_desired_state(State.running)
-            particle.apply(sync=False)
+            particle.apply(sync=True)
             assert particle.is_state_definition_equivalent()
         # terminate
         particle.set_desired_state(State.terminated)
-        particle.apply(sync=False)
+        particle.apply(sync=True)
 
         assert particle.get_state() == State.terminated

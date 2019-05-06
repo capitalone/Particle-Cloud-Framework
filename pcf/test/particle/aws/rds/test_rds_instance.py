@@ -23,7 +23,7 @@ from pcf.util import pcf_util
 class TestRDSInstance():
     particle_definition = {
         "pcf_name": "rds_test",
-        "flavor": "rds",
+        "flavor": "rds_instance",
         "aws_resource": {
             "DBInstanceIdentifier": "test-instance",
             "DBInstanceClass": "db.m3.medium",
@@ -44,7 +44,7 @@ class TestRDSInstance():
 
     incorrect_particle_definition = {
         "pcf_name": "rds_test",
-        "flavor": "rds",
+        "flavor": "rds_instance",
     }
 
 

@@ -20,12 +20,12 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-class EFS(AWSResource):
+class EFSInstance(AWSResource):
     """
     This is the implementation of Amazon's Elastic File System.
     """
 
-    flavor = "efs"
+    flavor = "efs_instance"
 
     state_lookup = {
         "creating": State.pending,
@@ -62,7 +62,7 @@ class EFS(AWSResource):
         """
         Logic that sets keys from state definition that are used to uniquely identify the S3 Bucket
         """
-        self.unique_keys = EFS.UNIQUE_KEYS
+        self.unique_keys = EFSInstance.UNIQUE_KEYS
 
     def get_status(self):
         """
@@ -109,7 +109,7 @@ class EFS(AWSResource):
             self.current_state_definition,
             self.get_desired_state_definition()
         )
-        create_definition = pcf_util.param_filter(new_desired_state_def, EFS.START_PARAM_FILTER)
+        create_definition = pcf_util.param_filter(new_desired_state_def, EFSInstance.START_PARAM_FILTER)
 
         res = self.client.create_file_system(**create_definition)
         self.client.create_tags(FileSystemId=res['FileSystemId'], Tags=[{'Key': 'Name', 'Value': self.instance_name}])
@@ -133,7 +133,7 @@ class EFS(AWSResource):
             bool
         """
         self.get_state()
-        desired_definition = pcf_util.param_filter(self.desired_state_definition, EFS.RETURN_PARAM_FILTER)
+        desired_definition = pcf_util.param_filter(self.desired_state_definition, EFSInstance.RETURN_PARAM_FILTER)
         new_desired_state_def, diff_dict = pcf_util.update_dict(self.current_state_definition, desired_definition)
         return diff_dict == {}
 
