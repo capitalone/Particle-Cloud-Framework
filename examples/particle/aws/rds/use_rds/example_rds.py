@@ -3,7 +3,7 @@ from pcf.core import State
 
 particle_definition = {
     "pcf_name": "rds_test", # Required
-    "flavor": "rds", # Required
+    "flavor": "rds_instance", # Required
     "aws_resource": {
         # Refer to https://boto3.readthedocs.io/en/latest/reference/services/rds.html#RDS.Client.create_db_instance for a full list of parameters
         "DBInstanceIdentifier": "test-instance", # Required

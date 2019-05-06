@@ -38,8 +38,8 @@ class CloudWatchLog(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.logGroupName"]
 
-    def __init__(self, particle_definition):
-        super(CloudWatchLog, self).__init__(particle_definition=particle_definition, resource_name="logs")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="logs", session=session)
         self.group_name = self.desired_state_definition["logGroupName"]
         self._set_unique_keys()
 

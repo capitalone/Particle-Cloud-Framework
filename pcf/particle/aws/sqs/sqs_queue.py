@@ -23,7 +23,7 @@ class SQSQueue(AWSResource):
     """
     This is the implementation of Amazon's SQS.
     """
-    flavor = "sqs"
+    flavor = "sqs_queue"
 
     START_PARAM_FILTER = {
         "QueueName",  # Required
