@@ -68,11 +68,8 @@ class AutoScalingGroup(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.AutoScalingGroupName"]
 
-    def __init__(self, particle_definition):
-        super(AutoScalingGroup, self).__init__(
-            particle_definition=particle_definition,
-            resource_name="autoscaling",
-        )
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="autoscaling", session=session)
         self.asg_name = self.desired_state_definition["AutoScalingGroupName"]
 
     def _set_unique_keys(self):

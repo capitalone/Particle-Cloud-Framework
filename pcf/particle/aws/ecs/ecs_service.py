@@ -68,8 +68,8 @@ class ECSService(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.serviceName"]
 
-    def __init__(self, particle_definition):
-        super(ECSService, self).__init__(particle_definition, "ecs")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition, "ecs", session=session)
 
         self._set_unique_keys()
 

@@ -1,0 +1,21 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "42e5b516-6830-11e9-bc72-ebbab9bb98ff",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "date": "Fri, 26 Apr 2019 14:33:30 GMT",
+                "content-type": "application/json",
+                "content-length": "121",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "42e5b516-6830-11e9-bc72-ebbab9bb98ff",
+                "x-amz-apigw-id": "YwB9FGG7IAMF-oQ=",
+                "x-amzn-trace-id": "Root=1-5cc316ba-0eee37f8fe869e84e8d711e2;Sampled=0"
+            },
+            "RetryAttempts": 0
+        },
+        "computeEnvironmentName": "test",
+        "computeEnvironmentArn": "arn:aws:batch:us-east-1:337932058722:compute-environment/test"
+    }
+}
