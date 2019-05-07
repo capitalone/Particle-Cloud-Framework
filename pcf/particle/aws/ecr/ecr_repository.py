@@ -87,15 +87,9 @@ class ECRRepository(AWSResource):
         """
         return self._terminate()
 
-    def _update(self):
-        """
-        No updates available
-        """
-        raise NotImplemented
-
     def sync_state(self):
         """
-        Calls describe_repositories() and list_tags_for_resource to get state and state definitions
+        Calls describe_repositories() and list_tags_for_resource to get state and state definitions of the ECR Particle
         """
         try:
             ecrs = self.client.describe_repositories(repositoryNames=[self.repositoryName])
@@ -112,6 +106,8 @@ class ECRRepository(AWSResource):
 
     def is_state_equivalent(self, state1, state2):
         """
+        Compare current and desired state
+
         Args:
             state1 (State):
             state2 (State):
@@ -123,15 +119,12 @@ class ECRRepository(AWSResource):
 
     def is_state_definition_equivalent(self):
         """
-        Compared the desired state and current state definition
+        Compare current and desired state definition
 
         Returns:
             bool
         """
         self.sync_state()
-        # use filters to remove any extra information
-        #self.current_state_definition = pcf_util.param_filter(self.current_state_definition, ECRRepository.DEFINITION_FILTER)
-        #self.desired_state_definition = pcf_util.param_filter(self.desired_state_definition, ECRRepository.DEFINITION_FILTER)
         diff_dict = pcf_util.diff_dict(pcf_util.param_filter(self.current_state_definition, ECRRepository.DEFINITION_FILTER),
                                        pcf_util.param_filter(self.desired_state_definition, ECRRepository.DEFINITION_FILTER))
         return diff_dict == {}
@@ -139,7 +132,7 @@ class ECRRepository(AWSResource):
 
     def _update(self):
         """
-        Updates any changed tags
+        Updates any tag change
         """
         tags = self.current_state_definition.get("tags")
         tag_keys = []
