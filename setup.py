@@ -60,4 +60,10 @@ setup(
     ],
     package_data={'pcf': glob('**/*.j2', recursive=True)},
     include_package_data=True,
+    classifiers=[
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "License :: OSI Approved :: Apache Software License",
+        "Operating System :: OS Independent",
+    ],
 )
