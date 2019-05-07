@@ -37,7 +37,14 @@ setup(
         pcf=pcf.cli.cli:cli
     ''',
     install_requires=[
-        "azure==4.0.0",
+        "azure-storage-common==1.4.0",
+        "azure-storage-blob==1.5.0",
+        "azure-common==1.1.20",
+        "azure-mgmt-compute==4.6.2",
+        "azure-mgmt-resource==2.1.0",
+        "azure-mgmt-network==2.7.0",
+        "azure-mgmt-storage==3.3.0",
+        "azure-cli-core==2.0.57",
         "boto==2.48.0",
         "boto3==1.9.76",
         "Jinja2==2.10.1",
