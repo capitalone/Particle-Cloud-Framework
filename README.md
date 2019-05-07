@@ -1,3 +1,10 @@
+[![Build Status](https://img.shields.io/travis/capitalone/Particle-Cloud-Framework/master.svg?label=master)](https://travis-ci.org/capitalone/Particle-Cloud-Framework)
+[![Build Status](https://img.shields.io/travis/capitalone/Particle-Cloud-Framework/develop.svg?label=develop)](https://travis-ci.org/capitalone/Particle-Cloud-Framework)
+[![Licence](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![PyPi Version](https://img.shields.io/pypi/v/pcf.svg?maxAge=2592000)](https://pypi.org/project/pcf/)
+[![Supported Python Versions](https://img.shields.io/pypi/pyversions/pcf.svg?label=Python)](https://pypi.org/project/pcf/)
+
+
 # Particle Cloud Framework
 
 Particle Cloud Framework is a cloud resource provisioning framework that is fully customizable and extensible, callable by code, and does not require manually maintaining states of resources. Particle Cloud Framework enables the standardization of modeling hierarchical cloud infrastructure, automating deployments, and managing lifecycles of cloud resources.
