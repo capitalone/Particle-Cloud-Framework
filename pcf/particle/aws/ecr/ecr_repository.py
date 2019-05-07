@@ -68,7 +68,7 @@ class ECRRepository(AWSResource):
         Returns:
             boto3 delete_repository() response
         """
-        resp = self.client.delete_repository(repositoryNames=self.repositoryName)
+        resp = self.client.delete_repository(repositoryName =self.repositoryName)
         return resp
 
     def _start(self):
