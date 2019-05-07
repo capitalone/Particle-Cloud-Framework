@@ -130,12 +130,23 @@ class ECRRepository(AWSResource):
         """
         self.sync_state()
         # use filters to remove any extra information
-        self.current_state_definition = pcf_util.param_filter(self.current_state_definition, ECRRepository.DEFINITION_FILTER)
-        self.desired_state_definition = pcf_util.param_filter(self.desired_state_definition, ECRRepository.DEFINITION_FILTER)
-        diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
+        #self.current_state_definition = pcf_util.param_filter(self.current_state_definition, ECRRepository.DEFINITION_FILTER)
+        #self.desired_state_definition = pcf_util.param_filter(self.desired_state_definition, ECRRepository.DEFINITION_FILTER)
+        diff_dict = pcf_util.diff_dict(pcf_util.param_filter(self.current_state_definition, ECRRepository.DEFINITION_FILTER),
+                                       pcf_util.param_filter(self.desired_state_definition, ECRRepository.DEFINITION_FILTER))
         return diff_dict == {}
 
 
     def _update(self):
-        # Coming back to this
-        return
+        """
+        Updates any changed tags
+        """
+        tags = self.current_state_definition.get("tags")
+        tag_keys = []
+        for tag in tags:
+            tag_keys.append(tag.get("Key"))
+
+        self.client.untag_resource(resourceArn=self.current_state_definition.get("repositoryArn"),
+                                       tagKeys=tag_keys)
+        self.client.tag_resource(resourceArn=self.current_state_definition.get("repositoryArn"),
+                                       tags=self.desired_state_definition.get("tags"))

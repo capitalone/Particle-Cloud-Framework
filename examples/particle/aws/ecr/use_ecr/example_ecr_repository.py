@@ -11,8 +11,12 @@ particle_definition = {
         "repositoryName" : "gg-ecr",
         "tags": [
             {
-                'Key': 'lolcat',
-                'Value': 'ggwp'
+                'Key': 'lol',
+                'Value': 'cat'
+            },
+            {
+                'Key': 'gg',
+                'Value': 'wp'
             }
         ]
     }
@@ -22,6 +26,14 @@ particle_definition = {
 ecr_particle = ECRRepository(particle_definition)
 
 # example start
+ecr_particle.set_desired_state(State.running)
+ecr_particle.apply()
+
+print(ecr_particle.get_state())
+print(ecr_particle.get_current_state_definition())
+
+# example update
+particle_definition["aws_resource"]["tags"] = [{'Key': 'lol', 'Value': 'dog'}]
 ecr_particle.set_desired_state(State.running)
 ecr_particle.apply()
 
