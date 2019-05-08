@@ -1,5 +1,8 @@
 .PHONY: docs
 
+# Makefile is not used in CICD. Kept around for legacy compatibility
+# See tasks.py to edit the CICD pipeline
+
 docs:
 	cd docs; make html
 

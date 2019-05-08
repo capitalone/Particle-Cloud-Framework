@@ -1,0 +1,26 @@
+language: python
+sudo: false
+
+matrix:
+  fast_finish: true
+  include:
+    - python: 3.5
+    - python: 3.6
+    - python: 3.7
+      dist: xenial
+      sudo: true
+  allow_failures:
+    - python: 3.5
+    - python: 3.7
+
+before_install:
+  - export AWS_SECRET_ACCESS_KEY=foobar_secret
+  - export AWS_ACCESS_KEY_ID=foobar_key
+
+install:
+  - pip install invoke
+  - pip install -r requirements.txt -r requirements-dev.txt
+
+script:
+  - invoke test
+  - invoke build
