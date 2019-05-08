@@ -13,7 +13,17 @@
             ]
         }
     },
-    {},
+    {
+        "aws_resource": {
+            "repositoryName": "gg-ecr",
+            "tags": [
+                {
+                    "Key": "gg",
+                    "Value": "wp"
+                }
+            ]
+        }
+    },
     [
       "mock_ecr"
     ]
