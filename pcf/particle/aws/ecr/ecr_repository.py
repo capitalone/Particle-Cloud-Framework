@@ -15,7 +15,7 @@
 from pcf.core import State
 from pcf.util import pcf_util
 from pcf.core.aws_resource import AWSResource
-from pcf.core.pcf_exceptions import *
+from pcf.core.pcf_exceptions import TooManyResourceException
 import logging
 
 logger = logging.getLogger(__name__)
@@ -42,9 +42,6 @@ class ECRRepository(AWSResource):
     DEFINITION_FILTER = {
         'repositoryName',
         'tags'
-    }
-
-    RETURN_PARAM_FILTER = {
     }
 
     UNIQUE_KEYS = ["aws_resource.repositoryName"]

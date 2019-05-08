@@ -9,23 +9,6 @@ from pcf.core import State
 from pcf.core import particle_flavor_scanner
 from contextlib import ExitStack
 
-from pcf.particle.aws.route53 import hosted_zone
-from pcf.particle.aws.sqs.sqs_queue import SQSQueue
-from pcf.particle.aws.cloudfront.cloudfront_distribution import CloudFrontDistribution
-from pcf.particle.aws.cloudwatch.cloudwatch_event import CloudWatchEvent
-from pcf.particle.aws.cloudwatch.cloudwatch_log import CloudWatchLog
-from pcf.particle.aws.dynamodb.dynamodb_table import DynamoDB
-from pcf.particle.aws.ec2.autoscaling.launch_configuration import LaunchConfiguration
-from pcf.particle.aws.ec2.elb.elb import ElasticLoadBalancing
-from pcf.particle.aws.ecs.ecs_cluster import ECSCluster
-from pcf.particle.aws.ecs.ecs_task_definition import ECSTaskDefinition
-from pcf.particle.aws.efs.efs_instance import EFSInstance
-from pcf.particle.aws.emr.emr_cluster import EMRCluster
-from pcf.particle.aws.kms.kms_key import KMSKey
-from pcf.particle.aws.s3.s3_bucket import S3Bucket
-from pcf.particle.aws.vpc.vpc_instance import VPCInstance
-from pcf.particle.aws.ecr.ecr_repository import ECRRepository
-
 directory = os.path.dirname(__file__)
 file = os.path.join(directory, 'testdata.json')
 with open(file) as f:

@@ -1,4 +1,23 @@
 {
+  "ecr-repository-apply": [
+    {
+        "pcf_name": "pcf_ecr_repository",
+        "flavor": "ecr_repository",
+        "aws_resource": {
+            "repositoryName": "gg-ecr",
+            "tags": [
+                {
+                    "Key": "lol",
+                    "Value": "cat"
+                }
+            ]
+        }
+    },
+    {},
+    [
+      "mock_ecr"
+    ]
+  ],
   "hosted-zone-apply": [
     {
       "pcf_name": "pcf_hosted_zone",
