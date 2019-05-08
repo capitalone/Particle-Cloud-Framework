@@ -25,7 +25,7 @@ def read(fname):
 
 setup(
     name='pcf',
-    version=VERSION,
+    version=os.environ.get('PCF_TAG', VERSION),
     description='pcf',
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
@@ -41,9 +41,11 @@ setup(
         "boto==2.48.0",
         "boto3==1.9.76",
         "Jinja2==2.10.1",
+        "google-compute-engine==2.8.13"
         "google-cloud-storage==1.10.0",
         "google-api-python-client==1.7.4",
         "commentjson==0.7.1",
+        "botocore==1.12.72",
         "deepdiff==3.3.0",
         "click==7.0",
         "python-Levenshtein==0.12.0",

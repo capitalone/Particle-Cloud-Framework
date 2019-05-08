@@ -94,6 +94,33 @@ Redefining the Relationship Between Applications and Cloud Infrastructure*](http
 
 [Quasiparticles](https://capitalone.github.io/Particle-Cloud-Framework/docs/build/html/quasiparticlelist.html)
 
+## Development Setup
+To develop locally, clone this project and ensure you have the Invoke package installed globally via `pip` or `conda`:
+```
+$ pip install invoke
+```
+
+or
+
+```
+$ conda install invoke
+```
+
+Then you can use the project management tasks defined in `tasks.py` via the `invoke` CLI:
+```
+$ invoke --list
+Available tasks:
+
+  build      Build PCF with the PCF_TAG value given or the VERSION in pcf/__init__.py
+  docs-add   Run sphinx-apidoc on pcf and pcf/test
+  lint       Run pylint on pcf directory
+  publish    Publish package to Pypi
+  setup      Setup a virtualenv, activate it, and install requirements
+  test       Run pytest on pcf directory, generating a coverage report
+
+$ invoke setup && source venv/bin/activate
+$ invoke test
+```
 ## RoadMap
 
 [Roadmap](https://capitalone.github.io/Particle-Cloud-Framework/docs/build/html/sections/roadmap.html)
