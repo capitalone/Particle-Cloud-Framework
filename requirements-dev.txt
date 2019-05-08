@@ -10,7 +10,6 @@ mock==3.0.5
 pylint==2.3.1
 twine==1.12.1
 placebo==0.9.0
-pyopenssl==19.0.0
 sphinx==1.8.3
 sphinx_rtd_theme==0.4.2
 invoke==1.1.1
