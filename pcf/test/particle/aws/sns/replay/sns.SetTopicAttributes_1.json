@@ -2,6 +2,8 @@
     "status_code": 200,
     "data": {
         "TopicArn": "arn:aws:sns:us-east-1:337932058722:pcf-sns-test",
+        "AtrtibuteName": "DisplayName",
+        "AtrtibuteValue": "new-pcf-test",
         "ResponseMetadata": {
             "RequestId": "7cf5aa73-d684-5585-8394-ff3eb1d7f077",
             "HTTPStatusCode": 200,
