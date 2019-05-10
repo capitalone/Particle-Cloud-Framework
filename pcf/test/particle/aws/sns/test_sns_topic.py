@@ -93,12 +93,13 @@ class TestSNSTopic:
             particle.apply(sync=True)
             print(particle.is_state_definition_equivalent())
             assert particle.is_state_definition_equivalent() == True
+            assert particle.get_state() == State.running
 
         # Test Terminate
 
-        particle.set_desired_state(State.terminated)
-        particle.apply(sync=True)
-
-        print(particle.get_state() == State.terminated)
-        assert particle.get_state() == State.terminated
+        # particle.set_desired_state(State.terminated)
+        # particle.apply()
+        #
+        # print(particle.get_state() == State.terminated)
+        # assert particle.get_state() == State.terminated
         pill.stop()

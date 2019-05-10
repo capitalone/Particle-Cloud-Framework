@@ -8,18 +8,18 @@
             "TopicArn": "arn:aws:sns:us-east-1:337932058722:pcf-sns-test",
             "EffectiveDeliveryPolicy": "{\"http\":{\"defaultHealthyRetryPolicy\":{\"minDelayTarget\":20,\"maxDelayTarget\":20,\"numRetries\":3,\"numMaxDelayRetries\":0,\"numNoDelayRetries\":0,\"numMinDelayRetries\":0,\"backoffFunction\":\"linear\"},\"disableSubscriptionOverrides\":false}}",
             "SubscriptionsConfirmed": "0",
-            "DisplayName": "pcf-test",
+            "DisplayName": "new-pcf-test",
             "SubscriptionsDeleted": "0"
         },
         "ResponseMetadata": {
-            "RequestId": "a639cd54-607b-5ff5-b977-981a194ce1ab",
+            "RequestId": "773810c2-dd1f-5c57-ae39-458fba4b49a5",
             "HTTPStatusCode": 200,
             "HTTPHeaders": {
-                "x-amzn-requestid": "a639cd54-607b-5ff5-b977-981a194ce1ab",
+                "x-amzn-requestid": "773810c2-dd1f-5c57-ae39-458fba4b49a5",
                 "content-type": "text/xml",
                 "content-length": "2156",
                 "vary": "Accept-Encoding",
-                "date": "Thu, 09 May 2019 18:52:39 GMT"
+                "date": "Wed, 08 May 2019 23:24:04 GMT"
             },
             "RetryAttempts": 0
         }
