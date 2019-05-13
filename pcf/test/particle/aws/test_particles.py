@@ -4,9 +4,10 @@ import pytest
 import boto3
 import os
 import placebo
+import sys
 from pcf.util import pcf_util
-from pcf.core import State
-from pcf.core import particle_flavor_scanner
+from pcf.core.pcf_exceptions import MissingInput
+from pcf.core import State, particle_flavor_scanner
 from contextlib import ExitStack
 
 from pcf.particle.aws.route53 import hosted_zone
@@ -73,3 +74,17 @@ def test_apply(definition, changes, test_type):
         particle.apply(sync=True)
 
         assert particle.get_state() == State.terminated
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        raise MissingInput("Missing test name")
+    test_key = sys.argv[1]
+
+    directory = os.path.dirname(__file__)
+    file = os.path.join(directory, 'testdata.json')
+    with open(file) as f:
+        testdata = json.load(f)
+
+    test_particle = testdata[test_key]
+    test_apply(*test_particle)
