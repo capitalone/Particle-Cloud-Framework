@@ -14,6 +14,13 @@ ALB
 
    pcf.particle.aws.ec2.alb
 
+Batch
+^^^^^^^^^^^^^^^^^^^
+.. toctree::
+   :maxdepth: 2
+
+   pcf.particle.aws.batch
+
 CloudFront
 ^^^^^^^^^^^^^^^^^^^
 .. toctree::
@@ -74,6 +81,13 @@ EMR
    :maxdepth: 2
 
    pcf.particle.aws.emr
+
+Glacier
+^^^^^^^^^^^^^^^^^^^
+.. toctree::
+   :maxdepth: 2
+
+   pcf.particle.aws.glacier
 
 IAM
 ^^^^^^^^^^^^^^^^^^^

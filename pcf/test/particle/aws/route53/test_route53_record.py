@@ -25,7 +25,7 @@ class TestRoute53Record():
               "pcf_name": "pcf_cluster",
               "flavor": "route53_record",
               "aws_resource": {
-                  "Name": "prod.redis.db",
+                  "Name": "many.lol.catz.com",
                   "HostedZoneId": "ABCDEFGHI",
                   "TTL": 10,
                   "ResourceRecords": [{"Value":"127.0.0.1"}],
@@ -37,7 +37,7 @@ class TestRoute53Record():
         "pcf_name": "pcf_cluster",
         "flavor": "route53_record",
         "aws_resource": {
-            "Name": "prod.redis.db",
+            "Name": "many.lol.catz.com",
             "ResourceRecords": [{"Value":"127.0.0.1"}],
             "Type": "A"
         }
@@ -66,7 +66,7 @@ class TestRoute53Record():
     def test_apply_states(self):
         conn = boto3.client('route53', region_name='us-east-1')
         resp = conn.create_hosted_zone(
-            Name="db.",
+            Name="lol.catz.com",
             CallerReference=str(hash('foo')),
             HostedZoneConfig=dict(
                 PrivateZone=True,
@@ -85,10 +85,10 @@ class TestRoute53Record():
         assert particle.get_current_state_definition() == pcf_util.keep_and_remove_keys(particle.get_desired_state_definition(), Route53Record.REMOVE_PARAM_CONVERSIONS)
 
         # Test Update
+        # Note: error will be thrown if you try to convert record set types
+        self.particle_definition["aws_resource"]["ResourceRecords"] = [{"Value":"192.168.0.1"}]
 
-        self.particle_definition["aws_resource"]["Type"] = "CNAME"
-        self.particle_definition["aws_resource"]["ResourceRecords"] = [{"Value":"192.168.1.1"}]
-
+        # Tests picking up existing record
         particle = Route53Record(self.particle_definition)
         particle.set_desired_state(State.running)
         particle.apply(sync=True)
