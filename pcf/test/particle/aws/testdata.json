@@ -25,7 +25,8 @@
         }
     },
     [
-      "mock_ecr"
+      "placebo",
+      "ecr/replay"
     ]
   ],
   "hosted-zone-apply": [
@@ -543,7 +544,7 @@
         "computeEnvironmentOrder": [
           {
             "order": 1,
-            "computeEnvironment": "arn:aws:batch:us-east-1:337932058722:compute-environment/test"
+            "computeEnvironment": "arn:aws:batch:us-east-1:111111111111:compute-environment/test"
 
           }
         ]
