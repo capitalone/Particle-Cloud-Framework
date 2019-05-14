@@ -16,6 +16,9 @@ from pcf.core.docker_resource import DockerResource
 from pcf.core import State, pcf_exceptions
 import docker
 from pcf.util import pcf_util
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class DockerImage(DockerResource):
@@ -36,7 +39,7 @@ class DockerImage(DockerResource):
         "noprune"
     }
 
-    UNIQUE_KEYS = ["docker_resource.image"]
+    UNIQUE_KEYS = ["docker_resource.image", "docker_resource.build_params.path"]
 
     def __init__(self, particle_definition):
         """
@@ -45,6 +48,7 @@ class DockerImage(DockerResource):
         """
         super(DockerImage, self).__init__(particle_definition, method="images")
         self.image = self.desired_state_definition["image"]
+        self.build_params = self.desired_state_definition["build_params"]
 
     def _set_unique_keys(self):
         """
@@ -54,12 +58,9 @@ class DockerImage(DockerResource):
 
     def _start(self):
         """
-        Pulls docker image from registry
-
-        Returns:
-            Image Object
+        No start function for docker image
         """
-        return self.client.pull(self.image)
+        pass
 
     def _terminate(self):
         """
@@ -80,6 +81,34 @@ class DockerImage(DockerResource):
 
         return self._terminate()
 
+    def auto_tag(self, local_image):
+        """
+        Pulls docker images to get all current tags then pushes the updated image with
+        a new tag incremented by one as well as the latest tag. Override this function to
+        add custom tagging logic.
+
+        Returns:
+            docker push
+        """
+
+        registry_image = self.client.pull(self.image, tag="latest")
+        latest_tag = 0
+        for tag in registry_image.tags:
+            try:
+                tag_version = int(tag.split(':')[1])
+                if tag_version > latest_tag:
+                    latest_tag = tag_version + 1
+            except ValueError:
+                logger.debug(f'tag {tag.split(":")[1]} not a valid int')
+
+        # push latest
+        logger.debug(self.client.push(self.image, tag="latest"))
+
+        # push with auto incremented tag
+        local_image.tag(self.image, tag=latest_tag)
+        return self.client.push(self.image, tag=latest_tag)
+        # logger.debug(latest_tag)
+
     def _update(self):
         """
         Pulls docker image from registry
@@ -87,17 +116,31 @@ class DockerImage(DockerResource):
         Returns:
             Image Object
         """
-        return self.client.pull(self.image)
+        tag = "latest"
+        image = self.client.get(self.image)
+        if self.custom_config.get("auto_tag"):
+            return self.auto_tag(image)
+
+        if self.build_params.get('tag'):
+            tag = self.build_params.get('tag')
+
+        image.tag(self.image, tag=tag)
+        return self.client.push(self.image, tag=tag)
+
 
     def get_status(self):
         """
-        Gets the attrs of the image locally
+        Builds the image locally based on the Dockerfile specified
+        by the path in build_params
 
         Returns:
             dict: Attrs dict from the image
         """
         try:
-            return self.client.get(self.image).attrs
+            image, logs = self.client.build(**self.build_params)
+            logger.debug(logs)
+            image.tag(self.image)
+            return image.attrs
         except docker.errors.APIError:
             return {}
 
