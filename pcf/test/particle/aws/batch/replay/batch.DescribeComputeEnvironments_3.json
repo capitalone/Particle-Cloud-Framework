@@ -18,11 +18,11 @@
         "computeEnvironments": [
             {
                 "computeEnvironmentName": "test",
-                "computeEnvironmentArn": "arn:aws:batch:us-east-1:337932058722:compute-environment/test",
+                "computeEnvironmentArn": "arn:aws:batch:us-east-1:111111111111:compute-environment/test",
                 "type": "UNMANAGED",
                 "state": "ENABLED",
                 "status": "CREATING",
-                "serviceRole": "arn:aws:iam::337932058722:role/AWSBatchServiceRole"
+                "serviceRole": "arn:aws:iam::111111111111:role/AWSBatchServiceRole"
             }
         ]
     }
