@@ -91,3 +91,8 @@ class MaxTimeoutException(Exception):
 class InvalidState(Exception):
     def __init__(self, message="Attempted to set a state that is not valid"):
         Exception.__init__(self, message)
+
+
+class ImageMissing(Exception):
+    def __init__(self, message="Unable to locate Docker image"):
+        Exception.__init__(self, message)

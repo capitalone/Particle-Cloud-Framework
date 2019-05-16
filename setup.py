@@ -46,6 +46,7 @@ setup(
         "azure-mgmt-storage==3.3.0",
         "azure-cli-core==2.0.57",
         "boto==2.48.0",
+        "docker == 3.6.0",
         "boto3==1.9.143",
         "Jinja2==2.10.1",
         "google-compute-engine==2.8.13"
