@@ -12,66 +12,70 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from pcf.core import State
+from pcf.util.pcf_util import particle_class_from_flavor, update_dict
+from pcf.core.pcf_exceptions import MissingInput
 import placebo
 import boto3
 import os
+import sys
+import json
 
-############# change to fit resource you are mocking #################
-from pcf.particle.aws.cloudwatch.cloudwatch_log import CloudWatchLog
-PATH = "cloudwatch/replay"
-PARTICLE = CloudWatchLog
-DEF = {
-      "pcf_name": "pcf_cloudwatch_log",
-      "flavor": "cloudwatch_logs",
-      "aws_resource": {
-        "logGroupName": "pcfLog",
-        "tags": {
-          "tagA": "string",
-          "removed": "bye"
-        }
-      }
-    }
-UPDATED_DEF = {
-      "pcf_name": "pcf_cloudwatch_log",
-      "flavor": "cloudwatch_logs",
-      "aws_resource": {
-        "logGroupName": "pcfLog",
-        "tags": {
-          "tagA": "changed",
-          "new": "hi"
-        }
-      }
-    }
-############################################################################
 
-session = boto3.Session()
-dirname = os.path.dirname(__file__)
-filename = os.path.join(dirname, PATH)
-pill = placebo.attach(session, data_path=filename)
-pill.record()
+def run_placebo(definition, updated_def, placebo_conf, action="record"):
+    session = boto3.Session()
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, placebo_conf[1])
+    pill = placebo.attach(session, data_path=filename)
+    if action == "playback":
+        pill.playback()
+    else:
+        pill.record()
 
-particle = PARTICLE(DEF, session)
+    flavor = definition.get("flavor")
+    particle_class = particle_class_from_flavor(flavor)
 
-# Test start
+    particle = particle_class(definition, session)
 
-particle.set_desired_state(State.running)
-particle.apply(sync=True)
+    # Test start
 
-print(particle.get_state() == State.running)
-print(particle.is_state_definition_equivalent())
-
-# Test update
-if UPDATED_DEF:
-    particle = PARTICLE(UPDATED_DEF, session)
     particle.set_desired_state(State.running)
     particle.apply(sync=True)
 
+    print(particle.get_state() == State.running)
     print(particle.is_state_definition_equivalent())
 
-# Test Terminate
+    # Test update
+    if updated_def:
+        updated_definition, _ = update_dict(definition, updated_def)
+        particle = particle_class(updated_definition, session)
+        particle.set_desired_state(State.running)
+        particle.apply(sync=True)
 
-particle.set_desired_state(State.terminated)
-particle.apply(sync=True)
+        print(particle.is_state_definition_equivalent())
 
-print(particle.get_state() == State.terminated)
-pill.stop()
+    # Test Terminate
+
+    particle.set_desired_state(State.terminated)
+    particle.apply(sync=True)
+
+    print(particle.get_state() == State.terminated)
+    pill.stop()
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        raise MissingInput("Missing test name")
+    if len(sys.argv) == 3:
+        action = sys.argv[2]
+    else:
+        action = "record"
+
+    test_key = sys.argv[1]
+
+    directory = os.path.dirname(__file__)
+    file = os.path.join(directory, 'testdata.json')
+    with open(file) as f:
+        testdata = json.load(f)
+
+    test_particle = testdata[test_key]
+    run_placebo(*test_particle, action=action)
