@@ -18,13 +18,13 @@
         "computeEnvironments": [
             {
                 "computeEnvironmentName": "test",
-                "computeEnvironmentArn": "arn:aws:batch:us-east-1:337932058722:compute-environment/test",
-                "ecsClusterArn": "arn:aws:ecs:us-east-1:337932058722:cluster/test_Batch_1830f0c6-bb59-350f-ba7c-c058543d1184",
+                "computeEnvironmentArn": "arn:aws:batch:us-east-1:111111111111:compute-environment/test",
+                "ecsClusterArn": "arn:aws:ecs:us-east-1:111111111111:cluster/test_Batch_1830f0c6-bb59-350f-ba7c-c058543d1184",
                 "type": "UNMANAGED",
                 "state": "ENABLED",
                 "status": "VALID",
                 "statusReason": "ComputeEnvironment Healthy",
-                "serviceRole": "arn:aws:iam::337932058722:role/AWSBatchServiceRole"
+                "serviceRole": "arn:aws:iam::111111111111:role/AWSBatchServiceRole"
             }
         ]
     }

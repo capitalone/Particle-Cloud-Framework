@@ -6,7 +6,7 @@
                 "logGroupName": "pcfLog",
                 "creationTime": 1556308005889,
                 "metricFilterCount": 0,
-                "arn": "arn:aws:logs:us-east-1:337932058722:log-group:pcfLog:*",
+                "arn": "arn:aws:logs:us-east-1:111111111111:log-group:pcfLog:*",
                 "storedBytes": 0
             }
         ],
