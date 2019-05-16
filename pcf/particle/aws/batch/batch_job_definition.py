@@ -22,30 +22,37 @@ logger = logging.getLogger(__name__)
 
 class BatchJobDefinition(AWSResource):
     
-    # flavor = "batch_job_definition"
+    flavor = "batch_job_definition"
 
-    # state_lookup = {
-    #     "CREATING": State.pending,
-    #     "UPDATING": State.pending,
-    #     "DELETING": State.pending,
-    #     "DELETED": State.terminated,
-    #     "VALID": State.running,
-    #     "INVALID": State.terminated,
-    # }
+    UNIQUE_KEYS = ['aws_resource.jobDefinitionName']
 
-    # UPDATE_PARAM_FILTER = {
-    #     "state",
-    #     "priority",
-    #     "computeEnvironmentOrder",
-    # }
-
-    # UNIQUE_KEYS = ['aws_resource.jobQueueName']
-
-    def __init__(self):
-        pass
-
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition, "batch", session=session)
+        self._set_unique_keys()
+        self.name = self.desired_state_definition['jobDefinitionName']
+    
     def sync_state(self):
-        pass
+        status = self._get_status()
+        if not status:
+            self.state = State.terminated 
+            self.current_state_definition = {}
+            return 
+        else:
+            pass
+        
+
+    def _set_unique_keys(self):
+        self.unique_keys = BatchJobDefinition.UNIQUE_KEYS
+    
+    def _get_status(self):
+        res = self.client.describe_job_definitions(
+            jobDefinitions=[self.name],
+        )
+
+        if len(res["jobDefinitions"]) != 1:
+            return {}
+        
+        return res["jobDefinitions"][0]
 
     def _terminate(self):
         pass
