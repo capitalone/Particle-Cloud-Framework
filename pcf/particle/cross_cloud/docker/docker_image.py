@@ -102,12 +102,25 @@ class DockerImage(DockerResource):
                 logger.debug(f'tag {tag.split(":")[1]} not a valid int')
 
         # push latest
-        logger.debug(self.client.push(self.image, tag="latest"))
+        self.client.push(self.image, tag="latest")
 
         # push with auto incremented tag
         local_image.tag(self.image, tag=latest_tag)
         return self.client.push(self.image, tag=latest_tag)
-        # logger.debug(latest_tag)
+
+    def _get_tag(self):
+        """
+        Returns user specified tag otherwise it returns latest.
+
+        Returns:
+            tag (str)
+        """
+        tag = "latest"
+
+        if self.build_params.get('tag'):
+            tag = self.build_params.get('tag')
+
+        return tag
 
     def _update(self):
         """
@@ -116,8 +129,8 @@ class DockerImage(DockerResource):
         Returns:
             Image Object
         """
-        tag = "latest"
         image = self.client.get(self.image)
+
         if self.custom_config.get("auto_tag"):
             return self.auto_tag(image)
 
@@ -126,7 +139,6 @@ class DockerImage(DockerResource):
 
         image.tag(self.image, tag=tag)
         return self.client.push(self.image, tag=tag)
-
 
     def get_status(self):
         """
@@ -138,8 +150,7 @@ class DockerImage(DockerResource):
         """
         try:
             image, logs = self.client.build(**self.build_params)
-            logger.debug(logs)
-            image.tag(self.image)
+            image.tag(self.image, tag=self._get_tag())
             return image.attrs
         except docker.errors.APIError:
             return {}
@@ -153,9 +164,10 @@ class DockerImage(DockerResource):
 
         """
         try:
-            return self.client.get_registry_data(self.image).attrs
+            registry_image = self.client.pull(self.image, tag=self._get_tag())
+            return registry_image.attrs
         except docker.errors.APIError:
-            raise pcf_exceptions.ImageMissing
+            return {}
 
     def sync_state(self):
         """
@@ -188,7 +200,7 @@ class DockerImage(DockerResource):
         Returns:
              bool
         """
-        current_hash = self.current_state_definition.get("RepoDigests")
-        latest_hash = self.get_latest_hash().get("Descriptor").get('digest')
+        current_hash = self.current_state_definition.get("Id")
+        latest_hash = self.get_latest_hash().get("Id")
 
-        return any(latest_hash in local_digest for local_digest in current_hash)
+        return current_hash == latest_hash

@@ -29,3 +29,8 @@ p.set_desired_state("running")
 print(p.apply())
 print(p.state)
 print(p.current_state_definition)
+# sha256: 0cf7cfc10ce83ee1f3ac556877b35d76149d18f9c55417c689ceb60c65bb1b15
+# print(p.test())
+# print(p.get_latest_hash())
+
+# print(p.get_status())
