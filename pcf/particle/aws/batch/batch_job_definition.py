@@ -38,8 +38,9 @@ class BatchJobDefinition(AWSResource):
             self.current_state_definition = {}
             return 
         else:
-            pass
-        
+            job_status = status.get("status", "")
+            self.state = self.state_lookup.get(job_status)
+            self.current_state_definition = status
 
     def _set_unique_keys(self):
         self.unique_keys = BatchJobDefinition.UNIQUE_KEYS
@@ -55,13 +56,19 @@ class BatchJobDefinition(AWSResource):
         return res["jobDefinitions"][0]
 
     def _terminate(self):
-        pass
+        resp = self.client.deregister_job_definition(jobDefinition=self.name)
+        return resp
 
     def _start(self):
-        pass
+        resp = self.client.register_job_definition(**self.get_desired_state_definiton())
+        self.current_state_definition = resp
+        return resp 
 
     def _stop(self):
-        pass
+        return self._terminate()
 
     def _update(self):
-        pass 
+        return self._start()
+    
+    def is_state_equivalent(self, state1, state2):
+        pass

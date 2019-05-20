@@ -45,16 +45,17 @@ class BatchJob(AWSResource):
         if not status:
             self.state = State.terminated 
             self.current_state_definition = {}
-            return 
         else:
-            pass
+            job_status = status.get("status", "")
+            self.state = self.state_lookup.get(job_status)
+            self.current_state_definition = status
 
     def _set_unique_keys(self):
         self.unique_keys = BatchJob.UNIQUE_KEYS
 
     def _get_status(self):
         res = self.client.describe_jobs(
-            jobs=[self.name]
+            jobs=[self.name],
         )
 
         if len(res["jobs"]) != 1:
@@ -63,13 +64,21 @@ class BatchJob(AWSResource):
         return res["Jobs"][0]
 
     def _terminate(self):
-        pass
-
+        return self.client.terminate(
+            jobId=self.current_state_definition.get('jobId'),
+            reason=self.desired_state_definition.get('reason')
+        )
+        
     def _start(self):
-        pass
+        res = self.client.submit_job(**self.get_desired_state_definition())
+        self.current_state_definition = res 
+        return res 
 
     def _stop(self):
-        pass 
+        return self._terminate() 
 
     def _update(self):
-        pass 
+        pass
+
+    def is_state_equivalent(self, state1, state2):
+        pass
