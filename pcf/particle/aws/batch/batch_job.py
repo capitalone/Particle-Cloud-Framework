@@ -33,6 +33,7 @@ class BatchJob(AWSResource):
         "FAILED": State.terminated,
     }
 
+
     UNIQUE_KEYS = ['aws_resource.jobName']
 
     def __init__(self, particle_definition, session=None):
@@ -41,6 +42,9 @@ class BatchJob(AWSResource):
         self.name = self.desired_state_definition['jobName']
 
     def sync_state(self):
+        """
+        Calls get status and sets the current state defintion and state.
+        """
         status = self._get_status()
         if not status:
             self.state = State.terminated 
@@ -51,9 +55,16 @@ class BatchJob(AWSResource):
             self.current_state_definition = status
 
     def _set_unique_keys(self):
+        """
+        User defined logic that sets keys from state definition to uniquely
+        identify batch_jobs. Unsure if needed.
+        """
         self.unique_keys = BatchJob.UNIQUE_KEYS
 
     def _get_status(self):
+        """
+        Grabs current state of batch job.
+        """
         res = self.client.describe_jobs(
             jobs=[self.name],
         )
@@ -64,21 +75,42 @@ class BatchJob(AWSResource):
         return res["Jobs"][0]
 
     def _terminate(self):
+        """
+        This will cancel jobs that have not yet begin and terminate jobs 
+        that are in the job queue.
+        """
         return self.client.terminate(
             jobId=self.current_state_definition.get('jobId'),
             reason=self.desired_state_definition.get('reason')
         )
         
     def _start(self):
-        res = self.client.submit_job(**self.get_desired_state_definition())
-        self.current_state_definition = res 
-        return res 
+        """
+        Submit batch job based on desired state definition.
+        
+        Returns:
+            jobName and jobId  
+        """
+        return self.client.submit_job(**self.get_desired_state_definition())
 
     def _stop(self):
+        """
+        Batch job does have a cancel job, but that does not stop
+        jobs which are already in the RUNNING or STARTING state. 
+        """
         return self._terminate() 
 
     def _update(self):
+        """ 
+        Batch jobs cannot be updated after they are submitted. 
+        """
         pass
 
     def is_state_equivalent(self, state1, state2):
+        """
+        Compares the desired state and current state definitions.
+        Unsure on implementation
+        Returns: 
+            bool
+        """
         pass

@@ -32,20 +32,29 @@ class BatchJobDefinition(AWSResource):
         self.name = self.desired_state_definition['jobDefinitionName']
     
     def sync_state(self):
+        """
+        Sets the current state defintion and state.
+        """
         status = self._get_status()
         if not status:
             self.state = State.terminated 
-            self.current_state_definition = {}
-            return 
+            self.current_state_definition = {} 
         else:
             job_status = status.get("status", "")
-            self.state = self.state_lookup.get(job_status)
+            self.state = job_status # should tie into some predefined State 
             self.current_state_definition = status
 
     def _set_unique_keys(self):
+        """
+        User defined logic that sets keys from state definition to uniquely
+        identify batch_jobs. Unsure if needed.
+        """
         self.unique_keys = BatchJobDefinition.UNIQUE_KEYS
     
     def _get_status(self):
+        """
+        Returns current state of batch job definition.
+        """
         res = self.client.describe_job_definitions(
             jobDefinitions=[self.name],
         )
@@ -56,19 +65,38 @@ class BatchJobDefinition(AWSResource):
         return res["jobDefinitions"][0]
 
     def _terminate(self):
+        """
+        This will deregister job definitions. 
+        """
         resp = self.client.deregister_job_definition(jobDefinition=self.name)
         return resp
 
     def _start(self):
+        """
+        This will register job definitions.
+        """
         resp = self.client.register_job_definition(**self.get_desired_state_definiton())
         self.current_state_definition = resp
         return resp 
 
     def _stop(self):
+        """
+        This will deregister the job definition.
+        """
         return self._terminate()
 
     def _update(self):
-        return self._start()
+        """ 
+        Batch job defintions cannot be updated after they are submitted.
+        Might want to potentially delete and recreate the definition.  
+        """
+        pass 
     
     def is_state_equivalent(self, state1, state2):
+        """
+        Compares the desired state and current state definitions.
+        Unsure on implementation.
+        Returns: 
+            bool
+        """
         pass
