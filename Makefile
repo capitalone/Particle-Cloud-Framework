@@ -1,5 +1,13 @@
 .PHONY: docs
 
+clean:
+	rm -rf bin/ lib/
+
+install: clean
+	python3 -m venv .
+	bin/pip install -r requirements.txt
+	bin/pip install -e .
+
 docs:
 	cd docs; make html
 
