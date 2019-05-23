@@ -26,6 +26,12 @@ class BatchJobDefinition(AWSResource):
 
     UNIQUE_KEYS = ['aws_resource.jobDefinitionName']
 
+    equivalent_states = {
+        State.running: 1,
+        State.stopped: 0,
+        State.terminated: 0
+    }
+
     def __init__(self, particle_definition, session=None):
         super().__init__(particle_definition, "batch", session=session)
         self._set_unique_keys()
@@ -40,8 +46,7 @@ class BatchJobDefinition(AWSResource):
             self.state = State.terminated 
             self.current_state_definition = {} 
         else:
-            job_status = status.get("status", "")
-            self.state = job_status # should tie into some predefined State 
+            self.state = State.running
             self.current_state_definition = status
 
     def _set_unique_keys(self):
@@ -87,10 +92,11 @@ class BatchJobDefinition(AWSResource):
 
     def _update(self):
         """ 
-        Batch job defintions cannot be updated after they are submitted.
-        Might want to potentially delete and recreate the definition.  
+        Update feature does not exist so deletes current job definition
+        and then creates a new one based on desired_state_definition. 
         """
-        pass 
+        self._terminate()
+        return self._start()
     
     def is_state_equivalent(self, state1, state2):
         """
@@ -99,4 +105,4 @@ class BatchJobDefinition(AWSResource):
         Returns: 
             bool
         """
-        pass
+        return BatchJobDefinition.equivalent_states(state1) == BatchJobDefinition.equivalent_states(state2)

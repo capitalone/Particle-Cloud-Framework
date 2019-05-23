@@ -33,6 +33,11 @@ class BatchJob(AWSResource):
         "FAILED": State.terminated,
     }
 
+    equivalent_states = {
+        State.running: 1,
+        State.stopped: 0,
+        State.terminated: 0
+    }
 
     UNIQUE_KEYS = ['aws_resource.jobName']
 
@@ -81,7 +86,8 @@ class BatchJob(AWSResource):
         """
         return self.client.terminate(
             jobId=self.current_state_definition.get('jobId'),
-            reason=self.desired_state_definition.get('reason')
+            reason=self.desired_state_definition.get(
+                'reason', 'Job terminated by PCF')
         )
         
     def _start(self):
@@ -113,4 +119,4 @@ class BatchJob(AWSResource):
         Returns: 
             bool
         """
-        pass
+        return BatchJob.equivalent_states(state1) == BatchJob.equivalent_states(state2)
