@@ -1,0 +1,17 @@
+{
+    "status_code": 204,
+    "data": {
+        "TopicArn": "arn:aws:sns:us-east-1:337932058722:pcf-sns-test",
+        "ResponseMetadata": {
+            "RequestId": "7cf5aa73-d684-5585-8394-ff3eb1d7f077",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "7cf5aa73-d684-5585-8394-ff3eb1d7f077",
+                "content-type": "text/xml",
+                "content-length": "319",
+                "date": "Wed, 08 May 2019 23:24:03 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}
