@@ -58,8 +58,8 @@ class BatchJob(AWSResource):
             self.state = self.state_lookup.get(job_status)
             self.current_state_definition = status
             self.jobId = status.get('jobId')
-            
-            if self.desired_state_definition.get('state') == 'terminated' and job_status == 'SUCCEEDED':
+            # when a job has succeeded and you wish to terminate it, allow state transition
+            if self.desired_state == State.terminated and job_status == 'SUCCEEDED':
                     self.state = State.terminated
         else:
             self.state = State.terminated 
@@ -79,7 +79,6 @@ class BatchJob(AWSResource):
         if not self.jobId:
             return {}
 
-        # print(self.jobId)
         res = self.client.describe_jobs(
             jobs=[self.jobId],
         )
@@ -94,7 +93,7 @@ class BatchJob(AWSResource):
         This will cancel jobs that have not yet begin and terminate jobs 
         that are in the job queue.
         """
-        return self.client.terminate(
+        return self.client.terminate_job(
             jobId=self.current_state_definition.get('jobId'),
             reason=self.desired_state_definition.get(
                 'reason', 'Job terminated by PCF')
