@@ -131,3 +131,6 @@ class BatchJob(AWSResource):
             bool
         """
         return BatchJob.equivalent_states.get(state1) == BatchJob.equivalent_states.get(state2)
+
+    def is_state_definition_equivalent(self):
+        return True
