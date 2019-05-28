@@ -15,3 +15,7 @@ dist
 build
 pcf.egg-info
 venv
+!.coveragerc
+bin/
+lib/
+pyvenv.cfg
