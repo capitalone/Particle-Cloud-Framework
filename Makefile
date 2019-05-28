@@ -1,5 +1,7 @@
 .PHONY: docs
 
+# Makefile is not used in CICD. Kept around for legacy compatibility
+# See tasks.py to edit the CICD pipeline
 clean:
 	rm -rf bin/ lib/
 

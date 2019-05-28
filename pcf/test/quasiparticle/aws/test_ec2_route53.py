@@ -95,7 +95,7 @@ class TestEC2Route53Record():
 
         # Test Update
 
-        self.quasiparticle_definition["particles"][0]["aws_resource"]["Type"] = "CNAME"
+        self.quasiparticle_definition["particles"][0]["aws_resource"]["ResourceRecords"][0]["Value"] = "192.168.0.1"
         self.quasiparticle_definition["particles"][1]["multiplier"] = 3
 
         quasiparticle = EC2Route53(self.quasiparticle_definition)
@@ -103,7 +103,7 @@ class TestEC2Route53Record():
         quasiparticle.apply(sync=True)
 
         assert quasiparticle.get_state() == State.running
-        assert quasiparticle.get_particle(flavor='route53_record', pcf_name="ec2_route53").current_state_definition["Type"] == "CNAME"
+        assert quasiparticle.get_particle(flavor='route53_record', pcf_name="ec2_route53").current_state_definition["ResourceRecords"][0]["Value"] == "192.168.0.1"
         assert len(quasiparticle.pcf_field.get_particles(flavor='ec2_instance')) == 3
 
         # Test Terminate

@@ -1,4 +1,34 @@
 {
+  "ecr-repository-apply": [
+    {
+        "pcf_name": "pcf_ecr_repository",
+        "flavor": "ecr_repository",
+        "aws_resource": {
+            "repositoryName": "gg-ecr",
+            "tags": [
+                {
+                    "Key": "lol",
+                    "Value": "cat"
+                }
+            ]
+        }
+    },
+    {
+        "aws_resource": {
+            "repositoryName": "gg-ecr",
+            "tags": [
+                {
+                    "Key": "gg",
+                    "Value": "wp"
+                }
+            ]
+        }
+    },
+    [
+      "placebo",
+      "ecr/replay"
+    ]
+  ],
   "hosted-zone-apply": [
     {
       "pcf_name": "pcf_hosted_zone",
@@ -514,7 +544,7 @@
         "computeEnvironmentOrder": [
           {
             "order": 1,
-            "computeEnvironment": "arn:aws:batch:us-east-1:337932058722:compute-environment/test"
+            "computeEnvironment": "arn:aws:batch:us-east-1:111111111111:compute-environment/test"
 
           }
         ]

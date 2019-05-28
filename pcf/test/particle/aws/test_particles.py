@@ -4,26 +4,11 @@ import pytest
 import boto3
 import os
 import placebo
+import sys
 from pcf.util import pcf_util
-from pcf.core import State
-from pcf.core import particle_flavor_scanner
+from pcf.core.pcf_exceptions import MissingInput
+from pcf.core import State, particle_flavor_scanner
 from contextlib import ExitStack
-
-from pcf.particle.aws.route53 import hosted_zone
-from pcf.particle.aws.sqs.sqs_queue import SQSQueue
-from pcf.particle.aws.cloudfront.cloudfront_distribution import CloudFrontDistribution
-from pcf.particle.aws.cloudwatch.cloudwatch_event import CloudWatchEvent
-from pcf.particle.aws.cloudwatch.cloudwatch_log import CloudWatchLog
-from pcf.particle.aws.dynamodb.dynamodb_table import DynamoDB
-from pcf.particle.aws.ec2.autoscaling.launch_configuration import LaunchConfiguration
-from pcf.particle.aws.ec2.elb.elb import ElasticLoadBalancing
-from pcf.particle.aws.ecs.ecs_cluster import ECSCluster
-from pcf.particle.aws.ecs.ecs_task_definition import ECSTaskDefinition
-from pcf.particle.aws.efs.efs_instance import EFSInstance
-from pcf.particle.aws.emr.emr_cluster import EMRCluster
-from pcf.particle.aws.kms.kms_key import KMSKey
-from pcf.particle.aws.s3.s3_bucket import S3Bucket
-from pcf.particle.aws.vpc.vpc_instance import VPCInstance
 
 directory = os.path.dirname(__file__)
 file = os.path.join(directory, 'testdata.json')
@@ -73,3 +58,17 @@ def test_apply(definition, changes, test_type):
         particle.apply(sync=True)
 
         assert particle.get_state() == State.terminated
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        raise MissingInput("Missing test name")
+    test_key = sys.argv[1]
+
+    directory = os.path.dirname(__file__)
+    file = os.path.join(directory, 'testdata.json')
+    with open(file) as f:
+        testdata = json.load(f)
+
+    test_particle = testdata[test_key]
+    test_apply(*test_particle)
