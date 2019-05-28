@@ -31,6 +31,7 @@ batch_def = {
     }
 }
 
+#initial
 particle = BatchJobDefinition(batch_def)
 particle.set_desired_state("running")
 particle.apply()
@@ -38,6 +39,16 @@ particle.apply()
 print(particle.current_state_definition)
 print(particle.state)
 
+#update
+batch_def['aws_resource']['containerProperties']['command'] = ['sleep', '20',]
+particle.set_desired_state("running")
+particle.apply()
+
+print(particle.current_state_definition)
+print(particle.state)
+
+#terminate
 particle.set_desired_state("terminated")
 particle.apply(sync=True)
+
 print(particle.state)
