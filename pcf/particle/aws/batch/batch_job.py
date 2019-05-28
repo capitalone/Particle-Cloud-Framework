@@ -28,15 +28,16 @@ class BatchJob(AWSResource):
         "SUBMITTED": State.pending,
         "PENDING": State.pending, 
         "RUNNABLE": State.pending,
-        "RUNNING": State.running, 
-        "SUCCEEDED": State.terminated, 
-        "FAILED": State.terminated,
+        "RUNNING": State.pending, 
+        "STARTING": State.pending,
+        "SUCCEEDED": State.running, 
+        "FAILED": State.terminated
     }
 
     equivalent_states = {
-        State.running: 1,
-        State.stopped: 0,
-        State.terminated: 0
+        State.running: 0,
+        State.terminated: 2,
+        State.pending: 1
     }
 
     UNIQUE_KEYS = ['aws_resource.jobName']
@@ -45,24 +46,29 @@ class BatchJob(AWSResource):
         super().__init__(particle_definition, "batch", session=session)
         self._set_unique_keys()
         self.name = self.desired_state_definition['jobName']
+        self.jobId = None
 
     def sync_state(self):
         """
         Calls get status and sets the current state defintion and state.
         """
         status = self._get_status()
-        if not status:
-            self.state = State.terminated 
-            self.current_state_definition = {}
-        else:
-            job_status = status.get("status", "")
+        if status:
+            job_status = status.get('status')
             self.state = self.state_lookup.get(job_status)
             self.current_state_definition = status
+            self.jobId = status.get('jobId')
+            
+            if self.desired_state_definition.get('state') == 'terminated' and job_status == 'SUCCEEDED':
+                    self.state = State.terminated
+        else:
+            self.state = State.terminated 
+            self.current_state_definition = {}
 
     def _set_unique_keys(self):
         """
         User defined logic that sets keys from state definition to uniquely
-        identify batch_jobs. Unsure if needed.
+        identify batch_jobs.
         """
         self.unique_keys = BatchJob.UNIQUE_KEYS
 
@@ -70,14 +76,18 @@ class BatchJob(AWSResource):
         """
         Grabs current state of batch job.
         """
+        if not self.jobId:
+            return {}
+
+        # print(self.jobId)
         res = self.client.describe_jobs(
-            jobs=[self.name],
+            jobs=[self.jobId],
         )
 
         if len(res["jobs"]) != 1:
             return {}
         
-        return res["Jobs"][0]
+        return res["jobs"][0]
 
     def _terminate(self):
         """
@@ -97,7 +107,9 @@ class BatchJob(AWSResource):
         Returns:
             jobName and jobId  
         """
-        return self.client.submit_job(**self.desired_state_definition)
+        resp =  self.client.submit_job(**self.desired_state_definition)
+        self.jobId = resp.get('jobId')
+        return resp
 
     def _stop(self):
         """
@@ -115,7 +127,6 @@ class BatchJob(AWSResource):
     def is_state_equivalent(self, state1, state2):
         """
         Compares the desired state and current state definitions.
-        Unsure on implementation
         Returns: 
             bool
         """

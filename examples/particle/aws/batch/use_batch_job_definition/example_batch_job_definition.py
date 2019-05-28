@@ -39,7 +39,7 @@ particle.apply()
 print(particle.current_state_definition)
 print(particle.state)
 
-#update
+# update
 batch_def['aws_resource']['containerProperties']['command'] = ['sleep', '20',]
 particle.set_desired_state("running")
 particle.apply()
