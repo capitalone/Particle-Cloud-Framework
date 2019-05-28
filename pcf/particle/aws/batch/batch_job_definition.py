@@ -32,22 +32,29 @@ class BatchJobDefinition(AWSResource):
         State.terminated: 0
     }
 
+    state_lookup = {
+        "ACTIVE": State.running,
+        "INACTIVE": State.terminated
+    }
+
     def __init__(self, particle_definition, session=None):
         super().__init__(particle_definition, "batch", session=session)
         self._set_unique_keys()
         self.name = self.desired_state_definition['jobDefinitionName']
+        self.revision = None 
     
     def sync_state(self):
         """
         Sets the current state defintion and state.
         """
-        status = self._get_status()
-        if not status:
+        full_status = self._get_status()
+        if full_status:
+            self.current_state_definition = full_status 
+            self.state = self.state_lookup[full_status.get('status')]
+            self.revision = full_status.get('revision')
+        else:
             self.state = State.terminated 
             self.current_state_definition = {} 
-        else:
-            self.state = State.running
-            self.current_state_definition = status
 
     def _set_unique_keys(self):
         """
@@ -61,27 +68,32 @@ class BatchJobDefinition(AWSResource):
         Returns current state of batch job definition.
         """
         res = self.client.describe_job_definitions(
-            jobDefinitions=[self.name],
+            jobDefinitionName=self.name,
+            status = 'ACTIVE'
         )
 
-        if len(res["jobDefinitions"]) != 1:
+        # if no active jobs return empty dict
+        if len(res["jobDefinitions"]) == 0:
             return {}
         
+        # else return most recent revision 
         return res["jobDefinitions"][0]
 
     def _terminate(self):
         """
         This will deregister job definitions. 
         """
-        resp = self.client.deregister_job_definition(jobDefinition=self.name)
+        resp = None
+        if self.revision:
+            job_definition = self.name + ':' + str(self.revision)
+            resp = self.client.deregister_job_definition(jobDefinition=job_definition)
         return resp
 
     def _start(self):
         """
         This will register job definitions.
         """
-        resp = self.client.register_job_definition(**self.get_desired_state_definiton())
-        self.current_state_definition = resp
+        resp = self.client.register_job_definition(**self.desired_state_definition)
         return resp 
 
     def _stop(self):
@@ -92,10 +104,8 @@ class BatchJobDefinition(AWSResource):
 
     def _update(self):
         """ 
-        Update feature does not exist so deletes current job definition
-        and then creates a new one based on desired_state_definition. 
+        Will create a new revision.
         """
-        self._terminate()
         return self._start()
     
     def is_state_equivalent(self, state1, state2):
@@ -105,4 +115,4 @@ class BatchJobDefinition(AWSResource):
         Returns: 
             bool
         """
-        return BatchJobDefinition.equivalent_states(state1) == BatchJobDefinition.equivalent_states(state2)
+        return BatchJobDefinition.equivalent_states.get(state1) == BatchJobDefinition.equivalent_states.get(state2)

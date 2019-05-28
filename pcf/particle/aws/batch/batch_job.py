@@ -97,7 +97,7 @@ class BatchJob(AWSResource):
         Returns:
             jobName and jobId  
         """
-        return self.client.submit_job(**self.get_desired_state_definition())
+        return self.client.submit_job(**self.desired_state_definition)
 
     def _stop(self):
         """
@@ -119,4 +119,4 @@ class BatchJob(AWSResource):
         Returns: 
             bool
         """
-        return BatchJob.equivalent_states(state1) == BatchJob.equivalent_states(state2)
+        return BatchJob.equivalent_states.get(state1) == BatchJob.equivalent_states.get(state2)
