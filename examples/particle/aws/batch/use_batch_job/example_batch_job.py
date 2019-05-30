@@ -16,42 +16,42 @@ from pcf.particle.aws.batch.batch_job_definition import BatchJobDefinition
 from pcf.particle.aws.batch.batch_compute_environment import BatchComputeEnvironment
 from pcf.particle.aws.batch.batch_job import BatchJob
 
-batch_compute_def = {
-    "pcf_name": "pcf-example",
-    "flavor": "batch_compute_environment",
-    "state": "ENABLED",
-    "aws_resource": {
-        "computeEnvironmentName": "test-comp-environment",
-        "type": "MANAGED",
-        "computeResources": {
-            'type': 'EC2',
-            'desiredvCpus': 1,
-            'instanceRole': 'arn:aws:iam::644160558196:instance-profile/ecsInstanceRole',
-            'instanceTypes': [
-                'optimal',
-            ],
-            'maxvCpus': 4,
-            'minvCpus': 0,
-            'securityGroupIds': [
-                'sg-6c7fa917',
-            ],
-            'subnets': [
-                'subnet-3a334610',
-                'subnet-efbcccb7',
-                'subnet-e3b194de',
-                'subnet-914763e7',
-            ]
-    },
-        "serviceRole": "arn:aws:iam::644160558196:role/service-role/AWSBatchServiceRole"
-    }
-}
+# batch_compute_def = {
+#     "pcf_name": "pcf-example",
+#     "flavor": "batch_compute_environment",
+#     "state": "ENABLED",
+#     "aws_resource": {
+#         "computeEnvironmentName": "test-comp-environment",
+#         "type": "MANAGED",
+#         "computeResources": {
+#             'type': 'EC2',
+#             'desiredvCpus': 1,
+#             'instanceRole': 'arn:aws:iam::644160558196:instance-profile/ecsInstanceRole',
+#             'instanceTypes': [
+#                 'optimal',
+#             ],
+#             'maxvCpus': 4,
+#             'minvCpus': 0,
+#             'securityGroupIds': [
+#                 'sg-6c7fa917',
+#             ],
+#             'subnets': [
+#                 'subnet-3a334610',
+#                 'subnet-efbcccb7',
+#                 'subnet-e3b194de',
+#                 'subnet-914763e7',
+#             ]
+#     },
+#         "serviceRole": "arn:aws:iam::644160558196:role/service-role/AWSBatchServiceRole"
+#     }
+# }
 
-compute_particle = BatchComputeEnvironment(batch_compute_def)
-compute_particle.set_desired_state("running")
-compute_particle.apply()
+# compute_particle = BatchComputeEnvironment(batch_compute_def)
+# compute_particle.set_desired_state("running")
+# compute_particle.apply()
 
-print(compute_particle.current_state_definition)
-print(compute_particle.state)
+# print(compute_particle.current_state_definition)
+# print(compute_particle.state)
 
 batch_queue_def = {
     "pcf_name": "pcf-example",
@@ -130,6 +130,6 @@ queue_particle.set_desired_state("terminated")
 queue_particle.apply(sync=True)
 print(queue_particle.state)
 
-compute_particle.set_desired_state("terminated")
-compute_particle.apply(sync=True)
-print(compute_particle.state)
+# compute_particle.set_desired_state("terminated")
+# compute_particle.apply(sync=True)
+# print(compute_particle.state)
