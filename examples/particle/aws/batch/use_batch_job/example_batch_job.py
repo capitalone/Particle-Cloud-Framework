@@ -17,7 +17,7 @@ from pcf.particle.aws.batch.batch_compute_environment import BatchComputeEnviron
 from pcf.particle.aws.batch.batch_job import BatchJob
 
 # batch_compute_def = {
-#     "pcf_name": "pcf-example",
+#     "pcf_name": "pcf-compute-example",
 #     "flavor": "batch_compute_environment",
 #     "state": "ENABLED",
 #     "aws_resource": {
@@ -54,7 +54,7 @@ from pcf.particle.aws.batch.batch_job import BatchJob
 # print(compute_particle.state)
 
 batch_queue_def = {
-    "pcf_name": "pcf-example",
+    "pcf_name": "pcf-queue-example",
     "flavor": "batch_job_queue",
     "aws_resource": {
         "jobQueueName": "test-queue",
@@ -77,7 +77,7 @@ print(queue_particle.current_state_definition)
 print(queue_particle.state)
 
 batch_definition_def = {
-    "pcf_name": "pcf-example",
+    "pcf_name": "pcf-definition-example",
     "flavor": "batch_job_definition",
     "aws_resource": {
         "jobDefinitionName": "test-definition",
@@ -104,6 +104,7 @@ print(definition_particle.state)
 batch_def = {
     "pcf_name": "pcf-example",
     "flavor": "batch_job",
+    "parents":["batch_job_queue:pcf-queue-example", "batch_job_definition:pcf-definition-example"],
     "aws_resource": {
         "jobName": "test",
         "jobQueue":"test-queue",
