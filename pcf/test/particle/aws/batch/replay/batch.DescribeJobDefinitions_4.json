@@ -1,0 +1,43 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "c9fd582c-82f6-11e9-b64f-0fd2b5b9a220",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "date": "Thu, 30 May 2019 16:20:07 GMT",
+                "content-type": "application/json",
+                "content-length": "397",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "c9fd582c-82f6-11e9-b64f-0fd2b5b9a220",
+                "x-amz-apigw-id": "agVcpFwqIAMFxxQ=",
+                "x-amzn-trace-id": "Root=1-5cf002b7-5988e082f0627c710164bfdf;Sampled=0"
+            },
+            "RetryAttempts": 0
+        },
+        "jobDefinitions": [
+            {
+                "jobDefinitionName": "test-definition",
+                "jobDefinitionArn": "arn:aws:batch:us-east-1:644160558196:job-definition/test-definition:753",
+                "revision": 753,
+                "status": "ACTIVE",
+                "type": "container",
+                "parameters": {},
+                "containerProperties": {
+                    "image": "busybox",
+                    "vcpus": 1,
+                    "memory": 128,
+                    "command": [
+                        "sleep",
+                        "10"
+                    ],
+                    "volumes": [],
+                    "environment": [],
+                    "mountPoints": [],
+                    "ulimits": [],
+                    "resourceRequirements": []
+                }
+            }
+        ]
+    }
+}

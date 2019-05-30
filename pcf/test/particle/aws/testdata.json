@@ -529,5 +529,29 @@
     "placebo",
     "batch/replay"
     ]
+  ],
+  "batch_job_definition-apply": [
+    {
+      "pcf_name": "pcf_batch_job_definition",
+      "flavor": "batch_job_definition",
+      "aws_resource": {
+        "jobDefinitionName": "test-definition",
+        "type": "container",
+        "containerProperties": {
+          "command": [
+            "sleep",
+            "10"
+          ],
+          "image": "busybox",
+          "memory": 128,
+          "vcpus": 1
+        }
+      }
+    },
+    {},
+    [
+      "placebo",
+      "batch/replay"
+    ]
   ]
 }
