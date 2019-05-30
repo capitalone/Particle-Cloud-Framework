@@ -1,0 +1,67 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "22663460-8301-11e9-b587-595b2ad70fb6",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "date": "Thu, 30 May 2019 17:34:10 GMT",
+                "content-type": "application/json",
+                "content-length": "1480",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "22663460-8301-11e9-b587-595b2ad70fb6",
+                "x-amz-apigw-id": "aggS6GksoAMFiKw=",
+                "x-amzn-trace-id": "Root=1-5cf01412-dcde0f9df5016754694ce24e;Sampled=0"
+            },
+            "RetryAttempts": 0
+        },
+        "jobs": [
+            {
+                "jobName": "test",
+                "jobId": "343aee99-9bd2-41ca-8aee-ad814cba242f",
+                "jobQueue": "arn:aws:batch:us-east-1:644160558196:job-queue/test-queue",
+                "status": "SUCCEEDED",
+                "attempts": [
+                    {
+                        "container": {
+                            "containerInstanceArn": "arn:aws:ecs:us-east-1:644160558196:container-instance/test-comp-environment_Batch_46372d58-df1f-3602-bf52-25989526c72b/bc168354ac6e479d8b8a0593a3d40a76",
+                            "taskArn": "arn:aws:ecs:us-east-1:644160558196:task/efdc4d79-00da-4182-9173-a425c7ef4269",
+                            "exitCode": 0,
+                            "logStreamName": "test-definition/default/efdc4d79-00da-4182-9173-a425c7ef4269",
+                            "networkInterfaces": []
+                        },
+                        "startedAt": 1559237625206,
+                        "stoppedAt": 1559237635372,
+                        "statusReason": "Essential container in task exited"
+                    }
+                ],
+                "statusReason": "Essential container in task exited",
+                "createdAt": 1559237299852,
+                "startedAt": 1559237625206,
+                "stoppedAt": 1559237635372,
+                "dependsOn": [],
+                "jobDefinition": "arn:aws:batch:us-east-1:644160558196:job-definition/test-definition:755",
+                "parameters": {},
+                "container": {
+                    "image": "busybox",
+                    "vcpus": 1,
+                    "memory": 128,
+                    "command": [
+                        "sleep",
+                        "10"
+                    ],
+                    "volumes": [],
+                    "environment": [],
+                    "mountPoints": [],
+                    "ulimits": [],
+                    "exitCode": 0,
+                    "containerInstanceArn": "arn:aws:ecs:us-east-1:644160558196:container-instance/test-comp-environment_Batch_46372d58-df1f-3602-bf52-25989526c72b/bc168354ac6e479d8b8a0593a3d40a76",
+                    "taskArn": "arn:aws:ecs:us-east-1:644160558196:task/efdc4d79-00da-4182-9173-a425c7ef4269",
+                    "logStreamName": "test-definition/default/efdc4d79-00da-4182-9173-a425c7ef4269",
+                    "networkInterfaces": [],
+                    "resourceRequirements": []
+                }
+            }
+        ]
+    }
+}

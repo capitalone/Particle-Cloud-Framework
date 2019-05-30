@@ -553,5 +553,21 @@
       "placebo",
       "batch/replay"
     ]
+  ],
+  "batch_job-apply": [
+    {
+      "pcf_name": "pcf_batch_job",
+      "flavor": "batch_job",
+      "aws_resource": {
+        "jobName": "test",
+        "jobQueue": "test-queue",
+        "jobDefinition": "test-definition"
+      }
+    },
+    {},
+    [
+      "placebo",
+      "batch/replay"
+    ]
   ]
 }
