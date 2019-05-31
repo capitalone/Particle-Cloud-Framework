@@ -41,7 +41,8 @@ class DynamoDB(AWSResource):
         "KeySchema",
         "ProvisionedThroughput",
         "LocalSecondaryIndexes",
-        "GlobalSecondaryIndexes"
+        "GlobalSecondaryIndexes",
+        "Tags"
     }
 
     UPDATE_PARAM_FILTER = {
@@ -58,6 +59,7 @@ class DynamoDB(AWSResource):
         "TableSizeBytes",
         "TableStatus",
         "ItemCount",
+        "Tags"
     }
 
     THROUGHPUT_PARAM_FILTER = {
@@ -98,11 +100,23 @@ class DynamoDB(AWSResource):
 
     def _start(self):
         """
+        Converts the Tag attribute syntax if the key exists
         Starts the dynamodb particle that matches the desired state function
 
         Returns:
             reponse of boto3 create_table
         """
+        # convert the definition Tag to the appropriate Tags=["Key": "string", "Value": "string"] syntax
+        if self.desired_state_definition.get("Tags"):
+            tags = self.desired_state_definition.get("Tags")
+            print(tags)
+            tag_list = []
+            for k, v in tags.items():
+                tag_list.append({
+                    "Key": k,
+                    "Value": v
+                })
+            self.desired_state_definition["Tags"] = tag_list
         start_definition = pcf_util.param_filter(self.get_desired_state_definition(), DynamoDB.START_PARAM_FILTER)
         return self.client.create_table(**start_definition)
 
@@ -174,5 +188,10 @@ class DynamoDB(AWSResource):
         self.get_state()
         current_definition = pcf_util.param_filter(self.current_state_definition, DynamoDB.REMOVE_PARAM_FILTER, True)
         desired_definition = pcf_util.param_filter(self.desired_state_definition, DynamoDB.START_PARAM_FILTER)
+        # self.create_table() does not return "Tags" as an attribute therefore, current_state_definition does not have
+        # any reference to Tags, so it is removed from the comparison between current_definition and desired_definition
+        if self.desired_state_definition.get("Tags"):
+            del desired_definition["Tags"]
         new_desired_state_def, diff_dict = pcf_util.update_dict(current_definition, desired_definition)
+        print(diff_dict)
         return diff_dict == {}

@@ -61,6 +61,9 @@ class TestDynamoDB():
             "ProvisionedThroughput": {
                 "ReadCapacityUnits": 10,
                 "WriteCapacityUnits": 10
+            },
+            "Tags": {
+                "Name": "pcf-dynamodb-test"
             }
         }
     }
