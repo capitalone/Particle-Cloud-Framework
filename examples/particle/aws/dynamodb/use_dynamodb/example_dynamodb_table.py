@@ -24,6 +24,10 @@ dynamodb_example_json = {
                 "AttributeName": "Post",
                 "KeyType": "HASH"
             },
+            {
+                "AttributeName": "PostDateTime",
+                "KeyType": "RANGE"
+            }
         ],
         "LocalSecondaryIndexes": [
             {
@@ -46,6 +50,9 @@ dynamodb_example_json = {
         "ProvisionedThroughput": {
             "ReadCapacityUnits": 10,
             "WriteCapacityUnits": 10
+        },
+        "Tags": {
+            "Name": "pcf-dynamodb-test"
         }
     }
 }

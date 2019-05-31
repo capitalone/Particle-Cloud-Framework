@@ -39,6 +39,10 @@ class TestDynamoDB():
                     "AttributeName": "Post",
                     "KeyType": "HASH"
                 },
+                {
+                    "AttributeName": "Post",
+                    "KeyType": "RANGE"
+                },
             ],
             "LocalSecondaryIndexes" : [
                 {
@@ -87,6 +91,11 @@ class TestDynamoDB():
 
         assert particle.get_state() == State.running
         assert particle.is_state_definition_equivalent() is True
+
+        # test tags
+        table_arn = particle.current_state_definition.get("TableArn")
+        tags = particle.client.list_tags_of_resource(ResourceArn=table_arn)
+        assert not tags.get("Tags") == None
 
         # test update
         self.particle_definition["aws_resource"]["ProvisionedThroughput"] = {"ReadCapacityUnits": 25, "WriteCapacityUnits": 30}

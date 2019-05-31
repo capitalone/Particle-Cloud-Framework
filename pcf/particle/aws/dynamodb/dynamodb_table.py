@@ -109,7 +109,6 @@ class DynamoDB(AWSResource):
         # convert the definition Tag to the appropriate Tags=["Key": "string", "Value": "string"] syntax
         if self.desired_state_definition.get("Tags"):
             tags = self.desired_state_definition.get("Tags")
-            print(tags)
             tag_list = []
             for k, v in tags.items():
                 tag_list.append({
@@ -193,5 +192,4 @@ class DynamoDB(AWSResource):
         if self.desired_state_definition.get("Tags"):
             del desired_definition["Tags"]
         new_desired_state_def, diff_dict = pcf_util.update_dict(current_definition, desired_definition)
-        print(diff_dict)
         return diff_dict == {}
