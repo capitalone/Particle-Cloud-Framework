@@ -29,10 +29,10 @@
                 "year": 2019,
                 "month": 6,
                 "day": 3,
-                "hour": 16,
-                "minute": 25,
-                "second": 32,
-                "microsecond": 314000
+                "hour": 18,
+                "minute": 41,
+                "second": 42,
+                "microsecond": 452000
             },
             "ProvisionedThroughput": {
                 "NumberOfDecreasesToday": 0,
@@ -42,7 +42,7 @@
             "TableSizeBytes": 0,
             "ItemCount": 0,
             "TableArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table",
-            "TableId": "bf687af8-c5c1-45cb-836b-124dbd07e173",
+            "TableId": "be3747e7-25ea-4640-90e1-ea1ae5b670c2",
             "LocalSecondaryIndexes": [
                 {
                     "IndexName": "LastPostIndex",
@@ -66,16 +66,16 @@
             ]
         },
         "ResponseMetadata": {
-            "RequestId": "7URST1J0ABLPQ3D9G0TE5BA473VV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "RequestId": "SCJGPOHHBKOG8FSNJSKV3AQT3BVV4KQNSO5AEMVJF66Q9ASUAAJG",
             "HTTPStatusCode": 200,
             "HTTPHeaders": {
                 "server": "Server",
-                "date": "Mon, 03 Jun 2019 20:25:48 GMT",
+                "date": "Mon, 03 Jun 2019 22:41:58 GMT",
                 "content-type": "application/x-amz-json-1.0",
                 "content-length": "921",
                 "connection": "keep-alive",
-                "x-amzn-requestid": "7URST1J0ABLPQ3D9G0TE5BA473VV4KQNSO5AEMVJF66Q9ASUAAJG",
-                "x-amz-crc32": "744613705"
+                "x-amzn-requestid": "SCJGPOHHBKOG8FSNJSKV3AQT3BVV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "3549626384"
             },
             "RetryAttempts": 0
         }

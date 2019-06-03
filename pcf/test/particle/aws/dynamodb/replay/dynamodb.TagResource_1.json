@@ -1,0 +1,18 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "KRHE23HK90V76OMTNI1AH6L2IBVV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "server": "Server",
+                "date": "Mon, 03 Jun 2019 22:42:14 GMT",
+                "content-type": "application/x-amz-json-1.0",
+                "content-length": "0",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "KRHE23HK90V76OMTNI1AH6L2IBVV4KQNSO5AEMVJF66Q9ASUAAJG"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

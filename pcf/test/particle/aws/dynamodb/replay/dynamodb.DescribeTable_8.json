@@ -23,16 +23,16 @@
                     "KeyType": "RANGE"
                 }
             ],
-            "TableStatus": "UPDATING",
+            "TableStatus": "ACTIVE",
             "CreationDateTime": {
                 "__class__": "datetime",
                 "year": 2019,
                 "month": 6,
                 "day": 3,
-                "hour": 16,
-                "minute": 25,
-                "second": 32,
-                "microsecond": 314000
+                "hour": 18,
+                "minute": 41,
+                "second": 42,
+                "microsecond": 452000
             },
             "ProvisionedThroughput": {
                 "LastIncreaseDateTime": {
@@ -40,19 +40,19 @@
                     "year": 2019,
                     "month": 6,
                     "day": 3,
-                    "hour": 16,
-                    "minute": 26,
-                    "second": 10,
-                    "microsecond": 207000
+                    "hour": 18,
+                    "minute": 42,
+                    "second": 26,
+                    "microsecond": 596000
                 },
                 "NumberOfDecreasesToday": 0,
-                "ReadCapacityUnits": 10,
-                "WriteCapacityUnits": 10
+                "ReadCapacityUnits": 25,
+                "WriteCapacityUnits": 30
             },
             "TableSizeBytes": 0,
             "ItemCount": 0,
             "TableArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table",
-            "TableId": "bf687af8-c5c1-45cb-836b-124dbd07e173",
+            "TableId": "be3747e7-25ea-4640-90e1-ea1ae5b670c2",
             "LocalSecondaryIndexes": [
                 {
                     "IndexName": "LastPostIndex",
@@ -76,16 +76,16 @@
             ]
         },
         "ResponseMetadata": {
-            "RequestId": "SV2UFU9PG8DTGPGRU6HHTAOKU7VV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "RequestId": "1DPB3R1L71IDL0U5IT86MT2EDNVV4KQNSO5AEMVJF66Q9ASUAAJG",
             "HTTPStatusCode": 200,
             "HTTPHeaders": {
                 "server": "Server",
-                "date": "Mon, 03 Jun 2019 20:26:26 GMT",
+                "date": "Mon, 03 Jun 2019 22:42:30 GMT",
                 "content-type": "application/x-amz-json-1.0",
-                "content-length": "961",
+                "content-length": "959",
                 "connection": "keep-alive",
-                "x-amzn-requestid": "SV2UFU9PG8DTGPGRU6HHTAOKU7VV4KQNSO5AEMVJF66Q9ASUAAJG",
-                "x-amz-crc32": "2596907897"
+                "x-amzn-requestid": "1DPB3R1L71IDL0U5IT86MT2EDNVV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "4188236135"
             },
             "RetryAttempts": 0
         }

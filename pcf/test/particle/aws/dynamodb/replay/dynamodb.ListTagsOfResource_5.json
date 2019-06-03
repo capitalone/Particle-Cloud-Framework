@@ -1,0 +1,29 @@
+{
+    "status_code": 200,
+    "data": {
+        "Tags": [
+            {
+                "Key": "Project",
+                "Value": "Rules"
+            },
+            {
+                "Key": "Name",
+                "Value": "pcf-dynamodb-test"
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "MOEAIQE5VMJDOKJCA9N5S9UBRFVV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "server": "Server",
+                "date": "Mon, 03 Jun 2019 22:42:15 GMT",
+                "content-type": "application/x-amz-json-1.0",
+                "content-length": "87",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "MOEAIQE5VMJDOKJCA9N5S9UBRFVV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "1377385874"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

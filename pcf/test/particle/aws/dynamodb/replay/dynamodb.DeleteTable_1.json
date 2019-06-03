@@ -12,19 +12,19 @@
             "TableSizeBytes": 0,
             "ItemCount": 0,
             "TableArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table",
-            "TableId": "bf687af8-c5c1-45cb-836b-124dbd07e173"
+            "TableId": "be3747e7-25ea-4640-90e1-ea1ae5b670c2"
         },
         "ResponseMetadata": {
-            "RequestId": "39F8L96TQMG8A322L8J3EIOJLRVV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "RequestId": "SKF32V8BF8NFIHVNEONJHRU4HJVV4KQNSO5AEMVJF66Q9ASUAAJG",
             "HTTPStatusCode": 200,
             "HTTPHeaders": {
                 "server": "Server",
-                "date": "Mon, 03 Jun 2019 20:27:11 GMT",
+                "date": "Mon, 03 Jun 2019 22:42:30 GMT",
                 "content-type": "application/x-amz-json-1.0",
                 "content-length": "332",
                 "connection": "keep-alive",
-                "x-amzn-requestid": "39F8L96TQMG8A322L8J3EIOJLRVV4KQNSO5AEMVJF66Q9ASUAAJG",
-                "x-amz-crc32": "1824685879"
+                "x-amzn-requestid": "SKF32V8BF8NFIHVNEONJHRU4HJVV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "217734740"
             },
             "RetryAttempts": 0
         }

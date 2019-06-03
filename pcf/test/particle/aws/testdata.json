@@ -667,6 +667,10 @@
                 {
                     "Key": "Name",
                     "Value": "pcf-dynamodb-test"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "Rules"
                 }
             ]
         }
