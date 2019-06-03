@@ -559,5 +559,121 @@
     "placebo",
     "batch/replay"
     ]
+  ],
+  "dynamodb_apply": [
+    {
+      "pcf_name": "pcf_dynamodb",
+      "flavor": "dynamodb_table",
+      "aws_resource": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Post",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "PostDateTime",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "pcf_test_table",
+        "KeySchema": [
+          {
+            "AttributeName": "Post",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "PostDateTime",
+            "KeyType": "RANGE"
+          }
+        ],
+        "LocalSecondaryIndexes": [
+          {
+            "IndexName": "LastPostIndex",
+            "KeySchema": [
+              {
+                "AttributeName": "Post",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "PostDateTime",
+                "KeyType": "RANGE"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "KEYS_ONLY"
+            }
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 10,
+          "WriteCapacityUnits": 10
+        },
+        "Tags": [
+            {
+                "Key": "Name",
+                "Value": "pcf-dynamodb-test"
+            }
+        ]
+      }
+    },
+    {
+        "pcf_name": "pcf_dynamodb",
+        "flavor": "dynamodb_table",
+        "aws_resource": {
+            "AttributeDefinitions": [
+                {
+                    "AttributeName": "Post",
+                    "AttributeType": "S"
+                },
+                {
+                    "AttributeName": "PostDateTime",
+                    "AttributeType": "S"
+                }
+            ],
+            "TableName": "pcf_test_table",
+            "KeySchema": [
+                {
+                    "AttributeName": "Post",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "PostDateTime",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "LocalSecondaryIndexes" : [
+                {
+                    "IndexName": "LastPostIndex",
+                    "KeySchema": [
+                        {
+                            "AttributeName": "Post",
+                            "KeyType": "HASH"
+                        },
+                        {
+                            "AttributeName": "PostDateTime",
+                            "KeyType": "RANGE"
+                        }
+                    ],
+                    "Projection": {
+                        "ProjectionType": "KEYS_ONLY"
+                    }
+                }
+            ],
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 25,
+                "WriteCapacityUnits": 30
+            },
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "pcf-dynamodb-test"
+                }
+            ]
+        }
+    },
+    [
+        "placebo",
+        "dynamodb/replay"
+    ]
   ]
 }

@@ -1,0 +1,83 @@
+{
+    "status_code": 200,
+    "data": {
+        "Table": {
+            "AttributeDefinitions": [
+                {
+                    "AttributeName": "Post",
+                    "AttributeType": "S"
+                },
+                {
+                    "AttributeName": "PostDateTime",
+                    "AttributeType": "S"
+                }
+            ],
+            "TableName": "pcf_test_table",
+            "KeySchema": [
+                {
+                    "AttributeName": "Post",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "PostDateTime",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "TableStatus": "CREATING",
+            "CreationDateTime": {
+                "__class__": "datetime",
+                "year": 2019,
+                "month": 6,
+                "day": 3,
+                "hour": 16,
+                "minute": 25,
+                "second": 32,
+                "microsecond": 314000
+            },
+            "ProvisionedThroughput": {
+                "NumberOfDecreasesToday": 0,
+                "ReadCapacityUnits": 10,
+                "WriteCapacityUnits": 10
+            },
+            "TableSizeBytes": 0,
+            "ItemCount": 0,
+            "TableArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table",
+            "TableId": "bf687af8-c5c1-45cb-836b-124dbd07e173",
+            "LocalSecondaryIndexes": [
+                {
+                    "IndexName": "LastPostIndex",
+                    "KeySchema": [
+                        {
+                            "AttributeName": "Post",
+                            "KeyType": "HASH"
+                        },
+                        {
+                            "AttributeName": "PostDateTime",
+                            "KeyType": "RANGE"
+                        }
+                    ],
+                    "Projection": {
+                        "ProjectionType": "KEYS_ONLY"
+                    },
+                    "IndexSizeBytes": 0,
+                    "ItemCount": 0,
+                    "IndexArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table/index/LastPostIndex"
+                }
+            ]
+        },
+        "ResponseMetadata": {
+            "RequestId": "7URST1J0ABLPQ3D9G0TE5BA473VV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "server": "Server",
+                "date": "Mon, 03 Jun 2019 20:25:48 GMT",
+                "content-type": "application/x-amz-json-1.0",
+                "content-length": "921",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "7URST1J0ABLPQ3D9G0TE5BA473VV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "744613705"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

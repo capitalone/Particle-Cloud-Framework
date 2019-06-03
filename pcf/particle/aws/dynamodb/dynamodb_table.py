@@ -90,12 +90,26 @@ class DynamoDB(AWSResource):
         """
         try:
             current_definition = self.client.describe_table(TableName=self.table_name)["Table"]
+            # print(current_definition)
+            # print(self.desired_state_definition)
+
+            # get the list of tags if any
+            # table_arn = current_definition["TableArn"]
+            # tags = self.client.list_tags_of_resource(ResourceArn=table_arn)["Tags"]
+            # print("tags", tags)
+
+            # if tags:
+            #     print("i am empty but still returning true")
+            #     current_definition["Tags"] = tags
+            #     print(current_definition)
+
         except ClientError as e:
             if e.response['Error']['Code'] == 'ResourceNotFoundException':
                 logger.info("Table {} was not found. State is terminated".format(self.table_name))
                 return {"status": "missing"}
             else:
                 raise e
+
         return current_definition
 
     def _start(self):
@@ -107,7 +121,11 @@ class DynamoDB(AWSResource):
         """
 
         start_definition = pcf_util.param_filter(self.get_desired_state_definition(), DynamoDB.START_PARAM_FILTER)
-        return self.client.create_table(**start_definition)
+        response = self.client.create_table(**start_definition)
+        self._arn = response["TableDescription"]["TableArn"]
+        print(self._arn)
+
+        return response
 
     def _stop(self):
         """
@@ -167,6 +185,24 @@ class DynamoDB(AWSResource):
         update_definition = pcf_util.param_filter(new_desired_state_def, DynamoDB.UPDATE_PARAM_FILTER)
         self.client.update_table(**update_definition)
 
+        # if diff_dict.get("Tags"):
+        #     print(diff_dict, "i need to update")
+        #     print(self.current_state_definition, "current def")
+        #     remove = set(self.current_state_definition.get('Tags')) - set(new_desired_state_def.get('Tags'))
+        #     add = set(self.desired_state_definition.get('Tags')) - set(self.current_state_definition.get('Tags'))
+        #     if remove:
+        #         print("remove")
+        #         # self.client.untag_resource(
+        #         #     ResourceArn=self._arn,
+        #         #     TagKeys=list(remove)
+        #         # )
+        #     if add:
+        #         print("add")
+        #         # self.client.tag_resource(
+        #         #     ResourceArn=self._arn,
+        #         #     Tags=list(add)
+        #         # )
+
     def is_state_definition_equivalent(self):
         """
         Compares the desired state and current state definitions.
@@ -182,4 +218,5 @@ class DynamoDB(AWSResource):
         if self.desired_state_definition.get("Tags"):
             del desired_definition["Tags"]
         new_desired_state_def, diff_dict = pcf_util.update_dict(current_definition, desired_definition)
+        print(diff_dict)
         return diff_dict == {}
