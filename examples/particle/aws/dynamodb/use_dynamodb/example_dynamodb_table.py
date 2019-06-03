@@ -51,9 +51,10 @@ dynamodb_example_json = {
             "ReadCapacityUnits": 10,
             "WriteCapacityUnits": 10
         },
-        "Tags": {
-            "Name": "pcf-dynamodb-test"
-        }
+        "Tags": [{
+            "Key": "Name",
+            "Value": "pcf-dynamodb-test"
+        }]
     }
 }
 
