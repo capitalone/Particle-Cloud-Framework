@@ -5,10 +5,6 @@
             {
                 "Key": "Name",
                 "Value": "pcf-dynamodb-test"
-            },
-            {
-                "Key": "Project",
-                "Value": "PCF Rules"
             }
         ],
         "ResponseMetadata": {

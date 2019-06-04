@@ -2,49 +2,9 @@
     "status_code": 200,
     "data": {
         "Table": {
-            "AttributeDefinitions": [
-                {
-                    "AttributeName": "Post",
-                    "AttributeType": "S"
-                },
-                {
-                    "AttributeName": "PostDateTime",
-                    "AttributeType": "S"
-                }
-            ],
             "TableName": "pcf_test_table",
-            "KeySchema": [
-                {
-                    "AttributeName": "Post",
-                    "KeyType": "HASH"
-                },
-                {
-                    "AttributeName": "PostDateTime",
-                    "KeyType": "RANGE"
-                }
-            ],
-            "TableStatus": "ACTIVE",
-            "CreationDateTime": {
-                "__class__": "datetime",
-                "year": 2019,
-                "month": 6,
-                "day": 3,
-                "hour": 18,
-                "minute": 41,
-                "second": 42,
-                "microsecond": 452000
-            },
+            "TableStatus": "DELETING",
             "ProvisionedThroughput": {
-                "LastIncreaseDateTime": {
-                    "__class__": "datetime",
-                    "year": 2019,
-                    "month": 6,
-                    "day": 3,
-                    "hour": 18,
-                    "minute": 42,
-                    "second": 26,
-                    "microsecond": 596000
-                },
                 "NumberOfDecreasesToday": 0,
                 "ReadCapacityUnits": 25,
                 "WriteCapacityUnits": 30
@@ -52,40 +12,19 @@
             "TableSizeBytes": 0,
             "ItemCount": 0,
             "TableArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table",
-            "TableId": "be3747e7-25ea-4640-90e1-ea1ae5b670c2",
-            "LocalSecondaryIndexes": [
-                {
-                    "IndexName": "LastPostIndex",
-                    "KeySchema": [
-                        {
-                            "AttributeName": "Post",
-                            "KeyType": "HASH"
-                        },
-                        {
-                            "AttributeName": "PostDateTime",
-                            "KeyType": "RANGE"
-                        }
-                    ],
-                    "Projection": {
-                        "ProjectionType": "KEYS_ONLY"
-                    },
-                    "IndexSizeBytes": 0,
-                    "ItemCount": 0,
-                    "IndexArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table/index/LastPostIndex"
-                }
-            ]
+            "TableId": "317b17d3-f6b8-4bf3-9d12-846914fafd70"
         },
         "ResponseMetadata": {
-            "RequestId": "18VS4QC5LF7PFU973C6G6LTRDVVV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "RequestId": "UQBDTPCTOKHIMNQJLDEOBBSVABVV4KQNSO5AEMVJF66Q9ASUAAJG",
             "HTTPStatusCode": 200,
             "HTTPHeaders": {
                 "server": "Server",
-                "date": "Mon, 03 Jun 2019 22:42:30 GMT",
+                "date": "Mon, 03 Jun 2019 22:59:56 GMT",
                 "content-type": "application/x-amz-json-1.0",
-                "content-length": "959",
+                "content-length": "321",
                 "connection": "keep-alive",
-                "x-amzn-requestid": "18VS4QC5LF7PFU973C6G6LTRDVVV4KQNSO5AEMVJF66Q9ASUAAJG",
-                "x-amz-crc32": "4188236135"
+                "x-amzn-requestid": "UQBDTPCTOKHIMNQJLDEOBBSVABVV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "555637241"
             },
             "RetryAttempts": 0
         }

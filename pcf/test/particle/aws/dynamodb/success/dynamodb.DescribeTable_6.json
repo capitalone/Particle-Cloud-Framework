@@ -23,16 +23,16 @@
                     "KeyType": "RANGE"
                 }
             ],
-            "TableStatus": "CREATING",
+            "TableStatus": "ACTIVE",
             "CreationDateTime": {
                 "__class__": "datetime",
                 "year": 2019,
                 "month": 6,
                 "day": 3,
-                "hour": 16,
-                "minute": 25,
-                "second": 32,
-                "microsecond": 314000
+                "hour": 18,
+                "minute": 58,
+                "second": 20,
+                "microsecond": 682000
             },
             "ProvisionedThroughput": {
                 "NumberOfDecreasesToday": 0,
@@ -42,7 +42,7 @@
             "TableSizeBytes": 0,
             "ItemCount": 0,
             "TableArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table",
-            "TableId": "bf687af8-c5c1-45cb-836b-124dbd07e173",
+            "TableId": "317b17d3-f6b8-4bf3-9d12-846914fafd70",
             "LocalSecondaryIndexes": [
                 {
                     "IndexName": "LastPostIndex",
@@ -66,16 +66,16 @@
             ]
         },
         "ResponseMetadata": {
-            "RequestId": "7URST1J0ABLPQ3D9G0TE5BA473VV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "RequestId": "4O7VHK50BFAK4T2GU0JD6D8MU3VV4KQNSO5AEMVJF66Q9ASUAAJG",
             "HTTPStatusCode": 200,
             "HTTPHeaders": {
                 "server": "Server",
-                "date": "Mon, 03 Jun 2019 20:25:48 GMT",
+                "date": "Mon, 03 Jun 2019 22:58:52 GMT",
                 "content-type": "application/x-amz-json-1.0",
-                "content-length": "921",
+                "content-length": "919",
                 "connection": "keep-alive",
-                "x-amzn-requestid": "7URST1J0ABLPQ3D9G0TE5BA473VV4KQNSO5AEMVJF66Q9ASUAAJG",
-                "x-amz-crc32": "744613705"
+                "x-amzn-requestid": "4O7VHK50BFAK4T2GU0JD6D8MU3VV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "674060159"
             },
             "RetryAttempts": 0
         }

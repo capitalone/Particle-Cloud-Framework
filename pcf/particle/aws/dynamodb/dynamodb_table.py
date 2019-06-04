@@ -90,8 +90,6 @@ class DynamoDB(AWSResource):
         """
         try:
             current_definition = self.client.describe_table(TableName=self.table_name)["Table"]
-            # print(current_definition)
-            # print(self.desired_state_definition)
 
         except ClientError as e:
             if e.response['Error']['Code'] == 'ResourceNotFoundException':
@@ -113,7 +111,6 @@ class DynamoDB(AWSResource):
         start_definition = pcf_util.param_filter(self.get_desired_state_definition(), DynamoDB.START_PARAM_FILTER)
         response = self.client.create_table(**start_definition)
         self._arn = response["TableDescription"]["TableArn"]
-        print(self._arn)
 
         return response
 
@@ -183,10 +180,8 @@ class DynamoDB(AWSResource):
         else:
             table_arn = self.current_state_definition.get("TableArn")
             current_tags =  self.client.list_tags_of_resource(ResourceArn=table_arn)["Tags"]
-        print("current_tags", current_tags)
 
         desired_tags = self.desired_state_definition.get("Tags", [])
-        print("desired_tags: ", desired_tags)
 
         if self._need_update(current_tags, desired_tags):
             add = list(itertools.filterfalse(lambda x: x in current_tags, desired_tags))
@@ -194,7 +189,7 @@ class DynamoDB(AWSResource):
             if remove:
                 self.client.untag_resource(
                     ResourceArn=table_arn,
-                    TagKeys=[{'Key': x.get('Key')} for x in remove]
+                    TagKeys=[x.get('Key') for x in remove]
                 )
             if add:
                 self.client.tag_resource(
@@ -211,9 +206,7 @@ class DynamoDB(AWSResource):
         """
         self.get_state()
         current_definition = pcf_util.param_filter(self.current_state_definition, DynamoDB.REMOVE_PARAM_FILTER, True)
-        print("current_def ", current_definition)
         desired_definition = pcf_util.param_filter(self.desired_state_definition, DynamoDB.START_PARAM_FILTER)
-        print("desired_def ", desired_definition)
 
         # compare tags
         if self._arn:
@@ -221,17 +214,13 @@ class DynamoDB(AWSResource):
         else:
           current_tags =  self.client.list_tags_of_resource(ResourceArn=self.current_state_definition.get("TableArn"))["Tags"]
 
-        print("current_tags", current_tags)
-
         desired_tags = desired_definition.get("Tags", [])
-        print("desired_tags: ", desired_tags)
 
         new_desired_state_def, diff_dict = pcf_util.update_dict(current_definition, desired_definition)
         # self.create_table() does not return "Tags" as an attribute therefore, current_state_definition does not have
         # any reference to Tags, so it is removed from the comparison between current_definition and desired_definition
         diff_dict.pop('Tags', None)
 
-        print("diff_dict ", diff_dict)
         return diff_dict == {} and not self._need_update(current_tags, desired_tags)
 
     def _need_update(self, curr_list, desired_list):

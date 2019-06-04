@@ -1,30 +1,21 @@
 {
-    "status_code": 200,
+    "status_code": 400,
     "data": {
-        "Table": {
-            "TableName": "pcf_test_table",
-            "TableStatus": "DELETING",
-            "ProvisionedThroughput": {
-                "NumberOfDecreasesToday": 0,
-                "ReadCapacityUnits": 25,
-                "WriteCapacityUnits": 30
-            },
-            "TableSizeBytes": 0,
-            "ItemCount": 0,
-            "TableArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table",
-            "TableId": "be3747e7-25ea-4640-90e1-ea1ae5b670c2"
+        "Error": {
+            "Message": "Requested resource not found: Table: pcf_test_table not found",
+            "Code": "ResourceNotFoundException"
         },
         "ResponseMetadata": {
-            "RequestId": "5TT66AIO7QI4P412G9TRTIVQH3VV4KQNSO5AEMVJF66Q9ASUAAJG",
-            "HTTPStatusCode": 200,
+            "RequestId": "S71A03BROB5M0D8AAQ4R0LK3IBVV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "HTTPStatusCode": 400,
             "HTTPHeaders": {
                 "server": "Server",
-                "date": "Mon, 03 Jun 2019 22:42:31 GMT",
+                "date": "Mon, 03 Jun 2019 23:00:11 GMT",
                 "content-type": "application/x-amz-json-1.0",
-                "content-length": "321",
+                "content-length": "145",
                 "connection": "keep-alive",
-                "x-amzn-requestid": "5TT66AIO7QI4P412G9TRTIVQH3VV4KQNSO5AEMVJF66Q9ASUAAJG",
-                "x-amz-crc32": "2116854376"
+                "x-amzn-requestid": "S71A03BROB5M0D8AAQ4R0LK3IBVV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "1320365880"
             },
             "RetryAttempts": 0
         }

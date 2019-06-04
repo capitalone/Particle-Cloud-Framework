@@ -1,7 +1,7 @@
 {
     "status_code": 200,
     "data": {
-        "Table": {
+        "TableDescription": {
             "AttributeDefinitions": [
                 {
                     "AttributeName": "Post",
@@ -23,16 +23,16 @@
                     "KeyType": "RANGE"
                 }
             ],
-            "TableStatus": "ACTIVE",
+            "TableStatus": "UPDATING",
             "CreationDateTime": {
                 "__class__": "datetime",
                 "year": 2019,
                 "month": 6,
                 "day": 3,
-                "hour": 16,
-                "minute": 25,
-                "second": 32,
-                "microsecond": 314000
+                "hour": 18,
+                "minute": 58,
+                "second": 20,
+                "microsecond": 682000
             },
             "ProvisionedThroughput": {
                 "LastIncreaseDateTime": {
@@ -40,19 +40,19 @@
                     "year": 2019,
                     "month": 6,
                     "day": 3,
-                    "hour": 16,
-                    "minute": 26,
-                    "second": 58,
-                    "microsecond": 499000
+                    "hour": 18,
+                    "minute": 58,
+                    "second": 52,
+                    "microsecond": 821000
                 },
                 "NumberOfDecreasesToday": 0,
-                "ReadCapacityUnits": 25,
-                "WriteCapacityUnits": 30
+                "ReadCapacityUnits": 10,
+                "WriteCapacityUnits": 10
             },
             "TableSizeBytes": 0,
             "ItemCount": 0,
             "TableArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table",
-            "TableId": "bf687af8-c5c1-45cb-836b-124dbd07e173",
+            "TableId": "317b17d3-f6b8-4bf3-9d12-846914fafd70",
             "LocalSecondaryIndexes": [
                 {
                     "IndexName": "LastPostIndex",
@@ -76,16 +76,16 @@
             ]
         },
         "ResponseMetadata": {
-            "RequestId": "642NMQQ96DOJ162BPNVO31L28NVV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "RequestId": "67VJ18PM6E8LNUNUIVM3HSIDCRVV4KQNSO5AEMVJF66Q9ASUAAJG",
             "HTTPStatusCode": 200,
             "HTTPHeaders": {
                 "server": "Server",
-                "date": "Mon, 03 Jun 2019 20:27:11 GMT",
+                "date": "Mon, 03 Jun 2019 22:58:52 GMT",
                 "content-type": "application/x-amz-json-1.0",
-                "content-length": "959",
+                "content-length": "972",
                 "connection": "keep-alive",
-                "x-amzn-requestid": "642NMQQ96DOJ162BPNVO31L28NVV4KQNSO5AEMVJF66Q9ASUAAJG",
-                "x-amz-crc32": "389326658"
+                "x-amzn-requestid": "67VJ18PM6E8LNUNUIVM3HSIDCRVV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "558886415"
             },
             "RetryAttempts": 0
         }

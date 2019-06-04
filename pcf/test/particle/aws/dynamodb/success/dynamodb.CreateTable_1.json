@@ -1,7 +1,7 @@
 {
     "status_code": 200,
     "data": {
-        "Table": {
+        "TableDescription": {
             "AttributeDefinitions": [
                 {
                     "AttributeName": "Post",
@@ -23,16 +23,16 @@
                     "KeyType": "RANGE"
                 }
             ],
-            "TableStatus": "ACTIVE",
+            "TableStatus": "CREATING",
             "CreationDateTime": {
                 "__class__": "datetime",
                 "year": 2019,
                 "month": 6,
                 "day": 3,
-                "hour": 16,
-                "minute": 25,
-                "second": 32,
-                "microsecond": 314000
+                "hour": 18,
+                "minute": 58,
+                "second": 20,
+                "microsecond": 682000
             },
             "ProvisionedThroughput": {
                 "NumberOfDecreasesToday": 0,
@@ -42,7 +42,7 @@
             "TableSizeBytes": 0,
             "ItemCount": 0,
             "TableArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table",
-            "TableId": "bf687af8-c5c1-45cb-836b-124dbd07e173",
+            "TableId": "317b17d3-f6b8-4bf3-9d12-846914fafd70",
             "LocalSecondaryIndexes": [
                 {
                     "IndexName": "LastPostIndex",
@@ -66,16 +66,16 @@
             ]
         },
         "ResponseMetadata": {
-            "RequestId": "HRPTB910I3SPA1V6LRB9EMVCO7VV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "RequestId": "7MGSI2DOCTH3O6TUSDB33F2GONVV4KQNSO5AEMVJF66Q9ASUAAJG",
             "HTTPStatusCode": 200,
             "HTTPHeaders": {
                 "server": "Server",
-                "date": "Mon, 03 Jun 2019 20:26:03 GMT",
+                "date": "Mon, 03 Jun 2019 22:58:20 GMT",
                 "content-type": "application/x-amz-json-1.0",
-                "content-length": "919",
+                "content-length": "932",
                 "connection": "keep-alive",
-                "x-amzn-requestid": "HRPTB910I3SPA1V6LRB9EMVCO7VV4KQNSO5AEMVJF66Q9ASUAAJG",
-                "x-amz-crc32": "3175083649"
+                "x-amzn-requestid": "7MGSI2DOCTH3O6TUSDB33F2GONVV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "382608312"
             },
             "RetryAttempts": 0
         }

@@ -4,11 +4,7 @@
         "Tags": [
             {
                 "Key": "Name",
-                "Value": "pcf-dynamodb-test"
-            },
-            {
-                "Key": "Project",
-                "Value": "PCF Rules"
+                "Value": "pcf-dynamodb-test-2"
             }
         ],
         "ResponseMetadata": {
