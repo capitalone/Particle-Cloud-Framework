@@ -41,7 +41,7 @@
             },
             "TableSizeBytes": 0,
             "ItemCount": 0,
-            "TableArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table",
+            "TableArn": "arn:aws:dynamodb:us-east-1:123456789012:table/pcf_test_table",
             "TableId": "317b17d3-f6b8-4bf3-9d12-846914fafd70",
             "LocalSecondaryIndexes": [
                 {
@@ -61,7 +61,7 @@
                     },
                     "IndexSizeBytes": 0,
                     "ItemCount": 0,
-                    "IndexArn": "arn:aws:dynamodb:us-east-1:337932058722:table/pcf_test_table/index/LastPostIndex"
+                    "IndexArn": "arn:aws:dynamodb:us-east-1:123456789012:table/pcf_test_table/index/LastPostIndex"
                 }
             ]
         },
