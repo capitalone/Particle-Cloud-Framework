@@ -50,12 +50,22 @@ class ECSService(AWSResource):
         "serviceName": "",
         "taskDefinition": "",
         "loadBalancers": "",
+        "serviceRegistries": "",
         "desiredCount": "",
+        "launchType": "",
+        "platformVersion": "",
         "placementConstraints": "",
         "clientToken": "",
         "roleArn": "role",
         "deploymentConfiguration": "",
-        "placementStrategy": ""
+        "placementStrategy": "",
+        "networkConfiguration": "",
+        "healthCheckGracePeriodSeconds": "",
+        "schedulingStrategy": "",
+        "deploymentController": "",
+        "tags": "",
+        "enableECSManagedTags": "",
+        "propagateTags": "",
     }
 
     UPDATE_PARAM_CONVERSIONS = {
