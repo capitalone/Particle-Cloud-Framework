@@ -65,8 +65,8 @@ class DynamoDB(AWSResource):
         "WriteCapacityUnits"
     }
 
-    def __init__(self, particle_definition):
-        super(DynamoDB, self).__init__(particle_definition=particle_definition, resource_name="dynamodb")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="dynamodb", session=session)
         self.table_name = self.desired_state_definition["TableName"]
 
     def _terminate(self):

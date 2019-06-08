@@ -1,0 +1,31 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "4437ff60-6830-11e9-b700-d705c2a0d8f2",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "date": "Fri, 26 Apr 2019 14:33:32 GMT",
+                "content-type": "application/json",
+                "content-length": "422",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "4437ff60-6830-11e9-b700-d705c2a0d8f2",
+                "x-amz-apigw-id": "YwB9bFRRoAMFh9g=",
+                "x-amzn-trace-id": "Root=1-5cc316bc-30ca002c4078c76623a71ada;Sampled=0"
+            },
+            "RetryAttempts": 0
+        },
+        "computeEnvironments": [
+            {
+                "computeEnvironmentName": "test",
+                "computeEnvironmentArn": "arn:aws:batch:us-east-1:111111111111:compute-environment/test",
+                "ecsClusterArn": "arn:aws:ecs:us-east-1:111111111111:cluster/test_Batch_1830f0c6-bb59-350f-ba7c-c058543d1184",
+                "type": "UNMANAGED",
+                "state": "DISABLED",
+                "status": "VALID",
+                "statusReason": "ComputeEnvironment Healthy",
+                "serviceRole": "arn:aws:iam::111111111111:role/AWSBatchServiceRole"
+            }
+        ]
+    }
+}

@@ -13,6 +13,18 @@ docstrings to all your functions and add tests.
 `PCF Github Repo <https://github.com/capitalone/Particle-Cloud-Framework>`_
 
 
+Writing Tests
+--------------
+
+To add a new test for an aws particle add the test definition, updated definition, and test type to `testdata.json`.
+The tests can use moto or placebo. If using placebo you will have to create a folder called replay for the specified
+resource for example `sns/replay`. Then run `python generate_placebo.py TEST-NAME` with whatever you called your test name
+in `testdata.json`. This creates all the required files. You can test your particle now by running
+`python test_particles TEST-NAME` to make sure it passes all assertions. If you use moto make sure all the required function
+calls are supported in moto and if that is the case then all you need to do is include the moto client that you wish to use
+in the test json. See the other test definitions already in `testdata.json` for help starting.
+
+
 Requesting New Features
 --------------------------
 

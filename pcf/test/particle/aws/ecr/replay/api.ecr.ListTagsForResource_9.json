@@ -1,0 +1,21 @@
+{
+    "status_code": 200,
+    "data": {
+        "tags": [
+            {
+                "Key": "gg",
+                "Value": "wp"
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "7e28aa6d-75e7-11e9-82ae-b5673db280fe",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "7e28aa6d-75e7-11e9-82ae-b5673db280fe",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "36"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}
