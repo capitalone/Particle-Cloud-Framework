@@ -18,7 +18,7 @@
         "jobDefinitions": [
             {
                 "jobDefinitionName": "test-definition",
-                "jobDefinitionArn": "arn:aws:batch:us-east-1:644160558196:job-definition/test-definition:754",
+                "jobDefinitionArn": "arn:aws:batch:us-east-1:123456789012:job-definition/test-definition:754",
                 "revision": 754,
                 "status": "ACTIVE",
                 "type": "container",
@@ -40,7 +40,7 @@
             },
             {
                 "jobDefinitionName": "test-definition",
-                "jobDefinitionArn": "arn:aws:batch:us-east-1:644160558196:job-definition/test-definition:753",
+                "jobDefinitionArn": "arn:aws:batch:us-east-1:123456789012:job-definition/test-definition:753",
                 "revision": 753,
                 "status": "ACTIVE",
                 "type": "container",

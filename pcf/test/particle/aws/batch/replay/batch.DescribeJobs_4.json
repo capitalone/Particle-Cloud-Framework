@@ -19,13 +19,13 @@
             {
                 "jobName": "test",
                 "jobId": "343aee99-9bd2-41ca-8aee-ad814cba242f",
-                "jobQueue": "arn:aws:batch:us-east-1:644160558196:job-queue/test-queue",
+                "jobQueue": "arn:aws:batch:us-east-1:123456789012:job-queue/test-queue",
                 "status": "RUNNING",
                 "attempts": [],
                 "createdAt": 1559237299852,
                 "startedAt": 1559237625206,
                 "dependsOn": [],
-                "jobDefinition": "arn:aws:batch:us-east-1:644160558196:job-definition/test-definition:755",
+                "jobDefinition": "arn:aws:batch:us-east-1:123456789012:job-definition/test-definition:755",
                 "parameters": {},
                 "container": {
                     "image": "busybox",
@@ -39,8 +39,8 @@
                     "environment": [],
                     "mountPoints": [],
                     "ulimits": [],
-                    "containerInstanceArn": "arn:aws:ecs:us-east-1:644160558196:container-instance/test-comp-environment_Batch_46372d58-df1f-3602-bf52-25989526c72b/bc168354ac6e479d8b8a0593a3d40a76",
-                    "taskArn": "arn:aws:ecs:us-east-1:644160558196:task/efdc4d79-00da-4182-9173-a425c7ef4269",
+                    "containerInstanceArn": "arn:aws:ecs:us-east-1:123456789012:container-instance/test-comp-environment_Batch_46372d58-df1f-3602-bf52-25989526c72b/bc168354ac6e479d8b8a0593a3d40a76",
+                    "taskArn": "arn:aws:ecs:us-east-1:123456789012:task/efdc4d79-00da-4182-9173-a425c7ef4269",
                     "logStreamName": "test-definition/default/efdc4d79-00da-4182-9173-a425c7ef4269",
                     "networkInterfaces": [],
                     "resourceRequirements": []

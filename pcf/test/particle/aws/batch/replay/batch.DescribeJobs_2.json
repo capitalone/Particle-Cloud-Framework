@@ -19,12 +19,12 @@
             {
                 "jobName": "test",
                 "jobId": "343aee99-9bd2-41ca-8aee-ad814cba242f",
-                "jobQueue": "arn:aws:batch:us-east-1:644160558196:job-queue/test-queue",
+                "jobQueue": "arn:aws:batch:us-east-1:123456789012:job-queue/test-queue",
                 "status": "RUNNABLE",
                 "attempts": [],
                 "createdAt": 1559237299852,
                 "dependsOn": [],
-                "jobDefinition": "arn:aws:batch:us-east-1:644160558196:job-definition/test-definition:755",
+                "jobDefinition": "arn:aws:batch:us-east-1:123456789012:job-definition/test-definition:755",
                 "parameters": {},
                 "container": {
                     "image": "busybox",

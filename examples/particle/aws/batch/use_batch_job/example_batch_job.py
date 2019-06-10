@@ -26,7 +26,7 @@ from pcf.particle.aws.batch.batch_job import BatchJob
 #         "computeResources": {
 #             'type': 'EC2',
 #             'desiredvCpus': 1,
-#             'instanceRole': 'arn:aws:iam::644160558196:instance-profile/ecsInstanceRole',
+#             'instanceRole': 'arn:aws:iam::123456789012:instance-profile/ecsInstanceRole',
 #             'instanceTypes': [
 #                 'optimal',
 #             ],
@@ -42,7 +42,7 @@ from pcf.particle.aws.batch.batch_job import BatchJob
 #                 'subnet-914763e7',
 #             ]
 #     },
-#         "serviceRole": "arn:aws:iam::644160558196:role/service-role/AWSBatchServiceRole"
+#         "serviceRole": "arn:aws:iam::123456789012:role/service-role/AWSBatchServiceRole"
 #     }
 # }
 
