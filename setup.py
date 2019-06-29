@@ -29,7 +29,7 @@ setup(
     description='pcf',
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
-    author='anovis',
+    author='anovis,bb1314,davidyum',
     packages=find_packages(),
     url='https://github.com/capitalone/Particle-Cloud-Framework',
     entry_points='''
