@@ -52,11 +52,8 @@ class IAMRole(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.RoleName"]
 
-    def __init__(self, particle_definition):
-        super(IAMRole, self).__init__(
-            particle_definition=particle_definition,
-            resource_name="iam",
-        )
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="iam", session=session)
         self.role_name = self.desired_state_definition.get('RoleName')
         self.custom_config['policy_arns'] = self.custom_config.get('policy_arns', [])
         self._set_unique_keys()

@@ -42,8 +42,8 @@ class VPCInstance(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.custom_config.vpc_name"]
 
-    def __init__(self, particle_definition):
-        super(VPCInstance, self).__init__(particle_definition, "ec2")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition, "ec2", session)
         self._set_unique_keys()
         self.vpc_name = self.custom_config.get("vpc_name")
         self._vpc_client = None

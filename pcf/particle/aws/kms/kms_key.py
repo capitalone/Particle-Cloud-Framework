@@ -104,8 +104,8 @@ class KMSKey(AWSResource):
     The key used to uniquely identify the particle. User supplied.
     """
 
-    def __init__(self, particle_definition):
-        super(KMSKey, self).__init__(particle_definition=particle_definition, resource_name='kms')
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name='kms', session=session)
         self._set_unique_keys()
         self.key_name = self.desired_state_definition.get('custom_config').get('key_name')
 

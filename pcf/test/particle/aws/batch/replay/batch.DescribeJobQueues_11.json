@@ -1,0 +1,35 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "fea5108a-6855-11e9-9370-830d71f9de0b",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "date": "Fri, 26 Apr 2019 19:03:36 GMT",
+                "content-type": "application/json",
+                "content-length": "318",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "fea5108a-6855-11e9-9370-830d71f9de0b",
+                "x-amz-apigw-id": "YwphVGK9IAMF8Yw=",
+                "x-amzn-trace-id": "Root=1-5cc35608-099aa3484f1ddeda0f96bf81;Sampled=0"
+            },
+            "RetryAttempts": 0
+        },
+        "jobQueues": [
+            {
+                "jobQueueName": "test",
+                "jobQueueArn": "arn:aws:batch:us-east-1:111111111111:job-queue/test",
+                "state": "DISABLED",
+                "status": "DELETING",
+                "statusReason": "JobQueue Healthy",
+                "priority": 1,
+                "computeEnvironmentOrder": [
+                    {
+                        "order": 1,
+                        "computeEnvironment": "arn:aws:batch:us-east-1:111111111111:compute-environment/test"
+                    }
+                ]
+            }
+        ]
+    }
+}

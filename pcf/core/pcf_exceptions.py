@@ -91,3 +91,8 @@ class MaxTimeoutException(Exception):
 class InvalidState(Exception):
     def __init__(self, message="Attempted to set a state that is not valid"):
         Exception.__init__(self, message)
+
+
+class MissingInput(Exception):
+    def __init__(self, message="Missing Required Input"):
+        Exception.__init__(self, message)

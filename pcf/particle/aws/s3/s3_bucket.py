@@ -47,11 +47,8 @@ class S3Bucket(AWSResource):
 
     UNIQUE_KEYS = ["aws_resource.Bucket"]
 
-    def __init__(self, particle_definition):
-        super(S3Bucket, self).__init__(
-            particle_definition=particle_definition,
-            resource_name="s3",
-        )
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="s3", session=session)
         self.bucket_name = self.desired_state_definition["Bucket"]
         self._set_unique_keys()
 

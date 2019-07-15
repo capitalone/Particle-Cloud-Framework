@@ -1,4 +1,34 @@
 {
+  "ecr-repository-apply": [
+    {
+        "pcf_name": "pcf_ecr_repository",
+        "flavor": "ecr_repository",
+        "aws_resource": {
+            "repositoryName": "gg-ecr",
+            "tags": [
+                {
+                    "Key": "lol",
+                    "Value": "cat"
+                }
+            ]
+        }
+    },
+    {
+        "aws_resource": {
+            "repositoryName": "gg-ecr",
+            "tags": [
+                {
+                    "Key": "gg",
+                    "Value": "wp"
+                }
+            ]
+        }
+    },
+    [
+      "placebo",
+      "ecr/replay"
+    ]
+  ],
   "hosted-zone-apply": [
     {
       "pcf_name": "pcf_hosted_zone",
@@ -36,7 +66,7 @@
   "sqs-apply": [
     {
       "pcf_name": "pcf-queue",
-      "flavor": "sqs",
+      "flavor": "sqs_queue",
       "aws_resource": {
         "QueueName": "test_SQS_queue.fifo",
         "Attributes": {
@@ -61,13 +91,11 @@
     {
       "aws_resource": {
         "Attributes": {
-          "MaximumMessageSize": "262143",
-          "ReceiveMessageWaitTimeSeconds": "21",
-          "ContentBasedDeduplication": "false"
+          "MaximumMessageSize": "261111",
+          "MessageRetentionPeriod": "345611"
         },
         "Tags": {
-          "test_tag": "changed",
-          "new_tag": "hi"
+          "test_tag": "change value"
         }
       }
     },
@@ -124,6 +152,532 @@
       "placebo",
       "cloudfront/replay"
     ]
+  ],
+  "cloudwatch-event-apply": [
+    {
+      "pcf_name": "pcf_cloudwatch_event",
+      "flavor": "cloudwatch_events",
+      "aws_resource": {
+        "Name": "pcf_test_events",
+        "ScheduleExpression": "rate(5 minutes)",
+        "State": "ENABLED",
+        "Description": "pcf cloudwatch events"
+      }
+    },
+    {},
+    [
+      "mock_events"
+    ]
+  ],
+    "cloudwatch-log-apply": [
+    {
+      "pcf_name": "pcf_cloudwatch_log",
+      "flavor": "cloudwatch_logs",
+      "aws_resource": {
+        "logGroupName": "pcfLog",
+        "tags": {
+          "tagA": "string",
+          "removed": "bye"
+        }
+      }
+    },
+    {
+      "aws_resource": {
+        "tags": {
+          "tagA": "changed",
+          "new": "hi"
+        }
+      }
+    },
+    [
+      "placebo",
+      "cloudwatch/replay"
+    ]
+  ],
+  "dynamodb-apply": [
+    {
+      "pcf_name": "pcf_dynamodb",
+      "flavor": "dynamodb_table",
+      "aws_resource": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Post",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "PostDateTime",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "pcf_test_table",
+        "KeySchema": [
+          {
+            "AttributeName": "Post",
+            "KeyType": "HASH"
+          }
+        ],
+        "LocalSecondaryIndexes": [
+          {
+            "IndexName": "LastPostIndex",
+            "KeySchema": [
+              {
+                "AttributeName": "Post",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "PostDateTime",
+                "KeyType": "RANGE"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "KEYS_ONLY"
+            }
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 10,
+          "WriteCapacityUnits": 10
+        }
+      }
+    },
+    {
+      "aws_resource": {
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 15,
+          "WriteCapacityUnits": 15
+        }
+      }
+    },
+    [
+      "mock_dynamodb2"
+    ]
+  ],
+  "launch-config-apply": [
+    {
+      "pcf_name": "lc-test",
+      "flavor": "launch_configuration",
+      "aws_resource": {
+        "LaunchConfigurationName": "lc-test",
+        "InstanceType": "t2.nano",
+        "KeyName": "test-key",
+        "IamInstanceProfile": "test-role",
+        "ImageId": "test-id"
+      }
+    },
+    {},
+    [
+      "mock_autoscaling"
+    ]
+  ],
+    "elb-apply": [
+    {
+      "pcf_name": "elb-pcf",
+      "flavor": "elb",
+      "aws_resource": {
+        "LoadBalancerName": "elb-pcf",
+        "Scheme": "internal",
+        "Listeners": [
+          {
+            "Protocol": "tcp",
+            "LoadBalancerPort": 80,
+            "InstancePort": 8080,
+            "SSLCertificateId": "None"
+          }
+        ]
+      }
+    },
+    {},
+    [
+      "mock_elb"
+    ]
+  ],
+  "ecs-cluster-apply": [
+    {
+        "pcf_name": "pcf_ecs_cluster",
+        "flavor": "ecs_cluster",
+        "aws_resource": {
+            "clusterName": "core"
+        }
+    },
+    {},
+    [
+      "mock_ecs"
+    ]
+  ],
+  "ecs-task-def-apply": [
+    {
+      "pcf_name": "gg",
+      "flavor": "ecs_task_definition",
+      "aws_resource": {
+        "family": "gg-fam",
+        "containerDefinitions": [
+          {
+            "name": "wp",
+            "memory": 60000,
+            "essential": true,
+            "portMappings": [
+              {
+                "hostPort": 0,
+                "containerPort": 6006,
+                "protocol": "tcp"
+              }
+            ],
+            "mountPoints": [
+            ],
+            "environment": [
+              {
+                "name": "environment-name",
+                "value": "environment-value"
+              }
+            ],
+            "privileged": true,
+            "image": "dockerhub.com/dockerimage",
+            "cpu": 3800
+          }
+        ]
+      }
+    },
+    {
+      "aws_resource": {
+        "containerDefinitions": [
+          {
+            "privileged": false
+          }
+        ]
+      }
+    },
+    [
+      "mock_ecs"
+    ]
+  ],
+    "efs-apply": [
+    {
+      "pcf_name": "pcf_efs",
+      "flavor": "efs_instance",
+      "aws_resource": {
+        "custom_config": {
+          "instance_name": "efs-instance"
+        },
+        "CreationToken": "pcfFileSystem",
+        "PerformanceMode": "generalPurpose"
+      }
+    },
+    {},
+    [
+      "placebo",
+      "efs/replay"
+    ]
+  ],
+    "emr-cluster-group-apply": [
+    {
+      "pcf_name": "pcf_cluster",
+      "flavor": "emr_cluster",
+      "aws_resource": {
+        "ReleaseLabel": "emr-5.19.0",
+        "Instances": {
+          "KeepJobFlowAliveWhenNoSteps": true,
+          "InstanceGroups": [
+            {
+              "InstanceRole": "MASTER",
+              "Name": "master",
+              "InstanceCount": 1,
+              "InstanceType": "m3.xlarge"
+            }
+          ]
+        },
+        "JobFlowRole": "EMR_EC2_DefaultRole",
+        "Name": "test",
+        "ServiceRole": "EMR_DefaultRole"
+      }
+    },
+    {
+      "aws_resource": {
+        "Instances": {
+          "InstanceGroups": [
+            {
+              "InstanceRole": "MASTER",
+              "Name": "master",
+              "InstanceCount": 2,
+              "InstanceType": "m3.xlarge"
+            }
+          ]
+        }
+      }
+    },
+    [
+      "mock_emr"
+    ]
+  ],
+  "emr-cluster-fleet-apply": [
+    {
+      "pcf_name": "pcf_cluster",
+      "flavor": "emr_cluster",
+      "aws_resource": {
+        "ReleaseLabel": "emr-5.19.0",
+        "Instances": {
+          "KeepJobFlowAliveWhenNoSteps": true,
+          "InstanceFleets": [
+            {
+              "InstanceFleetType": "MASTER",
+              "Name": "master",
+              "TargetOnDemandCapacity": 1,
+              "InstanceTypeConfigs": [
+                {
+                  "InstanceType": "m3.xlarge"
+                }
+              ]
+            }
+          ]
+        },
+        "JobFlowRole": "EMR_EC2_DefaultRole",
+        "Name": "test",
+        "ServiceRole": "EMR_DefaultRole"
+      }
+    },
+    {
+      "aws_resource": {
+        "Instances": {
+          "InstanceFleets": [
+            {
+              "InstanceFleetType": "MASTER",
+              "Name": "master",
+              "TargetOnDemandCapacity": 2,
+              "InstanceTypeConfigs": [
+                {
+                  "InstanceType": "m3.xlarge"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    [
+      "mock_emr"
+    ]
+  ],
+    "kms-apply": [
+    {
+        "pcf_name": "kms_unit_test",
+        "flavor": "kms_key",
+        "aws_resource": {
+            "custom_config": {
+                "key_name": "pcf_unit_test"
+            }
+        }
+    },
+    {},
+    [
+      "mock_kms"
+    ]
+  ],
+  "s3-apply": [
+    {
+      "pcf_name": "pcf_s3_bucket",
+      "flavor": "s3_bucket",
+      "aws_resource": {
+        "Bucket": "pcf_test_bucket",
+        "custom_config": {
+          "Tags": {
+            "Name": "pcf-s3-test"
+          }
+        }
+      }
+    },
+    {
+      "aws_resource": {
+        "custom_config": {
+          "Tags": {
+            "Name": "pcf-s3-test1"
+          }
+        }
+      }
+    },
+    [
+      "mock_s3"
+    ]
+  ],
+  "vpc-apply": [
+    {
+        "pcf_name": "pcf_vpc",
+        "flavor": "vpc_instance",
+        "aws_resource": {
+            "custom_config":{
+                "vpc_name":"test"
+            },
+            "CidrBlock":"10.0.0.0/16"
+        }
+    },
+    {},
+    [
+      "mock_ec2"
+    ]
+  ],
+  "batch_compute_environment-apply": [
+    {
+      "pcf_name": "pcf_batch_compute_environment",
+      "flavor": "batch_compute_environment",
+      "aws_resource": {
+        "computeEnvironmentName": "test",
+        "type": "UNMANAGED",
+        "serviceRole": "AWSBatchServiceRole"
+      }
+    },
+    {
+      "aws_resource": {
+        "state": "DISABLED"
+      }
+    },
+    [
+      "placebo",
+      "batch/replay"
+    ]
+  ],
+  "batch_job_queue-apply": [
+    {
+      "pcf_name": "pcf_batch_job_queue",
+      "flavor": "batch_job_queue",
+        "aws_resource": {
+        "jobQueueName": "test",
+        "state": "ENABLED",
+        "priority": 1,
+        "computeEnvironmentOrder": [
+          {
+            "order": 1,
+            "computeEnvironment": "arn:aws:batch:us-east-1:111111111111:compute-environment/test"
+
+          }
+        ]
+      }
+    },
+      {
+      "aws_resource": {
+        "state": "DISABLED"
+      }
+    },
+    [
+    "placebo",
+    "batch/replay"
+    ]
+  ],
+  "dynamodb_apply": [
+    {
+      "pcf_name": "pcf_dynamodb",
+      "flavor": "dynamodb_table",
+      "aws_resource": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Post",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "PostDateTime",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "pcf_test_table",
+        "KeySchema": [
+          {
+            "AttributeName": "Post",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "PostDateTime",
+            "KeyType": "RANGE"
+          }
+        ],
+        "LocalSecondaryIndexes": [
+          {
+            "IndexName": "LastPostIndex",
+            "KeySchema": [
+              {
+                "AttributeName": "Post",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "PostDateTime",
+                "KeyType": "RANGE"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "KEYS_ONLY"
+            }
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 10,
+          "WriteCapacityUnits": 10
+        },
+        "Tags": [
+            {
+                "Key": "Name",
+                "Value": "pcf-dynamodb-test"
+            }
+        ]
+      }
+    },
+    {
+        "pcf_name": "pcf_dynamodb",
+        "flavor": "dynamodb_table",
+        "aws_resource": {
+            "AttributeDefinitions": [
+                {
+                    "AttributeName": "Post",
+                    "AttributeType": "S"
+                },
+                {
+                    "AttributeName": "PostDateTime",
+                    "AttributeType": "S"
+                }
+            ],
+            "TableName": "pcf_test_table",
+            "KeySchema": [
+                {
+                    "AttributeName": "Post",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "PostDateTime",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "LocalSecondaryIndexes" : [
+                {
+                    "IndexName": "LastPostIndex",
+                    "KeySchema": [
+                        {
+                            "AttributeName": "Post",
+                            "KeyType": "HASH"
+                        },
+                        {
+                            "AttributeName": "PostDateTime",
+                            "KeyType": "RANGE"
+                        }
+                    ],
+                    "Projection": {
+                        "ProjectionType": "KEYS_ONLY"
+                    }
+                }
+            ],
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 25,
+                "WriteCapacityUnits": 30
+            },
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "pcf-dynamodb-test"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "PCF Rules"
+                }
+            ]
+        }
+    },
+    [
+        "placebo",
+        "dynamodb/replay"
+    ]
   ]
 }
-
