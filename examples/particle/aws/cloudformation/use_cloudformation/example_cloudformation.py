@@ -23,7 +23,35 @@ import os
 template_file_location = os.path.join(sys.path[0],"example_cloudformation.yml")
 with open(template_file_location, "r") as content_file:
     content = yaml.load(content_file)
-a = {"AWSTemplateFormatVersion": "2010-09-09", "Description": "Testing ElasticSearch for Cloudcustodian Purposes Intern Project", "Resources": {"TestKinesis": {"Type": "AWS::Kinesis::Stream", "Properties": {"Name": "c7n-KinesisStreamCloudwatch", "ShardCount": 1, "StreamEncryption": {"EncryptionType": "KMS", "KeyId": "alias/aws/kinesis"}, "Tags": [{"Key": "ASV", "Value": "ASVCLOUDCUSTODIAN"}, {"Key": "OwnerContact", "Value": "aaron.gill@capitalone.com"}, {"Key": "CMDBEnvironment", "Value": "ENVNPCLOUDMAID"}]}}}}
+version = content.get('AWSTemplateFormatVersion')
+content['AWSTemplateFormatVersion'] = f"{version.year}-{version.month}-{version.day}"
+print(content)
+
+## You can also pass in your cloudformation template configuratoin as a json 
+
+# example_cloudformation_template = {  
+#    "AWSTemplateFormatVersion":"2010-09-09",
+#    "Description":"Example Project",
+#    "Resources":{  
+#       "TestKinesis":{  
+#          "Type":"AWS::Kinesis::Stream",
+#          "Properties":{  
+#             "Name":"KinesisStreamCloudwatch",
+#             "ShardCount":1,
+#             "StreamEncryption":{  
+#                "EncryptionType":"KMS",
+#                "KeyId":"alias/aws/kinesis"
+#             },
+#             "Tags":[  
+#                {  
+#                   "Key":"Test1",
+#                   "Value":"Test2"
+#                }
+#             ]
+#          }
+#       }
+#    }
+# }
 
 # content = json.dumps(content)
 
@@ -40,7 +68,7 @@ particle_definition = {
                 "Value": "test"
             }
         ],
-        "TemplateBody": json.dumps(a),
+        "TemplateBody": json.dumps(content),
 
     }
 }

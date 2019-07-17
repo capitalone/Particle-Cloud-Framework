@@ -1,19 +1,15 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: 'Testing ElasticSearch for Cloudcustodian Purposes Intern Project'
+Description: 'Example Project'
 Resources:
   TestKinesis:
     Type: AWS::Kinesis::Stream
     Properties:
-      Name: "c7n-KinesisStreamCloudwatch"
+      Name: "TestKinesisStreamCloudwatch"
       #RetentionPeriodHours: Default 24 hours
       ShardCount: 1
       StreamEncryption:
         EncryptionType: "KMS"
         KeyId: "alias/aws/kinesis"
       Tags:
-      - Key: ASV
-        Value: ASVCLOUDCUSTODIAN
-      - Key: OwnerContact
-        Value: aaron.gill@capitalone.com
-      - Key: CMDBEnvironment
-        Value: ENVNPCLOUDMAID
+      - Key: Test
+        Value: Test2
