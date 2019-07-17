@@ -15,6 +15,17 @@ import random
 import string
 from pcf.particle.aws.cloudformation.cloudformation_stack import CloudFormationStack
 from pcf.core import State
+import yaml, json
+import sys
+import os
+
+
+template_file_location = os.path.join(sys.path[0],"example_cloudformation.yml")
+with open(template_file_location, "r") as content_file:
+    content = yaml.load(content_file)
+a = {"AWSTemplateFormatVersion": "2010-09-09", "Description": "Testing ElasticSearch for Cloudcustodian Purposes Intern Project", "Resources": {"TestKinesis": {"Type": "AWS::Kinesis::Stream", "Properties": {"Name": "c7n-KinesisStreamCloudwatch", "ShardCount": 1, "StreamEncryption": {"EncryptionType": "KMS", "KeyId": "alias/aws/kinesis"}, "Tags": [{"Key": "ASV", "Value": "ASVCLOUDCUSTODIAN"}, {"Key": "OwnerContact", "Value": "aaron.gill@capitalone.com"}, {"Key": "CMDBEnvironment", "Value": "ENVNPCLOUDMAID"}]}}}}
+
+# content = json.dumps(content)
 
 # Only included required fields. For all fields,
 # https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudfront.html#CloudFront.Client.create_distribution
@@ -29,7 +40,7 @@ particle_definition = {
                 "Value": "test"
             }
         ],
-        "TemplateBody": ".",
+        "TemplateBody": json.dumps(a),
 
     }
 }

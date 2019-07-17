@@ -16,16 +16,37 @@ from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 from pcf.util import pcf_util
 from pcf.core.pcf_exceptions import NoResourceException
+import json
+from botocore.errorfactory import ClientError
+import logging
+
+logger = logging.getLogger(__name__)
 
 class CloudFormationStack(AWSResource):
     """
     Particle that maps to Cloudformation Stack
     """
 
-    flavor = 'cloudformation'
+    flavor = "cloudformation"
 
-    START_PARAM_FILER = {
-
+    PARAM_FILTER = {
+        "StackName",
+        "TemplateBody",
+        "TemplateURL",
+        "Parameters",
+        "DisableRollback",
+        "RollbackConfiguration",
+        "TimeoutInMinutes",
+        "NotificationARNs",
+        "Capabilities",
+        "ResourceTypes",
+        "RoleARN",
+        "OnFailure",
+        "StackPolicyBody",
+        "StackPolicyURL",
+        "Tags",
+        "ClientRequestToken",
+        "EnableTerminationProtection"
     }
 
     equivalent_states = {
@@ -34,37 +55,38 @@ class CloudFormationStack(AWSResource):
         State.terminated: 0,
     }
 
-    UNIQUE_KEYS = ["aws_resource.Comment"]
+    UNIQUE_KEYS = ["aws_resource.StackName"]
 
     def __init__(self, particle_definition, session=None):
         """
         Args:
             particle_definition (definition): desired configuration of the particle
         """
-        super(CloudFormationStack, self).__init__(particle_definition, 'cloudformation', session=session)
+        super(CloudFormationStack, self).__init__(particle_definition, "cloudformation", session=session)
         self.stack_name = self.desired_state_definition["StackName"]
 
     def _set_unique_keys(self):
         """
-        Logic that sets keys from state definition that are used to uniquely identify the distribution
+        Logic that sets keys from state definition that are used to uniquely identify the stack
         """
         self.unique_keys = CloudFormationStack.UNIQUE_KEYS
 
     def _start(self):
         """
-        Creates the distribution according to the particle definition and adds tags if necessary
+        Creates the cloudformation stack according to the particle definition
 
         Returns:
             hosted_zone: boto3 response
         """
-        start_definition = pcf_util.param_filter(self.desired_state_definition, CloudFormationStack.START_PARAM_FILER)
-        response = self.client.create_stack(self.desired_state_definition)
+        
+        start_definition = pcf_util.param_filter(self.desired_state_definition, CloudFormationStack.PARAM_FILTER)
+        response = self.client.create_stack(**start_definition)
 
         return response
 
     def _terminate(self):
         """
-        Deletes the distribution using its id
+        Deletes the cloudformation stack using its name
 
         Returns:
             boto3 response
@@ -79,28 +101,36 @@ class CloudFormationStack(AWSResource):
 
     def _update(self):
         """
-        Not implemented
+        Update cloudformation stack based on the new configuration provided
         """
-        pass
+        
+        update_definition = pcf_util.param_filter(self.desired_state_definition, CloudFormationStack.PARAM_FILTER)
+        self.client.update_stack(**update_definition)
 
     def get_status(self):
         
         try:
             cloudformation_resp = self.client.describe_stacks(StackName=self.stack_name)
-        except NoResourceException:
-            return {"status": "missing"}
-        
+        except ClientError as e:
+            if e.response['Error']['Code'] == 'ValidationError':
+                logger.info("Cloudformation stack {} was not found. State is terminated".format(self.stack_name))
+                return {"status": "missing"}
+            raise e
         return cloudformation_resp
 
     def sync_state(self):
         """
-        Sync state calls get_status to determines and set the state of the distribution
+        Sync state calls get_status to determines and set the state of the cloudformation stack
         """
         full_status = self.get_status()
-        if not full_status:
+
+        if full_status == {"status": "missing"}:
             self.state = State.terminated
-        else:
-            self.current_state_definition = full_status
+            return
+
+        self.state = State.running
+        self.current_state_definition = full_status.get("Stacks")[0]
+
 
     def is_state_equivalent(self, state1, state2):
         """
@@ -119,4 +149,16 @@ class CloudFormationStack(AWSResource):
         Returns:
              bool: True
         """
-        return True
+        self.current_state_definition = pcf_util.param_filter(self.current_state_definition, CloudFormationStack.PARAM_FILTER)
+
+        #seperate boto call to get the cloudformation template
+        response = self.client.get_template(
+            StackName=self.stack_name,
+            TemplateStage="Original"
+        )
+
+        self.current_state_definition['TemplateBody'] = json.dumps(response.get('TemplateBody'))
+        diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
+
+        return diff_dict == {}
+
