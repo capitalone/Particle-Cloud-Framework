@@ -11,8 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import random
-import string
 from pcf.particle.aws.cloudformation.cloudformation_stack import CloudFormationStack
 from pcf.core import State
 import yaml, json
@@ -55,8 +53,7 @@ print(content)
 
 # content = json.dumps(content)
 
-# Only included required fields. For all fields,
-# https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudfront.html#CloudFront.Client.create_distribution
+# Only included required fields
 particle_definition = {
     "pcf_name": "pcf_cloudformation",
     "flavor": "cloudformation",
