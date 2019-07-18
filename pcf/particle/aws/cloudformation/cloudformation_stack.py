@@ -93,10 +93,15 @@ class CloudFormationStack(AWSResource):
             boto3 response
         """
         #Cannot termiante during these inprogress status: https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/cloudformation/model/StackStatus.html
-        if 'IN_PROGRESS' in self.current_state_definition.get('StackStatus', {}):
-            return
+        try:
+            response = self.client.delete_stack(StackName=self.stack_name)
+        except ClientError as e:
+            if 'IN_PROGRESS' in e.response['Error']['Message']:
+                logger.info(f"Cannot terminate stack {self.stack_name} while update in progress")
+                return
+            raise e
 
-        return self.client.delete_stack(StackName=self.stack_name)
+        return response
 
     def _stop(self):
         """
@@ -110,11 +115,16 @@ class CloudFormationStack(AWSResource):
         """
 
         #Cannot update during these inprogress status: https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/cloudformation/model/StackStatus.html
-        if 'IN_PROGRESS' in self.current_state_definition.get('StackStatus', {}):
-            return 
+        try:
+            update_definition = pcf_util.param_filter(self.desired_state_definition, CloudFormationStack.PARAM_FILTER)
+            response = self.client.update_stack(**update_definition)
+        except ClientError as e:
+            if 'IN_PROGRESS' in e.response['Error']['Message']:
+                logger.info(f"Cannot update stack {self.stack_name} while creation or deletion in progress")
+                return
+            raise e
 
-        update_definition = pcf_util.param_filter(self.desired_state_definition, CloudFormationStack.PARAM_FILTER)
-        self.client.update_stack(**update_definition)
+        return response
 
     def get_status(self):
         
@@ -122,7 +132,7 @@ class CloudFormationStack(AWSResource):
             cloudformation_resp = self.client.describe_stacks(StackName=self.stack_name)
         except ClientError as e:
             if e.response['Error']['Code'] == 'ValidationError':
-                logger.info("Cloudformation stack {} was not found. State is terminated".format(self.stack_name))
+                logger.info(f"Cloudformation stack {self.stack_name} was not found. State is terminated")
                 return {"status": "missing"}
             raise e
         return cloudformation_resp
@@ -140,17 +150,6 @@ class CloudFormationStack(AWSResource):
         self.state = State.running
         self.current_state_definition = full_status.get("Stacks")[0]
 
-
-    def is_state_equivalent(self, state1, state2):
-        """
-        Determines if states are equivalent
-        Args:
-            state1 (state): first state
-            state2 (state): second state
-        Returns:
-            bool: whether the two states are equivalent
-        """
-        return CloudFormationStack.equivalent_states.get(state1) == CloudFormationStack.equivalent_states.get(state2)
 
     def is_state_definition_equivalent(self):
         """
