@@ -11,19 +11,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from pcf.particle.aws.cloudformation.cloudformation_stack import CloudFormationStack
-from pcf.core import State
-import yaml, json
 import sys
 import os
+import json
+import yaml
+
+from pcf.particle.aws.cloudformation.cloudformation_stack import CloudFormationStack
+from pcf.core import State
 
 
 template_file_location = os.path.join(sys.path[0],"example_cloudformation.yml")
 with open(template_file_location, "r") as content_file:
     content = yaml.load(content_file)
+
 version = content.get('AWSTemplateFormatVersion')
-content['AWSTemplateFormatVersion'] = f"{version.year}-{version.month}-{version.day}"
-print(content)
+content['AWSTemplateFormatVersion'] =  str(version)
 
 ## You can also pass in your cloudformation template configuratoin as a json 
 
@@ -58,7 +60,7 @@ particle_definition = {
     "pcf_name": "pcf_cloudformation",
     "flavor": "cloudformation",
     "aws_resource": {
-        "StackName": "pcf-cloudformation", # used as the uid bc getting a distribution and its tags are separate api calls
+        "StackName": "pcf-cloudformation",
         "Tags": [
             {
                 "Key": "Name",
@@ -75,6 +77,14 @@ particle = CloudFormationStack(particle_definition)
 
 particle.set_desired_state(State.running)
 particle.apply(sync=True)
+print(particle.get_state())
+
+## Example Update by adding additional tags to the resource. Updating cloudformation template also triggers an update.
+particle_definition['aws_resource']['Tags'].append({"Key": "Name2", "Value": "test2"})
+particle.set_desired_state(State.running)
+particle.apply(sync=True)
 
 particle.set_desired_state(State.terminated)
 particle.apply(sync=True)
+print(particle.get_state())
+

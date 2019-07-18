@@ -54,6 +54,7 @@ class CloudFormationStack(AWSResource):
         State.stopped: 0,
         State.terminated: 0,
     }
+    # ['CREATE_IN_PROGRESS', 'DELETE_IN_PROGRESS', 'ROLLBACK_IN_PROGRESS', 'UPDATE_IN_PROGRESS', ]
 
     UNIQUE_KEYS = ["aws_resource.StackName"]
 
@@ -91,6 +92,10 @@ class CloudFormationStack(AWSResource):
         Returns:
             boto3 response
         """
+        #Cannot termiante during these inprogress status: https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/cloudformation/model/StackStatus.html
+        if 'IN_PROGRESS' in self.current_state_definition.get('StackStatus', {}):
+            return
+
         return self.client.delete_stack(StackName=self.stack_name)
 
     def _stop(self):
@@ -103,7 +108,11 @@ class CloudFormationStack(AWSResource):
         """
         Update cloudformation stack based on the new configuration provided
         """
-        
+
+        #Cannot update during these inprogress status: https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/cloudformation/model/StackStatus.html
+        if 'IN_PROGRESS' in self.current_state_definition.get('StackStatus', {}):
+            return 
+
         update_definition = pcf_util.param_filter(self.desired_state_definition, CloudFormationStack.PARAM_FILTER)
         self.client.update_stack(**update_definition)
 
@@ -145,9 +154,10 @@ class CloudFormationStack(AWSResource):
 
     def is_state_definition_equivalent(self):
         """
-        Since there is no update available, always return True
+        Compares the desired state and current state definitions.
+
         Returns:
-             bool: True
+            bool
         """
         self.current_state_definition = pcf_util.param_filter(self.current_state_definition, CloudFormationStack.PARAM_FILTER)
 
