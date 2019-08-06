@@ -1,7 +1,7 @@
 from pcf.core import State
 from pcf.particle.aws.es.es_domain import ESDomain
 
-#example es
+#example es domain
 
 es_example_json = {
     'pcf_name': 'pcf_es', #required
