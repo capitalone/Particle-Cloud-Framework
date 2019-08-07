@@ -16,6 +16,7 @@ from pcf.util import pcf_util
 import logging
 import json
 import itertools
+import time
 from pcf.core import State
 from botocore.errorfactory import ClientError
 logger = logging.getLogger(__name__)
@@ -32,11 +33,12 @@ class Kinesis(AWSResource):
             State.stopped: 0,
             State.terminated: 0,
         }
+
     state_lookup = {
         "CREATING":State.pending,
         "DELETING" : State.pending,
         "ACTIVE" : State.running,
-        "UPDATING" : State.pending
+        "UPDATING" : State.running
     }
 
     START_PARAM_FILTER = {
@@ -69,17 +71,15 @@ class Kinesis(AWSResource):
             self.current_state_definition["ShardCount"] = self.getOpenShardCount()
         else:
             self.current_state_definition["ShardCount"] = 0
-        print("THIS IS THE CURRENT STATE DEFINITION", self.current_state_definition)
-        print("THIS IS THE DESIRED STATE DEFINITION", self.get_desired_state_definition())
 
     def getOpenShardCount(self):
         current_state = self.get_status()
         return current_state.get('OpenShardCount', 0)
     def _update(self):
-        self._updateShards()
         self._updateTags()
-        self._updateStreamRetention()
+        self._updateShards()
         self._updateEncryptionTypeAndKey()
+        self._updateStreamRetention()
 
     def _terminate(self):
         return self.client.delete_stream(StreamName=self.stream_name)
@@ -95,11 +95,10 @@ class Kinesis(AWSResource):
     def _stop(self):
         return self._terminate()
 
+
     def _updateShards(self):
         current_state = self.get_status()
-        print("IF STATEMENT VALUE", self.getOpenShardCount() != self.get_desired_state_definition().get("ShardCount") and current_state.get("StreamStatus") == "ACTIVE")
         if(self.getOpenShardCount() != self.get_desired_state_definition().get("ShardCount") and current_state.get("StreamStatus") == "ACTIVE"):
-            print("IVE ATTEMPTED INCREASING THE SHARDS")
             self.client.update_shard_count(StreamName=self.stream_name, TargetShardCount=self.get_desired_state_definition().get("ShardCount"), ScalingType='UNIFORM_SCALING')
 
     def _updateStreamRetention(self):
@@ -115,6 +114,7 @@ class Kinesis(AWSResource):
     def _updateTags(self):
         currentTags = self.client.list_tags_for_stream(StreamName=self.stream_name).get("Tags")
         desired_tags = self.get_desired_state_definition().get("Tags")
+
         if self._need_update(currentTags, desired_tags):
             add = list(itertools.filterfalse(lambda x: x in currentTags, desired_tags))
             remove = list(itertools.filterfalse(lambda x: x in desired_tags, currentTags))

@@ -6,7 +6,7 @@ example_kinesis_json = {
     "pcf_name": "pcf_example",
     "flavor": "kinesis",
     "aws_resource": {
-        "StreamName": "pcfKineTest2",
+        "StreamName": "pcfKineTest3",
         "ShardCount": 8,
         "RetentionPeriodHours": 168,
         "EncryptionType": 'KMS',
@@ -14,6 +14,11 @@ example_kinesis_json = {
         "Tags": [{
             "Key": "test1",
             "Value": "test2"
+        }, {
+            "Key": "OwnerContact",
+            "Value": "aaron.gill@capitalone.com",
+            "Key": "ASV",
+            "Value": "ASVCLOUDCUSTODIAN"
         }]
     }
 }
