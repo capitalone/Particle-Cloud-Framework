@@ -4,10 +4,10 @@ from pcf.particle.aws.es.es_domain import ESDomain
 #example es domain
 
 es_example_json = {
-    'pcf_name': 'pcf_es', #required
+    'pcf_name': 'pcf_es-1', #required
     'flavor': 'es', #required
     'aws_resource': {
-        'DomainName': 'pcf-test-domain',
+        'DomainName': 'pcf-test-domain-1',
         'ElasticsearchVersion': '6.7',
         'ElasticsearchClusterConfig': {
             'InstanceType': 'm4.large.elasticsearch',
@@ -53,7 +53,21 @@ es_example_json = {
         },
         'NodeToNodeEncryptionOptions': {
             'Enabled': True
-        }
+        },
+        'Tags': [
+            {
+                'Key': 'ASV',
+                'Value': 'ASVCLOUDCUSTODIAN'
+            },
+            {
+                'Key': 'OwnerContact',
+                'Value': 'janitorialservices@capitalone.com'
+            },
+            {
+                'Key': 'CMDBEnvironment',
+                'Value': 'ENVNPCLOUDMAID'
+            }
+        ]
     }
 }
 
@@ -63,4 +77,13 @@ es_particle = ESDomain(es_example_json)
 es_particle.set_desired_state(State.running)
 es_particle.apply()
 
+es_example_json['aws_resource']['SnapshotOptions']['AutomatedSnapshotStartHour'] = 1
+es_example_json['aws_resource']['Tags'][1]['Value'] = 'zhb257'
+es_example_json['aws_resource']['NodeToNodeEncryptionOptions']['Enabled'] = False
+
+es_particle = ESDomain(es_example_json)
+es_particle.set_desired_state(State.running)
+es_particle.apply()
+
+es_particle.set_desired_state(State.terminated)
 

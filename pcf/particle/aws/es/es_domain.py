@@ -91,8 +91,6 @@ class ESDomain(AWSResource):
 
             self.client.add_tags(ARN=self._arn, TagList=tag_set)
 
-        return response
-
     def _stop(self):
         """
         Elasticsearch does not have a sotpped state so it calls terminate.
@@ -109,13 +107,13 @@ class ESDomain(AWSResource):
             return
 
         self.current_state_definition = status_def
-        if self.current_state_definition["Created"] and not self.current_state_definition['Deleted'] and not self.current_state_definition['Processing'] and not self.current_state_definition['UpgradeProcessing']:
-            self.state = State.pending
+        if self.current_state_definition["Created"] == True and self.current_state_definition['Deleted'] == False and self.current_state_definition['Processing'] == False and self.current_state_definition['UpgradeProcessing'] == False:
+            self.state = State.running
         else:
-            self.state = State.terminated
+            self.state = State.pending
 
-        print("THIS IS THE CURRENT STATE DEFINITION", self.current_state_definition)
-        print("THIS IS THE DESIRED STATE DEFINITION", self.desired_state_definition)
+    def _wait(self):
+        time.sleep(30)
 
     def get_status(self):
         """
@@ -134,22 +132,22 @@ class ESDomain(AWSResource):
                 return {'status': 'missing'}
             else:
                 raise e
-
         return current_definition
 
     def _update(self):
         """
         Updates the es particle to match current state definition.
         """
-        update_definition = pcf_util.param_filter(self.current_state_definition, self.UPDATE_PARAM_FILTER)
+        update_definition = pcf_util.param_filter(self.desired_state_definition, self.UPDATE_PARAM_FILTER)
+        print("UPDATE DEFINITION", update_definition)
         self.client.update_elasticsearch_domain_config(**update_definition)
 
         if self._arn:
             domain_arn = self._arn
-            current_tags = self.client.list_tags_of_resource(ResourceArn=domain_arn)['Tags']
+            current_tags = self.client.list_tags(ARN=domain_arn)['TagList']
         else:
-            domain_arn = self.current_state_definition.get('TableArn')
-            current_tags = self.client.list_tags_of_resource(ResourceArn=domain_arn)['Tags']
+            domain_arn = self.current_state_definition.get('ARN')
+            current_tags = self.client.list_tags(ARN=domain_arn)['TagList']
 
         desired_tags = self.desired_state_definition.get('Tags', [])
 
@@ -157,14 +155,14 @@ class ESDomain(AWSResource):
             add = list(itertools.filterfalse(lambda x:x in current_tags, desired_tags))
             remove = list(itertools.filterfalse(lambda x:x in desired_tags, current_tags))
             if remove:
-                self.client.untag_resource(
-                        ResourceArn=domain_arn,
+                self.client.remove_tags(
+                        ARN=domain_arn,
                         TagKeys=[x.get('Key') for x in remove]
                     )
             if add:
-                self.client.tag_resource(
-                        ResourceArn=domain_arn,
-                        Tags=list(add)
+                self.client.add_tags(
+                        ARN=domain_arn,
+                        TagList=list(add)
                     )
 
     def is_state_definition_equivalent(self):
@@ -175,22 +173,22 @@ class ESDomain(AWSResource):
             bool
         """
         self.get_state()
-        current_definition = pcf.util.param_filter(self.current_state_definition, self.desired_state_definition)
-        desired_definition = pcf.util.param_filter(self.desired_state_definition, self.current_state_definition)
+        current_definition = pcf_util.param_filter(self.current_state_definition, self.UPDATE_PARAM_FILTER)
+        desired_definition = pcf_util.param_filter(self.desired_state_definition, self.UPDATE_PARAM_FILTER)
 
         #compare tags
         if self._arn:
-            current_tags = self.client.list_tags_of_resources(ResourceARN=self._arn)['Tags']
+            current_tags = self.client.list_tags(ARN=self._arn)['TagList']
         else:
-            current_tags = self.client.list_tags_of_resource(ResourceArn=self.current_state_definition.get('TableArn'))['Tags']
+            current_tags = self.client.list_tags(ARN=self.current_state_definition.get('ARN'))['TagList']
 
-        desired_tags = desired_definition.get('Tags', [])
+        desired_tags = self.desired_state_definition.get('Tags', [])
 
         new_desired_state_def, diff_dict = pcf_util.update_dict(current_definition, desired_definition)
 
         diff_dict.pop('Tags', None)
-
-        return diff_dict == {} #and not self._need_update(current_tags, desired_tags)
+        print("DIFF_DICT", diff_dict)
+        return diff_dict == {} and not self._need_update(current_tags, desired_tags)
 
     def _need_update(self, curr_list, desired_list):
         """
