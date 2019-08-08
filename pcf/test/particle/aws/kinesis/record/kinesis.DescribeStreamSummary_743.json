@@ -1,0 +1,42 @@
+{
+    "status_code": 200,
+    "data": {
+        "StreamDescriptionSummary": {
+            "StreamName": "pcfStreamtest",
+            "StreamARN": "arn:aws:kinesis:us-east-1:471176887411:stream/pcfStreamtest",
+            "StreamStatus": "UPDATING",
+            "RetentionPeriodHours": 48,
+            "StreamCreationTimestamp": {
+                "__class__": "datetime",
+                "year": 2019,
+                "month": 8,
+                "day": 8,
+                "hour": 11,
+                "minute": 53,
+                "second": 53,
+                "microsecond": 0
+            },
+            "EnhancedMonitoring": [
+                {
+                    "ShardLevelMetrics": []
+                }
+            ],
+            "EncryptionType": "KMS",
+            "KeyId": "alias/aws/kinesis",
+            "OpenShardCount": 1,
+            "ConsumerCount": 0
+        },
+        "ResponseMetadata": {
+            "RequestId": "e186d2b3-301c-b6c2-b440-9a957e0464d5",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "e186d2b3-301c-b6c2-b440-9a957e0464d5",
+                "x-amz-id-2": "aqbzLy0P/ZOtmdqWr5Ll5E+BJpSL5Da/mPCzUrfuuHwkszRkLlrrycnRwUYDfGk7P5bJoa6Wmc1ZsLF9Bz8p7TTj7edU7S6320itfKIYYdA=",
+                "date": "Thu, 8 Aug 2019 15:55:18 GMT",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "361"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

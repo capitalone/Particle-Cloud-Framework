@@ -1,0 +1,28 @@
+{
+    "status_code": 200,
+    "data": {
+        "Tags": [
+            {
+                "Key": "PCF",
+                "Value": "my mark on the world"
+            },
+            {
+                "Key": "pcfName",
+                "Value": "pcf_kinesis"
+            }
+        ],
+        "HasMoreTags": false,
+        "ResponseMetadata": {
+            "RequestId": "c9c0d10e-2ece-72be-9c06-995f60d6a0a9",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "c9c0d10e-2ece-72be-9c06-995f60d6a0a9",
+                "x-amz-id-2": "KXz4wRqugfnWq+nDhUz+DvmzOLbh40L/5tWAcJw2qsdXZdgFfcKwTdCd6uNDiVuS5MHzjOVkAwLQTeWGfmaUZW2r6HAqETapCcxigrOCgQ4=",
+                "date": "Thu, 8 Aug 2019 15:56:01 GMT",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "115"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

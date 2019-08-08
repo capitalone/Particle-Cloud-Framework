@@ -679,5 +679,45 @@
         "placebo",
         "dynamodb/replay"
     ]
+  ],
+  "kinesis_apply":[
+    {
+        "pcf_name": "pcf_kinesis",
+        "flavor": "kinesis",
+        "aws_resource": {
+          "StreamName": "pcfStreamtest",
+          "ShardCount": 1,
+          "RetentionPeriodHours": 48,
+          "EncryptionType": "KMS",
+          "KeyId": "alias/aws/kinesis",
+          "Tags": [
+            {
+              "Key": "Name",
+              "Value": "pcf-kinesis-test"
+            }
+          ]
+        }
+    },
+    {
+        "pcf_name": "pcf_kinesis",
+        "flavor": "kinesis",
+        "aws_resource": {
+          "StreamName": "pcfStreamtest",
+          "ShardCount": 2,
+          "RetentionPeriodHours": 24,
+          "EncryptionType": "KMS",
+          "KeyId": "alias/aws/kinesis",
+          "Tags": [
+            {
+              "Key": "PCF",
+              "Value": "my mark on the world"
+            }
+          ]
+        }
+    },
+    [
+        "placebo",
+        "kinesis/record"
+    ]
   ]
 }

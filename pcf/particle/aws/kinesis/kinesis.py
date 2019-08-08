@@ -52,8 +52,8 @@ class Kinesis(AWSResource):
         "KeyId",
         "Tags"
     }
-    def __init__(self, particle_definition):
-        super(Kinesis, self).__init__(particle_definition, 'kinesis')
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition, 'kinesis', session=session)
         self.stream_name = particle_definition.get("aws_resource").get("StreamName")
         self.get_desired_state_definition().get("Tags").append({"Key": "pcfName", "Value": particle_definition.get("pcf_name", '')})
 
@@ -135,7 +135,7 @@ class Kinesis(AWSResource):
         desiredEncryption = self.get_desired_state_definition().get("EncryptionType")
         if currentEncryption != desiredEncryption and current_state.get("StreamStatus") == "ACTIVE":
             if desiredEncryption == 'NONE':
-                KeyId = self.currentEncryption.get("StreamDescription").get("KeyId")
+                KeyId = current_state.get("KeyId")
                 self.client.stop_stream_encryption(StreamName=self.stream_name, EncryptionType=currentEncryption, KeyId=KeyId)
             else:
                 self.client.start_stream_encryption(StreamName=self.stream_name, EncryptionType=desiredEncryption, KeyId=self.get_desired_state_definition().get("KeyId") )

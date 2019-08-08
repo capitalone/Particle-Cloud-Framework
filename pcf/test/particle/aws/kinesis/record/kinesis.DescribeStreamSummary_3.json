@@ -1,0 +1,22 @@
+{
+    "status_code": 400,
+    "data": {
+        "Error": {
+            "Message": "Stream pcfStreamtest under account 471176887411 not found.",
+            "Code": "ResourceNotFoundException"
+        },
+        "ResponseMetadata": {
+            "RequestId": "f411ec08-feec-2ab1-a1d7-aa8a2d2f1de8",
+            "HTTPStatusCode": 400,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "f411ec08-feec-2ab1-a1d7-aa8a2d2f1de8",
+                "x-amz-id-2": "bdyFWhHfmBSIh17xoQi4a3w3jh/UU1Up0OBNan57Hxck2laCFJgHfdk5fPmK8mMPwu6Fmw9+Eplj2VFmj9Q2BKu1tmBQ6IkX",
+                "connection": "close",
+                "date": "Thu, 8 Aug 2019 15:48:18 GMT",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "109"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

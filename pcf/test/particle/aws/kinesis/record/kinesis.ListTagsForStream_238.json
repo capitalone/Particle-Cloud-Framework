@@ -1,0 +1,28 @@
+{
+    "status_code": 200,
+    "data": {
+        "Tags": [
+            {
+                "Key": "Name",
+                "Value": "pcf-kinesis-test"
+            },
+            {
+                "Key": "pcfName",
+                "Value": "pcf_kinesis"
+            }
+        ],
+        "HasMoreTags": false,
+        "ResponseMetadata": {
+            "RequestId": "e11b5760-11aa-f5f1-b4dd-1f62997705c5",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "e11b5760-11aa-f5f1-b4dd-1f62997705c5",
+                "x-amz-id-2": "Uo856yj1h0STp77aSc/KLhwR98OxuPmqy8IvWmX5zWRyzpZobuUnO4xg8ZAN4CVxHdhumsi5wr04zpt50ZrO6CrThWcgdZRxpeDKMJ5+PMI=",
+                "date": "Thu, 8 Aug 2019 15:54:42 GMT",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "112"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

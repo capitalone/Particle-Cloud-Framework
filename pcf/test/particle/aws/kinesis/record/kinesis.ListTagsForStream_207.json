@@ -1,0 +1,19 @@
+{
+    "status_code": 200,
+    "data": {
+        "Tags": [],
+        "HasMoreTags": false,
+        "ResponseMetadata": {
+            "RequestId": "e42fb94b-8907-a3b6-b1e9-fe9881d5082e",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "e42fb94b-8907-a3b6-b1e9-fe9881d5082e",
+                "x-amz-id-2": "O5+GGs3LLnlqU2blbYmS8V5bJh4khG5Uf+R0zl9JdLaQfdaSf+tcfIlUAXeyh/IcctwoOg4htY3j81VFjRTY+RrTC+o1OwCyZZLSkpdnkUE=",
+                "date": "Thu, 8 Aug 2019 15:53:55 GMT",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "31"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

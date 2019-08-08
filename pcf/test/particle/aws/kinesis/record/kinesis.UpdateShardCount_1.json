@@ -1,0 +1,20 @@
+{
+    "status_code": 200,
+    "data": {
+        "StreamName": "pcfStreamtest",
+        "CurrentShardCount": 1,
+        "TargetShardCount": 2,
+        "ResponseMetadata": {
+            "RequestId": "cbe972e8-a523-4658-9e2f-34229b6d2119",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "cbe972e8-a523-4658-9e2f-34229b6d2119",
+                "x-amz-id-2": "digfHmP7lZnKGJC1wbhJ11/r4QmLmGkrnx1OaA/YRjX8v5Lb2AnFoxYmKyV43u6LXH0Th9Hl9Y+1mceRvTB+eUpknBwIgshI",
+                "date": "Thu, 8 Aug 2019 15:49:30 GMT",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "73"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

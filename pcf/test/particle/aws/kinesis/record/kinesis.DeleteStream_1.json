@@ -1,0 +1,17 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "f075ffd1-f903-570c-a5b3-b8cbc74d304d",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "f075ffd1-f903-570c-a5b3-b8cbc74d304d",
+                "x-amz-id-2": "2+/uvf7I7KzsE3cEqEQFiieUZd9MhGOu84EQs0hKjdyAkqm3o9GVbtBF7Olkbx5WFDV9zLQJlMf6H3XuvjigDdQ5+nA3pxjR",
+                "date": "Thu, 8 Aug 2019 15:50:50 GMT",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "0"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

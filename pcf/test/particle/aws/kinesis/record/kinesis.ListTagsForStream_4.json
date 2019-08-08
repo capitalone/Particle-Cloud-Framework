@@ -1,0 +1,28 @@
+{
+    "status_code": 200,
+    "data": {
+        "Tags": [
+            {
+                "Key": "OwnerContact",
+                "Value": "BEZ527"
+            },
+            {
+                "Key": "custodian_tagging_hourly",
+                "Value": "This Kinesis stream is missing required tags: delete@2019/08/08"
+            }
+        ],
+        "HasMoreTags": false,
+        "ResponseMetadata": {
+            "RequestId": "d7558457-6d7b-cbc6-8293-c2f6fd88da6c",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "d7558457-6d7b-cbc6-8293-c2f6fd88da6c",
+                "x-amz-id-2": "i1Ys1BRTgk4lfuaugOcd9LRvWUODUwgadcsJF2q46bW9aLSWQ2N6/PrjAKL0xcl6Xd6j3Ap3ZDH+5XVwSTPigug6xek57uOH3X3yzLl79Tw=",
+                "date": "Thu, 8 Aug 2019 15:48:49 GMT",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "179"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}
