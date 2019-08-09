@@ -167,3 +167,6 @@ class Kinesis(AWSResource):
         remove = list(itertools.filterfalse(lambda x: x in desired_list, curr_list))
         if add or remove:
             return True
+
+    def _wait(self):
+        time.sleep(60)

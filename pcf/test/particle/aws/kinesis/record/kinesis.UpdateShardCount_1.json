@@ -1,18 +1,18 @@
 {
     "status_code": 200,
     "data": {
-        "StreamName": "pcfStreamtest",
+        "StreamName": "pcfStreamtest2",
         "CurrentShardCount": 1,
         "TargetShardCount": 2,
         "ResponseMetadata": {
-            "RequestId": "cbe972e8-a523-4658-9e2f-34229b6d2119",
+            "RequestId": "e30bb36b-e4cb-8178-b6cd-c37d3c064219",
             "HTTPStatusCode": 200,
             "HTTPHeaders": {
-                "x-amzn-requestid": "cbe972e8-a523-4658-9e2f-34229b6d2119",
-                "x-amz-id-2": "digfHmP7lZnKGJC1wbhJ11/r4QmLmGkrnx1OaA/YRjX8v5Lb2AnFoxYmKyV43u6LXH0Th9Hl9Y+1mceRvTB+eUpknBwIgshI",
-                "date": "Thu, 8 Aug 2019 15:49:30 GMT",
+                "x-amzn-requestid": "e30bb36b-e4cb-8178-b6cd-c37d3c064219",
+                "x-amz-id-2": "NJjda9H/U0SdyyiynTOntDogtsz2g8fPTa+MWnzsnIktm8R0WkRfjMCRBAPPR8cljF6iNZCAtlTHGsEcESGG1kSrvxzVLPT3",
+                "date": "Thu, 8 Aug 2019 18:45:42 GMT",
                 "content-type": "application/x-amz-json-1.1",
-                "content-length": "73"
+                "content-length": "74"
             },
             "RetryAttempts": 0
         }
