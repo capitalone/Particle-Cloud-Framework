@@ -684,114 +684,30 @@
 	{
 		"pcf_name": "pcf_es",
 		"flavor": "es",
-	    "aws_resource": {
-	        "DomainName": "pcf-test-domain",
-	        "ElasticsearchVersion": "6.7",
-	        "ElasticsearchClusterConfig": {
-	            "InstanceType": "m4.large.elasticsearch",
-	            "InstanceCount": 2,
-	            "ZoneAwarenessEnabled": true,
-	            "ZoneAwarenessConfig": {
-	                "AvailabilityZoneCount": 2
-	            }
-	        },
-	        "EBSOptions": {
-	            "EBSEnabled": true,
-	            "VolumeType": "io1",
-	            "VolumeSize": 50,
-	            "Iops": 1000
-	        },
-	       "SnapshotOptions" : {
-	            "AutomatedSnapshotStartHour": 0
-	        },
-	        "VPCOptions": {
-	            "SubnetIds": [
-	                "subnet-6bf0d333",
-	                "subnet-3738020a"
-	            ],
-	            "SecurityGroupIds": [
-	                "sg-2d991c57"
-	            ]
-	        },
-	        "EncryptionAtRestOptions": {
-	            "Enabled": true
-	        },
-	        "NodeToNodeEncryptionOptions": {
-	            "Enabled": true
-	        },
-	        "Tags": [
-	            {
-	                "Key": "ASV",
-	                "Value": "ASVCLOUDCUSTODIAN"
-	            },
-	            {
-	                "Key": "OwnerContact",
-	                "Value": "janitorialservices@capitalone.com"
-	            },
-	            {
-	                "Key": "CMDBEnvironment",
-	                "Value": "ENVNPCLOUDMAID"
-	            }
-	        ]
-	    }
-	},
-	{
-		"pcf_name": "pcf_es",
-		"flavor": "es",
-	    "aws_resource": {
-	        "DomainName": "pcf-test-domain",
-	        "ElasticsearchVersion": "6.7",
-	        "ElasticsearchClusterConfig": {
-	            "InstanceType": "m4.large.elasticsearch",
-	            "InstanceCount": 2,
-	            "ZoneAwarenessEnabled": true,
-	            "ZoneAwarenessConfig": {
-	                "AvailabilityZoneCount": 2
-	            }
-	        },
-	        "EBSOptions": {
-	            "EBSEnabled": true,
-	            "VolumeType": "io1",
-	            "VolumeSize": 50,
-	            "Iops": 1000
-	        },
-	       "SnapshotOptions" : {
-	            "AutomatedSnapshotStartHour": 1
-	        },
-	        "VPCOptions": {
-	            "SubnetIds": [
-	                "subnet-6bf0d333",
-	                "subnet-3738020a"
-	            ],
-	            "SecurityGroupIds": [
-	                "sg-2d991c57"
-	            ]
-	        },
-	        "EncryptionAtRestOptions": {
-	            "Enabled": true
-	        },
-	        "NodeToNodeEncryptionOptions": {
-	            "Enabled": false
-	        },
-	        "Tags": [
-	            {
-	                "Key": "ASV",
-	                "Value": "ASVCLOUDCUSTODIAN"
-	            },
-	            {
-	                "Key": "OwnerContact",
-	                "Value": "zhb257"
-	            },
-	            {
-	                "Key": "CMDBEnvironment",
-	                "Value": "ENVNPCLOUDMAID"
-	            }
-	        ]
-		}
-	},
-	[
-		"placebo",
-		"es/apply"
-	]
+    "aws_resource": {
+      "repositoryName": "gg-ecr",
+      "tags": [
+          {
+              "Key": "lol",
+              "Value": "cat"
+          }
+      ]
+  }
+},
+{
+  "aws_resource": {
+      "repositoryName": "gg-ecr",
+      "tags": [
+          {
+              "Key": "gg",
+              "Value": "wp"
+          }
+      ]
+  }
+},
+[
+"placebo",
+"es/replay"
+]
   ]
 }
