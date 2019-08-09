@@ -1,0 +1,26 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "391d0b56-ba08-11e9-97b8-f1916b706dd0",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "391d0b56-ba08-11e9-97b8-f1916b706dd0",
+                "content-type": "application/json",
+                "content-length": "168",
+                "date": "Thu, 08 Aug 2019 18:13:28 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "TagList": [
+            {
+                "Key": "OwnerContact",
+                "Value": "BEZ527"
+            },
+            {
+                "Key": "custodian_tagging_hourly",
+                "Value": "This Elasticsearch Domain is missing required tags: delete@2019/08/08"
+            }
+        ]
+    }
+}

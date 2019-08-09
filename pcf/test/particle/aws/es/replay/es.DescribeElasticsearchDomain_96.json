@@ -1,0 +1,21 @@
+{
+    "status_code": 409,
+    "data": {
+        "Error": {
+            "Message": "Domain not found: pcf-test-domain",
+            "Code": "ResourceNotFoundException"
+        },
+        "ResponseMetadata": {
+            "RequestId": "0966e149-ba09-11e9-aacd-d363558dd71d",
+            "HTTPStatusCode": 409,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "0966e149-ba09-11e9-aacd-d363558dd71d",
+                "x-amzn-errortype": "ResourceNotFoundException",
+                "content-type": "application/json",
+                "content-length": "47",
+                "date": "Thu, 08 Aug 2019 18:19:17 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

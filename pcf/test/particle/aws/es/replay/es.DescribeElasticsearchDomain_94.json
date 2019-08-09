@@ -1,0 +1,90 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "f6e5c9b5-ba08-11e9-97f9-090d5b5cf015",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "f6e5c9b5-ba08-11e9-97f9-090d5b5cf015",
+                "content-type": "application/json",
+                "content-length": "1482",
+                "date": "Thu, 08 Aug 2019 18:18:46 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "DomainStatus": {
+            "DomainId": "471176887411/pcf-test-domain",
+            "DomainName": "pcf-test-domain",
+            "ARN": "arn:aws:es:us-east-1:471176887411:domain/pcf-test-domain",
+            "Created": true,
+            "Deleted": true,
+            "Processing": true,
+            "UpgradeProcessing": false,
+            "ElasticsearchVersion": "6.7",
+            "ElasticsearchClusterConfig": {
+                "InstanceType": "m4.large.elasticsearch",
+                "InstanceCount": 2,
+                "DedicatedMasterEnabled": false,
+                "ZoneAwarenessEnabled": true,
+                "ZoneAwarenessConfig": {
+                    "AvailabilityZoneCount": 2
+                }
+            },
+            "EBSOptions": {
+                "EBSEnabled": true,
+                "VolumeType": "io1",
+                "VolumeSize": 50,
+                "Iops": 1000
+            },
+            "AccessPolicies": "",
+            "SnapshotOptions": {
+                "AutomatedSnapshotStartHour": 1
+            },
+            "VPCOptions": {
+                "VPCId": "vpc-c91196ae",
+                "SubnetIds": [
+                    "subnet-3738020a",
+                    "subnet-6bf0d333"
+                ],
+                "AvailabilityZones": [
+                    "us-east-1e",
+                    "us-east-1d"
+                ],
+                "SecurityGroupIds": [
+                    "sg-2d991c57"
+                ]
+            },
+            "CognitoOptions": {
+                "Enabled": false
+            },
+            "EncryptionAtRestOptions": {
+                "Enabled": true,
+                "KmsKeyId": "arn:aws:kms:us-east-1:471176887411:key/a8f608f4-da09-4319-97ca-998e37a1f8ec"
+            },
+            "NodeToNodeEncryptionOptions": {
+                "Enabled": true
+            },
+            "AdvancedOptions": {
+                "rest.action.multi.allow_explicit_index": "true"
+            },
+            "ServiceSoftwareOptions": {
+                "CurrentVersion": "R20190724",
+                "NewVersion": "",
+                "UpdateAvailable": false,
+                "Cancellable": false,
+                "UpdateStatus": "COMPLETED",
+                "Description": "There is no software update available for this domain.",
+                "AutomatedUpdateDate": {
+                    "__class__": "datetime",
+                    "year": 2019,
+                    "month": 9,
+                    "day": 1,
+                    "hour": 13,
+                    "minute": 0,
+                    "second": 35,
+                    "microsecond": 0
+                }
+            }
+        }
+    }
+}

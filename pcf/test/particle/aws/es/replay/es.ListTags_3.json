@@ -1,0 +1,30 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "3a1a0843-ba08-11e9-97b8-f1916b706dd0",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "3a1a0843-ba08-11e9-97b8-f1916b706dd0",
+                "content-type": "application/json",
+                "content-length": "173",
+                "date": "Thu, 08 Aug 2019 18:13:30 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "TagList": [
+            {
+                "Key": "ASV",
+                "Value": "ASVCLOUDCUSTODIAN"
+            },
+            {
+                "Key": "OwnerContact",
+                "Value": "janitorialservices@capitalone.com"
+            },
+            {
+                "Key": "CMDBEnvironment",
+                "Value": "ENVNPCLOUDMAID"
+            }
+        ]
+    }
+}

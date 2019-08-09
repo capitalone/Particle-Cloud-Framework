@@ -1,0 +1,30 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "3c583909-ba08-11e9-9cf5-c91bbdad4334",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "3c583909-ba08-11e9-9cf5-c91bbdad4334",
+                "content-type": "application/json",
+                "content-length": "146",
+                "date": "Thu, 08 Aug 2019 18:13:34 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "TagList": [
+            {
+                "Key": "ASV",
+                "Value": "ASVCLOUDCUSTODIAN"
+            },
+            {
+                "Key": "OwnerContact",
+                "Value": "zhb257"
+            },
+            {
+                "Key": "CMDBEnvironment",
+                "Value": "ENVNPCLOUDMAID"
+            }
+        ]
+    }
+}
