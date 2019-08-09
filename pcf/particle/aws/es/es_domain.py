@@ -139,7 +139,6 @@ class ESDomain(AWSResource):
         Updates the es particle to match current state definition.
         """
         update_definition = pcf_util.param_filter(self.desired_state_definition, self.UPDATE_PARAM_FILTER)
-        print("UPDATE DEFINITION", update_definition)
         self.client.update_elasticsearch_domain_config(**update_definition)
 
         if self._arn:
@@ -187,7 +186,6 @@ class ESDomain(AWSResource):
         new_desired_state_def, diff_dict = pcf_util.update_dict(current_definition, desired_definition)
 
         diff_dict.pop('Tags', None)
-        print("DIFF_DICT", diff_dict)
         return diff_dict == {} and not self._need_update(current_tags, desired_tags)
 
     def _need_update(self, curr_list, desired_list):
