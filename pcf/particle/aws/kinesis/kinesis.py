@@ -50,31 +50,29 @@ class Kinesis(AWSResource):
         "RetentionPeriodHours",
         "EncryptionType",
         "KeyId",
+        'OpenShardCount',
         "Tags"
     }
     def __init__(self, particle_definition, session=None):
         super().__init__(particle_definition, 'kinesis', session=session)
         self.stream_name = particle_definition.get("aws_resource").get("StreamName")
         self.get_desired_state_definition().get("Tags").append({"Key": "pcfName", "Value": particle_definition.get("pcf_name", '')})
+        self.updating = False;
 
     def sync_state(self):
         current_state = self.get_status()
         if not current_state:
             self.state = State.terminated
             return
+        if(current_state.get("StreamStatus") != "UPDATING"):
+            self.updating = False
+        else:
+            self.updating = True
         self.state = Kinesis.state_lookup.get(current_state.get("StreamStatus"))
         self.current_state_definition = pcf_util.param_filter(current_state, Kinesis.UPDATE_PARAM_FILTER)
-        if not current_state.get("KeyId"):
-            self.current_state_definition["KeyId"] = ''
+        self.current_state_definition["KeyId"] = current_state.get("KeyId", '') #Incase stream is not encrypted
         self.current_state_definition["Tags"] = self.client.list_tags_for_stream(StreamName=self.stream_name).get("Tags", [])
-        if current_state.get("StreamStatus") == "ACTIVE":
-            self.current_state_definition["ShardCount"] = self.getOpenShardCount()
-        else:
-            self.current_state_definition["ShardCount"] = 0
 
-    def getOpenShardCount(self):
-        current_state = self.get_status()
-        return current_state.get('OpenShardCount', 0)
     def _update(self):
         self._updateTags()
         self._updateShards()
@@ -97,48 +95,50 @@ class Kinesis(AWSResource):
 
 
     def _updateShards(self):
-        current_state = self.get_status()
-        if(self.getOpenShardCount() != self.get_desired_state_definition().get("ShardCount") and current_state.get("StreamStatus") == "ACTIVE"):
+        if(not self.updating and self.current_state_definition.get('OpenShardCount', 0) != self.get_desired_state_definition().get("ShardCount") and self.current_state_definition.get("StreamStatus") == "ACTIVE"):
             self.client.update_shard_count(StreamName=self.stream_name, TargetShardCount=self.get_desired_state_definition().get("ShardCount"), ScalingType='UNIFORM_SCALING')
 
     def _updateStreamRetention(self):
-        current_state = self.get_status()
-        currentRetention = current_state.get("RetentionPeriodHours")
-        desiredRetention = self.get_desired_state_definition().get("RetentionPeriodHours")
-        diff = currentRetention - desiredRetention
-        if current_state.get("StreamStatus") == "ACTIVE":
-            if diff > 0:
-                self.client.decrease_stream_retention_period(StreamName=self.stream_name, RetentionPeriodHours=desiredRetention)
-            elif diff < 0:
-                self.client.increase_stream_retention_period(StreamName=self.stream_name, RetentionPeriodHours=desiredRetention)
+        if (not self.updating):
+            current_state = self.current_state_definition
+            currentRetention = current_state.get("RetentionPeriodHours")
+            desiredRetention = self.get_desired_state_definition().get("RetentionPeriodHours")
+            diff = currentRetention - desiredRetention
+            if current_state.get("StreamStatus") == "ACTIVE":
+                if diff > 0:
+                    self.client.decrease_stream_retention_period(StreamName=self.stream_name, RetentionPeriodHours=desiredRetention)
+                elif diff < 0:
+                    self.client.increase_stream_retention_period(StreamName=self.stream_name, RetentionPeriodHours=desiredRetention)
     def _updateTags(self):
-        currentTags = self.client.list_tags_for_stream(StreamName=self.stream_name).get("Tags")
-        desired_tags = self.get_desired_state_definition().get("Tags")
+        if (not self.updating):
+            currentTags = self.current_state_definition.get("Tags")
+            desired_tags = self.get_desired_state_definition().get("Tags")
 
-        if self._need_update(currentTags, desired_tags):
-            add = list(itertools.filterfalse(lambda x: x in currentTags, desired_tags))
-            remove = list(itertools.filterfalse(lambda x: x in desired_tags, currentTags))
-            if remove:
-                self.client.remove_tags_from_stream(
-                    StreamName=self.stream_name,
-                    TagKeys=[x.get('Key') for x in remove]
-                )
-            if add:
-                addDict = {x.get("Key"):x.get("Value") for x in add}
-                self.client.add_tags_to_stream(
-                    StreamName=self.stream_name,
-                    Tags=(addDict)
-                )
+            if self._need_update(currentTags, desired_tags):
+                add = list(itertools.filterfalse(lambda x: x in currentTags, desired_tags))
+                remove = list(itertools.filterfalse(lambda x: x in desired_tags, currentTags))
+                if remove:
+                    self.client.remove_tags_from_stream(
+                        StreamName=self.stream_name,
+                        TagKeys=[x.get('Key') for x in remove]
+                    )
+                if add:
+                    addDict = {x.get("Key"):x.get("Value") for x in add}
+                    self.client.add_tags_to_stream(
+                        StreamName=self.stream_name,
+                        Tags=(addDict)
+                    )
     def _updateEncryptionTypeAndKey(self):
-        current_state = self.get_status()
-        currentEncryption = current_state.get("EncryptionType")
-        desiredEncryption = self.get_desired_state_definition().get("EncryptionType")
-        if currentEncryption != desiredEncryption and current_state.get("StreamStatus") == "ACTIVE":
-            if desiredEncryption == 'NONE':
-                KeyId = current_state.get("KeyId")
-                self.client.stop_stream_encryption(StreamName=self.stream_name, EncryptionType=currentEncryption, KeyId=KeyId)
-            else:
-                self.client.start_stream_encryption(StreamName=self.stream_name, EncryptionType=desiredEncryption, KeyId=self.get_desired_state_definition().get("KeyId") )
+        if (not self.updating):
+            current_state = self.current_state_definition
+            currentEncryption = current_state.get("EncryptionType")
+            desiredEncryption = self.get_desired_state_definition().get("EncryptionType")
+            if currentEncryption != desiredEncryption and current_state.get("StreamStatus") == "ACTIVE":
+                if desiredEncryption == 'NONE':
+                    KeyId = current_state.get("KeyId")
+                    self.client.stop_stream_encryption(StreamName=self.stream_name, EncryptionType=currentEncryption, KeyId=KeyId)
+                else:
+                    self.client.start_stream_encryption(StreamName=self.stream_name, EncryptionType=desiredEncryption, KeyId=self.get_desired_state_definition().get("KeyId") )
 
     def get_status(self):
         try:

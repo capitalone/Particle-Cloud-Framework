@@ -7,7 +7,7 @@ example_kinesis_json = {
     "flavor": "kinesis",
     "aws_resource": {
         "StreamName": "pcfKineTest3",
-        "ShardCount": 8,
+        "ShardCount": 2,
         "RetentionPeriodHours": 168,
         "EncryptionType": 'KMS',
         "KeyId": 'alias/aws/kinesis',
@@ -15,10 +15,8 @@ example_kinesis_json = {
             "Key": "test1",
             "Value": "test2"
         }, {
-            "Key": "OwnerContact",
-            "Value": "aaron.gill@capitalone.com",
-            "Key": "ASV",
-            "Value": "ASVCLOUDCUSTODIAN"
+            "Key": "test1",
+            "Value": "tag",
         }]
     }
 }
@@ -29,6 +27,9 @@ kinesis_particle = Kinesis(example_kinesis_json)
 kinesis_particle.set_desired_state(State.running)
 kinesis_particle.apply()
 
+kinesis_particle.get_desired_state_definition().get("Tags").append({"Key":"newTag", "Value":"updateTest"})
+kinesis_particle.get_desired_state_definition().["ShardCount"] = 1
+kinesis_particle.apply()
 # kinesis_particle.set_desired_state(State.terminated)
 # kinesis_particle.apply()
 #print(kinesis_particle.get_state())
