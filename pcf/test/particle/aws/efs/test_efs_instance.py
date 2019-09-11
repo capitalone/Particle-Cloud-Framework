@@ -15,7 +15,7 @@
 from pytest import *
 from unittest.mock import Mock
 import pcf.core.aws_resource
-from pcf.particle.aws.efs.efs_instance import EFS
+from pcf.particle.aws.efs.efs_instance import EFSInstance
 from pcf.core import State
 
 import boto3
@@ -24,7 +24,7 @@ import datetime
 
 particle_definition = {
     "pcf_name": "pcf_efs",
-    "flavor": "efs",
+    "flavor": "efs_instance",
     "aws_resource": {
         "custom_config": {
             "instance_name": "efs-instance",
@@ -166,7 +166,7 @@ def test_apply_states(context):
         GroupName='test_sg'
     )
 
-    particle = EFS(particle_definition)
+    particle = EFSInstance(particle_definition)
 
     # test start
     particle.set_desired_state(State.running)

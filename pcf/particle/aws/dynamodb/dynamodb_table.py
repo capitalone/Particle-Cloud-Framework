@@ -15,9 +15,10 @@
 from pcf.core.aws_resource import AWSResource
 from pcf.core import State
 from pcf.util import pcf_util
-import logging
-
 from botocore.errorfactory import ClientError
+
+import logging
+import itertools
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +42,8 @@ class DynamoDB(AWSResource):
         "KeySchema",
         "ProvisionedThroughput",
         "LocalSecondaryIndexes",
-        "GlobalSecondaryIndexes"
+        "GlobalSecondaryIndexes",
+        "Tags"
     }
 
     UPDATE_PARAM_FILTER = {
@@ -65,8 +67,8 @@ class DynamoDB(AWSResource):
         "WriteCapacityUnits"
     }
 
-    def __init__(self, particle_definition):
-        super(DynamoDB, self).__init__(particle_definition=particle_definition, resource_name="dynamodb")
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="dynamodb", session=session)
         self.table_name = self.desired_state_definition["TableName"]
 
     def _terminate(self):
@@ -88,12 +90,14 @@ class DynamoDB(AWSResource):
         """
         try:
             current_definition = self.client.describe_table(TableName=self.table_name)["Table"]
+
         except ClientError as e:
             if e.response['Error']['Code'] == 'ResourceNotFoundException':
                 logger.info("Table {} was not found. State is terminated".format(self.table_name))
                 return {"status": "missing"}
             else:
                 raise e
+
         return current_definition
 
     def _start(self):
@@ -103,8 +107,12 @@ class DynamoDB(AWSResource):
         Returns:
             reponse of boto3 create_table
         """
+
         start_definition = pcf_util.param_filter(self.get_desired_state_definition(), DynamoDB.START_PARAM_FILTER)
-        return self.client.create_table(**start_definition)
+        response = self.client.create_table(**start_definition)
+        self._arn = response["TableDescription"]["TableArn"]
+
+        return response
 
     def _stop(self):
         """
@@ -160,9 +168,34 @@ class DynamoDB(AWSResource):
         Updates the dynamodb particle to match current state definition.
         """
         new_desired_state_def, diff_dict = pcf_util.update_dict(self.current_state_definition, self.get_desired_state_definition())
-        new_desired_state_def["ProvisionedThroughput"] = pcf_util.param_filter(new_desired_state_def["ProvisionedThroughput"], DynamoDB.THROUGHPUT_PARAM_FILTER)
-        update_definition = pcf_util.param_filter(new_desired_state_def, DynamoDB.UPDATE_PARAM_FILTER)
-        self.client.update_table(**update_definition)
+        if diff_dict != {}:
+            new_desired_state_def["ProvisionedThroughput"] = pcf_util.param_filter(new_desired_state_def["ProvisionedThroughput"], DynamoDB.THROUGHPUT_PARAM_FILTER)
+            update_definition = pcf_util.param_filter(new_desired_state_def, DynamoDB.UPDATE_PARAM_FILTER)
+            self.client.update_table(**update_definition)
+
+        # compare tags
+        if self._arn:
+            table_arn = self._arn
+            current_tags = self.client.list_tags_of_resource(ResourceArn=table_arn)["Tags"]
+        else:
+            table_arn = self.current_state_definition.get("TableArn")
+            current_tags =  self.client.list_tags_of_resource(ResourceArn=table_arn)["Tags"]
+
+        desired_tags = self.desired_state_definition.get("Tags", [])
+
+        if self._need_update(current_tags, desired_tags):
+            add = list(itertools.filterfalse(lambda x: x in current_tags, desired_tags))
+            remove = list(itertools.filterfalse(lambda x: x in desired_tags, current_tags))
+            if remove:
+                self.client.untag_resource(
+                    ResourceArn=table_arn,
+                    TagKeys=[x.get('Key') for x in remove]
+                )
+            if add:
+                self.client.tag_resource(
+                    ResourceArn=table_arn,
+                    Tags=list(add)
+                )
 
     def is_state_definition_equivalent(self):
         """
@@ -174,5 +207,36 @@ class DynamoDB(AWSResource):
         self.get_state()
         current_definition = pcf_util.param_filter(self.current_state_definition, DynamoDB.REMOVE_PARAM_FILTER, True)
         desired_definition = pcf_util.param_filter(self.desired_state_definition, DynamoDB.START_PARAM_FILTER)
+
+        # compare tags
+        if self._arn:
+          current_tags = self.client.list_tags_of_resource(ResourceArn=self._arn)["Tags"]
+        else:
+          current_tags =  self.client.list_tags_of_resource(ResourceArn=self.current_state_definition.get("TableArn"))["Tags"]
+
+        desired_tags = desired_definition.get("Tags", [])
+
         new_desired_state_def, diff_dict = pcf_util.update_dict(current_definition, desired_definition)
-        return diff_dict == {}
+        # self.create_table() does not return "Tags" as an attribute therefore, current_state_definition does not have
+        # any reference to Tags, so it is removed from the comparison between current_definition and desired_definition
+        diff_dict.pop('Tags', None)
+
+        return diff_dict == {} and not self._need_update(current_tags, desired_tags)
+
+    def _need_update(self, curr_list, desired_list):
+        """
+        Checks to see if there are any differences in curr_list or desired_list. If they are different True is returned.
+
+        Args:
+            curr_list (list): list of dictionaries
+            desired_list (list): list of dictionaries
+
+        Returns:
+             bool
+        """
+        # Checks if items need to be added or removed.
+        add = list(itertools.filterfalse(lambda x: x in curr_list, desired_list))
+        remove = list(itertools.filterfalse(lambda x: x in desired_list, curr_list))
+        if add or remove:
+            return True
+        return False

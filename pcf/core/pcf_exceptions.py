@@ -82,6 +82,17 @@ class MissingException(Exception):
     def __init__(self, message="Attempted to use missing value"):
         Exception.__init__(self, message)
 
+
 class MaxTimeoutException(Exception):
     def __init__(self, message="Max timeout reached while in apply()"):
+        Exception.__init__(self, message)
+
+
+class InvalidState(Exception):
+    def __init__(self, message="Attempted to set a state that is not valid"):
+        Exception.__init__(self, message)
+
+
+class MissingInput(Exception):
+    def __init__(self, message="Missing Required Input"):
         Exception.__init__(self, message)

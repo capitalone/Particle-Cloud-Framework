@@ -60,11 +60,8 @@ class ApplicationLoadBalancing(AWSResource):
         "IpAddressType"
     }
 
-    def __init__(self, particle_definition):
-        super(ApplicationLoadBalancing, self).__init__(
-            particle_definition=particle_definition, 
-            resource_name="elbv2"
-        )
+    def __init__(self, particle_definition, session=None):
+        super().__init__(particle_definition=particle_definition, resource_name="elbv2", session=session)
         self.alb_name = self.desired_state_definition["Name"]
 
     def create(self):
@@ -262,16 +259,16 @@ class ApplicationLoadBalancing(AWSResource):
             ]
         )
 
-        curr_tags = curr_tags.get('TagDescriptions')[0].get('Tags', None)
-        des_tags = self.desired_state_definition.get('Tags', None)
+        curr_tags = curr_tags.get('TagDescriptions')[0].get('Tags', [])
+        des_tags = self.desired_state_definition.get('Tags', [])
 
         curr_availabilty_zones = pcf_util.find_nested_dict_value(self.current_state_definition, ['AvailabilityZones'])
         curr_subnets_list = pcf_util.transform_list_of_dicts_to_desired_list(curr_availabilty_zones, 'SubnetId')
 
-        des_subnets_list = self.desired_state_definition.get('Subnets')
+        des_subnets_list = self.desired_state_definition.get('Subnets', [])
 
         curr_listeners = [pcf_util.param_filter(x, {'SslPolicy'}, True) for x in self.get_listener_status()]
-        des_listeners = self.custom_config['Listeners']
+        des_listeners = self.custom_config.get('Listeners', [])
 
         for item in des_listeners:
             item.update({'Protocol': item.get('Protocol').upper()})

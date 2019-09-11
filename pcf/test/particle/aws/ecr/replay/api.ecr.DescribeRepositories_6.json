@@ -1,0 +1,33 @@
+{
+    "status_code": 200,
+    "data": {
+        "repositories": [
+            {
+                "repositoryArn": "arn:aws:ecr:us-east-1:111111111111:repository/gg-ecr",
+                "registryId": "111111111111",
+                "repositoryName": "gg-ecr",
+                "repositoryUri": "111111111111.dkr.ecr.us-east-1.amazonaws.com/gg-ecr",
+                "createdAt": {
+                    "__class__": "datetime",
+                    "year": 2019,
+                    "month": 5,
+                    "day": 13,
+                    "hour": 21,
+                    "minute": 27,
+                    "second": 1,
+                    "microsecond": 0
+                }
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "7df90ec1-75e7-11e9-82ae-b5673db280fe",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "7df90ec1-75e7-11e9-82ae-b5673db280fe",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "241"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

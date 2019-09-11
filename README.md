@@ -1,3 +1,10 @@
+[![Build Status](https://img.shields.io/travis/capitalone/Particle-Cloud-Framework/master.svg?label=master)](https://travis-ci.org/capitalone/Particle-Cloud-Framework)
+[![Build Status](https://img.shields.io/travis/capitalone/Particle-Cloud-Framework/develop.svg?label=develop)](https://travis-ci.org/capitalone/Particle-Cloud-Framework)
+[![Licence](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![PyPi Version](https://img.shields.io/pypi/v/pcf.svg?maxAge=2592000)](https://pypi.org/project/pcf/)
+[![Supported Python Versions](https://img.shields.io/pypi/pyversions/pcf.svg?label=Python)](https://pypi.org/project/pcf/)
+
+
 # Particle Cloud Framework
 
 Particle Cloud Framework is a cloud resource provisioning framework that is fully customizable and extensible, callable by code, and does not require manually maintaining states of resources. Particle Cloud Framework enables the standardization of modeling hierarchical cloud infrastructure, automating deployments, and managing lifecycles of cloud resources.
@@ -24,7 +31,6 @@ See examples if you need help creating your config.
 
 ```
 from pcf.core.ec2.ec2_instance import EC2Instance
-from pcf.core import State
 ```
 
 Next we need to pass the desired state definition to the particle.
@@ -70,7 +76,7 @@ Now to start the ec2 instance using pcf simply initialize the particle and set t
 ```
     particle = EC2Instance(ec2_example_definition)
 
-    particle.set_desired_state(State.running)
+    particle.set_desired_state('running')
     particle.apply()
 ```
 
@@ -79,9 +85,15 @@ To terminate simply change the desired state to terminated and apply.
 
 
 ```
-    particle.set_desired_state(State.terminated)
+    particle.set_desired_state('terminated')
     particle.apply()
 ```
+
+## Published Content
+
+[*Just in Time Cloud Infrastructure:
+Redefining the Relationship Between Applications and Cloud Infrastructure*](https://www.capitalone.com/tech/cloud/just-in-time-cloud-infrastructure)
+
 
 ## Supported Cloud Services
 
@@ -89,6 +101,33 @@ To terminate simply change the desired state to terminated and apply.
 
 [Quasiparticles](https://capitalone.github.io/Particle-Cloud-Framework/docs/build/html/quasiparticlelist.html)
 
+## Development Setup
+To develop locally, clone this project and ensure you have the Invoke package installed globally via `pip` or `conda`:
+```
+$ pip install invoke
+```
+
+or
+
+```
+$ conda install invoke
+```
+
+Then you can use the project management tasks defined in `tasks.py` via the `invoke` CLI:
+```
+$ invoke --list
+Available tasks:
+
+  build      Build PCF with the PCF_TAG value given or the VERSION in pcf/__init__.py
+  docs-add   Run sphinx-apidoc on pcf and pcf/test
+  lint       Run pylint on pcf directory
+  publish    Publish package to Pypi
+  setup      Setup a virtualenv, activate it, and install requirements
+  test       Run pytest on pcf directory, generating a coverage report
+
+$ invoke setup && source venv/bin/activate
+$ invoke test
+```
 ## RoadMap
 
 [Roadmap](https://capitalone.github.io/Particle-Cloud-Framework/docs/build/html/sections/roadmap.html)
@@ -111,7 +150,7 @@ impact Your rights to use Your own Contributions for any other purpose.
 
 ## Code of Conduct
 
-This project adheres to the [Open Code of Conduct](https://developer.capitalone.com/single/code-of-conduct)
+This project adheres to the [Open Code of Conduct](https://developer.capitalone.com/resources/code-of-conduct)
 By participating, you are
 expected to honor this code.
 

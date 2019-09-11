@@ -1,0 +1,32 @@
+{
+    "status_code": 200,
+    "data": {
+        "TableDescription": {
+            "TableName": "pcf_test_table",
+            "TableStatus": "DELETING",
+            "ProvisionedThroughput": {
+                "NumberOfDecreasesToday": 0,
+                "ReadCapacityUnits": 25,
+                "WriteCapacityUnits": 30
+            },
+            "TableSizeBytes": 0,
+            "ItemCount": 0,
+            "TableArn": "arn:aws:dynamodb:us-east-1:123456789012:table/pcf_test_table",
+            "TableId": "317b17d3-f6b8-4bf3-9d12-846914fafd70"
+        },
+        "ResponseMetadata": {
+            "RequestId": "VK41K66KO2I4FKV6RG30B3MHL7VV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "server": "Server",
+                "date": "Mon, 03 Jun 2019 22:59:39 GMT",
+                "content-type": "application/x-amz-json-1.0",
+                "content-length": "332",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "VK41K66KO2I4FKV6RG30B3MHL7VV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "1405658565"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

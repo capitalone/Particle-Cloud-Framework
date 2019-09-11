@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'Example Project'
+Resources:
+  TestKinesis:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      Name: "TestKinesisStreamCloudwatch"
+      #RetentionPeriodHours: Default 24 hours
+      ShardCount: 1
+      StreamEncryption:
+        EncryptionType: "KMS"
+        KeyId: "alias/aws/kinesis"
+      Tags:
+      - Key: Test
+        Value: Test2

@@ -1,0 +1,29 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "371a4cda-6830-11e9-b28a-d9f6bfcb7818",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "date": "Fri, 26 Apr 2019 14:33:10 GMT",
+                "content-type": "application/json",
+                "content-length": "271",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "371a4cda-6830-11e9-b28a-d9f6bfcb7818",
+                "x-amz-apigw-id": "YwB5_FR7oAMFneQ=",
+                "x-amzn-trace-id": "Root=1-5cc316a6-39210a9f418595794129ab52;Sampled=0"
+            },
+            "RetryAttempts": 0
+        },
+        "computeEnvironments": [
+            {
+                "computeEnvironmentName": "test",
+                "computeEnvironmentArn": "arn:aws:batch:us-east-1:111111111111:compute-environment/test",
+                "type": "UNMANAGED",
+                "state": "ENABLED",
+                "status": "CREATING",
+                "serviceRole": "arn:aws:iam::111111111111:role/AWSBatchServiceRole"
+            }
+        ]
+    }
+}

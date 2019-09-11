@@ -1,0 +1,20 @@
+{
+    "status_code": 200,
+    "data": {
+        "tags": {
+            "new": "hi",
+            "tagA": "changed"
+        },
+        "ResponseMetadata": {
+            "RequestId": "0912fd58-685c-11e9-8a04-ad48b8453090",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "0912fd58-685c-11e9-8a04-ad48b8453090",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "38",
+                "date": "Fri, 26 Apr 2019 19:46:50 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}
