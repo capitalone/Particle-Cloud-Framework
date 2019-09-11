@@ -34,8 +34,8 @@ particle_definition = {
             "Quantity": 1,
             "Items": [
                 {
-                    "Id": "S3-wah",
-                    "DomainName": "wah.s3.amazonaws.com",
+                    "Id": "samplebucketId",
+                    "DomainName": "samplebucket.s3.amazonaws.com",
                     "S3OriginConfig": {
                         "OriginAccessIdentity": ""
                     },
@@ -43,7 +43,7 @@ particle_definition = {
             ]
         },
         "DefaultCacheBehavior": {
-            "TargetOriginId": "S3-wah",
+            "TargetOriginId": "sampleTargetID",
             "ForwardedValues": {
                 "QueryString": False,
                 "Cookies": {
