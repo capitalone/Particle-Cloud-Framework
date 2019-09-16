@@ -1,0 +1,47 @@
+{
+    "status_code": 200,
+    "data": {
+        "Stacks": [
+            {
+                "StackId": "arn:aws:cloudformation:us-east-1:116249476610:stack/pcf-cloudformation/43b6d5d0-d8a5-11e9-8beb-0a0b50a105f6",
+                "StackName": "pcf-cloudformation",
+                "Description": "Example Project",
+                "CreationTime": {
+                    "__class__": "datetime",
+                    "year": 2019,
+                    "month": 9,
+                    "day": 16,
+                    "hour": 17,
+                    "minute": 13,
+                    "second": 12,
+                    "microsecond": 885000
+                },
+                "RollbackConfiguration": {},
+                "StackStatus": "CREATE_IN_PROGRESS",
+                "DisableRollback": false,
+                "NotificationARNs": [],
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "test"
+                    }
+                ],
+                "EnableTerminationProtection": false,
+                "DriftInformation": {
+                    "StackDriftStatus": "NOT_CHECKED"
+                }
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "445d27f9-d8a5-11e9-975a-99c4f02875a8",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "445d27f9-d8a5-11e9-975a-99c4f02875a8",
+                "content-type": "text/xml",
+                "content-length": "1106",
+                "date": "Mon, 16 Sep 2019 17:13:13 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}
