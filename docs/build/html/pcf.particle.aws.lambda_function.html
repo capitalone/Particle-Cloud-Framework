@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pcf.particle.aws.lambda_function package &mdash; Particle Cloud Framework 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcf.particle.aws.rds package" href="pcf.particle.aws.rds.html" />
+    <link rel="prev" title="pcf.particle.aws.kms package" href="pcf.particle.aws.kms.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/core.html">Base Classes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="particlelist.html">Particles</a> &raquo;</li>
+        
+      <li>pcf.particle.aws.lambda_function package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pcf.particle.aws.lambda_function.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pcf-particle-aws-lambda-function-package">
+<h1>pcf.particle.aws.lambda_function package<a class="headerlink" href="#pcf-particle-aws-lambda-function-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pcf.particle.aws.lambda_function.lambda_function">
+<span id="pcf-particle-aws-lambda-function-lambda-function-module"></span><h2>pcf.particle.aws.lambda_function.lambda_function module<a class="headerlink" href="#module-pcf.particle.aws.lambda_function.lambda_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.lambda_function.lambda_function.</code><code class="descname">LambdaFunction</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s lambda service. This particle works with function code in a zipfile located
+locally and in s3. Note that having a zipfile locally versus s3 has a slightly different configuration format.</p>
+<dl class="attribute">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.RETURN_PARAM_FILTER">
+<code class="descname">RETURN_PARAM_FILTER</code><em class="property"> = {'CodeSha256', 'DeadLetterConfig', 'Description', 'Environment', 'FunctionName', 'Handler', 'KMSKeyArn', 'MemorySize', 'Role', 'Runtime', 'Timeout', 'TracingConfig', 'VpcConfig'}</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.RETURN_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.S3_PARAM_CONVERSIONS">
+<code class="descname">S3_PARAM_CONVERSIONS</code><em class="property"> = {'S3Bucket': 'Bucket', 'S3Key': 'Key', 's3ObjectVersion': 'VersionId'}</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.S3_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.START_PARAM_FILTER">
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'Code', 'DeadLetterConfig', 'Description', 'Environment', 'FunctionName', 'Handler', 'KMSKeyArn', 'MemorySize', 'Publish', 'Role', 'Runtime', 'Tags', 'Timeout', 'TracingConfig', 'VpcConfig'}</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.FunctionName']</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.UPDATE_PARAM_FILTER">
+<code class="descname">UPDATE_PARAM_FILTER</code><em class="property"> = {'DeadLetterConfig', 'Description', 'Environment', 'FunctionName', 'Handler', 'KMSKeyArn', 'MemorySize', 'Role', 'Runtime', 'Timeout', 'TracingConfig', 'VpcConfig'}</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.UPDATE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._LambdaFunction__s3_to_sha256">
+<code class="descname">_LambdaFunction__s3_to_sha256</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._LambdaFunction__s3_to_sha256" title="Permalink to this definition">¶</a></dt>
+<dd><p>Looks to see if the zipfile located in s3 has a tag with the latest sha256. If there is no tag it calculates the hash
+and adds the tag.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">base 64 hash</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._LambdaFunction__zip_local_to_sha256">
+<code class="descname">_LambdaFunction__zip_local_to_sha256</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._LambdaFunction__zip_local_to_sha256" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hashes the contents of a local zipfile using sha256</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">base 64 hash</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._LambdaFunction__zipfile_to_sha256">
+<code class="descname">_LambdaFunction__zipfile_to_sha256</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._LambdaFunction__zipfile_to_sha256" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the contents of the lambda code as a sha256 hash. There is a separate process for the code
+stored locally or in s3</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">hash</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that sets keys from state definition that are used to uniquely identify the Lambda Function</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the lambda particle that matches desired state definition</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">response of boto3 create_function</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lambda function does not have a stopped state so calls terminate.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the lambda particle that matches the function_name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">response of boto3 delete_function</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the lambda function particle to match current state definition. There is a different
+function call if the update is the function code in the zipfile or a configuration variable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.file_get_contents">
+<code class="descname">file_get_contents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.file_get_contents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function gets and reads contents of local zipfile</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">file contents</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.flavor">
+<code class="descname">flavor</code><em class="property"> = 'lambda_function'</em><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls the get function configuration boto call and returns status missing if the function does not exist.
+Otherwise will return the current definition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">current definition</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.is_state_definition_equivalent">
+<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares the desired state and current state definitions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.s3client">
+<code class="descname">s3client</code><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.s3client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a s3 client if the zipfile is located in s3.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">s3 client</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.lambda_function.lambda_function.LambdaFunction.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lambda function implementation of sync state. Calls get status and sets the current state.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.particle.aws.lambda_function">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pcf.particle.aws.lambda_function" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pcf.particle.aws.rds.html" class="btn btn-neutral float-right" title="pcf.particle.aws.rds package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pcf.particle.aws.kms.html" class="btn btn-neutral" title="pcf.particle.aws.kms package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

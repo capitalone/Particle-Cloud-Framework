@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pcf.particle.gcp.compute_engine package &mdash; Particle Cloud Framework 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcf.particle.azure.blob package" href="pcf.particle.azure.blob.html" />
+    <link rel="prev" title="pcf.particle.gcp.storage package" href="pcf.particle.gcp.storage.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/core.html">Base Classes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="particlelist.html">Particles</a> &raquo;</li>
+        
+      <li>pcf.particle.gcp.compute_engine package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pcf.particle.gcp.compute_engine.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pcf-particle-gcp-compute-engine-package">
+<h1>pcf.particle.gcp.compute_engine package<a class="headerlink" href="#pcf-particle-gcp-compute-engine-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pcf.particle.gcp.compute_engine.vm_instance">
+<span id="pcf-particle-gcp-compute-engine-vm-instance-module"></span><h2>pcf.particle.gcp.compute_engine.vm_instance module<a class="headerlink" href="#module-pcf.particle.gcp.compute_engine.vm_instance" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance">
+<em class="property">class </em><code class="descclassname">pcf.particle.gcp.compute_engine.vm_instance.</code><code class="descname">VMInstance</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.gcp_resource.GCPResource" title="pcf.core.gcp_resource.GCPResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.gcp_resource.GCPResource</span></code></a></p>
+<p>This is the implementation of Google’s compute service.</p>
+<dl class="attribute">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['gcp_resource.name']</em><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that sets keys from state definition that are used to uniquely identify the storage bucket</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the instance</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">response of  gcp instances().insert()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the instance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the instance</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">response of gcp instances().delete()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Not Implemented</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance.equivalent_states">
+<code class="descname">equivalent_states</code><em class="property"> = {}</em><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.equivalent_states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance.flavor">
+<code class="descname">flavor</code><em class="property"> = 'compute'</em><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if the instance exists</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">status (dict)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance.is_state_definition_equivalent">
+<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if desired_state_definition and current_state_definition are equivalent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance.state_lookup">
+<code class="descname">state_lookup</code><em class="property"> = {'PROVISIONING': &lt;State.pending: 4&gt;, 'RUNNING': &lt;State.running: 1&gt;, 'STAGING': &lt;State.pending: 4&gt;, 'STOPPED': &lt;State.stopped: 2&gt;, 'STOPPING': &lt;State.pending: 4&gt;, 'SUSPENDED': &lt;State.terminated: 3&gt;, 'SUSPENDING': &lt;State.pending: 4&gt;, 'TERMINATED': &lt;State.terminated: 3&gt;}</em><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.state_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.gcp.compute_engine.vm_instance.VMInstance.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.gcp.compute_engine.vm_instance.VMInstance.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls get status and then sets the current state.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.particle.gcp.compute_engine">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pcf.particle.gcp.compute_engine" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pcf.particle.azure.blob.html" class="btn btn-neutral float-right" title="pcf.particle.azure.blob package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pcf.particle.gcp.storage.html" class="btn btn-neutral" title="pcf.particle.gcp.storage package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

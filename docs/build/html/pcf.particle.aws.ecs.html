@@ -1,0 +1,1134 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pcf.particle.aws.ecs package &mdash; Particle Cloud Framework 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcf.particle.aws.efs package" href="pcf.particle.aws.efs.html" />
+    <link rel="prev" title="pcf.particle.aws.ec2.elb package" href="pcf.particle.aws.ec2.elb.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/core.html">Base Classes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="particlelist.html">Particles</a> &raquo;</li>
+        
+      <li>pcf.particle.aws.ecs package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pcf.particle.aws.ecs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pcf-particle-aws-ecs-package">
+<h1>pcf.particle.aws.ecs package<a class="headerlink" href="#pcf-particle-aws-ecs-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pcf.particle.aws.ecs.ecs_cluster">
+<span id="pcf-particle-aws-ecs-ecs-cluster-module"></span><h2>pcf.particle.aws.ecs.ecs_cluster module<a class="headerlink" href="#module-pcf.particle.aws.ecs.ecs_cluster" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_cluster.</code><code class="descname">ECSCluster</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s ECS Cluster.</p>
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.clusterName']</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster._get_arn">
+<code class="descname">_get_arn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster._get_arn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 describe_clusters() and parses response to get ECS Cluster arn</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ECS Cluster arn</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that sets keys from state definition that are used to uniquely identify the ECS Cluster</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 create_cluster()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 create_cluster() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls _terminate()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 delete_cluster()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 delete_cluster() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that updates the particle. This is implemented for each individual
+particle</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster.equivalent_states">
+<code class="descname">equivalent_states</code><em class="property"> = {&lt;State.running: 1&gt;: 1, &lt;State.stopped: 2&gt;: 0, &lt;State.terminated: 3&gt;: 0}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.equivalent_states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster.flavor">
+<code class="descname">flavor</code><em class="property"> = 'ecs_cluster'</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster.get_label">
+<code class="descname">get_label</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.get_label" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ECS Cluster name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 describe_clusters using arn.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">“missing”}</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">status or {“status”</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster.is_state_equivalent">
+<code class="descname">is_state_equivalent</code><span class="sig-paren">(</span><em>state1</em>, <em>state2</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.is_state_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster.state_lookup">
+<code class="descname">state_lookup</code><em class="property"> = {'active': &lt;State.running: 1&gt;, 'inactive': &lt;State.terminated: 3&gt;, 'missing': &lt;State.terminated: 3&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.state_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_cluster.ECSCluster.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_cluster.ECSCluster.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls get_status() and updates the current_state_definition and the state.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.particle.aws.ecs.ecs_instance">
+<span id="pcf-particle-aws-ecs-ecs-instance-module"></span><h2>pcf.particle.aws.ecs.ecs_instance module<a class="headerlink" href="#module-pcf.particle.aws.ecs.ecs_instance" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_instance.</code><code class="descname">ECSInstance</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s ECS Service. This particle requires task definition and ecs cluster
+particles as parents.</p>
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.PROTECTED_ATTRIBUTES">
+<code class="descname">PROTECTED_ATTRIBUTES</code><em class="property"> = 'instance-id'</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.PROTECTED_ATTRIBUTES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.START_PARAM_FILTER">
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'attributes'}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = []</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.UPDATE_PARAM_FILTER">
+<code class="descname">UPDATE_PARAM_FILTER</code><em class="property"> = {'attributes'}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.UPDATE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance._get_arn">
+<code class="descname">_get_arn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance._get_arn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Looks for the parrent ec2 particle and uses the ec2 instance id as the key in boto3 list_attributes(). The response
+of list_attributes() is then parsed for the targetId which is used</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ECS Instance arn</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that sets keys from state definition that are used to uniquely identify the ECS Instance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 update_container_instances_state() and sets the status to ACTIVE.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 update_container_instances_state() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls _terminate()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 update_container_instances_state() and sets the status to DRAINING.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 update_container_instances_state() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 put_attributes() to update ECS Instance attributes. Does not allow for attributes that start
+with com.amazonaws.ecs. or instance-id to be updated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 put_attributes() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.equivalent_states">
+<code class="descname">equivalent_states</code><em class="property"> = {&lt;State.running: 1&gt;: 1, &lt;State.stopped: 2&gt;: 0, &lt;State.terminated: 3&gt;: 0}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.equivalent_states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.flavor">
+<code class="descname">flavor</code><em class="property"> = 'ecs_instance'</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.get_cluster_name">
+<code class="descname">get_cluster_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.get_cluster_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the cluster name from the ecs parent otherwise returns an exception if there is no parent ecs
+cluster particle.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ECS Cluster name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.get_ecs_instance_id">
+<code class="descname">get_ecs_instance_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.get_ecs_instance_id" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">get_identifier()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 describe_container_instances using arn.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">status or {}</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.is_state_definition_equivalent">
+<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the current state definition and desired state definitions are equivalent including
+attributes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.is_state_equivalent">
+<code class="descname">is_state_equivalent</code><span class="sig-paren">(</span><em>state1</em>, <em>state2</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.is_state_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_instance.ECSInstance.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_instance.ECSInstance.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls get_status() and updates the current_state_definition and the state.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.particle.aws.ecs.ecs_service">
+<span id="pcf-particle-aws-ecs-ecs-service-module"></span><h2>pcf.particle.aws.ecs.ecs_service module<a class="headerlink" href="#module-pcf.particle.aws.ecs.ecs_service" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_service.</code><code class="descname">ECSService</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s ECS Service. This particle requires task definition and ecs cluster either
+to be included in the initial state definition or have those particles as parents.</p>
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.START_PARAM_CONVERSIONS">
+<code class="descname">START_PARAM_CONVERSIONS</code><em class="property"> = {'clientToken': '', 'clusterName': 'cluster', 'deploymentConfiguration': '', 'desiredCount': '', 'loadBalancers': '', 'placementConstraints': '', 'placementStrategy': '', 'roleArn': 'role', 'serviceName': '', 'taskDefinition': ''}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.START_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.serviceName']</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.UPDATE_PARAM_CONVERSIONS">
+<code class="descname">UPDATE_PARAM_CONVERSIONS</code><em class="property"> = {'clusterName': 'cluster', 'deploymentConfiguration': '', 'desiredCount': '', 'serviceName': 'service', 'taskDefinition': ''}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.UPDATE_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that sets keys from state definition that are used to uniquely identify the ECS Service</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 create_service()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 create_service() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls _terminate()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 delete_service()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 delete_service() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 update_service()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 update_service() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.equivalent_states">
+<code class="descname">equivalent_states</code><em class="property"> = {&lt;State.running: 1&gt;: 1, &lt;State.stopped: 2&gt;: 0, &lt;State.terminated: 3&gt;: 0}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.equivalent_states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.flavor">
+<code class="descname">flavor</code><em class="property"> = 'ecs_service'</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.get_cluster_name">
+<code class="descname">get_cluster_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.get_cluster_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks for a ecs service parent and returns the cluster names.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">cluster_name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.get_desired_state_definition">
+<code class="descname">get_desired_state_definition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.get_desired_state_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls get_task_definition() and updates taskDefinition in desired_state_definition. If desired state
+is terminated this also sets the desiredCount to 0 in desired_state_definition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">desired_state_definition</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.get_service_name">
+<code class="descname">get_service_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.get_service_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 describe_services using get_service_name() and ecs_cluster_name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">“missing”}</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">status or {“status”</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.get_task_definition">
+<code class="descname">get_task_definition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.get_task_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for a task definition parent and returns the task definition id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">task_definition_id</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.is_state_equivalent">
+<code class="descname">is_state_equivalent</code><span class="sig-paren">(</span><em>state1</em>, <em>state2</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.is_state_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.state_lookup">
+<code class="descname">state_lookup</code><em class="property"> = {'active': &lt;State.running: 1&gt;, 'draining': &lt;State.pending: 4&gt;, 'inactive': &lt;State.terminated: 3&gt;, 'missing': &lt;State.terminated: 3&gt;, 'pending': &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.state_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_service.ECSService.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_service.ECSService.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls get_status() and updates the current_state_definition and the state.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.particle.aws.ecs.ecs_task">
+<span id="pcf-particle-aws-ecs-ecs-task-module"></span><h2>pcf.particle.aws.ecs.ecs_task module<a class="headerlink" href="#module-pcf.particle.aws.ecs.ecs_task" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_task.</code><code class="descname">ECSTask</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s ECS Task. This particle requires task definition and ecs cluster either
+to be included in the initial state definition or have those particles as parents.</p>
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.START_PARAM_CONVERSIONS">
+<code class="descname">START_PARAM_CONVERSIONS</code><em class="property"> = {'clusterArn': 'cluster', 'count': '', 'group': '', 'overrides': '', 'placementConstraints': '', 'placementStrategy': '', 'startedBy': '', 'taskDefinitionArn': 'taskDefinition'}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.START_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.taskName']</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that sets keys from state definition that are used to uniquely identify the ECS Task</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 run_task function to create a new task. If successful this gets the arn of the task and adds it to the
+current_state_definition.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 stop_task function using the task arn. If a stop reason is not given in the desired_state_definition
+then “PCF default stop action” is used.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls _stop()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that updates the particle. This is implemented for each individual
+particle</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.equivalent_states">
+<code class="descname">equivalent_states</code><em class="property"> = {&lt;State.running: 1&gt;: 1, &lt;State.stopped: 2&gt;: 0, &lt;State.terminated: 3&gt;: 0}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.equivalent_states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.flavor">
+<code class="descname">flavor</code><em class="property"> = 'ecs_task'</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.get_desired_state_definition">
+<code class="descname">get_desired_state_definition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.get_desired_state_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls get_task_definition_arn() and get_ecs_cluster_arn() and updates desired_state_definition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">desired_state_definition</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.get_ecs_cluster">
+<code class="descname">get_ecs_cluster</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.get_ecs_cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters ecs_task parents for ecs_cluster particle. Returns none if no parents and an exception if
+there is more than one ecs_cluster particle as a parent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ECS Cluster Particle or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.get_ecs_cluster_arn">
+<code class="descname">get_ecs_cluster_arn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.get_ecs_cluster_arn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls get_ecs_cluster and returns the Arn attribute from that response.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ECS Cluster Arn</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses task arn and ecs cluster arn to call boto3 describe_tasks</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ECS Task Status</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.get_task_arn">
+<code class="descname">get_task_arn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.get_task_arn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the current or desired state definitions have a startedBy key which means the task has been
+initialized. If this key if found this calls boto3 list tasks and filters for tasks that match the startBy key
+and cluster name. If only one task matches then this returns the taskArn otherwise returns None.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ECS Task Arn or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.get_task_definition">
+<code class="descname">get_task_definition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.get_task_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters ecs_task parents for ecs_task_definition particle. Returns none if no parents and an exception if
+there is more than one ecs_task_definition particle as a parent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ECS Task Definition Particle or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.get_task_definition_arn">
+<code class="descname">get_task_definition_arn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.get_task_definition_arn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls get_task_definition and returns the Arn attribute from that response.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ECS Task Definition Arn</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.is_state_definition_equivalent">
+<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if state definitions are equivalent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.is_state_equivalent">
+<code class="descname">is_state_equivalent</code><span class="sig-paren">(</span><em>state1</em>, <em>state2</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.is_state_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses equivalent_states to determine if states are equivalent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.state_lookup">
+<code class="descname">state_lookup</code><em class="property"> = {'missing': &lt;State.terminated: 3&gt;, 'pending': &lt;State.pending: 4&gt;, 'running': &lt;State.running: 1&gt;, 'stopped': &lt;State.stopped: 2&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.state_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls get_status and updates the current_state_definition and the state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task.ECSTask.wait">
+<code class="descname">wait</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task.ECSTask.wait" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default time to wait during pending state.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.particle.aws.ecs.ecs_task_definition">
+<span id="pcf-particle-aws-ecs-ecs-task-definition-module"></span><h2>pcf.particle.aws.ecs.ecs_task_definition module<a class="headerlink" href="#module-pcf.particle.aws.ecs.ecs_task_definition" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ecs.ecs_task_definition.</code><code class="descname">ECSTaskDefinition</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s ECS Task Definition.</p>
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.containerDefinitions.name']</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that sets keys from state definition that are used to uniquely identify the ECS Task Definition</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 register_task_definition()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 register_task_definition() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls _terminate()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 deregister_task_definition()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 deregister_task_definition() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls _start()</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.equivalent_states">
+<code class="descname">equivalent_states</code><em class="property"> = {&lt;State.running: 1&gt;: 1, &lt;State.stopped: 2&gt;: 0, &lt;State.terminated: 3&gt;: 0}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.equivalent_states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.flavor">
+<code class="descname">flavor</code><em class="property"> = 'ecs_task_definition'</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 describe_task_definition using get_task_definition_id().</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">“missing”}</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">status or {“status”</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.get_task_definition_id">
+<code class="descname">get_task_definition_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.get_task_definition_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the current and desired state definition and returns the family. If there is a revision it appends
+it to the family.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">task definition id</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.is_state_equivalent">
+<code class="descname">is_state_equivalent</code><span class="sig-paren">(</span><em>state1</em>, <em>state2</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.is_state_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.state_lookup">
+<code class="descname">state_lookup</code><em class="property"> = {'active': &lt;State.running: 1&gt;, 'inactive': &lt;State.terminated: 3&gt;, 'missing': &lt;State.terminated: 3&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.state_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ecs.ecs_task_definition.ECSTaskDefinition.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls get_status() and updates the current_state_definition and the state.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.particle.aws.ecs">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pcf.particle.aws.ecs" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pcf.particle.aws.efs.html" class="btn btn-neutral float-right" title="pcf.particle.aws.efs package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pcf.particle.aws.ec2.elb.html" class="btn btn-neutral" title="pcf.particle.aws.ec2.elb package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

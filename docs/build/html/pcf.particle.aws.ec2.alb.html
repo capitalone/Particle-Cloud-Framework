@@ -1,0 +1,432 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pcf.particle.aws.ec2.alb package &mdash; Particle Cloud Framework 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcf.particle.aws.batch package" href="pcf.particle.aws.batch.html" />
+    <link rel="prev" title="Particles" href="particlelist.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/core.html">Base Classes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="particlelist.html">Particles</a> &raquo;</li>
+        
+      <li>pcf.particle.aws.ec2.alb package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pcf.particle.aws.ec2.alb.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pcf-particle-aws-ec2-alb-package">
+<h1>pcf.particle.aws.ec2.alb package<a class="headerlink" href="#pcf-particle-aws-ec2-alb-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pcf.particle.aws.ec2.alb.alb">
+<span id="pcf-particle-aws-ec2-alb-alb-module"></span><h2>pcf.particle.aws.ec2.alb.alb module<a class="headerlink" href="#module-pcf.particle.aws.ec2.alb.alb" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ec2.alb.alb.</code><code class="descname">ApplicationLoadBalancing</code><span class="sig-paren">(</span><em>particle_definition</em>, <em>session=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the implementation of Amazon’s Application Load Balancer.</p>
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.REMOVE_PARAM_FILTER">
+<code class="descname">REMOVE_PARAM_FILTER</code><em class="property"> = {'IpAddressType', 'Name', 'Scheme', 'Subnets', 'Tags', 'Type', 'custom_config'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.REMOVE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.START_PARAM_FILTER">
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'IpAddressType', 'Name', 'Scheme', 'SecurityGroups', 'SubnetMappings', 'Subnets', 'Tags', 'Type'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.UPDATE_PARAM_FILTER">
+<code class="descname">UPDATE_PARAM_FILTER</code><em class="property"> = {'SecurityGroups'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.UPDATE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing._get_arn">
+<code class="descname">_get_arn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing._get_arn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 describe_load_balancers using Names to get current ALB status. Uses result to get LoadBalancerArn from the return object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ALB arn</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing._need_update">
+<code class="descname">_need_update</code><span class="sig-paren">(</span><em>curr_list</em>, <em>desired_list</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing._need_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks to see if there are any difference in curr_list or desired_list. If they are different this returns True.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>curr_list</strong> (<em>list</em>) – list of dictionaries</li>
+<li><strong>desired_list</strong> (<em>list</em>) – list of dictionaries</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>creates ALB particle that matches current state definition
+and
+calls create_listener() if ‘Listeners’ key is found in custom_config</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>deletes the load balancer particle that matches the LoadBalancerArn</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">response of boto3 delete_load_balancer()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>updates the alb particle to match the desired state</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.create">
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an Application Load Balancer that matches current state definition</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">response of boto3 create alb instance with action create_load_balancer.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.create_listener">
+<code class="descname">create_listener</code><span class="sig-paren">(</span><em>create_listener_def</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.create_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates listeners for an Application Load Balancer that matches current state definition</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">response of boto3 create alb instance with action create_listener.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.flavor">
+<code class="descname">flavor</code><em class="property"> = 'alb'</em><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.get_listener_status">
+<code class="descname">get_listener_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.get_listener_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current status of your load balancer’s listener(s). Calls boto3 describe_listeners using LoadBalancerArn</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict with the load balancer’s listeners that matches the LoadBalancerArn provided</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current status of your load balancer. Calls boto3 describe_load_balancers using Names</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict with the load balancer that matches the Name provided</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.is_state_definition_equivalent">
+<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if the current state definition and the desired state definition are equivalent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.state_lookup">
+<code class="descname">state_lookup</code><em class="property"> = {'active': &lt;State.running: 1&gt;, 'active_impaired': &lt;State.terminated: 3&gt;, 'failed': &lt;State.terminated: 3&gt;, 'provisioning': &lt;State.pending: 4&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.state_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.alb.alb.ApplicationLoadBalancing.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sync state calls get_status to determines and the state of the alb particle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.particle.aws.ec2.alb">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pcf.particle.aws.ec2.alb" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pcf.particle.aws.batch.html" class="btn btn-neutral float-right" title="pcf.particle.aws.batch package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="particlelist.html" class="btn btn-neutral" title="Particles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pcf.util.aws package &mdash; Particle Cloud Framework 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/core.html">Base Classes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>pcf.util.aws package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pcf.util.aws.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pcf-util-aws-package">
+<h1>pcf.util.aws package<a class="headerlink" href="#pcf-util-aws-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pcf.util.aws.aws_lookup">
+<span id="pcf-util-aws-aws-lookup-module"></span><h2>pcf.util.aws.aws_lookup module<a class="headerlink" href="#module-pcf.util.aws.aws_lookup" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.util.aws.aws_lookup.AWSLookup">
+<em class="property">class </em><code class="descclassname">pcf.util.aws.aws_lookup.</code><code class="descname">AWSLookup</code><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class of all the AWS lookup resources</p>
+<dl class="method">
+<dt id="pcf.util.aws.aws_lookup.AWSLookup.ami">
+<code class="descname">ami</code><span class="sig-paren">(</span><em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.ami" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses boto3 api call to get ami id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Image ID with corresponding Image name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.util.aws.aws_lookup.AWSLookup.ec2_client">
+<code class="descname">ec2_client</code><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.ec2_client" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.util.aws.aws_lookup.AWSLookup.ec2_resource">
+<code class="descname">ec2_resource</code><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.ec2_resource" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.util.aws.aws_lookup.AWSLookup.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>resource</em>, <em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.util.aws.aws_lookup.AWSLookup.iam">
+<code class="descname">iam</code><span class="sig-paren">(</span><em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.iam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used boto3 api call to get latest iam role</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Either instance profile or role with given name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.util.aws.aws_lookup.AWSLookup.instance_name">
+<code class="descname">instance_name</code><span class="sig-paren">(</span><em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.instance_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given instance-id, this returns the instance name for ec2.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">instance_name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.util.aws.aws_lookup.AWSLookup.methods">
+<code class="descname">methods</code><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.methods" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.util.aws.aws_lookup.AWSLookup.region_name">
+<code class="descname">region_name</code><em class="property"> = 'us-east-1'</em><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.region_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.util.aws.aws_lookup.AWSLookup.snapshot">
+<code class="descname">snapshot</code><span class="sig-paren">(</span><em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses boto3 api call to get latest snapshot id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Snapshot ID of Snapshot with corresponding name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.util.aws.aws_lookup.AWSLookup.subnet">
+<code class="descname">subnet</code><span class="sig-paren">(</span><em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.aws_lookup.AWSLookup.subnet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses boto3 api call to get subnet id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Subnet ID with corresponding Subnet name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.util.aws.tag_specifications">
+<span id="pcf-util-aws-tag-specifications-module"></span><h2>pcf.util.aws.tag_specifications module<a class="headerlink" href="#module-pcf.util.aws.tag_specifications" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.util.aws.tag_specifications.EBSTagSpecifications">
+<em class="property">class </em><code class="descclassname">pcf.util.aws.tag_specifications.</code><code class="descname">EBSTagSpecifications</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.tag_specifications.EBSTagSpecifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pcf.util.aws.tag_specifications.TagSpecifications" title="pcf.util.aws.tag_specifications.TagSpecifications"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.util.aws.tag_specifications.TagSpecifications</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pcf.util.aws.tag_specifications.EC2InstanceTagSpecifications">
+<em class="property">class </em><code class="descclassname">pcf.util.aws.tag_specifications.</code><code class="descname">EC2InstanceTagSpecifications</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.tag_specifications.EC2InstanceTagSpecifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pcf.util.aws.tag_specifications.TagSpecifications" title="pcf.util.aws.tag_specifications.TagSpecifications"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.util.aws.tag_specifications.TagSpecifications</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pcf.util.aws.tag_specifications.TagSpecifications">
+<em class="property">class </em><code class="descclassname">pcf.util.aws.tag_specifications.</code><code class="descname">TagSpecifications</code><span class="sig-paren">(</span><em>resource_type</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.tag_specifications.TagSpecifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="pcf.util.aws.tag_specifications.TagSpecifications.DEFAULT_RESOURCE_TYPE">
+<code class="descname">DEFAULT_RESOURCE_TYPE</code><em class="property"> = None</em><a class="headerlink" href="#pcf.util.aws.tag_specifications.TagSpecifications.DEFAULT_RESOURCE_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.util.aws.tag_specifications.TagSpecifications.KEY">
+<code class="descname">KEY</code><em class="property"> = 'Key'</em><a class="headerlink" href="#pcf.util.aws.tag_specifications.TagSpecifications.KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.util.aws.tag_specifications.TagSpecifications.VALUE">
+<code class="descname">VALUE</code><em class="property"> = 'Value'</em><a class="headerlink" href="#pcf.util.aws.tag_specifications.TagSpecifications.VALUE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.util.aws.tag_specifications.TagSpecifications.add_tag">
+<code class="descname">add_tag</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.tag_specifications.TagSpecifications.add_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.util.aws.tag_specifications.TagSpecifications.add_tags">
+<code class="descname">add_tags</code><span class="sig-paren">(</span><em>*tags</em>, <em>**kvp</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.tag_specifications.TagSpecifications.add_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="pcf.util.aws.tag_specifications.TagSpecifications.create_from_aws_response">
+<em class="property">classmethod </em><code class="descname">create_from_aws_response</code><span class="sig-paren">(</span><em>aws_response</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.tag_specifications.TagSpecifications.create_from_aws_response" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.util.aws.tag_specifications.TagSpecifications.delete_tag">
+<code class="descname">delete_tag</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.tag_specifications.TagSpecifications.delete_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.util.aws.tag_specifications.TagSpecifications.delete_tags">
+<code class="descname">delete_tags</code><span class="sig-paren">(</span><em>*names</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.tag_specifications.TagSpecifications.delete_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.util.aws.tag_specifications.TagSpecifications.render">
+<code class="descname">render</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.util.aws.tag_specifications.TagSpecifications.render" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.util.aws">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pcf.util.aws" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

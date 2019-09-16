@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pcf.particle.aws.ec2 package &mdash; Particle Cloud Framework 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcf.particle.aws.ec2.autoscaling package" href="pcf.particle.aws.ec2.autoscaling.html" />
+    <link rel="prev" title="pcf.particle.aws.dynamodb package" href="pcf.particle.aws.dynamodb.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Particle Cloud Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstart.html">User Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/philosophy.html">PCF Philosophy</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/framework.html">Framework Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="particlelist.html">Particles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quasiparticlelist.html">QuasiParticles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features/features.html">Advanced Configuration Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concepts/concepts.html">Core Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cli.html">Using the PCF CLI</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/core.html">Base Classes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples.html">PCF Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/quickstartdeveloper.html">Developer Quickstart</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/roadmap.html">Roadmap</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sections/cont.html">Contributing to Particle Cloud Framework</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Particle Cloud Framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="particlelist.html">Particles</a> &raquo;</li>
+        
+      <li>pcf.particle.aws.ec2 package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pcf.particle.aws.ec2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pcf-particle-aws-ec2-package">
+<h1>pcf.particle.aws.ec2 package<a class="headerlink" href="#pcf-particle-aws-ec2-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pcf.particle.aws.ec2.alb.html">pcf.particle.aws.ec2.alb package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pcf.particle.aws.ec2.alb.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.particle.aws.ec2.alb.html#module-pcf.particle.aws.ec2.alb.alb">pcf.particle.aws.ec2.alb.alb module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.particle.aws.ec2.alb.html#module-pcf.particle.aws.ec2.alb">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcf.particle.aws.ec2.autoscaling.html">pcf.particle.aws.ec2.autoscaling package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pcf.particle.aws.ec2.autoscaling.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.particle.aws.ec2.autoscaling.html#module-pcf.particle.aws.ec2.autoscaling.auto_scaling_group">pcf.particle.aws.ec2.autoscaling.auto_scaling_group module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.particle.aws.ec2.autoscaling.html#module-pcf.particle.aws.ec2.autoscaling.launch_configuration">pcf.particle.aws.ec2.autoscaling.launch_configuration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.particle.aws.ec2.autoscaling.html#module-pcf.particle.aws.ec2.autoscaling">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcf.particle.aws.ec2.elb.html">pcf.particle.aws.ec2.elb package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pcf.particle.aws.ec2.elb.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.particle.aws.ec2.elb.html#module-pcf.particle.aws.ec2.elb.elb">pcf.particle.aws.ec2.elb.elb module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf.particle.aws.ec2.elb.html#module-pcf.particle.aws.ec2.elb">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pcf.particle.aws.ec2.ebs_volume">
+<span id="pcf-particle-aws-ec2-ebs-volume-module"></span><h2>pcf.particle.aws.ec2.ebs_volume module<a class="headerlink" href="#module-pcf.particle.aws.ec2.ebs_volume" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ec2.ebs_volume.</code><code class="descname">EBSVolume</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the EBS Volume particle. This also contains functions to attach and detach to an ec2 volume. There is a custom config called
+attach, which when set to True will auto attach to a parent EC2</p>
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.START_PARAM_FILTER">
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'AvailabilityZone', 'Encrypted', 'Iops', 'KmsKeyId', 'Size', 'SnapshotId', 'TagSpecifications', 'VolumeType'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.custom_config.volume_name']</em><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.UPDATE_PARAM_FILTER">
+<code class="descname">UPDATE_PARAM_FILTER</code><em class="property"> = {'Iops': '', 'Size': '', 'VolumeType': ''}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.UPDATE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that sets keys from state definition that are used to uniquely identify the EBS volume</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 create_volume().</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 create_volume() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls _terminate()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 delete_volume().</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 delete_volume() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 modify_volume(). If tags are changes then also calls delete_tags() and then create_tags()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 modify_volume() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.attach_volume">
+<code class="descname">attach_volume</code><span class="sig-paren">(</span><em>device='/dev/sdf'</em>, <em>ec2_parent_id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.attach_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 attach_volume().</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>device</strong> (<em>str</em>) – ec2 device to attach to. Default: /dev/sdf</li>
+<li><strong>ec2_parent_id</strong> (<em>str</em>) – ec2 parent instance id. Default: Parent ec2 instanceId</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">boto3 attach_volume() response</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.detach_volume">
+<code class="descname">detach_volume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.detach_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 detach_volume().</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 detach_volume() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.equivalent_states">
+<code class="descname">equivalent_states</code><em class="property"> = {&lt;State.running: 1&gt;: 1, &lt;State.stopped: 2&gt;: 0, &lt;State.terminated: 3&gt;: 0}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.equivalent_states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.flavor">
+<code class="descname">flavor</code><em class="property"> = 'ebs_volume'</em><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 describe_volumes using VolumeId.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">status</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.is_state_definition_equivalent">
+<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if state definitions are equivalent including list of tags.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.is_state_equivalent">
+<code class="descname">is_state_equivalent</code><span class="sig-paren">(</span><em>state1</em>, <em>state2</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.is_state_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>state1</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+<li><strong>state2</strong> (<a class="reference internal" href="pcf.core.html#pcf.core.State" title="pcf.core.State"><em>State</em></a>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.state_lookup">
+<code class="descname">state_lookup</code><em class="property"> = {'attaching': &lt;State.pending: 4&gt;, 'available': &lt;State.running: 1&gt;, 'creating': &lt;State.pending: 4&gt;, 'deleted': &lt;State.terminated: 3&gt;, 'deleting': &lt;State.pending: 4&gt;, 'detaching': &lt;State.terminated: 3&gt;, 'in-use': &lt;State.running: 1&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.state_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ebs_volume.EBSVolume.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ebs_volume.EBSVolume.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the current_state_definition and the current state. Will attach to parent ec2 if parent exists and custom
+config flag is set. Will detach on termination. If you do not want it terminated, set termination protection and
+call detach function.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.particle.aws.ec2.ec2_instance">
+<span id="pcf-particle-aws-ec2-ec2-instance-module"></span><h2>pcf.particle.aws.ec2.ec2_instance module<a class="headerlink" href="#module-pcf.particle.aws.ec2.ec2_instance" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance">
+<em class="property">class </em><code class="descclassname">pcf.particle.aws.ec2.ec2_instance.</code><code class="descname">EC2Instance</code><span class="sig-paren">(</span><em>particle_definition</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pcf.core.html#pcf.core.aws_resource.AWSResource" title="pcf.core.aws_resource.AWSResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">pcf.core.aws_resource.AWSResource</span></code></a></p>
+<p>This is the EC2 particle. There are a variety of possible states for this particle which can be seen in the
+state lookup dictionary. There are also specific input requirements for the various commands which can be seen
+in the different PARAM_CONVERSIONS.</p>
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.EBS_PARAM_CONVERSIONS">
+<code class="descname">EBS_PARAM_CONVERSIONS</code><em class="property"> = {'DeleteOnTermination': '', 'Iops': '', 'SnapshotId': '', 'VolumeSize': 'Size', 'VolumeType': ''}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.EBS_PARAM_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.START_PARAM_FILTER">
+<code class="descname">START_PARAM_FILTER</code><em class="property"> = {'BlockDeviceMappings', 'IamInstanceProfile', 'ImageId', 'InstanceInitiatedShutdownBehavior', 'InstanceType', 'KeyName', 'MaxCount', 'MinCount', 'SecurityGroupIds', 'SubnetId', 'TagSpecifications', 'UserData'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.START_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.STATE_PARAM_FILTER">
+<code class="descname">STATE_PARAM_FILTER</code><em class="property"> = {'IamInstanceProfile', 'ImageId', 'InstanceInitiatedShutdownBehavior', 'InstanceType', 'KeyName', 'SecurityGroupIds', 'SubnetId', 'TagSpecifications', 'UserData'}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.STATE_PARAM_FILTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.UNIQUE_KEYS">
+<code class="descname">UNIQUE_KEYS</code><em class="property"> = ['aws_resource.custom_config.instance_name']</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.UNIQUE_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance._get_arn">
+<code class="descname">_get_arn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance._get_arn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls _get_instance_reservations() to get ecs reservations. Parses reservations and returns inputs for
+_construct_arn() which returns the EC2 arn.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">_construct_arn()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance._get_instance_reservations">
+<code class="descname">_get_instance_reservations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance._get_instance_reservations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses instance_name as a filter for boto3 describe_instances()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 describe_instances() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance._set_unique_keys">
+<code class="descname">_set_unique_keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance._set_unique_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that sets keys from state definition that are used to uniquely identify the EC2 instance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 start_instances(). This is called for stopped to running state transition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 start_instances() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance._stop">
+<code class="descname">_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance._stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 stop_instances().</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 stop_instances() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance._terminate">
+<code class="descname">_terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance._terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 delete_tags() and terminate_instances</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 terminate_instances() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance._update">
+<code class="descname">_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance._update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logic that updates the particle. This is implemented for each individual
+particle</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.create">
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 create_instances(). This is called for terminated to running state transition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boto3 create_instances() response</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.equivalent_states">
+<code class="descname">equivalent_states</code><em class="property"> = {}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.equivalent_states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.flavor">
+<code class="descname">flavor</code><em class="property"> = 'ec2_instance'</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.flavor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.get_current_definition">
+<code class="descname">get_current_definition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.get_current_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls boto3 describe_instances. Adds some fields that are required for matching desired state such as Userdata hash,
+TagSpecifications, and InstanceInitiatedShutdownBehavior</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">state definition</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.get_desired_state_definition">
+<code class="descname">get_desired_state_definition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.get_desired_state_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds some custom field to the user given desired_state_file. These are UserData (rendered version)
+and TagSpecifications</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">desired_state_definition</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.get_identifier">
+<code class="descname">get_identifier</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.get_identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses arn to return instance id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">instance_id</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.get_instance_id">
+<code class="descname">get_instance_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.get_instance_id" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">get_identifier()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.get_label">
+<code class="descname">get_label</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.get_label" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">instance_name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.is_state_definition_equivalent">
+<code class="descname">is_state_definition_equivalent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.is_state_definition_equivalent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if state definitions are equivalent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.render_desired_user_data">
+<code class="descname">render_desired_user_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.render_desired_user_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens the userdata template file and renders the file with userdata parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">userdate</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.state_lookup">
+<code class="descname">state_lookup</code><em class="property"> = {'missing': &lt;State.terminated: 3&gt;, 'pending': &lt;State.pending: 4&gt;, 'running': &lt;State.running: 1&gt;, 'shutting-down': &lt;State.pending: 4&gt;, 'stopped': &lt;State.stopped: 2&gt;, 'stopping': &lt;State.pending: 4&gt;, 'terminated': &lt;State.terminated: 3&gt;}</em><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.state_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcf.particle.aws.ec2.ec2_instance.EC2Instance.sync_state">
+<code class="descname">sync_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance.EC2Instance.sync_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls get_current_definition() and updates the current_state_definition and the state.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.particle.aws.ec2.ec2_instance._construct_arn">
+<code class="descclassname">pcf.particle.aws.ec2.ec2_instance.</code><code class="descname">_construct_arn</code><span class="sig-paren">(</span><em>owner_id</em>, <em>region_name</em>, <em>instance_id</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance._construct_arn" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>owner_id</strong> (<em>str</em>) – owner id</li>
+<li><strong>region_name</strong> (<em>str</em>) – region that EC2 is deployed</li>
+<li><strong>instance_id</strong> (<em>str</em>) – instance on of the EC2</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">EC2 arn</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcf.particle.aws.ec2.ec2_instance._get_instance_id_from_arn">
+<code class="descclassname">pcf.particle.aws.ec2.ec2_instance.</code><code class="descname">_get_instance_id_from_arn</code><span class="sig-paren">(</span><em>arn</em><span class="sig-paren">)</span><a class="headerlink" href="#pcf.particle.aws.ec2.ec2_instance._get_instance_id_from_arn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the arn to return only the instance id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>arn</strong> (<em>str</em>) – EC2 arn</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">EC2 Instance id</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcf.particle.aws.ec2">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pcf.particle.aws.ec2" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pcf.particle.aws.ec2.autoscaling.html" class="btn btn-neutral float-right" title="pcf.particle.aws.ec2.autoscaling package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pcf.particle.aws.dynamodb.html" class="btn btn-neutral" title="pcf.particle.aws.dynamodb package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Capital One
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
