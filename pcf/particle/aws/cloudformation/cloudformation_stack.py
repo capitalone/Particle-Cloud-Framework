@@ -80,7 +80,7 @@ class CloudFormationStack(AWSResource):
         Creates the cloudformation stack according to the particle definition
 
         Returns:
-            hosted_zone: boto3 response
+            stack: boto3 response
         """
         start_definition = pcf_util.param_filter(self.desired_state_definition, CloudFormationStack.PARAM_FILTER)
         response = self.client.create_stack(**start_definition)
