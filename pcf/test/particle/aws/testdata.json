@@ -679,5 +679,32 @@
         "placebo",
         "dynamodb/replay"
     ]
+  ],
+  "cloudformation_apply": [
+    {
+      "pcf_name": "pcf_cloudformation",
+      "flavor": "cloudformation",
+      "aws_resource": {
+          "custom_config": {
+              "template_parameters": {
+                  "var1": "variable one",
+                  "var2": "variable two"
+              }
+          },
+          "StackName": "pcf-cloudformation",
+          "Tags": [
+              {
+                  "Key": "Name",
+                  "Value": "test"
+              }
+          ],
+          "TemplateBody": "AWSTemplateFormatVersion: 2010-09-09\nDescription: Example Project\nResources:\n  TestKinesis:\n    Type: AWS::Kinesis::Stream\n    Properties:\n      Name: TestKinesisStreamCloudwatch\n      ShardCount: 1\n      StreamEncryption:\n        EncryptionType: KMS\n        KeyId: alias/aws/kinesis\n      Tags:\n      - Key: Test\n        Value: Test2\n      - Key: {{ var1 }}\n        Value: {{ var2 }}"
+      }
+    },
+    {},
+    [
+      "placebo",
+      "cloudformation/replay"
+    ]
   ]
 }

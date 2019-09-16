@@ -1,0 +1,58 @@
+{
+    "status_code": 200,
+    "data": {
+        "Stacks": [
+            {
+                "StackId": "arn:aws:cloudformation:us-east-1:116249476610:stack/pcf-cloudformation/b9b422d0-d8a3-11e9-98f4-0a8540e42a70",
+                "StackName": "pcf-cloudformation",
+                "Description": "Example Project",
+                "CreationTime": {
+                    "__class__": "datetime",
+                    "year": 2019,
+                    "month": 9,
+                    "day": 16,
+                    "hour": 17,
+                    "minute": 2,
+                    "second": 11,
+                    "microsecond": 845000
+                },
+                "DeletionTime": {
+                    "__class__": "datetime",
+                    "year": 2019,
+                    "month": 9,
+                    "day": 16,
+                    "hour": 17,
+                    "minute": 2,
+                    "second": 14,
+                    "microsecond": 16000
+                },
+                "RollbackConfiguration": {},
+                "StackStatus": "DELETE_IN_PROGRESS",
+                "StackStatusReason": "Stack Create Cancelled",
+                "DisableRollback": false,
+                "NotificationARNs": [],
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "test"
+                    }
+                ],
+                "EnableTerminationProtection": false,
+                "DriftInformation": {
+                    "StackDriftStatus": "NOT_CHECKED"
+                }
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "bd4e1282-d8a3-11e9-8acc-0daba41ed3cf",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "bd4e1282-d8a3-11e9-8acc-0daba41ed3cf",
+                "content-type": "text/xml",
+                "content-length": "1238",
+                "date": "Mon, 16 Sep 2019 17:02:17 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

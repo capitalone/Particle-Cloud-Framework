@@ -166,10 +166,10 @@ class CloudFormationStack(AWSResource):
             StackName=self.stack_name,
             TemplateStage="Original"
         )
-
-        self.current_state_definition['TemplateBody'] = json.dumps(response.get('TemplateBody'))
-        diff_dict = pcf_util.diff_dict(self.current_state_definition, self.desired_state_definition)
-
+        # template comes back with extra quotes and extra escape \ for new lines. not sure why
+        self.current_state_definition['TemplateBody'] = json.dumps(response.get('TemplateBody')).replace('\\n', '\n')[1:-1]
+        filtered_desired_def = pcf_util.param_filter(self.desired_state_definition, CloudFormationStack.PARAM_FILTER)
+        diff_dict = pcf_util.diff_dict(self.current_state_definition, filtered_desired_def)
         return diff_dict == {}
 
     def render_template(self):

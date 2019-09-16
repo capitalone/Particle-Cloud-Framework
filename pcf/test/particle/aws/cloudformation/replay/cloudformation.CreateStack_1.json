@@ -1,0 +1,17 @@
+{
+    "status_code": 200,
+    "data": {
+        "StackId": "arn:aws:cloudformation:us-east-1:116249476610:stack/pcf-cloudformation/b9b422d0-d8a3-11e9-98f4-0a8540e42a70",
+        "ResponseMetadata": {
+            "RequestId": "b9af1a22-d8a3-11e9-8acc-0daba41ed3cf",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "b9af1a22-d8a3-11e9-8acc-0daba41ed3cf",
+                "content-type": "text/xml",
+                "content-length": "388",
+                "date": "Mon, 16 Sep 2019 17:02:11 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}
