@@ -13,3 +13,6 @@ Resources:
       Tags:
       - Key: Test
         Value: Test2
+      Test:
+        v1: {{ var1 }}
+        v2: {{ var2 }}
