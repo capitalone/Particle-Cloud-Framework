@@ -28,7 +28,6 @@
                 },
                 "RollbackConfiguration": {},
                 "StackStatus": "DELETE_IN_PROGRESS",
-                "StackStatusReason": "Stack Create Cancelled",
                 "DisableRollback": false,
                 "NotificationARNs": [],
                 "Tags": [
@@ -44,13 +43,13 @@
             }
         ],
         "ResponseMetadata": {
-            "RequestId": "452385ac-d8a5-11e9-975a-99c4f02875a8",
+            "RequestId": "4d8d9ac3-d8a5-11e9-975a-99c4f02875a8",
             "HTTPStatusCode": 200,
             "HTTPHeaders": {
-                "x-amzn-requestid": "452385ac-d8a5-11e9-975a-99c4f02875a8",
+                "x-amzn-requestid": "4d8d9ac3-d8a5-11e9-975a-99c4f02875a8",
                 "content-type": "text/xml",
-                "content-length": "1238",
-                "date": "Mon, 16 Sep 2019 17:13:14 GMT"
+                "content-length": "1168",
+                "date": "Mon, 16 Sep 2019 17:13:28 GMT"
             },
             "RetryAttempts": 0
         }
