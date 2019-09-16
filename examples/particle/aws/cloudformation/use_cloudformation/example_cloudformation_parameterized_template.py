@@ -22,39 +22,17 @@ template_file_location = os.path.join(sys.path[0], "example_cloudformation.yml")
 with open(template_file_location, "r") as content_file:
     content = content_file.read()
 
-## You can also pass in your cloudformation template configuratoin as a json 
-
-# example_cloudformation_template = {  
-#    "AWSTemplateFormatVersion":"2010-09-09",
-#    "Description":"Example Project",
-#    "Resources":{  
-#       "TestKinesis":{  
-#          "Type":"AWS::Kinesis::Stream",
-#          "Properties":{  
-#             "Name":"KinesisStreamCloudwatch",
-#             "ShardCount":1,
-#             "StreamEncryption":{  
-#                "EncryptionType":"KMS",
-#                "KeyId":"alias/aws/kinesis"
-#             },
-#             "Tags":[  
-#                {  
-#                   "Key":"Test1",
-#                   "Value":"Test2"
-#                }
-#             ]
-#          }
-#       }
-#    }
-# }
-
-# content = json.dumps(content)
-
 # Only included required fields
 particle_definition = {
     "pcf_name": "pcf_cloudformation",
     "flavor": "cloudformation",
     "aws_resource": {
+        "custom_config": {
+            "template_parameters": {
+                "var1": "variable one",
+                "var2": "variable two"
+            }
+        },
         "StackName": "pcf-cloudformation",
         "Tags": [
             {
