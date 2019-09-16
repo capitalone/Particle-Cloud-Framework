@@ -13,19 +13,14 @@
 # limitations under the License.
 import sys
 import os
-import json
-import yaml
 
 from pcf.particle.aws.cloudformation.cloudformation_stack import CloudFormationStack
 from pcf.core import State
 
 
-template_file_location = os.path.join(sys.path[0],"example_cloudformation.yml")
+template_file_location = os.path.join(sys.path[0], "example_cloudformation.yml")
 with open(template_file_location, "r") as content_file:
-    content = yaml.load(content_file)
-
-version = content.get('AWSTemplateFormatVersion')
-content['AWSTemplateFormatVersion'] =  str(version)
+    content = content_file.read()
 
 ## You can also pass in your cloudformation template configuratoin as a json 
 
@@ -67,7 +62,7 @@ particle_definition = {
                 "Value": "test"
             }
         ],
-        "TemplateBody": json.dumps(content),
+        "TemplateBody": content,
 
     }
 }

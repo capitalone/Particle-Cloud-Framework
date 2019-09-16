@@ -13,8 +13,6 @@
 # limitations under the License.
 import sys
 import os
-import json
-import yaml
 
 from pcf.particle.aws.cloudformation.cloudformation_stack import CloudFormationStack
 from pcf.core import State
