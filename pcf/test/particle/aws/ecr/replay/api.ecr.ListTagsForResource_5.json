@@ -1,0 +1,21 @@
+{
+    "status_code": 200,
+    "data": {
+        "tags": [
+            {
+                "Key": "lol",
+                "Value": "cat"
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "7d4798dd-75e7-11e9-82ae-b5673db280fe",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "7d4798dd-75e7-11e9-82ae-b5673db280fe",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "38"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

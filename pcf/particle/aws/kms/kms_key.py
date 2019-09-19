@@ -29,8 +29,8 @@ class KMSKey(AWSResource):
         Policy (str): A JSON-formatted policy string for the key
         Description (str): A description of the key, visible in the AWS console and CLI calls
         BypassPolicyLockoutSafetyCheck (boolean): A flag used in conjunction with the policy
-            parameter to indicate if the . Default value is :code:`False` For more info, see
-            `AWS docs <http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html>`_.
+        parameter to indicate if the . Default value is :code:`False` For more info, see
+        `AWS docs <http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html>`_.
         Tags (list): A list of key-value dictionaries with tag information:
 
             - :code:`{}` (dict) Containing the following keys:

@@ -25,11 +25,11 @@ def read(fname):
 
 setup(
     name='pcf',
-    version=VERSION,
+    version=os.environ.get('PCF_TAG', VERSION),
     description='pcf',
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
-    author='anovis',
+    author='anovis,bb1314,davidyum',
     packages=find_packages(),
     url='https://github.com/capitalone/Particle-Cloud-Framework',
     entry_points='''
@@ -37,18 +37,33 @@ setup(
         pcf=pcf.cli.cli:cli
     ''',
     install_requires=[
-        "azure==4.0.0",
+        "azure-storage-common==1.4.0",
+        "azure-storage-blob==1.5.0",
+        "azure-common==1.1.20",
+        "azure-mgmt-compute==4.6.2",
+        "azure-mgmt-resource==2.1.0",
+        "azure-mgmt-network==2.7.0",
+        "azure-mgmt-storage==3.3.0",
+        "azure-cli-core==2.0.57",
         "boto==2.48.0",
-        "boto3==1.9.76",
+        "boto3==1.9.143",
         "Jinja2==2.10.1",
-        "google-cloud-storage==1.10.0",
+        "google-compute-engine==2.8.13"
+        "google-cloud-storage==1.15.0",
         "google-api-python-client==1.7.4",
         "commentjson==0.7.1",
-        "deepdiff==3.3.0",
+        "botocore==1.12.143",
+        "deepdiff==4.0.6",
         "click==7.0",
         "python-Levenshtein==0.12.0",
         "pyyaml==5.1"
     ],
     package_data={'pcf': glob('**/*.j2', recursive=True)},
     include_package_data=True,
+    classifiers=[
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "License :: OSI Approved :: Apache Software License",
+        "Operating System :: OS Independent",
+    ],
 )

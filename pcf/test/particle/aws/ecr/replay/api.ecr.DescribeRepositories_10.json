@@ -1,0 +1,19 @@
+{
+    "status_code": 400,
+    "data": {
+        "Error": {
+            "Message": "The repository with name 'gg-ecr' does not exist in the registry with id '111111111111'",
+            "Code": "RepositoryNotFoundException"
+        },
+        "ResponseMetadata": {
+            "RequestId": "7ed871da-75e7-11e9-82ae-b5673db280fe",
+            "HTTPStatusCode": 400,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "7ed871da-75e7-11e9-82ae-b5673db280fe",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "140"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

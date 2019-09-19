@@ -3,6 +3,8 @@
 !.editorconfig
 !.lgtmeow
 !.pylintrc
+!.coveragerc
+!.travis.yml
 *.iml
 *.pyc
 !.nojekyll
@@ -12,3 +14,6 @@ dist
 pcf.egg-info
 venv
 !.coveragerc
+bin/
+lib/
+pyvenv.cfg

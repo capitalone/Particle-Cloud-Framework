@@ -18,7 +18,7 @@
         "jobQueues": [
             {
                 "jobQueueName": "test",
-                "jobQueueArn": "arn:aws:batch:us-east-1:337932058722:job-queue/test",
+                "jobQueueArn": "arn:aws:batch:us-east-1:111111111111:job-queue/test",
                 "state": "DISABLED",
                 "status": "DELETING",
                 "statusReason": "JobQueue Healthy",
@@ -26,7 +26,7 @@
                 "computeEnvironmentOrder": [
                     {
                         "order": 1,
-                        "computeEnvironment": "arn:aws:batch:us-east-1:337932058722:compute-environment/test"
+                        "computeEnvironment": "arn:aws:batch:us-east-1:111111111111:compute-environment/test"
                     }
                 ]
             }

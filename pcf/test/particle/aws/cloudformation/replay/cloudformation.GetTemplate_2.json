@@ -1,0 +1,21 @@
+{
+    "status_code": 200,
+    "data": {
+        "TemplateBody": "AWSTemplateFormatVersion: 2010-09-09\nDescription: Example Project\nResources:\n  TestKinesis:\n    Type: AWS::Kinesis::Stream\n    Properties:\n      Name: TestKinesisStreamCloudwatch\n      ShardCount: 1\n      StreamEncryption:\n        EncryptionType: KMS\n        KeyId: alias/aws/kinesis\n      Tags:\n      - Key: Test\n        Value: Test2\n      - Key: variable one\n        Value: variable two",
+        "StagesAvailable": [
+            "Original",
+            "Processed"
+        ],
+        "ResponseMetadata": {
+            "RequestId": "446d7bbb-d8a5-11e9-975a-99c4f02875a8",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "446d7bbb-d8a5-11e9-975a-99c4f02875a8",
+                "content-type": "text/xml",
+                "content-length": "789",
+                "date": "Mon, 16 Sep 2019 17:13:13 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

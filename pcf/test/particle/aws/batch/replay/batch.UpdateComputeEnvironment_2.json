@@ -16,6 +16,6 @@
             "RetryAttempts": 0
         },
         "computeEnvironmentName": "test",
-        "computeEnvironmentArn": "arn:aws:batch:us-east-1:337932058722:compute-environment/test"
+        "computeEnvironmentArn": "arn:aws:batch:us-east-1:111111111111:compute-environment/test"
     }
 }

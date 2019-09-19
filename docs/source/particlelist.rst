@@ -21,6 +21,13 @@ Batch
 
    pcf.particle.aws.batch
 
+CloudFormation
+^^^^^^^^^^^^^^^^^^^
+.. toctree::
+   :maxdepth: 2
+
+   pcf.particle.aws.cloudformation
+
 CloudFront
 ^^^^^^^^^^^^^^^^^^^
 .. toctree::

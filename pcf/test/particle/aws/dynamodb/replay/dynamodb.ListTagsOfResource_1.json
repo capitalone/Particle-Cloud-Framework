@@ -1,0 +1,25 @@
+{
+    "status_code": 200,
+    "data": {
+        "Tags": [
+            {
+                "Key": "Name",
+                "Value": "pcf-dynamodb-test"
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "GVVAODQONTGPRMD3AH5LUKB26NVV4KQNSO5AEMVJF66Q9ASUAAJG",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "server": "Server",
+                "date": "Mon, 03 Jun 2019 22:58:52 GMT",
+                "content-type": "application/x-amz-json-1.0",
+                "content-length": "53",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "GVVAODQONTGPRMD3AH5LUKB26NVV4KQNSO5AEMVJF66Q9ASUAAJG",
+                "x-amz-crc32": "884820624"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

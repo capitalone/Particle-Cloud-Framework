@@ -93,7 +93,7 @@ class ECSCluster(AWSResource):
 
         except Exception as e:
             err_msg = e.args[0]
-
+            # May be able to change this. Boto now reports missing in the response, not through exception
             if err_msg and err_msg.endswith("core is not a cluster"):
                 return {"status": "missing"}
             else:
@@ -101,6 +101,9 @@ class ECSCluster(AWSResource):
 
         failures = cluster_status_resp.get("failures")
         if failures:
+            for failure in failures:
+                if failure.get('arn') == self.arn and 'MISSING' == failure.get('reason'):
+                    return {"status": "missing"}
             raise Exception("cluster status returned unexpected results: {}".format(cluster_status_resp))
 
         return cluster_status_resp.get("clusters")[0]

@@ -6,7 +6,7 @@ QuasiParticles
 Documentation of all current Particle Cloud Framework quasiparticles
 
 
-Distributed Master Slave
+Distributed Master Worker
 --------------------------
 .. toctree::
    :maxdepth: 2
