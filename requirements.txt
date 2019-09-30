@@ -7,15 +7,11 @@ google-compute-engine==2.8.13
 google-api-python-client==1.7.4
 commentjson==0.7.1
 deepdiff==4.0.6
-azure-cli-core==2.0.74
-azure-cli-nspkg==3.0.4
-azure-cli-telemetry==1.0.3
 azure-common==1.1.20
 azure-mgmt-compute==4.6.2
 azure-mgmt-network==2.7.0
 azure-mgmt-resource==4.0.0
 azure-mgmt-storage==3.3.0
-azure-nspkg==3.0.2
 azure-storage-blob==1.5.0
 azure-storage-common==1.4.0
 azure-cli-core==2.0.57
