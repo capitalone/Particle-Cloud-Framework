@@ -48,7 +48,7 @@ setup(
         "boto==2.48.0",
         "boto3==1.9.143",
         "Jinja2==2.10.1",
-        "google-compute-engine==2.8.13"
+        "google-compute-engine==2.8.13",
         "google-cloud-storage==1.15.0",
         "google-api-python-client==1.7.4",
         "commentjson==0.7.1",
