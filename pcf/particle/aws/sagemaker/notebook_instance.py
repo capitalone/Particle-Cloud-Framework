@@ -16,22 +16,23 @@ from pcf.core import State
 from pcf.util import pcf_util
 from pcf.core.aws_resource import AWSResource
 from botocore.errorfactory import ClientError
+import time
 import logging
 
 logger = logging.getLogger(__name__)
 
-class SagemakerNotebook(AWSResource):
+class NotebookInstance(AWSResource):
     """
     This is the implementation of Amazon's Sagemaker Notebook.
     """
-    flavor = "sagemaker_notebook"
+    flavor = "sagemaker_notebook_instance"
     state_lookup = {
         "missing": State.terminated,
         "Pending": State.pending,
         "InService": State.running,
         "Stopping": State.pending,
         "Stopped": State.stopped,
-        "Failed": State.terminated,
+        "Failed": State.running,
         "Deleting": State.pending,
         "Updating": State.pending
         #"active": State.running,
@@ -40,14 +41,14 @@ class SagemakerNotebook(AWSResource):
 
     equivalent_states = {}
 
-    START_PARAMS_FILTER = {
+    START_PARAM_FILTER = {
         "NotebookInstanceName",
         "InstanceType",
         "SubnetId",
         "SecurityGroupIds",
         "RoleArn",
         "KmsKeyId",
-        "Tags",
+        #"Tags",
         "LifecycleConfigName",
         "DirectInternetAccess",
         "VolumeSizeInGB",
@@ -56,6 +57,14 @@ class SagemakerNotebook(AWSResource):
         "AdditionalCodeRepositories",
         "RootAccess"
     }
+
+    UPDATE_PARAM_FILTER = {}
+
+    PARAM_CONVERSIONS = {
+        "SecurityGroups": "SecurityGroupIds",
+        "NotebookInstanceLifecycleConfigName": "LifecycleConfigName",
+    }
+
 
     UNIQUE_KEYS = ["aws_resource.NotebookInstanceName"]
 
@@ -68,7 +77,7 @@ class SagemakerNotebook(AWSResource):
         """
         Logic that sets keys from state definition that are used to uniquely identify the Sagemaker Notebook
         """
-        self.unique_keys = SagemakerNotebook.UNIQUE_KEYS
+        self.unique_keys = NotebookInstance.UNIQUE_KEYS
 
 
     def get_status(self):
@@ -80,8 +89,10 @@ class SagemakerNotebook(AWSResource):
         """
         try:
             current_definition = self.client.describe_notebook_instance(NotebookInstanceName=self.notebook_instance_name)
+
+            #current_definition = pcf_util.keep_and_replace_keys(self.client.describe_notebook_instance(NotebookInstanceName=self.notebook_instance_name), NotebookInstance.PARAM_CONVERSIONS)
         except ClientError as e:
-            if e.response['Error']['Code'] == 'ResourceNotFoundException':
+            if e.response['Error']['Message'] == 'RecordNotFound':
                 logger.info("Notebook {} was not found. State is terminated".format(self.notebook_instance_name))
                 return {"NotebookInstanceName": self.notebook_instance_name,
                         "NotebookInstanceStatus": "missing"}
@@ -97,8 +108,11 @@ class SagemakerNotebook(AWSResource):
         Returns:
             response of boto3 create_notebook_instance
         """
-        start_definition = pcf_util.param_filter(self.get_desired_state_definition(), SagemakerNotebook.START_PARAM_FILTER)
-        return self.client.create_notebook_instance(**start_definition)
+        if self.state == State.stopped:
+            return self.client.start_notebook_instance(NotebookInstanceName=self.notebook_instance_name)
+        else:
+            start_definition = pcf_util.param_filter(self.get_desired_state_definition(), NotebookInstance.START_PARAM_FILTER)
+            return self.client.create_notebook_instance(**start_definition)
 
     def _stop(self):
         """
@@ -117,6 +131,15 @@ class SagemakerNotebook(AWSResource):
         Returns:
             response of boto3 delete_notebook_instnace()
         """
+
+        if self.state == State.running:
+            self._stop()
+            while True:
+                if self.client.describe_notebook_instance(
+                    NotebookInstanceName=self.notebook_instance_name).get("NotebookInstanceStatus") == "Stopped":
+                    break
+                time.sleep(10)
+
         return self.client.delete_notebook_instance(NotebookInstanceName=self.notebook_instance_name)
 
     def sync_state(self):
@@ -124,9 +147,11 @@ class SagemakerNotebook(AWSResource):
         Sagemaker Notebook implementation of sync state. Calls get status and sets the current state.
         """
         self.current_state_definition = self.get_status()
-        self.state = self.state_lookup(self.current_state_definition.get("NotebookInstanceStatus", "missing"))
+        self.state = self.state_lookup.get(self.current_state_definition.get("NotebookInstanceStatus", "missing"))
 
-    # def _update(self):
+    def _update(self):
+        #Will implement later
+        pass
 
 
 
@@ -138,7 +163,8 @@ class SagemakerNotebook(AWSResource):
             bool
         """
         self.get_state()
-        self. current_state_definition = pcf_util.param_filter(self.current_state_definition, SagemakerNotebook.START_PARAM_FILTER)
-        desired_definition = pcf_util.param_filter(self.desired_state_definition, SagemakerNotebook.START_PARAM_FILTER)
+        self.current_state_definition = pcf_util.param_filter(self.current_state_definition, NotebookInstance.START_PARAM_FILTER)
+        desired_definition = pcf_util.param_filter(self.desired_state_definition, NotebookInstance.START_PARAM_FILTER)
+
         diff_dict = pcf_util.diff_dict(self.current_state_definition, desired_definition)
         return diff_dict == {}

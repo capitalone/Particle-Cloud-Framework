@@ -1,0 +1,21 @@
+{
+    "status_code": 400,
+    "data": {
+        "Error": {
+            "Message": "RecordNotFound",
+            "Code": "ValidationException"
+        },
+        "ResponseMetadata": {
+            "RequestId": "e756ebd8-d346-49ac-8f16-c7d9552d841a",
+            "HTTPStatusCode": 400,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "e756ebd8-d346-49ac-8f16-c7d9552d841a",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "59",
+                "date": "Mon, 30 Dec 2019 21:57:59 GMT",
+                "connection": "close"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

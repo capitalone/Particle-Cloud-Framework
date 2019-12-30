@@ -1,28 +1,51 @@
 {
+  "sagemaker_apply": [
+    {
+      "pcf_name": "pcf_sagemaker_notebook_instance",
+      "flavor": "sagemaker_notebook_instance",
+      "aws_resource": {
+        "NotebookInstanceName": "pcf-test",
+        "InstanceType": "ml.t2.medium",
+        "RoleArn": "arn:aws:iam::123456789012:role/some-role",
+        "Tags": [
+          {
+            "Key": "ggwp",
+            "Value": "lolcat"
+          }
+        ],
+        "RootAccess": "Enabled"
+      }
+    },
+    {},
+    [
+      "placebo",
+      "sagemaker/replay"
+    ]
+  ],
   "ecr-repository-apply": [
     {
-        "pcf_name": "pcf_ecr_repository",
-        "flavor": "ecr_repository",
-        "aws_resource": {
-            "repositoryName": "gg-ecr",
-            "tags": [
-                {
-                    "Key": "lol",
-                    "Value": "cat"
-                }
-            ]
-        }
+      "pcf_name": "pcf_ecr_repository",
+      "flavor": "ecr_repository",
+      "aws_resource": {
+        "repositoryName": "gg-ecr",
+        "tags": [
+          {
+            "Key": "lol",
+            "Value": "cat"
+          }
+        ]
+      }
     },
     {
-        "aws_resource": {
-            "repositoryName": "gg-ecr",
-            "tags": [
-                {
-                    "Key": "gg",
-                    "Value": "wp"
-                }
-            ]
-        }
+      "aws_resource": {
+        "repositoryName": "gg-ecr",
+        "tags": [
+          {
+            "Key": "gg",
+            "Value": "wp"
+          }
+        ]
+      }
     },
     [
       "placebo",
@@ -169,7 +192,7 @@
       "mock_events"
     ]
   ],
-    "cloudwatch-log-apply": [
+  "cloudwatch-log-apply": [
     {
       "pcf_name": "pcf_cloudwatch_log",
       "flavor": "cloudwatch_logs",
@@ -269,7 +292,7 @@
       "mock_autoscaling"
     ]
   ],
-    "elb-apply": [
+  "elb-apply": [
     {
       "pcf_name": "elb-pcf",
       "flavor": "elb",
@@ -293,11 +316,11 @@
   ],
   "ecs-cluster-apply": [
     {
-        "pcf_name": "pcf_ecs_cluster",
-        "flavor": "ecs_cluster",
-        "aws_resource": {
-            "clusterName": "core"
-        }
+      "pcf_name": "pcf_ecs_cluster",
+      "flavor": "ecs_cluster",
+      "aws_resource": {
+        "clusterName": "core"
+      }
     },
     {},
     [
@@ -350,7 +373,7 @@
       "mock_ecs"
     ]
   ],
-    "efs-apply": [
+  "efs-apply": [
     {
       "pcf_name": "pcf_efs",
       "flavor": "efs_instance",
@@ -368,7 +391,7 @@
       "efs/replay"
     ]
   ],
-    "emr-cluster-group-apply": [
+  "emr-cluster-group-apply": [
     {
       "pcf_name": "pcf_cluster",
       "flavor": "emr_cluster",
@@ -456,15 +479,15 @@
       "mock_emr"
     ]
   ],
-    "kms-apply": [
+  "kms-apply": [
     {
-        "pcf_name": "kms_unit_test",
-        "flavor": "kms_key",
-        "aws_resource": {
-            "custom_config": {
-                "key_name": "pcf_unit_test"
-            }
+      "pcf_name": "kms_unit_test",
+      "flavor": "kms_key",
+      "aws_resource": {
+        "custom_config": {
+          "key_name": "pcf_unit_test"
         }
+      }
     },
     {},
     [
@@ -499,14 +522,14 @@
   ],
   "vpc-apply": [
     {
-        "pcf_name": "pcf_vpc",
-        "flavor": "vpc_instance",
-        "aws_resource": {
-            "custom_config":{
-                "vpc_name":"test"
-            },
-            "CidrBlock":"10.0.0.0/16"
-        }
+      "pcf_name": "pcf_vpc",
+      "flavor": "vpc_instance",
+      "aws_resource": {
+        "custom_config": {
+          "vpc_name": "test"
+        },
+        "CidrBlock": "10.0.0.0/16"
+      }
     },
     {},
     [
@@ -537,7 +560,7 @@
     {
       "pcf_name": "pcf_batch_job_queue",
       "flavor": "batch_job_queue",
-        "aws_resource": {
+      "aws_resource": {
         "jobQueueName": "test",
         "state": "ENABLED",
         "priority": 1,
@@ -545,19 +568,18 @@
           {
             "order": 1,
             "computeEnvironment": "arn:aws:batch:us-east-1:111111111111:compute-environment/test"
-
           }
         ]
       }
     },
-      {
+    {
       "aws_resource": {
         "state": "DISABLED"
       }
     },
     [
-    "placebo",
-    "batch/replay"
+      "placebo",
+      "batch/replay"
     ]
   ],
   "dynamodb_apply": [
@@ -609,75 +631,75 @@
           "WriteCapacityUnits": 10
         },
         "Tags": [
-            {
-                "Key": "Name",
-                "Value": "pcf-dynamodb-test"
-            }
+          {
+            "Key": "Name",
+            "Value": "pcf-dynamodb-test"
+          }
         ]
       }
     },
     {
-        "pcf_name": "pcf_dynamodb",
-        "flavor": "dynamodb_table",
-        "aws_resource": {
-            "AttributeDefinitions": [
-                {
-                    "AttributeName": "Post",
-                    "AttributeType": "S"
-                },
-                {
-                    "AttributeName": "PostDateTime",
-                    "AttributeType": "S"
-                }
-            ],
-            "TableName": "pcf_test_table",
+      "pcf_name": "pcf_dynamodb",
+      "flavor": "dynamodb_table",
+      "aws_resource": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Post",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "PostDateTime",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "pcf_test_table",
+        "KeySchema": [
+          {
+            "AttributeName": "Post",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "PostDateTime",
+            "KeyType": "RANGE"
+          }
+        ],
+        "LocalSecondaryIndexes": [
+          {
+            "IndexName": "LastPostIndex",
             "KeySchema": [
-                {
-                    "AttributeName": "Post",
-                    "KeyType": "HASH"
-                },
-                {
-                    "AttributeName": "PostDateTime",
-                    "KeyType": "RANGE"
-                }
+              {
+                "AttributeName": "Post",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "PostDateTime",
+                "KeyType": "RANGE"
+              }
             ],
-            "LocalSecondaryIndexes" : [
-                {
-                    "IndexName": "LastPostIndex",
-                    "KeySchema": [
-                        {
-                            "AttributeName": "Post",
-                            "KeyType": "HASH"
-                        },
-                        {
-                            "AttributeName": "PostDateTime",
-                            "KeyType": "RANGE"
-                        }
-                    ],
-                    "Projection": {
-                        "ProjectionType": "KEYS_ONLY"
-                    }
-                }
-            ],
-            "ProvisionedThroughput": {
-                "ReadCapacityUnits": 25,
-                "WriteCapacityUnits": 30
-            },
-            "Tags": [
-                {
-                    "Key": "Name",
-                    "Value": "pcf-dynamodb-test"
-                },
-                {
-                    "Key": "Project",
-                    "Value": "PCF Rules"
-                }
-            ]
-        }
+            "Projection": {
+              "ProjectionType": "KEYS_ONLY"
+            }
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 25,
+          "WriteCapacityUnits": 30
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "pcf-dynamodb-test"
+          },
+          {
+            "Key": "Project",
+            "Value": "PCF Rules"
+          }
+        ]
+      }
     },
     [
-        "placebo",
-        "dynamodb/replay"
+      "placebo",
+      "dynamodb/replay"
     ]
   ],
   "cloudformation_apply": [
@@ -685,20 +707,20 @@
       "pcf_name": "pcf_cloudformation",
       "flavor": "cloudformation",
       "aws_resource": {
-          "custom_config": {
-              "template_parameters": {
-                  "var1": "variable one",
-                  "var2": "variable two"
-              }
-          },
-          "StackName": "pcf-cloudformation",
-          "Tags": [
-              {
-                  "Key": "Name",
-                  "Value": "test"
-              }
-          ],
-          "TemplateBody": "AWSTemplateFormatVersion: 2010-09-09\nDescription: Example Project\nResources:\n  TestKinesis:\n    Type: AWS::Kinesis::Stream\n    Properties:\n      Name: TestKinesisStreamCloudwatch\n      ShardCount: 1\n      StreamEncryption:\n        EncryptionType: KMS\n        KeyId: alias/aws/kinesis\n      Tags:\n      - Key: Test\n        Value: Test2\n      - Key: {{ var1 }}\n        Value: {{ var2 }}"
+        "custom_config": {
+          "template_parameters": {
+            "var1": "variable one",
+            "var2": "variable two"
+          }
+        },
+        "StackName": "pcf-cloudformation",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test"
+          }
+        ],
+        "TemplateBody": "AWSTemplateFormatVersion: 2010-09-09\nDescription: Example Project\nResources:\n  TestKinesis:\n    Type: AWS::Kinesis::Stream\n    Properties:\n      Name: TestKinesisStreamCloudwatch\n      ShardCount: 1\n      StreamEncryption:\n        EncryptionType: KMS\n        KeyId: alias/aws/kinesis\n      Tags:\n      - Key: Test\n        Value: Test2\n      - Key: {{ var1 }}\n        Value: {{ var2 }}"
       }
     },
     {},

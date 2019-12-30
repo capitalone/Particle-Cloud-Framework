@@ -1,0 +1,17 @@
+{
+    "status_code": 200,
+    "data": {
+        "NotebookInstanceArn": "arn:aws:sagemaker:us-east-1:123456789012:notebook-instance/pcf-test",
+        "ResponseMetadata": {
+            "RequestId": "5014c808-7cfa-4aa0-a3de-241c3e1d6a72",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "5014c808-7cfa-4aa0-a3de-241c3e1d6a72",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "93",
+                "date": "Mon, 30 Dec 2019 21:57:59 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}
