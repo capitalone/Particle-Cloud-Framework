@@ -35,8 +35,6 @@ class NotebookInstance(AWSResource):
         "Failed": State.running,
         "Deleting": State.pending,
         "Updating": State.pending
-        #"active": State.running,
-        #"inactive": State.terminated
     }
 
     equivalent_states = {}
@@ -48,7 +46,6 @@ class NotebookInstance(AWSResource):
         "SecurityGroupIds",
         "RoleArn",
         "KmsKeyId",
-        #"Tags",
         "LifecycleConfigName",
         "DirectInternetAccess",
         "VolumeSizeInGB",
