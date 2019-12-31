@@ -1,5 +1,5 @@
 {
-  "sagemaker_apply": [
+  "sagemaker_notebook_instance_apply": [
     {
       "pcf_name": "pcf_sagemaker_notebook_instance",
       "flavor": "sagemaker_notebook_instance",
@@ -19,7 +19,7 @@
     {},
     [
       "placebo",
-      "sagemaker/replay"
+      "sagemaker/notebook_instance/replay"
     ]
   ],
   "ecr-repository-apply": [
