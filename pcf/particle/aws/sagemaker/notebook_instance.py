@@ -52,7 +52,8 @@ class NotebookInstance(AWSResource):
         "AcceleratorTypes",
         "DefaultCodeRepository",
         "AdditionalCodeRepositories",
-        "RootAccess"
+        "RootAccess",
+        "Tags"
     }
 
     UPDATE_PARAM_FILTER = {}
@@ -86,8 +87,8 @@ class NotebookInstance(AWSResource):
         """
         try:
             current_definition = self.client.describe_notebook_instance(NotebookInstanceName=self.notebook_instance_name)
+            current_definition["Tags"] = self.client.list_tags(ResourceArn=current_definition.get("NotebookInstanceArn")).get("Tags")
 
-            #current_definition = pcf_util.keep_and_replace_keys(self.client.describe_notebook_instance(NotebookInstanceName=self.notebook_instance_name), NotebookInstance.PARAM_CONVERSIONS)
         except ClientError as e:
             if e.response['Error']['Message'] == 'RecordNotFound':
                 logger.info("Notebook {} was not found. State is terminated".format(self.notebook_instance_name))

@@ -1,43 +1,43 @@
 {
     "status_code": 200,
     "data": {
-        "NotebookInstanceArn": "arn:aws:sagemaker:us-east-1:123456789012:notebook-instance/pcf-test",
-        "NotebookInstanceName": "pcf-test",
-        "NotebookInstanceStatus": "Pending",
-        "Url": "pcf-test.notebook.us-east-1.sagemaker.aws",
+        "NotebookInstanceArn": "arn:aws:sagemaker:us-east-1:123456789012:notebook-instance/gg-test",
+        "NotebookInstanceName": "gg-test",
+        "NotebookInstanceStatus": "InService",
+        "Url": "gg-test.notebook.us-east-1.sagemaker.aws",
         "InstanceType": "ml.t2.medium",
         "RoleArn": "arn:aws:iam::123456789012:role/some-role",
         "LastModifiedTime": {
             "__class__": "datetime",
             "year": 2019,
             "month": 12,
-            "day": 30,
-            "hour": 16,
-            "minute": 58,
-            "second": 0,
-            "microsecond": 124000
+            "day": 31,
+            "hour": 10,
+            "minute": 28,
+            "second": 27,
+            "microsecond": 572000
         },
         "CreationTime": {
             "__class__": "datetime",
             "year": 2019,
             "month": 12,
-            "day": 30,
-            "hour": 16,
-            "minute": 58,
-            "second": 0,
-            "microsecond": 124000
+            "day": 31,
+            "hour": 10,
+            "minute": 26,
+            "second": 4,
+            "microsecond": 58000
         },
         "DirectInternetAccess": "Enabled",
         "VolumeSizeInGB": 5,
         "RootAccess": "Enabled",
         "ResponseMetadata": {
-            "RequestId": "ad017b40-688b-4557-8cc2-cf79dfae3cee",
+            "RequestId": "a9e24fb8-30d4-4ca9-b96b-f0cb847715fa",
             "HTTPStatusCode": 200,
             "HTTPHeaders": {
-                "x-amzn-requestid": "ad017b40-688b-4557-8cc2-cf79dfae3cee",
+                "x-amzn-requestid": "a9e24fb8-30d4-4ca9-b96b-f0cb847715fa",
                 "content-type": "application/x-amz-json-1.1",
-                "content-length": "464",
-                "date": "Mon, 30 Dec 2019 21:58:00 GMT"
+                "content-length": "463",
+                "date": "Tue, 31 Dec 2019 15:28:38 GMT"
             },
             "RetryAttempts": 0
         }

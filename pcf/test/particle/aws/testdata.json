@@ -4,7 +4,7 @@
       "pcf_name": "pcf_sagemaker_notebook_instance",
       "flavor": "sagemaker_notebook_instance",
       "aws_resource": {
-        "NotebookInstanceName": "pcf-test",
+        "NotebookInstanceName": "gg-test",
         "InstanceType": "ml.t2.medium",
         "RoleArn": "arn:aws:iam::123456789012:role/some-role",
         "Tags": [
