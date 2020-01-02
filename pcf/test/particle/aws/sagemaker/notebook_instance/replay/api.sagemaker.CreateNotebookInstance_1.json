@@ -1,0 +1,17 @@
+{
+    "status_code": 200,
+    "data": {
+        "NotebookInstanceArn": "arn:aws:sagemaker:us-east-1:123456789012:notebook-instance/gg-test",
+        "ResponseMetadata": {
+            "RequestId": "ba146097-ba56-48a5-8e78-9c6ab3e2af2d",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "ba146097-ba56-48a5-8e78-9c6ab3e2af2d",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "92",
+                "date": "Tue, 31 Dec 2019 15:26:03 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

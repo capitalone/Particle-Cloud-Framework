@@ -1,0 +1,22 @@
+{
+    "status_code": 200,
+    "data": {
+        "Tags": [
+            {
+                "Key": "ggwp",
+                "Value": "lolcat"
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "dbfb426f-f6f0-4162-ad54-f56f55763d2a",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "dbfb426f-f6f0-4162-ad54-f56f55763d2a",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "42",
+                "date": "Tue, 31 Dec 2019 15:28:38 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

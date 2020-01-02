@@ -1,0 +1,45 @@
+{
+    "status_code": 200,
+    "data": {
+        "NotebookInstanceArn": "arn:aws:sagemaker:us-east-1:123456789012:notebook-instance/gg-test",
+        "NotebookInstanceName": "gg-test",
+        "NotebookInstanceStatus": "Stopping",
+        "Url": "gg-test.notebook.us-east-1.sagemaker.aws",
+        "InstanceType": "ml.t2.medium",
+        "RoleArn": "arn:aws:iam::123456789012:role/some-role",
+        "LastModifiedTime": {
+            "__class__": "datetime",
+            "year": 2019,
+            "month": 12,
+            "day": 31,
+            "hour": 10,
+            "minute": 28,
+            "second": 38,
+            "microsecond": 943000
+        },
+        "CreationTime": {
+            "__class__": "datetime",
+            "year": 2019,
+            "month": 12,
+            "day": 31,
+            "hour": 10,
+            "minute": 26,
+            "second": 4,
+            "microsecond": 58000
+        },
+        "DirectInternetAccess": "Enabled",
+        "VolumeSizeInGB": 5,
+        "RootAccess": "Enabled",
+        "ResponseMetadata": {
+            "RequestId": "1e635f8e-7b85-406b-a861-605a87dfd779",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "1e635f8e-7b85-406b-a861-605a87dfd779",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "462",
+                "date": "Tue, 31 Dec 2019 15:28:38 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

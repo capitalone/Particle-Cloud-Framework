@@ -1,0 +1,17 @@
+{
+    "status_code": 200,
+    "data": {
+        "Tags": [],
+        "ResponseMetadata": {
+            "RequestId": "cbee59f6-4335-41db-ad08-49dfc8a6e78d",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "cbee59f6-4335-41db-ad08-49dfc8a6e78d",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "11",
+                "date": "Tue, 31 Dec 2019 15:26:04 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}
