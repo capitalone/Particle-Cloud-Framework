@@ -56,7 +56,22 @@ class NotebookInstance(AWSResource):
         "Tags"
     }
 
-    UPDATE_PARAM_FILTER = {}
+    UPDATE_PARAM_FILTER = {
+        "NotebookInstanceName",
+        "InstanceType",
+        "RoleArn",
+        "LifecycleConfigName",
+        "DisassociateLifecycleConfig"
+        "VolumeSizeInGB",
+        "DefaultCodeRepository",
+        "AdditionalCodeRepositories",
+        "AcceleratorTypes",
+        "DisassociateAcceleratorTypes",
+        "DisassociateDefaultCodeRepository",
+        "DisassociateAdditionalCodeRepositories",
+        "RootAccess",
+        "Tags"
+    }
 
     PARAM_CONVERSIONS = {
         "SecurityGroups": "SecurityGroupIds",
@@ -148,9 +163,13 @@ class NotebookInstance(AWSResource):
         self.state = self.state_lookup.get(self.current_state_definition.get("NotebookInstanceStatus", "missing"))
 
     def _update(self):
-        #Will implement later
-        pass
+        """
+        Updates Sagemaker Notebook
 
+        Returns:
+            response of boto3 update_notebook_instnace()
+        """
+        pass
 
 
     def is_state_definition_equivalent(self):
