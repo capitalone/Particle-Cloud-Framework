@@ -70,7 +70,6 @@ class NotebookInstance(AWSResource):
         "DisassociateDefaultCodeRepository",
         "DisassociateAdditionalCodeRepositories",
         "RootAccess",
-        "Tags"
     }
 
     PARAM_CONVERSIONS = {
@@ -169,8 +168,27 @@ class NotebookInstance(AWSResource):
         Returns:
             response of boto3 update_notebook_instance()
         """
+        if self.state == State.running:
+            self._stop()
+            while True:
+                if self.client.describe_notebook_instance(
+                    NotebookInstanceName=self.notebook_instance_name).get("NotebookInstanceStatus") == "Stopped":
+                    break
+                time.sleep(10)
+
         update_definition = pcf_util.param_filter(self.get_desired_state_definition(), NotebookInstance.UPDATE_PARAM_FILTER)
-        return self.client.update_notebook_instance(**update_definition)
+        update_response = self.client.update_notebook_instance(**update_definition)
+
+        # # Wait until updating is complete
+        # while True:
+        #     if self.client.describe_notebook_instance(
+        #         NotebookInstanceName=self.notebook_instance_name).get("NotebookInstanceStatus") == "Stopped":
+        #             break
+        #     time.sleep(10)
+
+        # # Start the notebook again
+        # self._start()
+        return update_response
 
 
     def is_state_definition_equivalent(self):

@@ -1,4 +1,22 @@
 {
+  "sagemaker_notebook_lifecycle_config_apply": [
+    {
+      "pcf_name": "pcf_notebook_lifecycle_config",
+      "flavor": "sagemaker_notebook_lifecycle_config",
+      "aws_resource": {
+        "NotebookInstanceLifecycleConfigName": "sagemaker_lifecycle_test"
+      }
+    },
+    {
+      "aws_resource": {
+        "NotebookInstanceLifecycleConfigName": "updated_sagemaker_lifecycle_test"
+      }
+    },
+    [
+      "placebo",
+      "sagemaker/notebook_lifecycle_config/replay"
+    ]
+  ],
   "sagemaker_notebook_instance_apply": [
     {
       "pcf_name": "pcf_sagemaker_notebook_instance",
