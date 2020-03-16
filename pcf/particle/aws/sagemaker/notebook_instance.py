@@ -187,9 +187,7 @@ class NotebookInstance(AWSResource):
             time.sleep(10)
 
         # Start the notebook again
-        print(self.state)
         self.state = State.stopped
-        print(self.state)
         self._start()
         return update_response
 
