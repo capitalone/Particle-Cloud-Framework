@@ -179,15 +179,18 @@ class NotebookInstance(AWSResource):
         update_definition = pcf_util.param_filter(self.get_desired_state_definition(), NotebookInstance.UPDATE_PARAM_FILTER)
         update_response = self.client.update_notebook_instance(**update_definition)
 
-        # # Wait until updating is complete
-        # while True:
-        #     if self.client.describe_notebook_instance(
-        #         NotebookInstanceName=self.notebook_instance_name).get("NotebookInstanceStatus") == "Stopped":
-        #             break
-        #     time.sleep(10)
+        # Wait until updating is complete
+        while True:
+            if self.client.describe_notebook_instance(
+                NotebookInstanceName=self.notebook_instance_name).get("NotebookInstanceStatus") == "Stopped":
+                    break
+            time.sleep(10)
 
-        # # Start the notebook again
-        # self._start()
+        # Start the notebook again
+        print(self.state)
+        self.state = State.stopped
+        print(self.state)
+        self._start()
         return update_response
 
 
