@@ -34,7 +34,11 @@
         "RootAccess": "Enabled"
       }
     },
-    {},
+    {
+      "aws_resource": {
+        "InstanceType": "ml.t2.large"
+      }
+    },
     [
       "placebo",
       "sagemaker/notebook_instance/replay"
