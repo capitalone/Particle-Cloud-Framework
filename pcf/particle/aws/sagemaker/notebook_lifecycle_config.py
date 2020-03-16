@@ -27,14 +27,16 @@ class NotebookLifecycleConfig(AWSResource):
     """
     flavor = "sagemaker_notebook_lifecycle_config"
 
-    START_PARAM_FILTER, UPDATE_PARAM_FILTER = {
+    START_PARAM_FILTER = {
         "NotebookInstanceLifecycleConfigName",
         "OnCreate",
         "OnStart"
     }
 
-    PARAM_CONVERSIONS = {
-        "NotebookInstanceLifecycleConfigName": "LifecycleConfigName",
+    UPDATE_PARAM_FILTER = {
+        "NotebookInstanceLifecycleConfigName",
+        "OnCreate",
+        "OnStart"
     }
 
     UNIQUE_KEYS = ["aws_resource.NotebookInstanceLifecycleConfigName"]
