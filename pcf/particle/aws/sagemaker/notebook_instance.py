@@ -167,9 +167,10 @@ class NotebookInstance(AWSResource):
         Updates Sagemaker Notebook
 
         Returns:
-            response of boto3 update_notebook_instnace()
+            response of boto3 update_notebook_instance()
         """
-        pass
+        update_definition = pcf_util.param_filter(self.get_desired_state_definition(), NotebookInstance.UPDATE_PARAM_FILTER)
+        return self.client.update_notebook_instance(**update_definition)
 
 
     def is_state_definition_equivalent(self):

@@ -27,6 +27,18 @@ class NotebookLifecycleConfig(AWSResource):
     """
     flavor = "sagemaker_notebook_lifecycle_config"
 
+    state_lookup = {
+        "missing": State.terminated,
+        "active": State.running,
+        "inactive": State.terminated
+    }
+
+    equivalent_states = {
+        State.running: 1,
+        State.stopped: 0,
+        State.terminated: 0
+    }
+
     START_PARAM_FILTER = {
         "NotebookInstanceLifecycleConfigName",
         "OnCreate",
@@ -50,22 +62,22 @@ class NotebookLifecycleConfig(AWSResource):
         """
         Logic that sets keys from state definition that are used to uniquely identify the Sagemaker Notebook
         """
-        self.unique_keys = NotebookInstance.UNIQUE_KEYS
+        self.unique_keys = NotebookLifecycleConfig.UNIQUE_KEYS
 
     def get_status(self):
         """
         Calls the describe notebook instance lifecycle config boto call and returns current definition
 
         Returns:
-            current definition
+            status (dict)
         """
         try:
             current_definition = self.client.describe_notebook_instance_lifecycle_config(NotebookInstanceLifecycleConfigName=self.notebook_instance_lifecycle_config_name)
 
         except ClientError as e:
-            if e.response['Error']['Message'] == 'RecordNotFound':
+            if e.response['Error']['Code'] == 'ValidationException':
                 logger.info("Notebook Lifecycle Config {} was not found. State is terminated".format(self.notebook_instance_lifecycle_config_name))
-                return {"NotebookInstanceLifecycleConfigName": self.notebook_instance_lifecycle_config_name}
+                return {"status": "missing"}
             else:
                 raise e
         return current_definition
@@ -81,6 +93,25 @@ class NotebookLifecycleConfig(AWSResource):
         start_definition = pcf_util.param_filter(self.get_desired_state_definition(), NotebookLifecycleConfig.START_PARAM_FILTER)
         return self.client.create_notebook_instance_lifecycle_config(**start_definition)
 
+    def sync_state(self):
+        """
+        Sagemaker Notebook Lifecycle Config implementation of sync state. Calls get status and sets the current state.
+        """
+        full_status = self.get_status()
+
+        if full_status.get("status") == "missing":
+            self.state = State.terminated
+            return
+
+        self.current_state_definition = full_status
+        self.state = State.running
+
+    def _stop(self):
+        """
+        Sagemaker lifecycle config does not have a stopped state so it calls terminate
+        """
+        return self.terminate()
+
     def _terminate(self):
         """
         Deletes Sagemaker Notebook Lifecycle Config
@@ -89,7 +120,7 @@ class NotebookLifecycleConfig(AWSResource):
             response of boto3 delete_notebook_instance_lifecycle_config()
         """
 
-        return self.client.delete_notebook_instance_lifecycle_config(NotebookInstanceName=self.notebook_instance_lifecycle_config_name)
+        return self.client.delete_notebook_instance_lifecycle_config(NotebookInstanceLifecycleConfigName=self.notebook_instance_lifecycle_config_name)
 
     def _update(self):
         """
@@ -100,3 +131,30 @@ class NotebookLifecycleConfig(AWSResource):
         """
         update_definition = pcf_util.param_filter(self.get_desired_state_definition(), NotebookLifecycleConfig.UPDATE_PARAM_FILTER)
         return self.client.update_notebook_instance_lifecycle_config(**update_definition)
+
+    def is_state_equivalent(self, state1, state2):
+        """
+        Compared the desired state and current state definition
+
+        Args:
+            state1 (State):
+            state1 (State):
+
+        Returns:
+            bool
+        """
+        return NotebookLifecycleConfig.equivalent_states.get(state1) == NotebookLifecycleConfig.equivalent_states.get(state2)
+
+    def is_state_definition_equivalent(self):
+        """
+        Compared the desired state and current state definition
+
+        Returns:
+            bool
+        """
+        self.get_state()
+        self.current_state_definition = pcf_util.param_filter(self.current_state_definition, NotebookLifecycleConfig.START_PARAM_FILTER)
+        desired_definition = pcf_util.param_filter(self.desired_state_definition, NotebookLifecycleConfig.START_PARAM_FILTER)
+
+        diff_dict = pcf_util.diff_dict(self.current_state_definition, desired_definition)
+        return diff_dict == {}
