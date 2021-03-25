@@ -56,7 +56,7 @@ setup(
         "deepdiff==4.0.6",
         "click==7.0",
         "python-Levenshtein==0.12.0",
-        "pyyaml==5.1"
+        "pyyaml==5.4"
     ],
     package_data={'pcf': glob('**/*.j2', recursive=True)},
     include_package_data=True,
