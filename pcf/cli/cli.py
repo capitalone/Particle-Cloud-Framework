@@ -22,7 +22,7 @@ class PCFCLI(click.MultiCommand):
     def list_commands(self, ctx=None):
         """ List command names and their descriptions """
         cmds = [
-            cmd[:-3]
+            cmd[:-4]
             for cmd in os.listdir(self.command_dir)
             if cmd.endswith(".py") and cmd != "__init__.py"
         ]
