@@ -56,7 +56,21 @@ class NotebookInstance(AWSResource):
         "Tags"
     }
 
-    UPDATE_PARAM_FILTER = {}
+    UPDATE_PARAM_FILTER = {
+        "NotebookInstanceName",
+        "InstanceType",
+        "RoleArn",
+        "LifecycleConfigName",
+        "DisassociateLifecycleConfig"
+        "VolumeSizeInGB",
+        "DefaultCodeRepository",
+        "AdditionalCodeRepositories",
+        "AcceleratorTypes",
+        "DisassociateAcceleratorTypes",
+        "DisassociateDefaultCodeRepository",
+        "DisassociateAdditionalCodeRepositories",
+        "RootAccess",
+    }
 
     PARAM_CONVERSIONS = {
         "SecurityGroups": "SecurityGroupIds",
@@ -148,9 +162,34 @@ class NotebookInstance(AWSResource):
         self.state = self.state_lookup.get(self.current_state_definition.get("NotebookInstanceStatus", "missing"))
 
     def _update(self):
-        #Will implement later
-        pass
+        """
+        Updates Sagemaker Notebook
 
+        Returns:
+            response of boto3 update_notebook_instance()
+        """
+        if self.state == State.running:
+            self._stop()
+            while True:
+                if self.client.describe_notebook_instance(
+                    NotebookInstanceName=self.notebook_instance_name).get("NotebookInstanceStatus") == "Stopped":
+                    break
+                time.sleep(10)
+
+        update_definition = pcf_util.param_filter(self.get_desired_state_definition(), NotebookInstance.UPDATE_PARAM_FILTER)
+        update_response = self.client.update_notebook_instance(**update_definition)
+
+        # Wait until updating is complete
+        while True:
+            if self.client.describe_notebook_instance(
+                NotebookInstanceName=self.notebook_instance_name).get("NotebookInstanceStatus") == "Stopped":
+                    break
+            time.sleep(10)
+
+        # Start the notebook again
+        self.state = State.stopped
+        self._start()
+        return update_response
 
 
     def is_state_definition_equivalent(self):
