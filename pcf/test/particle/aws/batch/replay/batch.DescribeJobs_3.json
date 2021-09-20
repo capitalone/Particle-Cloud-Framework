@@ -1,0 +1,47 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "0f879367-8301-11e9-aae8-a33ab9afa12f",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "date": "Thu, 30 May 2019 17:33:39 GMT",
+                "content-type": "application/json",
+                "content-length": "517",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "0f879367-8301-11e9-aae8-a33ab9afa12f",
+                "x-amz-apigw-id": "aggN-EUJoAMFthg=",
+                "x-amzn-trace-id": "Root=1-5cf013f3-3c51c4ca5ecc082869f2f3b8;Sampled=0"
+            },
+            "RetryAttempts": 0
+        },
+        "jobs": [
+            {
+                "jobName": "test",
+                "jobId": "343aee99-9bd2-41ca-8aee-ad814cba242f",
+                "jobQueue": "arn:aws:batch:us-east-1:123456789012:job-queue/test-queue",
+                "status": "RUNNABLE",
+                "attempts": [],
+                "createdAt": 1559237299852,
+                "dependsOn": [],
+                "jobDefinition": "arn:aws:batch:us-east-1:123456789012:job-definition/test-definition:755",
+                "parameters": {},
+                "container": {
+                    "image": "busybox",
+                    "vcpus": 1,
+                    "memory": 128,
+                    "command": [
+                        "sleep",
+                        "10"
+                    ],
+                    "volumes": [],
+                    "environment": [],
+                    "mountPoints": [],
+                    "ulimits": [],
+                    "networkInterfaces": [],
+                    "resourceRequirements": []
+                }
+            }
+        ]
+    }
+}

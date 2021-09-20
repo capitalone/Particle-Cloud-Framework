@@ -1,0 +1,22 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "ca0f330b-82f6-11e9-bfef-39aabe030650",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "date": "Thu, 30 May 2019 16:20:07 GMT",
+                "content-type": "application/json",
+                "content-length": "147",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "ca0f330b-82f6-11e9-bfef-39aabe030650",
+                "x-amz-apigw-id": "agVcrHH2oAMF4YQ=",
+                "x-amzn-trace-id": "Root=1-5cf002b7-b26b464e6417446659b0e6f9;Sampled=0"
+            },
+            "RetryAttempts": 0
+        },
+        "jobDefinitionName": "test-definition",
+        "jobDefinitionArn": "arn:aws:batch:us-east-1:123456789012:job-definition/test-definition:754",
+        "revision": 754
+    }
+}
